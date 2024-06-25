@@ -25,6 +25,7 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Foot::Foot()
 	:
+	m_commonResources{},
 	m_camera{},
 	m_collision{},
 	m_model{},

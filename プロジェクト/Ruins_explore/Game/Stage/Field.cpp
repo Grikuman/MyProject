@@ -1,19 +1,16 @@
 /*
-	@file	Player.cpp
-	@brief	プレイヤーシーンクラス
+	@file	Field.cpp
+	@brief	一般的なシーンクラス
 */
 #include "pch.h"
-#include "Player.h"
+#include "Game/Stage/Field.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "Libraries/MyLib/GridFloor.h"
-#include "WorkTool/Collision.h"
-#include "Body.h"
+#include <GeometricPrimitive.h>
+#include "Libraries/NRLib/TPS_Camera.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -21,64 +18,58 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Player::Player()
+Field::Field()
 	:
 	m_commonResources{},
-	m_collision{},
-	m_body{}
+	m_cylinder{},
+	m_camera{}
 {
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-Player::~Player()
+Field::~Field()
 {
-
+	
 }
 
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Player::Initialize(CommonResources* resources)
+void Field::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	
-	//プレイヤーの胴体を作成
-	m_body = std::make_unique<Body>();
-	m_body->Initialize(m_commonResources);
+	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+
+	m_cylinder = DirectX::GeometricPrimitive::CreateCylinder(context,1.f);
+
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void Player::Update(float elapsedTime)
+void Field::Update()
 {
-    UNREFERENCED_PARAMETER(elapsedTime);
-	// プレイヤーの胴体を更新する
-	m_body->Update(elapsedTime);
+	
 }
 
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void Player::Render()
+void Field::Render()
 {
-    // プレイヤーの胴体を描画する
-	m_body->Render();
+	DirectX::SimpleMath::Matrix world = Matrix::Identity;
+	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
+	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
+	m_cylinder->Draw(world, view, proj);
 }
-
 
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void Player::Finalize()
+void Field::Finalize()
 {
-	m_body->Finalize();
-}
-
-NRLib::TPS_Camera* Player::GetCamera()
-{
-	return m_body->GetCamera();
+	// do nothing.
 }

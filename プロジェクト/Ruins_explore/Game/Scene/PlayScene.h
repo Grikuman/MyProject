@@ -9,6 +9,7 @@
 // 前方宣言
 class CommonResources;
 class Sky;
+class Field;
 
 namespace NRLib
 {
@@ -25,6 +26,8 @@ private:
 	std::unique_ptr<Player> m_player;
 	//天球
 	std::unique_ptr<Sky> m_sky;
+	//フィールド
+	std::unique_ptr<Field> m_field;
 
 	// シーンチェンジフラグ
 	bool m_isChangeScene;

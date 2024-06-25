@@ -67,4 +67,6 @@ public:
 private:
 	void InputProcessing(); // キー入力：コントローラー入力を受け付けて動作を決める
 	void Calculation();     // 入力後に計算をおこなう
+public:
+	NRLib::TPS_Camera* GetCamera() const { return m_camera.get(); } // カメラを取得
 };

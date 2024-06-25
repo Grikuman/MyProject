@@ -120,6 +120,9 @@
     <ClInclude Include="Game\Stage\Sky.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Stage\Field.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -174,6 +177,9 @@
       <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\Sky.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\Field.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
   </ItemGroup>

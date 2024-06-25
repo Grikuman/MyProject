@@ -25,6 +25,7 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Hand::Hand()
 	:
+	m_commonResources{},
 	m_camera{},
 	m_collision{},
 	m_model{},

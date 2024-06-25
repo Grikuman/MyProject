@@ -29,6 +29,7 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Body::Body()
 	:
+    m_commonResources{},
 	m_camera{},
 	m_collision{},
 	m_model{},
@@ -98,7 +99,7 @@ void Body::Update(float elapsedTime)
 
     //キー入力：コントローラー入力を受け付けて動作を決める
     InputProcessing();
-
+    
     // 入力後に計算をおこなう
     Calculation();
 

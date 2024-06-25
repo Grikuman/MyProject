@@ -15,6 +15,7 @@
 #include "Libraries/NRLib/FixedCamera.h"
 #include <iostream>
 #include "Game/Stage/Sky.h"
+#include "Game/Stage/Field.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -24,9 +25,11 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 PlayScene::PlayScene()
 	:
+	m_commonResources{},
 	m_isChangeScene{},
 	m_player{},
-	m_sky{}
+	m_sky{},
+	m_field{}
 {
 }
 
@@ -48,12 +51,21 @@ void PlayScene::Initialize(CommonResources* resources)
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
-	//初期化
+	// プレイヤーを生成
 	m_player = std::make_unique<Player>();
 	m_player->Initialize(m_commonResources);
-	//
+	// 天球を生成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize(m_commonResources);
+	// フィールドを生成
+	m_field = std::make_unique<Field>();
+	m_field->Initialize(m_commonResources);
+	// Bodyからカメラを取得してフィールドに設定する
+	NRLib::TPS_Camera* playerCamera = m_player->GetCamera();
+	if (playerCamera)
+	{
+		m_field->SetCamera(playerCamera);
+	}
 }
 
 //---------------------------------------------------------
@@ -64,7 +76,9 @@ void PlayScene::Update(float elapsedTime)
 	UNREFERENCED_PARAMETER(elapsedTime);
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
+	
 	m_sky->Update();
+	m_field->Update();
 }
 
 //---------------------------------------------------------
@@ -75,6 +89,7 @@ void PlayScene::Render()
 	//プレイヤーを描画
 	m_player->Render();
 	m_sky->Render();
+	m_field->Render();
 }
 
 //---------------------------------------------------------
@@ -84,6 +99,7 @@ void PlayScene::Finalize()
 {
 	m_player->Finalize();
 	m_sky->Finalize();
+	m_field->Finalize();
 }
 
 //---------------------------------------------------------

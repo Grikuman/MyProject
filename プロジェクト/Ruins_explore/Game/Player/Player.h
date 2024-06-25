@@ -41,4 +41,7 @@ public:
 	void Update(float elapsedTime);
 	void Render();
 	void Finalize();
+
+public:
+	NRLib::TPS_Camera* GetCamera();
 };
