@@ -43,7 +43,7 @@ void Field::Initialize(CommonResources* resources)
 	m_commonResources = resources;
 	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
-	m_cylinder = DirectX::GeometricPrimitive::CreateCylinder(context,1.f);
+	m_cylinder = DirectX::GeometricPrimitive::CreateCylinder(context,2.f,30.f);
 
 }
 
@@ -61,9 +61,10 @@ void Field::Update()
 void Field::Render()
 {
 	DirectX::SimpleMath::Matrix world = Matrix::Identity;
+	world *= Matrix::CreateTranslation(0.f, -1.f, 0.f);
 	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
 	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
-	m_cylinder->Draw(world, view, proj);
+	m_cylinder->Draw(world, view, proj,Colors::SandyBrown);
 }
 
 //---------------------------------------------------------
