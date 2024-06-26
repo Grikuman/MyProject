@@ -20,7 +20,11 @@ private:
 	// 共通リソース
 	CommonResources* m_commonResources;
 
-	std::unique_ptr<DirectX::GeometricPrimitive> m_cylinder;
+	std::unique_ptr<DirectX::GeometricPrimitive> m_box[2];
+	std::unique_ptr<DirectX::GeometricPrimitive> m_cylinder[3];
+
+	DirectX::SimpleMath::Vector3 m_boxPos[2];
+	DirectX::SimpleMath::Vector3 m_cylinderPos[3];
 
 	NRLib::TPS_Camera* m_camera; // カメラオブジェクトへのポインタ
 

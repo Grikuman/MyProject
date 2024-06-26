@@ -50,8 +50,8 @@ void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* cam
 	{
 		m_smallEnemy[i] = std::make_unique<SmallEnemy>();
 	}
-	m_smallEnemy[0]->Initialize(m_commonResources,m_camera,Vector3(2.f, 0.f, 5.f));
-	m_smallEnemy[1]->Initialize(m_commonResources,m_camera,Vector3(-2.f, 0.f, 5.f));
+	m_smallEnemy[0]->Initialize(m_commonResources,m_camera,Vector3(2.f, 0.f, -5.f));
+	m_smallEnemy[1]->Initialize(m_commonResources,m_camera,Vector3(-2.f, 0.f, -5.f));
 
 	m_collision = std::make_unique<Collision>();
 }

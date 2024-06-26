@@ -125,6 +125,7 @@ void Sky::Render()
 
 	// ワールド行列を更新する
 	Matrix world = Matrix::Identity;
+	world *= Matrix::CreateRotationX(XMConvertToRadians(180));
 
 	// モデルを描画する
 	m_model->Draw(context, *states, world, view, m_projection);
