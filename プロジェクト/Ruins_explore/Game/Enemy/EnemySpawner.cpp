@@ -12,6 +12,7 @@
 #include <GeometricPrimitive.h>
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "Game/Enemy/SmallEnemy.h"
+#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -23,7 +24,8 @@ EnemySpawner::EnemySpawner()
 	:
 	m_commonResources{},
 	m_camera{},
-	m_smallEnemy{}
+	m_smallEnemy{},
+	m_collision{}
 {
 }
 
@@ -48,18 +50,24 @@ void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* cam
 	{
 		m_smallEnemy[i] = std::make_unique<SmallEnemy>();
 	}
-	m_smallEnemy[0]->Initialize(m_commonResources,m_camera,Vector3(2.f, 0.f, 0.f));
-	m_smallEnemy[1]->Initialize(m_commonResources,m_camera,Vector3(-2.f, 0.f, 0.f));
+	m_smallEnemy[0]->Initialize(m_commonResources,m_camera,Vector3(2.f, 0.f, 5.f));
+	m_smallEnemy[1]->Initialize(m_commonResources,m_camera,Vector3(-2.f, 0.f, 5.f));
+
+	m_collision = std::make_unique<Collision>();
 }
 
 //---------------------------------------------------------
 // çXêVÇ∑ÇÈ
 //---------------------------------------------------------
-void EnemySpawner::Update()
+void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere)
 {
 	for (int i = 0; i < MAX_SMALL_ENEMY; i++)
 	{
 		m_smallEnemy[i]->Update();
+		if (m_collision->CheckCollision(boundingSphere, m_smallEnemy[i]->GetBoundingSphere()))
+		{
+			m_smallEnemy[i]->SetState(SmallEnemy::DEAD);
+		}
 	}
 }
 

@@ -16,6 +16,12 @@ namespace NRLib
 // 一般的なシーンクラス
 class SmallEnemy
 {
+public:
+	enum STATE
+	{
+		ALIVE,
+		DEAD,
+	};
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
@@ -25,6 +31,10 @@ private:
 	std::unique_ptr<DirectX::GeometricPrimitive> m_cylinder;
 
 	DirectX::SimpleMath::Vector3 m_position; // 座標
+
+	DirectX::BoundingSphere m_boundingSphere;
+
+	SmallEnemy::STATE m_state;
 public:
 	SmallEnemy();
 	~SmallEnemy();
@@ -35,4 +45,8 @@ public:
 	void Finalize();
 public:
 	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
+
+	void SetState(SmallEnemy::STATE state);
+	DirectX::BoundingSphere GetBoundingSphere();
+
 };

@@ -7,6 +7,7 @@
 // 前方宣言
 class CommonResources;
 class SmallEnemy;
+class Collision;
 
 namespace NRLib
 {
@@ -25,13 +26,15 @@ private:
 	// 小型エネミー
 	static const int MAX_SMALL_ENEMY = 2;                        // 小型エネミー生成数
 	std::unique_ptr<SmallEnemy> m_smallEnemy[MAX_SMALL_ENEMY];   // 小型エネミー
+	// 当たり判定
+	std::unique_ptr<Collision> m_collision;
 
 public:
 	EnemySpawner();
 	~EnemySpawner();
 
 	void Initialize(CommonResources* resources, NRLib::TPS_Camera* camera);
-	void Update();
+	void Update(DirectX::BoundingSphere boundingSphere);
 	void Render();
 	void Finalize();
 public:

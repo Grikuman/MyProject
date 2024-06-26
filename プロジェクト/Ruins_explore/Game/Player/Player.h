@@ -44,4 +44,5 @@ public:
 
 public:
 	NRLib::TPS_Camera* GetCamera();
+	DirectX::BoundingSphere GetBoundingSphere();
 };

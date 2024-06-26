@@ -96,22 +96,19 @@ void Hand::Update(
 	// Bodyのクォータニオンを取り込む
 	m_rotate = rotate;  
 
-	//*======================================================*
-	// Hand固有の動きはここでおこなう Quaternion:
-	//*======================================================*
-	// ロール、ピッチ、ヨーの値を生成
-	float yaw = 0.0f;
-	float pitch = 0.0f;
-	float roll = 0.0f;
-	// クォータニオンをロール、ピッチ、ヨーの値から生成する
-	Quaternion q = Quaternion::CreateFromYawPitchRoll(yaw, pitch, roll);
-	m_rotate = q * m_rotate;
-    //*======================================================*
 	// ジャンプ
 	Jump();
 
     // 座標移動
     m_position += Vector3::Transform(m_speed, m_rotate) * 0.1f; // ゲームパッド入力の速度調整で0.1をかけている
+
+	auto mouse = m_commonResources->GetInputManager()->GetMouseState();
+	float r = 0;
+	if (mouse.leftButton)
+	{
+		r = 45.f;
+	}
+	m_world *= Matrix::CreateRotationY(XMConvertToRadians(r));
 
     // ワールド行列にモデルの位置と回転を反映させる
     m_world *= Matrix::CreateFromQuaternion(m_rotate) * Matrix::CreateTranslation(m_position);

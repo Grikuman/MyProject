@@ -69,4 +69,7 @@ private:
 	void Calculation();     // “ü—ÍŒã‚ÉŒvZ‚ğ‚¨‚±‚È‚¤
 public:
 	NRLib::TPS_Camera* GetCamera() const { return m_camera.get(); } // ƒJƒƒ‰‚ğæ“¾
+
+	// Õ“Ë”»’è—p‚ÌAABB‚ğ•Ô‚·
+	DirectX::BoundingSphere GetBoundingSphere();
 };

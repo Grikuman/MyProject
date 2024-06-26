@@ -17,6 +17,7 @@
 #include "Game/Stage/Sky.h"
 #include "Game/Stage/Field.h"
 #include "Game/Enemy/EnemySpawner.h"
+#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -84,7 +85,7 @@ void PlayScene::Update(float elapsedTime)
 	
 	m_sky->Update();
 	m_field->Update();
-	m_enemySpawner->Update();
+	m_enemySpawner->Update(m_player->GetBoundingSphere());
 }
 
 //---------------------------------------------------------

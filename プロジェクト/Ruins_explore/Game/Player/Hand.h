@@ -47,7 +47,8 @@ private:
 	float m_cameraRotate;                                  // カメラの回転値
 
 	DirectX::SimpleMath::Matrix m_world;                   // ワールド行列
-
+private:
+	
 public:
 	Hand();
 	~Hand();

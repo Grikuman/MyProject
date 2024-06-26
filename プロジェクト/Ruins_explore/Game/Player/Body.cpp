@@ -269,3 +269,10 @@ void Body::Calculation()
     // ワールド行列にモデルの位置と回転を反映させる
     m_world *= Matrix::CreateFromQuaternion(m_rotate) * Matrix::CreateTranslation(m_position);
 }
+
+DirectX::BoundingSphere Body::GetBoundingSphere()
+{
+    Vector3 center = m_position; // 当たり判定球の中心
+    float radius = 0.5f; // 敵のサイズに応じて調整
+    return DirectX::BoundingSphere(center, radius);
+}

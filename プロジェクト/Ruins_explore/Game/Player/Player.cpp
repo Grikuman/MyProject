@@ -58,6 +58,8 @@ void Player::Update(float elapsedTime)
     UNREFERENCED_PARAMETER(elapsedTime);
 	// プレイヤーの胴体を更新する
 	m_body->Update(elapsedTime);
+
+	
 }
 
 //---------------------------------------------------------
@@ -82,3 +84,9 @@ NRLib::TPS_Camera* Player::GetCamera()
 {
 	return m_body->GetCamera();
 }
+
+DirectX::BoundingSphere Player::GetBoundingSphere()
+{
+	return m_body->GetBoundingSphere();
+}
+

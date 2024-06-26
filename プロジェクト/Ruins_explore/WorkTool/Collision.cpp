@@ -3,6 +3,7 @@
 //*=======================================================*
 #include "pch.h"
 #include "WorkTool/Collision.h"
+using namespace DirectX;
 
 bool Collision::CheckGround(DirectX::SimpleMath::Vector3 position, DirectX::SimpleMath::Vector3 ground)
 {
@@ -15,4 +16,10 @@ bool Collision::CheckGround(DirectX::SimpleMath::Vector3 position, DirectX::Simp
 	{
 		return false;
 	}
+}
+
+// AABBìØémÇÃè’ìÀîªíË
+bool Collision::CheckCollision(DirectX::BoundingSphere box1, DirectX::BoundingSphere box2)
+{
+	return box1.Intersects(box2);
 }

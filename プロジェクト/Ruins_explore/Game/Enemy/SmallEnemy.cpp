@@ -25,6 +25,7 @@ SmallEnemy::SmallEnemy()
 	m_cylinder{},
 	m_position{}
 {
+	m_state = SmallEnemy::STATE::ALIVE;
 }
 
 //---------------------------------------------------------
@@ -66,7 +67,10 @@ void SmallEnemy::Render()
 	world *= Matrix::CreateTranslation(m_position);
 	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
 	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
-	m_cylinder->Draw(world, view, proj, Colors::White);
+	if (m_state == SmallEnemy::ALIVE)
+	{
+		m_cylinder->Draw(world, view, proj, Colors::White);
+	}
 }
 
 //---------------------------------------------------------
@@ -75,4 +79,16 @@ void SmallEnemy::Render()
 void SmallEnemy::Finalize()
 {
 	// do nothing.
+}
+
+void SmallEnemy::SetState(SmallEnemy::STATE state)
+{
+	m_state = state;
+}
+
+DirectX::BoundingSphere SmallEnemy::GetBoundingSphere()
+{
+	Vector3 center = m_position; // 当たり判定球の中心
+	float radius = 0.5f; // 敵のサイズに応じて調整
+	return DirectX::BoundingSphere(center, radius);
 }
