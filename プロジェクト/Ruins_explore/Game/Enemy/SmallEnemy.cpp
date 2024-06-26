@@ -83,6 +83,7 @@ void SmallEnemy::Render()
 		m_cylinder->Draw(world, view, proj, color);
 	}
 	auto debugString = m_commonResources->GetDebugString();
+	debugString->AddString("Enemy");
 	debugString->AddString("%f",m_hp);
 }
 

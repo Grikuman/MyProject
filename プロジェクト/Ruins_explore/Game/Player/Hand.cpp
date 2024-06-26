@@ -104,9 +104,9 @@ void Hand::Update(
     // 座標移動
     m_position += Vector3::Transform(m_speed, m_rotate) * 0.1f; // ゲームパッド入力の速度調整で0.1をかけている
 
-	auto mouse = m_commonResources->GetInputManager()->GetMouseState();
+	auto kb = m_commonResources->GetInputManager()->GetKeyboardState();
 	float r = 0;
-	if (mouse.leftButton)
+	if (kb.F)
 	{
 		r = 45.f;
 		m_state = Hand::STATE::ATTACKING;

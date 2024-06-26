@@ -202,19 +202,18 @@ void Body::InputProcessing()
     {
         m_speed.z = -1.f;
     }
-    else if (kb.A)
+    if (kb.A)
     {
         m_speed.x = -1.f;
     }
-    else if (kb.D)
+    if (kb.D)
     {
         m_speed.x = 1.f;
     }
-    else if (kb.S)
+    if (kb.S)
     {
         m_speed.z = 1.f;
     }
-
     //*======================================================*
     //　キーボード入力・ゲームパッド入力
     //　処理:プレイヤーのジャンプ
