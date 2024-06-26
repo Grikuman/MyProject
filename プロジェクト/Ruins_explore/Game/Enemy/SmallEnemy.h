@@ -51,6 +51,7 @@ public:
 	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
 
 	void SetState(SmallEnemy::STATE state);
+	SmallEnemy::STATE GetState() { return m_state; };
 
 	void Hit(float damage) 
 	{ 

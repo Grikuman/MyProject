@@ -60,6 +60,11 @@ void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camer
 void SmallEnemy::Update()
 {
 	m_isHit = false;
+	if (m_hp <= 0)
+	{
+		m_state = SmallEnemy::STATE::DEAD;
+		m_hp = 0.0f;
+	}
 }
 
 //---------------------------------------------------------

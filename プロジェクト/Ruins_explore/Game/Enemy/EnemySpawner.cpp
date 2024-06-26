@@ -69,6 +69,13 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere,bool isAttack)
 			m_smallEnemy[i]->Hit(0.5f);
 		}
 	}
+	for (int i = 0; i < MAX_SMALL_ENEMY; i++)
+	{
+		if (m_smallEnemy[i]->GetState() == SmallEnemy::STATE::DEAD)
+		{
+			
+		}
+	}
 }
 
 //---------------------------------------------------------
