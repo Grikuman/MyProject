@@ -183,6 +183,8 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\CommonResources.h" />
+    <ClInclude Include="Game\Enemy\EnemySpawner.h" />
+    <ClInclude Include="Game\Enemy\SmallEnemy.h" />
     <ClInclude Include="Game\Player\Body.h" />
     <ClInclude Include="Game\Player\Foot.h" />
     <ClInclude Include="Game\Player\Hand.h" />
@@ -210,6 +212,8 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\CommonResources.cpp" />
+    <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
+    <ClCompile Include="Game\Enemy\SmallEnemy.cpp" />
     <ClCompile Include="Game\Player\Body.cpp" />
     <ClCompile Include="Game\Player\Foot.cpp" />
     <ClCompile Include="Game\Player\Hand.cpp" />

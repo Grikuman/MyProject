@@ -10,6 +10,7 @@
 class CommonResources;
 class Sky;
 class Field;
+class EnemySpawner;
 
 namespace NRLib
 {
@@ -22,12 +23,14 @@ class PlayScene final :
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
-	//プレイヤー
+	// プレイヤー
 	std::unique_ptr<Player> m_player;
-	//天球
+	// 天球
 	std::unique_ptr<Sky> m_sky;
-	//フィールド
+	// フィールド
 	std::unique_ptr<Field> m_field;
+	// エネミースポナー
+	std::unique_ptr<EnemySpawner> m_enemySpawner;
 
 	// シーンチェンジフラグ
 	bool m_isChangeScene;

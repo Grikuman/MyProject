@@ -16,6 +16,7 @@
 #include <iostream>
 #include "Game/Stage/Sky.h"
 #include "Game/Stage/Field.h"
+#include "Game/Enemy/EnemySpawner.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -29,7 +30,8 @@ PlayScene::PlayScene()
 	m_isChangeScene{},
 	m_player{},
 	m_sky{},
-	m_field{}
+	m_field{},
+	m_enemySpawner{}
 {
 }
 
@@ -60,12 +62,15 @@ void PlayScene::Initialize(CommonResources* resources)
 	// フィールドを生成
 	m_field = std::make_unique<Field>();
 	m_field->Initialize(m_commonResources);
-	// Bodyからカメラを取得してフィールドに設定する
+	// Bodyからカメラを取得して設定する
 	NRLib::TPS_Camera* playerCamera = m_player->GetCamera();
 	if (playerCamera)
 	{
 		m_field->SetCamera(playerCamera);
 	}
+	// エネミースポナーを生成
+	m_enemySpawner = std::make_unique<EnemySpawner>();
+	m_enemySpawner->Initialize(m_commonResources,playerCamera);
 }
 
 //---------------------------------------------------------
@@ -79,6 +84,7 @@ void PlayScene::Update(float elapsedTime)
 	
 	m_sky->Update();
 	m_field->Update();
+	m_enemySpawner->Update();
 }
 
 //---------------------------------------------------------
@@ -90,6 +96,7 @@ void PlayScene::Render()
 	m_player->Render();
 	m_sky->Render();
 	m_field->Render();
+	m_enemySpawner->Render();
 }
 
 //---------------------------------------------------------
@@ -100,6 +107,7 @@ void PlayScene::Finalize()
 	m_player->Finalize();
 	m_sky->Finalize();
 	m_field->Finalize();
+	m_enemySpawner->Finalize();
 }
 
 //---------------------------------------------------------
