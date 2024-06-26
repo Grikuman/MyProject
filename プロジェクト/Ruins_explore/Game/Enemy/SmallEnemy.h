@@ -35,6 +35,10 @@ private:
 	DirectX::BoundingSphere m_boundingSphere;
 
 	SmallEnemy::STATE m_state;
+
+	bool m_isHit;
+
+	float m_hp;
 public:
 	SmallEnemy();
 	~SmallEnemy();
@@ -47,6 +51,12 @@ public:
 	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
 
 	void SetState(SmallEnemy::STATE state);
-	DirectX::BoundingSphere GetBoundingSphere();
 
+	void Hit(float damage) 
+	{ 
+		m_hp -= damage; 
+		m_isHit = true;
+	};
+
+	DirectX::BoundingSphere GetBoundingSphere();
 };

@@ -85,7 +85,7 @@ void PlayScene::Update(float elapsedTime)
 	
 	m_sky->Update();
 	m_field->Update();
-	m_enemySpawner->Update(m_player->GetBoundingSphere());
+	m_enemySpawner->Update(m_player->GetBoundingSphere(),m_player->GetIsAttack());
 }
 
 //---------------------------------------------------------

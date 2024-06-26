@@ -34,7 +34,7 @@ public:
 	~EnemySpawner();
 
 	void Initialize(CommonResources* resources, NRLib::TPS_Camera* camera);
-	void Update(DirectX::BoundingSphere boundingSphere);
+	void Update(DirectX::BoundingSphere boundingSphere,bool isAttack);
 	void Render();
 	void Finalize();
 public:

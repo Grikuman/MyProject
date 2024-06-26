@@ -90,3 +90,8 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 	return m_body->GetBoundingSphere();
 }
 
+bool Player::GetIsAttack()
+{
+	return m_body->GetIsAttack();
+}
+

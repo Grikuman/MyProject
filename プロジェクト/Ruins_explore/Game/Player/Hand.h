@@ -23,9 +23,15 @@ namespace mylib
 
 class Hand
 {
+public:
+	enum STATE
+	{
+		NONE,
+		ATTACKING,
+	};
 private:
 	CommonResources* m_commonResources;                    // 共通リソース
-	
+
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;           // カメラ
 
 	std::unique_ptr<Collision> m_collision;                // 当たり判定
@@ -47,8 +53,8 @@ private:
 	float m_cameraRotate;                                  // カメラの回転値
 
 	DirectX::SimpleMath::Matrix m_world;                   // ワールド行列
-private:
-	
+
+	Hand::STATE m_state;
 public:
 	Hand();
 	~Hand();
@@ -66,4 +72,5 @@ public:
 public:
 	void OnJumpTrigger();
 	void Jump();
+	Hand::STATE GetState() { return m_state; };
 };

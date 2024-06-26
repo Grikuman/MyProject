@@ -131,8 +131,8 @@ void Sky::Render()
 
 
 	// デバッグ情報を表示する
-	auto debugString = m_commonResources->GetDebugString();
-	debugString->AddString("SkySphere");
+	//auto debugString = m_commonResources->GetDebugString();
+	//debugString->AddString("SkySphere");
 }
 
 //---------------------------------------------------------

@@ -37,6 +37,7 @@ Hand::Hand()
 	m_jumpTrigger{},
 	m_cameraRotate{}
 {
+	m_state = Hand::STATE::NONE;
 }
 
 //---------------------------------------------------------
@@ -92,6 +93,7 @@ void Hand::Update(
 	m_speed = speed;
     m_world = Matrix::Identity;                                         // 行列の初期化
     m_world *= Matrix::CreateScale(0.004f);
+	m_state = Hand::STATE::NONE;
 
 	// Bodyのクォータニオンを取り込む
 	m_rotate = rotate;  
@@ -107,6 +109,7 @@ void Hand::Update(
 	if (mouse.leftButton)
 	{
 		r = 45.f;
+		m_state = Hand::STATE::ATTACKING;
 	}
 	m_world *= Matrix::CreateRotationY(XMConvertToRadians(r));
 

@@ -59,14 +59,14 @@ void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* cam
 //---------------------------------------------------------
 // çXêVÇ∑ÇÈ
 //---------------------------------------------------------
-void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere)
+void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere,bool isAttack)
 {
 	for (int i = 0; i < MAX_SMALL_ENEMY; i++)
 	{
 		m_smallEnemy[i]->Update();
-		if (m_collision->CheckCollision(boundingSphere, m_smallEnemy[i]->GetBoundingSphere()))
+		if (m_collision->CheckCollision(boundingSphere, m_smallEnemy[i]->GetBoundingSphere()) && isAttack == true)
 		{
-			m_smallEnemy[i]->SetState(SmallEnemy::DEAD);
+			m_smallEnemy[i]->Hit(0.5f);
 		}
 	}
 }

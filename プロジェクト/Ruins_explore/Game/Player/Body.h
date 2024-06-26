@@ -26,10 +26,12 @@ namespace mylib
 
 class Body
 {
+public:
 	enum STATE
 	{
 		NONE,       // 何もしていないとき
 		JUMPING,    // ジャンプ中
+		ATTACKING,     // 攻撃中
 	};
 private:
 	CommonResources* m_commonResources;                    // 共通リソース
@@ -47,6 +49,7 @@ private:
 	DirectX::SimpleMath::Matrix m_world;                   // ワールド行列
 	float m_setYaw;                                        // yawへ渡す値
 	Body::STATE m_state;                                   // ステート
+	bool m_isAttack;
 
 	// カメラ関連
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;           // カメラ
@@ -72,4 +75,5 @@ public:
 
 	// 衝突判定用のAABBを返す
 	DirectX::BoundingSphere GetBoundingSphere();
+	bool GetIsAttack() {return m_isAttack;};
 };

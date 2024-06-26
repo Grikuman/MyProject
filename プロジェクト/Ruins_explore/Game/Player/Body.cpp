@@ -40,9 +40,11 @@ Body::Body()
 	m_cameraRotate{},
     m_hand{},
     m_foot{},
-    m_setYaw{}
+    m_setYaw{},
+    m_isAttack{}
 {
     m_state = Body::STATE::NONE; // プレイヤーの初期ステート
+    m_isAttack = false;
 }
 
 //---------------------------------------------------------
@@ -149,7 +151,7 @@ void Body::InputProcessing()
 {
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
     auto gp = m_commonResources->GetInputManager()->GetGamePadState();  // ゲームパッド
-
+    m_isAttack = false;
     //*======================================================*
     //　キーボード入力・ゲームパッド入力
     //　処理:クォータニオンでのプレイヤー向き変更
@@ -256,6 +258,10 @@ void Body::InputProcessing()
         m_position = oldpos; // ジャンプ前の位置に戻す
         m_state = STATE::NONE; // ジャンプ中ではなくなる
         m_velocity.y = 0; // 速度をリセット
+    }
+    if (m_hand->GetState() == Hand::STATE::ATTACKING)
+    {
+        m_isAttack = true;
     }
 }
 

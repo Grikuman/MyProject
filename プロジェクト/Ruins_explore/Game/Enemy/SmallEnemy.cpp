@@ -7,6 +7,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
+#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 #include <GeometricPrimitive.h>
@@ -23,9 +24,11 @@ SmallEnemy::SmallEnemy()
 	m_commonResources{},
 	m_camera{},
 	m_cylinder{},
-	m_position{}
+	m_position{},
+	m_hp{}
 {
 	m_state = SmallEnemy::STATE::ALIVE;
+	m_isHit = false;
 }
 
 //---------------------------------------------------------
@@ -48,6 +51,7 @@ void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camer
 
 	m_cylinder = DirectX::GeometricPrimitive::CreateCylinder(context, 3.f);
 	m_position = position;
+	m_hp = 100;
 }
 
 //---------------------------------------------------------
@@ -55,7 +59,7 @@ void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camer
 //---------------------------------------------------------
 void SmallEnemy::Update()
 {
-	
+	m_isHit = false;
 }
 
 //---------------------------------------------------------
@@ -67,10 +71,19 @@ void SmallEnemy::Render()
 	world *= Matrix::CreateTranslation(m_position);
 	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
 	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
-	if (m_state == SmallEnemy::ALIVE)
+
+	DirectX::XMVECTORF32 color = Colors::White;
+	if (m_isHit)
 	{
-		m_cylinder->Draw(world, view, proj, Colors::White);
+		color = Colors::Red;
 	}
+
+	if (m_state == SmallEnemy::ALIVE && m_hp >= 0)
+	{
+		m_cylinder->Draw(world, view, proj, color);
+	}
+	auto debugString = m_commonResources->GetDebugString();
+	debugString->AddString("%f",m_hp);
 }
 
 //---------------------------------------------------------
