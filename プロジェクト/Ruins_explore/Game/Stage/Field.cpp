@@ -37,10 +37,11 @@ Field::~Field()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Field::Initialize(CommonResources* resources)
+void Field::Initialize(CommonResources* resources,NRLib::TPS_Camera* camera)
 {
 	assert(resources);
 	m_commonResources = resources;
+	m_camera = camera;
 	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
 	// 各フィールドオブジェクトの位置を設定
@@ -71,6 +72,7 @@ void Field::Update()
 //---------------------------------------------------------
 void Field::Render()
 {
+	// world行列は上書きして使い回す
 	DirectX::SimpleMath::Matrix world = Matrix::Identity;
 	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
 	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();

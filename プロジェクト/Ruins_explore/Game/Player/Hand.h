@@ -30,30 +30,31 @@ public:
 		ATTACKING,
 	};
 private:
-	CommonResources* m_commonResources;                    // 共通リソース
-
-	std::unique_ptr<NRLib::TPS_Camera> m_camera;           // カメラ
-
-	std::unique_ptr<Collision> m_collision;                // 当たり判定
-private:
-	std::unique_ptr<DirectX::Model> m_model;               // プレイヤーのモデル
-
-	DirectX::SimpleMath::Vector3 m_position;               // プレイヤーの座標
-
-	DirectX::SimpleMath::Vector3 m_speed;                  // プレイヤーの速度(X,Y,Z)
-
-	DirectX::SimpleMath::Vector3 m_velocity;               // プレイヤーのジャンプ速度
-
-	bool m_jumpTrigger;                                    // ジャンプトリガー(trueでjumpさせる)
-
-	DirectX::SimpleMath::Quaternion m_rotate;              // プレイヤーの回転(クォータニオン：モデル回転)
-
-	bool m_isJumping;                                      // プレイヤーがジャンプしているか
-
-	float m_cameraRotate;                                  // カメラの回転値
-
-	DirectX::SimpleMath::Matrix m_world;                   // ワールド行列
-
+	// 共通リソース
+	CommonResources* m_commonResources;
+	// カメラ
+	std::unique_ptr<NRLib::TPS_Camera> m_camera;
+	// 当たり判定
+	std::unique_ptr<Collision> m_collision;
+	// プレイヤーのモデル
+	std::unique_ptr<DirectX::Model> m_model;
+	// プレイヤーの座標
+	DirectX::SimpleMath::Vector3 m_position;
+	// プレイヤーの速度(X,Y,Z)
+	DirectX::SimpleMath::Vector3 m_speed;
+	// プレイヤーのジャンプ速度
+	DirectX::SimpleMath::Vector3 m_jumpSpeed;
+	// ジャンプトリガー(trueでjumpさせる)
+	bool m_jumpTrigger;
+	// プレイヤーの回転(クォータニオン：モデル回転)
+	DirectX::SimpleMath::Quaternion m_rotate;
+	// プレイヤーがジャンプしているか
+	bool m_isJumping;
+	// カメラの回転値
+	float m_cameraRotate;
+	// ワールド行列
+	DirectX::SimpleMath::Matrix m_world;
+	// 現在の状態
 	Hand::STATE m_state;
 public:
 	Hand();
@@ -70,7 +71,10 @@ public:
 		DirectX::SimpleMath::Matrix proj);
 	void Finalize();
 public:
+	// ジャンプトリガー
 	void OnJumpTrigger();
+	// ジャンプ処理
 	void Jump();
+	// ハンドの状態を取得する
 	Hand::STATE GetState() { return m_state; };
 };

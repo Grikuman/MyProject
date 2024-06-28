@@ -24,7 +24,6 @@ using namespace DirectX::SimpleMath;
 Player::Player()
 	:
 	m_commonResources{},
-	m_collision{},
 	m_body{}
 {
 }

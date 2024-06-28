@@ -62,12 +62,7 @@ void Body::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
-	auto states = m_commonResources->GetCommonStates();
-
-	// グリッド床を作成する
-	m_gridFloor = std::make_unique<mylib::GridFloor>(device, context, states);
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 	//当たり判定クラスを生成
@@ -108,10 +103,12 @@ void Body::Update(float elapsedTime)
     //カメラの回転行列を作成する
     DirectX::SimpleMath::Matrix cameraMatrix;
     cameraMatrix = Matrix::CreateRotationY(XMConvertToRadians(m_cameraRotate));
-
-    m_camera->Update(m_position, cameraMatrix);    // カメラを更新する
-    m_hand->Update(elapsedTime,m_speed,m_rotate);  // 手のパーツを更新する
-    m_foot->Update(elapsedTime,m_speed,m_rotate);  // 足のパーツを更新する
+    // カメラを更新する
+    m_camera->Update(m_position, cameraMatrix);
+    // 手のパーツを更新する
+    m_hand->Update(elapsedTime,m_speed,m_rotate);
+    // 足のパーツを更新する
+    m_foot->Update(elapsedTime,m_speed,m_rotate);
 }
 
 
@@ -126,9 +123,6 @@ void Body::Render()
     auto states = m_commonResources->GetCommonStates();
     view = m_camera->GetViewMatrix();
     proj = m_camera->GetProjectionMatrix();
-
-    // 格子床を描画する
-    m_gridFloor->Render(context, view, proj);
 
     m_model->Draw(context, *states, m_world, view, proj); // モデルを描画する
 
@@ -258,6 +252,7 @@ void Body::InputProcessing()
         m_state = STATE::NONE; // ジャンプ中ではなくなる
         m_velocity.y = 0; // 速度をリセット
     }
+    // 
     if (m_hand->GetState() == Hand::STATE::ATTACKING)
     {
         m_isAttack = true;
@@ -278,6 +273,6 @@ void Body::Calculation()
 DirectX::BoundingSphere Body::GetBoundingSphere()
 {
     Vector3 center = m_position; // 当たり判定球の中心
-    float radius = 0.5f; // 敵のサイズに応じて調整
+    float radius = 0.5f;         // 敵のサイズに応じて調整
     return DirectX::BoundingSphere(center, radius);
 }

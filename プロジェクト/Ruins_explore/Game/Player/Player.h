@@ -25,11 +25,10 @@ namespace mylib
 class Player
 {
 private:
-	CommonResources* m_commonResources;                    // 共通リソース
-
-	std::unique_ptr<Collision> m_collision;                // 当たり判定
-private:
-	std::unique_ptr<Body> m_body;               // プレイヤーの胴体
+	// 共通リソース
+	CommonResources* m_commonResources;
+	// プレイヤーの胴体
+	std::unique_ptr<Body> m_body;
 private:
 
 

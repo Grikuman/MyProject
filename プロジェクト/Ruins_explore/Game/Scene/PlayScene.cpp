@@ -62,16 +62,10 @@ void PlayScene::Initialize(CommonResources* resources)
 	m_sky->Initialize(m_commonResources);
 	// フィールドを生成
 	m_field = std::make_unique<Field>();
-	m_field->Initialize(m_commonResources);
-	// Bodyからカメラを取得して設定する
-	NRLib::TPS_Camera* playerCamera = m_player->GetCamera();
-	if (playerCamera)
-	{
-		m_field->SetCamera(playerCamera);
-	}
+	m_field->Initialize(m_commonResources, m_player->GetCamera());
 	// エネミースポナーを生成
 	m_enemySpawner = std::make_unique<EnemySpawner>();
-	m_enemySpawner->Initialize(m_commonResources,playerCamera);
+	m_enemySpawner->Initialize(m_commonResources, m_player->GetCamera());
 }
 
 //---------------------------------------------------------
@@ -82,9 +76,11 @@ void PlayScene::Update(float elapsedTime)
 	UNREFERENCED_PARAMETER(elapsedTime);
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
-	
+	// 天球を更新
 	m_sky->Update();
+	// フィールドを更新
 	m_field->Update();
+	// エネミースポナーを更新
 	m_enemySpawner->Update(m_player->GetBoundingSphere(),m_player->GetIsAttack());
 }
 
@@ -93,10 +89,13 @@ void PlayScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void PlayScene::Render()
 {
-	//プレイヤーを描画
+	// プレイヤーを描画
 	m_player->Render();
+	// 天球を描画
 	m_sky->Render();
+	// フィールドを描画
 	m_field->Render();
+	// エネミースポナーを描画
 	m_enemySpawner->Render();
 }
 

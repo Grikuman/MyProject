@@ -31,7 +31,7 @@ Foot::Foot()
 	m_model{},
 	m_position{},
 	m_speed{},
-	m_velocity{},
+	m_jumpSpeed{},
 	m_rotate{},
 	m_isJumping{},
 	m_jumpTrigger{},
@@ -54,9 +54,7 @@ void Foot::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
-	auto states = m_commonResources->GetCommonStates();
 
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
@@ -144,22 +142,22 @@ void Foot::Jump()
 	// ジャンプしていない状態かつトリガーがTRUEならジャンプに移行する
 	if (!m_isJumping && m_jumpTrigger)// || !m_isJumping && gp.buttons.a)
 	{
-		m_velocity.y = jumpSpeed;
+		m_jumpSpeed.y = jumpSpeed;
 		m_isJumping = true; // ジャンプ中にする
 	}
 	if (m_isJumping)
 	{
 		// ジャンプ速度に重力を適用
-		m_velocity.y -= gravity;
+		m_jumpSpeed.y -= gravity;
 
 		// 落下速度が最大落下速度を超えないようにする
-		if (m_velocity.y < -maxFallSpeed)
+		if (m_jumpSpeed.y < -maxFallSpeed)
 		{
-			m_velocity.y = -maxFallSpeed;
+			m_jumpSpeed.y = -maxFallSpeed;
 		}
 
 		// 位置を更新
-		m_position.y += m_velocity.y;
+		m_position.y += m_jumpSpeed.y;
 	}
 	// 地面との衝突をチェック
 	if (m_collision->CheckGround(
@@ -169,6 +167,6 @@ void Foot::Jump()
 		m_position = oldpos; // ジャンプ前の位置に戻す
 		m_isJumping = false; // ジャンプを可能にさせる
 		m_jumpTrigger = false; //トリガーを戻す
-		m_velocity.y = 0; // 速度をリセット
+		m_jumpSpeed.y = 0; // 速度をリセット
 	}
 }

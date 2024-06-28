@@ -27,6 +27,7 @@ namespace mylib
 class Body
 {
 public:
+	//状態
 	enum STATE
 	{
 		NONE,       // 何もしていないとき
@@ -34,30 +35,36 @@ public:
 		ATTACKING,     // 攻撃中
 	};
 private:
-	CommonResources* m_commonResources;                    // 共通リソース
-
-	std::unique_ptr<mylib::GridFloor> m_gridFloor;         // 格子床
-
-	std::unique_ptr<Collision> m_collision;                // 当たり判定クラス
-
-	// プレイヤー関連
-	std::unique_ptr<DirectX::Model> m_model;               // プレイヤーのモデル
-	DirectX::SimpleMath::Vector3 m_position;               // 座標
-	DirectX::SimpleMath::Vector3 m_speed;                  // 速度(X,Y,Z)
-	DirectX::SimpleMath::Vector3 m_velocity;               // ジャンプ速度
-	DirectX::SimpleMath::Quaternion m_rotate;              // 回転(クォータニオン：モデル回転)
-	DirectX::SimpleMath::Matrix m_world;                   // ワールド行列
-	float m_setYaw;                                        // yawへ渡す値
-	Body::STATE m_state;                                   // ステート
+	// 共通リソース
+	CommonResources* m_commonResources;
+	// 当たり判定
+	std::unique_ptr<Collision> m_collision; 
+	// プレイヤーのモデル
+	std::unique_ptr<DirectX::Model> m_model; 
+	// 座標
+	DirectX::SimpleMath::Vector3 m_position;  
+	// 速度(X,Y,Z)
+	DirectX::SimpleMath::Vector3 m_speed;     
+	// ジャンプ速度
+	DirectX::SimpleMath::Vector3 m_velocity;  
+	// 回転(クォータニオン：モデル回転)
+	DirectX::SimpleMath::Quaternion m_rotate; 
+	// ワールド行列
+	DirectX::SimpleMath::Matrix m_world;      
+	// yawへ渡す値
+	float m_setYaw;                           
+	// 現在の状態
+	Body::STATE m_state;
+	// 攻撃しているか
 	bool m_isAttack;
-
-	// カメラ関連
-	std::unique_ptr<NRLib::TPS_Camera> m_camera;           // カメラ
-	float m_cameraRotate;                                  // カメラの回転値
+	// カメラ
+	std::unique_ptr<NRLib::TPS_Camera> m_camera;
+	// カメラの回転値
+	float m_cameraRotate;                       
 
 	// プレイヤーの別パーツ
-	std::unique_ptr<Hand> m_hand;                          // 手パーツ
-	std::unique_ptr<Foot> m_foot;                          // 足パーツ
+	std::unique_ptr<Hand> m_hand;   // 手パーツ
+	std::unique_ptr<Foot> m_foot;   // 足パーツ
 
 public:
 	Body();
@@ -71,9 +78,10 @@ private:
 	void InputProcessing(); // キー入力：コントローラー入力を受け付けて動作を決める
 	void Calculation();     // 入力後に計算をおこなう
 public:
-	NRLib::TPS_Camera* GetCamera() const { return m_camera.get(); } // カメラを取得
-
-	// 衝突判定用のAABBを返す
+	// カメラを取得する
+	NRLib::TPS_Camera* GetCamera() const { return m_camera.get(); }
+	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
-	bool GetIsAttack() {return m_isAttack;};
+	// 攻撃しているか取得する
+	bool GetIsAttack() {return m_isAttack;}
 };

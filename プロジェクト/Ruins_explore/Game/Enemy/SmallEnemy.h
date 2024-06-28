@@ -48,16 +48,16 @@ public:
 	void Render();
 	void Finalize();
 public:
-	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
-
+	// 状態を設定する
 	void SetState(SmallEnemy::STATE state);
+	// 状態を取得する
 	SmallEnemy::STATE GetState() { return m_state; };
-
+	// ダメージを受ける(引数がダメージ)
 	void Hit(float damage) 
 	{ 
 		m_hp -= damage; 
 		m_isHit = true;
 	};
-
+	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
 };
