@@ -184,6 +184,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\CommonResources.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
+    <ClInclude Include="Game\Enemy\IEnemy.h" />
     <ClInclude Include="Game\Enemy\SmallEnemy.h" />
     <ClInclude Include="Game\Player\Body.h" />
     <ClInclude Include="Game\Player\Foot.h" />

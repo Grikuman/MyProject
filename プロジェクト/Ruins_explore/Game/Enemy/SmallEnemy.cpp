@@ -1,113 +1,95 @@
-/*
-	@file	SmallEnemy.cpp
-	@brief	一般的なシーンクラス
-*/
 #include "pch.h"
-#include "Game/Enemy/SmallEnemy.h"
+#include "SmallEnemy.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include <GeometricPrimitive.h>
 #include "Libraries/NRLib/TPS_Camera.h"
+#include <cassert>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-//---------------------------------------------------------
-// コンストラクタ
-//---------------------------------------------------------
 SmallEnemy::SmallEnemy()
-	:
-	m_commonResources{},
-	m_camera{},
-	m_cylinder{},
-	m_position{},
-	m_hp{}
+    : m_commonResources{},
+    m_camera{},
+    m_cylinder{},
+    m_position{},
+    m_hp{}
 {
-	m_state = SmallEnemy::STATE::ALIVE;
-	m_isHit = false;
+    m_state = ALIVE;
+    m_isHit = false;
 }
 
-//---------------------------------------------------------
-// デストラクタ
-//---------------------------------------------------------
-SmallEnemy::~SmallEnemy()
+SmallEnemy::~SmallEnemy() {}
+
+void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camera, Vector3 position)
 {
-	
+    assert(resources);
+    m_commonResources = resources;
+    m_camera = camera;
+    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    m_cylinder = GeometricPrimitive::CreateCylinder(context, 3.f);
+    m_position = position;
+    m_hp = 100;
 }
 
-//---------------------------------------------------------
-// 初期化する
-//---------------------------------------------------------
-void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camera,DirectX::SimpleMath::Vector3 position)
-{
-	assert(resources);
-	m_commonResources = resources;
-	m_camera = camera;
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-
-	m_cylinder = DirectX::GeometricPrimitive::CreateCylinder(context, 3.f);
-	m_position = position;
-	m_hp = 100;
-}
-
-//---------------------------------------------------------
-// 更新する
-//---------------------------------------------------------
 void SmallEnemy::Update()
 {
-	m_isHit = false;
-	if (m_hp <= 0)
-	{
-		m_state = SmallEnemy::STATE::DEAD;
-		m_hp = 0.0f;
-	}
+    m_isHit = false;
+    if (m_hp <= 0)
+    {
+        m_state = DEAD;
+        m_hp = 0.0f;
+    }
 }
 
-//---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
 void SmallEnemy::Render()
 {
-	DirectX::SimpleMath::Matrix world = Matrix::Identity;
-	world *= Matrix::CreateTranslation(m_position);
-	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
-	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
+    Matrix world = Matrix::Identity;
+    world *= Matrix::CreateTranslation(m_position);
+    Matrix view = m_camera->GetViewMatrix();
+    Matrix proj = m_camera->GetProjectionMatrix();
 
-	DirectX::XMVECTORF32 color = Colors::White;
-	if (m_isHit)
-	{
-		color = Colors::Red;
-	}
+    XMVECTORF32 color = Colors::White;
+    if (m_isHit)
+    {
+        color = Colors::Red;
+    }
 
-	if (m_state == SmallEnemy::ALIVE && m_hp >= 0)
-	{
-		m_cylinder->Draw(world, view, proj, color);
-	}
-	auto debugString = m_commonResources->GetDebugString();
-	debugString->AddString("Enemy");
-	debugString->AddString("%f",m_hp);
+    if (m_state == ALIVE && m_hp >= 0)
+    {
+        m_cylinder->Draw(world, view, proj, color);
+    }
+    auto debugString = m_commonResources->GetDebugString();
+    debugString->AddString("Enemy");
+    debugString->AddString("%f", m_hp);
 }
 
-//---------------------------------------------------------
-// 後始末する
-//---------------------------------------------------------
 void SmallEnemy::Finalize()
 {
-	// do nothing.
+    // do nothing.
 }
 
-void SmallEnemy::SetState(SmallEnemy::STATE state)
+void SmallEnemy::SetState(int state)
 {
-	m_state = state;
+    m_state = static_cast<STATE>(state);
 }
 
-DirectX::BoundingSphere SmallEnemy::GetBoundingSphere()
+int SmallEnemy::GetState() const
 {
-	Vector3 center = m_position; // 当たり判定球の中心
-	float radius = 0.5f; // 敵のサイズに応じて調整
-	return DirectX::BoundingSphere(center, radius);
+    return m_state;
+}
+
+void SmallEnemy::Hit(float damage)
+{
+    m_hp -= damage;
+    m_isHit = true;
+}
+
+BoundingSphere SmallEnemy::GetBoundingSphere() const
+{
+    Vector3 center = m_position;
+    float radius = 0.5f;
+    return BoundingSphere(center, radius);
 }

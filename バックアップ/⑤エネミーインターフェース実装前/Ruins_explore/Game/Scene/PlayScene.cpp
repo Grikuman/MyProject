@@ -1,0 +1,126 @@
+/*
+	@file	PlayScene.cpp
+	@brief	プレイシーンクラス
+*/
+#include "pch.h"
+#include "PlayScene.h"
+#include "Game/CommonResources.h"
+#include "WorkTool/DeviceResources.h"
+#include "Libraries/MyLib/DebugCamera.h"
+#include "Libraries/MyLib/DebugString.h"
+#include "Libraries/MyLib/InputManager.h"
+#include "Libraries/MyLib/MemoryLeakDetector.h"
+#include <cassert>
+#include "WorkTool/Graphics.h"
+#include "Libraries/NRLib/FixedCamera.h"
+#include <iostream>
+#include "Game/Stage/Sky.h"
+#include "Game/Stage/Field.h"
+#include "Game/Enemy/EnemySpawner.h"
+#include "WorkTool/Collision.h"
+
+using namespace DirectX;
+using namespace DirectX::SimpleMath;
+
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
+PlayScene::PlayScene()
+	:
+	m_commonResources{},
+	m_isChangeScene{},
+	m_player{},
+	m_sky{},
+	m_field{},
+	m_enemySpawner{}
+{
+}
+
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+PlayScene::~PlayScene()
+{
+}
+
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
+void PlayScene::Initialize(CommonResources* resources)
+{
+	assert(resources);
+	m_commonResources = resources;
+
+	// シーン変更フラグを初期化する
+	m_isChangeScene = false;
+
+	// プレイヤーを生成
+	m_player = std::make_unique<Player>();
+	m_player->Initialize(m_commonResources);
+	// 天球を生成
+	m_sky = std::make_unique <Sky>();
+	m_sky->Initialize(m_commonResources);
+	// フィールドを生成
+	m_field = std::make_unique<Field>();
+	m_field->Initialize(m_commonResources, m_player->GetCamera());
+	// エネミースポナーを生成
+	m_enemySpawner = std::make_unique<EnemySpawner>();
+	m_enemySpawner->Initialize(m_commonResources, m_player->GetCamera());
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void PlayScene::Update(float elapsedTime)
+{
+	UNREFERENCED_PARAMETER(elapsedTime);
+	//プレイヤーを更新
+	m_player->Update(elapsedTime);
+	// 天球を更新
+	m_sky->Update();
+	// フィールドを更新
+	m_field->Update();
+	// エネミースポナーを更新
+	m_enemySpawner->Update(m_player->GetBoundingSphere(),m_player->GetIsAttack());
+}
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void PlayScene::Render()
+{
+	// プレイヤーを描画
+	m_player->Render();
+	// 天球を描画
+	m_sky->Render();
+	// フィールドを描画
+	m_field->Render();
+	// エネミースポナーを描画
+	m_enemySpawner->Render();
+}
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void PlayScene::Finalize()
+{
+	m_player->Finalize();
+	m_sky->Finalize();
+	m_field->Finalize();
+	m_enemySpawner->Finalize();
+}
+
+//---------------------------------------------------------
+// 次のシーンIDを取得する
+//---------------------------------------------------------
+IScene::SceneID PlayScene::GetNextSceneID() const
+{
+	// シーン変更がある場合
+	if (m_isChangeScene)
+	{
+		return IScene::SceneID::RESULT;
+	}
+
+	// シーン変更がない場合
+	return IScene::SceneID::NONE;
+}
