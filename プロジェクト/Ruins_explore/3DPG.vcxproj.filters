@@ -129,10 +129,10 @@
     <ClInclude Include="Game\Enemy\EnemySpawner.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\SmallEnemy.h">
+    <ClInclude Include="Game\Enemy\IEnemy.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\IEnemy.h">
+    <ClInclude Include="Game\Enemy\Tunomaru.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
@@ -197,7 +197,7 @@
     <ClCompile Include="Game\Enemy\EnemySpawner.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\SmallEnemy.cpp">
+    <ClCompile Include="Game\Enemy\Tunomaru.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

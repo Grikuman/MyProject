@@ -13,7 +13,7 @@ public:
 		DirectX::SimpleMath::Vector3 ground
 	);
 
-	bool CheckCollision(DirectX::BoundingSphere box1, DirectX::BoundingSphere box2);
+	bool SphereIntersects(DirectX::BoundingSphere box1, DirectX::BoundingSphere box2);
 
 private:
 };

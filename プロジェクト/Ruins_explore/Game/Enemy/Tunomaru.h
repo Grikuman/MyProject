@@ -11,7 +11,7 @@ namespace NRLib
     class TPS_Camera;
 }
 
-class SmallEnemy : public IEnemy
+class Tunomaru : public IEnemy
 {
 public:
     enum STATE
@@ -39,8 +39,8 @@ private:
     float m_hp;
 
 public:
-    SmallEnemy();
-    ~SmallEnemy();
+    Tunomaru();
+    ~Tunomaru();
 
     void Initialize(
         CommonResources* resources, 
@@ -50,11 +50,16 @@ public:
     void Render() override;
     void Finalize() override;
 
+    // 状態を設定する
     void SetState(int state) override;
+    // 状態を取得する
     int GetState() const override;
-
+    // 攻撃を受けた際にHPを減らす
     void Hit(float damage) override;
-
+    // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
+private:
+    // 生存しているか判定する
+    void IsDead();
 };
 

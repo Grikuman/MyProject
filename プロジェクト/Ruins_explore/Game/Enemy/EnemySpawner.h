@@ -6,7 +6,7 @@
 
 // 前方宣言
 class CommonResources;
-class SmallEnemy;
+class Tunomaru;
 class Collision;
 
 namespace NRLib
@@ -20,12 +20,14 @@ class EnemySpawner
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
-
-	NRLib::TPS_Camera* m_camera; // カメラオブジェクトへのポインタ
-
-	// 小型エネミー
-	static const int MAX_SMALL_ENEMY = 2;                        // 小型エネミー生成数
-	std::unique_ptr<SmallEnemy> m_smallEnemy[MAX_SMALL_ENEMY];   // 小型エネミー
+	// カメラオブジェクトへのポインタ
+	NRLib::TPS_Camera* m_camera;
+	// 生存している敵の数
+	int m_aliveEnemy;
+	// つのまるの数
+	static const int MAX_TUNOMARU = 2;
+	// つのまる
+	std::unique_ptr<Tunomaru> m_tunomaru[MAX_TUNOMARU];
 	// 当たり判定
 	std::unique_ptr<Collision> m_collision;
 
@@ -38,5 +40,6 @@ public:
 	void Render();
 	void Finalize();
 public:
+	// カメラを設定する
 	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
 };

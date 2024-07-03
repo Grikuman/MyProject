@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "SmallEnemy.h"
+#include "Tunomaru.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
@@ -10,20 +10,20 @@
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
-SmallEnemy::SmallEnemy()
+Tunomaru::Tunomaru()
     : m_commonResources{},
     m_camera{},
     m_cylinder{},
     m_position{},
+    m_isHit(false),
     m_hp{}
 {
-    m_state = ALIVE;
-    m_isHit = false;
+    m_state = ALIVE; // 初期値は生存にしておく
 }
 
-SmallEnemy::~SmallEnemy() {}
+Tunomaru::~Tunomaru() {}
 
-void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camera, Vector3 position)
+void Tunomaru::Initialize(CommonResources* resources, NRLib::TPS_Camera* camera, Vector3 position)
 {
     assert(resources);
     m_commonResources = resources;
@@ -34,17 +34,15 @@ void SmallEnemy::Initialize(CommonResources* resources, NRLib::TPS_Camera* camer
     m_hp = 100;
 }
 
-void SmallEnemy::Update()
+void Tunomaru::Update()
 {
-    m_isHit = false;
-    if (m_hp <= 0)
-    {
-        m_state = DEAD;
-        m_hp = 0.0f;
-    }
+    m_isHit = false; 
+
+    //生存しているか判定する
+    IsDead(); 
 }
 
-void SmallEnemy::Render()
+void Tunomaru::Render()
 {
     Matrix world = Matrix::Identity;
     world *= Matrix::CreateTranslation(m_position);
@@ -66,30 +64,39 @@ void SmallEnemy::Render()
     debugString->AddString("%f", m_hp);
 }
 
-void SmallEnemy::Finalize()
+void Tunomaru::Finalize()
 {
     // do nothing.
 }
-
-void SmallEnemy::SetState(int state)
+// 状態を設定する
+void Tunomaru::SetState(int state)
 {
     m_state = static_cast<STATE>(state);
 }
-
-int SmallEnemy::GetState() const
+// 状態を取得する
+int Tunomaru::GetState() const
 {
     return m_state;
 }
-
-void SmallEnemy::Hit(float damage)
+// 攻撃を受けた際にHPを減らす
+void Tunomaru::Hit(float damage)
 {
     m_hp -= damage;
     m_isHit = true;
 }
-
-BoundingSphere SmallEnemy::GetBoundingSphere() const
+// バウンディングスフィアを取得する
+BoundingSphere Tunomaru::GetBoundingSphere() const
 {
     Vector3 center = m_position;
     float radius = 0.5f;
     return BoundingSphere(center, radius);
+}
+// 生存しているか判定する
+void Tunomaru::IsDead()
+{
+    if (m_hp <= 0)
+    {
+        m_state = DEAD;
+        m_hp = 0.0f;
+    }
 }

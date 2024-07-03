@@ -18,8 +18,8 @@ bool Collision::CheckGround(DirectX::SimpleMath::Vector3 position, DirectX::Simp
 	}
 }
 
-// AABB“¯m‚ÌÕ“Ë”»’è
-bool Collision::CheckCollision(DirectX::BoundingSphere box1, DirectX::BoundingSphere box2)
+// ‹…‘Ì“¯m‚ÌÕ“Ë”»’è
+bool Collision::SphereIntersects(DirectX::BoundingSphere sphere1, DirectX::BoundingSphere sphere2)
 {
-	return box1.Intersects(box2);
+	return sphere1.Intersects(sphere2);
 }
