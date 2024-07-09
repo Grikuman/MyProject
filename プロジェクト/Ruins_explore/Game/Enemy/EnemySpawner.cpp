@@ -1,6 +1,21 @@
 /*
 	@file	EnemySpawner.cpp
 	@brief	一般的なシーンクラス
+
+	//敵の構想案
+
+つのまる - つのを使って攻撃する。
+はやまる - 高速で動き回る。
+ほのおまる - 火を吐いて攻撃する。
+みずまる - 水を使って攻撃する。
+かぜまる - 風を使って攻撃する。
+いわまる - 岩を投げたり、体当たりして攻撃する。
+でんまる - 電気を使って攻撃する。
+かげまる - 影に隠れて奇襲攻撃をする。
+まるまる - 体を丸めて高速で転がりながら攻撃する。
+よるまる - 夜に強く、闇を操る。
+たてまる - 大きな盾を持って防御する。
+つばさまる - 翼を持ち、空中から攻撃する。
 */
 #include "pch.h"
 #include "Game/Enemy/EnemySpawner.h"
@@ -12,6 +27,7 @@
 #include <GeometricPrimitive.h>
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "Game/Enemy/Tunomaru.h"
+#include "Game/Enemy/Tatemaru.h"
 #include "WorkTool/Collision.h"
 
 using namespace DirectX;
@@ -26,6 +42,7 @@ EnemySpawner::EnemySpawner()
 	m_camera{},
 	m_aliveEnemy{},
 	m_tunomaru{},
+	m_tatemaru{},
 	m_collision{}
 {
 }
@@ -55,8 +72,8 @@ void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* cam
 		m_tunomaru[i] = std::make_unique<Tunomaru>();
 	}
 	// 敵の初期位置を設定する
-	m_tunomaru[0]->Initialize(m_commonResources,m_camera,Vector3(2.f, 0.f, -5.f));
-	m_tunomaru[1]->Initialize(m_commonResources,m_camera,Vector3(-2.f, 0.f, -5.f));
+	m_tunomaru[0]->Initialize(m_commonResources,Vector3(2.f, 0.f, -5.f));
+	m_tunomaru[1]->Initialize(m_commonResources,Vector3(-2.f, 0.f, -5.f));
 	// 当たり判定
 	m_collision = std::make_unique<Collision>();
 }
@@ -98,7 +115,7 @@ void EnemySpawner::Render()
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
 		// つのまるを描画
-		m_tunomaru[i]->Render();
+		m_tunomaru[i]->Render(view,proj);
 	}
 }
 

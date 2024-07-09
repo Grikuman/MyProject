@@ -135,6 +135,9 @@
     <ClInclude Include="Game\Enemy\Tunomaru.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\Tatemaru.h">
+      <Filter>Game\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -198,6 +201,9 @@
       <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy\Tunomaru.cpp">
+      <Filter>Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tatemaru.cpp">
       <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>

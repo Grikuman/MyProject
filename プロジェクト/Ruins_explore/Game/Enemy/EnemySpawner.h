@@ -7,6 +7,7 @@
 // ‘O•ûéŒ¾
 class CommonResources;
 class Tunomaru;
+class Tatemaru;
 class Collision;
 
 namespace NRLib
@@ -24,10 +25,13 @@ private:
 	NRLib::TPS_Camera* m_camera;
 	// ¶‘¶‚µ‚Ä‚¢‚é“G‚Ì”
 	int m_aliveEnemy;
-	// ‚Â‚Ì‚Ü‚é‚Ì”
+	// ‚»‚ê‚¼‚ê‚Ì“G‚Ì”
 	static const int MAX_TUNOMARU = 2;
+	static const int MAX_TATEMARU = 2;
 	// ‚Â‚Ì‚Ü‚é
 	std::unique_ptr<Tunomaru> m_tunomaru[MAX_TUNOMARU];
+	// ‚½‚Ä‚Ü‚é
+	std::unique_ptr<Tatemaru> m_tatemaru[MAX_TATEMARU];
 	// “–‚½‚è”»’è
 	std::unique_ptr<Collision> m_collision;
 
@@ -40,6 +44,4 @@ public:
 	void Render();
 	void Finalize();
 public:
-	// ƒJƒƒ‰‚ğİ’è‚·‚é
-	void SetCamera(NRLib::TPS_Camera* camera) { m_camera = camera; }
 };

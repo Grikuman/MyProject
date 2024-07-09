@@ -7,7 +7,7 @@
 
 class CommonResources;
 
-class Tunomaru : public IEnemy
+class Tatemaru : public IEnemy
 {
 public:
     enum STATE
@@ -20,7 +20,7 @@ private:
     // 共有リソース
     CommonResources* m_commonResources;
     // モデル
-    std::unique_ptr<DirectX::GeometricPrimitive> m_cylinder;
+    std::unique_ptr<DirectX::GeometricPrimitive> m_model;
     // 座標
     DirectX::SimpleMath::Vector3 m_position;
     // バウンディングスフィア
@@ -33,8 +33,8 @@ private:
     float m_hp;
 
 public:
-    Tunomaru();
-    ~Tunomaru();
+    Tatemaru();
+    ~Tatemaru();
 
     void Initialize(
         CommonResources* resources, 

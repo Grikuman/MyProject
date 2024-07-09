@@ -18,10 +18,11 @@ public:
 
     virtual void Initialize(
         class CommonResources* resources, 
-        class NRLib::TPS_Camera* camera, 
         DirectX::SimpleMath::Vector3 position) = 0;
     virtual void Update() = 0;
-    virtual void Render() = 0;
+    virtual void Render(
+        DirectX::SimpleMath::Matrix view, 
+        DirectX::SimpleMath::Matrix proj) = 0;
     virtual void Finalize() = 0;
 
     // èÛë‘Çê›íËÇ∑ÇÈ
