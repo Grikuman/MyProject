@@ -21,8 +21,8 @@ using namespace DirectX::SimpleMath;
 Field::Field()
 	:
 	m_commonResources{},
-	m_cylinder{},
-	m_camera{}
+	m_camera{},
+	m_vBoundingBox{}
 {
 }
 
@@ -44,19 +44,11 @@ void Field::Initialize(CommonResources* resources,NRLib::TPS_Camera* camera)
 	m_camera = camera;
 	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
-	// 各フィールドオブジェクトの位置を設定
-	m_boxPos[0] = Vector3(0.f, -1.f, -20.f);
-	m_boxPos[1] = Vector3(0.f, -1.f, -60.f);
-	m_cylinderPos[0] = Vector3(0.f, -1.f, 0.f);
-	m_cylinderPos[1] = Vector3(0.f, -1.f, -40.f);
-	m_cylinderPos[2] = Vector3(0.f, -1.f, -80.f);
+	// オブジェクトを作成
+	m_box = DirectX::GeometricPrimitive::CreateBox(context, Vector3(20.f, 2.f, 20.f));
 
-	// モデルを生成
-	m_box[0] = DirectX::GeometricPrimitive::CreateBox(context, Vector3(4.f, 2.f, 12.f));
-	m_box[1] = DirectX::GeometricPrimitive::CreateBox(context, Vector3(4.f, 2.f, 12.f));
-	m_cylinder[0] = DirectX::GeometricPrimitive::CreateCylinder(context, 2.f, 30.f);
-	m_cylinder[1] = DirectX::GeometricPrimitive::CreateCylinder(context, 2.f, 30.f);
-	m_cylinder[2] = DirectX::GeometricPrimitive::CreateCylinder(context, 2.f, 30.f);
+	// 各フィールドオブジェクトの位置を設定
+	m_boxPos = Vector3(0.f, -1.f, 0.f);
 }
 
 //---------------------------------------------------------
@@ -78,16 +70,8 @@ void Field::Render()
 	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
 
 	// オブジェクトの描画
-	world = Matrix::CreateTranslation(m_boxPos[0]);
-	m_box[0]->Draw(world, view, proj, Colors::SandyBrown);
-	world = Matrix::CreateTranslation(m_boxPos[1]);
-	m_box[0]->Draw(world, view, proj, Colors::SandyBrown);
-	world = Matrix::CreateTranslation(m_cylinderPos[0]);
-	m_cylinder[0]->Draw(world, view, proj, Colors::SandyBrown);
-	world = Matrix::CreateTranslation(m_cylinderPos[1]);
-	m_cylinder[1]->Draw(world, view, proj, Colors::SandyBrown);
-	world = Matrix::CreateTranslation(m_cylinderPos[2]);
-	m_cylinder[2]->Draw(world, view, proj, Colors::SandyBrown);
+	world *= Matrix::CreateTranslation(m_boxPos);
+	m_box->Draw(world, view, proj, Colors::Green);
 }
 
 //---------------------------------------------------------
@@ -96,4 +80,9 @@ void Field::Render()
 void Field::Finalize()
 {
 	// do nothing.
+}
+
+std::vector<DirectX::BoundingBox> Field::GetFieldCollision()
+{
+	return m_vBoundingBox;
 }

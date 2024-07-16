@@ -19,14 +19,14 @@ class Field
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
-	// 敵のモデル
-	std::unique_ptr<DirectX::GeometricPrimitive> m_box[2];
-	std::unique_ptr<DirectX::GeometricPrimitive> m_cylinder[3];
-	// 敵の座標
-	DirectX::SimpleMath::Vector3 m_boxPos[2];
-	DirectX::SimpleMath::Vector3 m_cylinderPos[3];
+	// ステージのモデル
+	std::unique_ptr<DirectX::GeometricPrimitive> m_box;
+	// ステージの座標
+	DirectX::SimpleMath::Vector3 m_boxPos;
 	// カメラのポインタ
 	NRLib::TPS_Camera* m_camera;
+	// バウンディングボックスの格納用
+	std::vector<DirectX::BoundingBox> m_vBoundingBox;
 
 public:
 	Field();
@@ -36,4 +36,5 @@ public:
 	void Update();
 	void Render();
 	void Finalize();
+	std::vector<DirectX::BoundingBox> GetFieldCollision();
 };

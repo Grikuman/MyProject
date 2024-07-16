@@ -144,10 +144,8 @@ void Body::Finalize()
 void Body::InputProcessing()
 {
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
-    auto gp = m_commonResources->GetInputManager()->GetGamePadState();  // ゲームパッド
     m_isAttack = false;
     //*======================================================*
-    //　キーボード入力・ゲームパッド入力
     //　処理:クォータニオンでのプレイヤー向き変更
     //      :カメラの回転処理
     //*======================================================*
@@ -159,12 +157,6 @@ void Body::InputProcessing()
 
     m_setYaw = 0.0f; //yawへの値を初期化
 
-    // コントローラー入力に基づいてプレイヤーの向きとカメラの回転を設定
-    /*if (gp.IsConnected())
-    {
-        m_setYaw = -gp.thumbSticks.rightX;
-        m_cameraRotate -= gp.thumbSticks.rightX;
-    }*/
     // キーボード入力に基づいてプレイヤーの向きとカメラの回転を設定
     if (kb.Left)
     {
@@ -183,15 +175,8 @@ void Body::InputProcessing()
     m_rotate = q * m_rotate;
 
     //*======================================================*
-    //　キーボード入力・ゲームパッド入力
     //　処理:プレイヤーの速度設定と移動
     //*======================================================*
-    // コントローラー入力に基づいて速度を設定
-    //if (gp.IsConnected())
-    //{
-    //    m_speed.x += gp.thumbSticks.leftX;
-    //    m_speed.z -= gp.thumbSticks.leftY; // 左スティックのY軸は上下反転
-    //}
     if (kb.W)
     {
         m_speed.z = -1.f;
@@ -218,8 +203,6 @@ void Body::InputProcessing()
     float maxFallSpeed = 0.2f;   // 最大落下速度
 
     Vector3 oldpos = m_position; //ジャンプ前の位置を保存しておく
-
-    //if (m_state == STATE::NONE && kb.Space ||m_state == STATE::NONE && gp.buttons.a) コントローラー用
 
     // ジャンプしていない状態でジャンプ入力を受け付けるとジャンプに移行する
     if (m_state == STATE::NONE && kb.Space)

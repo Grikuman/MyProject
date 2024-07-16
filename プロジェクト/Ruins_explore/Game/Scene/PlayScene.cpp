@@ -92,7 +92,7 @@ void PlayScene::Render()
 	// プレイヤーを描画
 	m_player->Render();
 	// 天球を描画
-	m_sky->Render();
+	//m_sky->Render();
 	// フィールドを描画
 	m_field->Render();
 	// エネミースポナーを描画
