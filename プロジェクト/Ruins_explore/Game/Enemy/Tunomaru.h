@@ -4,6 +4,7 @@
 #include "IEnemy.h"
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>
+#include "Game/UI/HPUI.h"
 
 class CommonResources;
 
@@ -17,6 +18,8 @@ public:
     };
 
 private:
+    //HPUI
+    std::unique_ptr<HPUI> m_hpUI;
     // 共有リソース
     CommonResources* m_commonResources;
     // モデル

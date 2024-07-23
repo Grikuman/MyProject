@@ -71,7 +71,7 @@ void Field::Render()
 
 	// オブジェクトの描画
 	world *= Matrix::CreateTranslation(m_boxPos);
-	m_box->Draw(world, view, proj, Colors::Green);
+	m_box->Draw(world, view, proj, Colors::DarkGray);
 }
 
 //---------------------------------------------------------

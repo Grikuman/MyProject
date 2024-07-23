@@ -29,6 +29,11 @@ void Tunomaru::Initialize(CommonResources* resources,Vector3 position)
     m_cylinder = GeometricPrimitive::CreateCylinder(context, 3.f);
     m_position = position;
     m_hp = 100;
+
+    //HPUIÇçÏê¨Ç∑ÇÈ
+    m_hpUI = std::make_unique<HPUI>(m_commonResources->GetDeviceResources()->GetD3DDevice());
+    m_hpUI->SetScale(1.f);
+    m_hpUI->SetPosition(m_position);
 }
 
 void Tunomaru::Update()
@@ -37,10 +42,13 @@ void Tunomaru::Update()
 
     //ê∂ë∂ÇµÇƒÇ¢ÇÈÇ©îªíËÇ∑ÇÈ
     IsDead(); 
+
+    m_hpUI->SetPosition(DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.5f, m_position.z));
 }
 
 void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matrix proj)
 {
+    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
     Matrix world = Matrix::Identity;
     world *= Matrix::CreateTranslation(m_position);
 
@@ -57,6 +65,9 @@ void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matr
     auto debugString = m_commonResources->GetDebugString();
     debugString->AddString("Enemy");
     debugString->AddString("%f", m_hp);
+
+
+    m_hpUI->Render(context, view, proj);
 }
 
 void Tunomaru::Finalize()
