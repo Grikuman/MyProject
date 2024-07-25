@@ -32,8 +32,10 @@ private:
     STATE m_state;
     // 当たったかどうか
     bool m_isHit;
-    // ヒットポイント
+    // HP
     float m_hp;
+    //最大HP
+    const float MAXHP = 100;
 
 public:
     Tunomaru();

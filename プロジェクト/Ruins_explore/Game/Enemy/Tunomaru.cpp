@@ -44,6 +44,8 @@ void Tunomaru::Update()
     IsDead(); 
 
     m_hpUI->SetPosition(DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.5f, m_position.z));
+
+    m_hpUI->SetHP(m_hp, MAXHP);
 }
 
 void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matrix proj)
@@ -61,13 +63,11 @@ void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matr
     if (m_state == ALIVE && m_hp >= 0)
     {
         m_cylinder->Draw(world, view, proj, color);
+        m_hpUI->Render(context, view, proj);
     }
     auto debugString = m_commonResources->GetDebugString();
     debugString->AddString("Enemy");
     debugString->AddString("%f", m_hp);
-
-
-    m_hpUI->Render(context, view, proj);
 }
 
 void Tunomaru::Finalize()

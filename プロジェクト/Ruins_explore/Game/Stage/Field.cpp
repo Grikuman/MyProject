@@ -45,7 +45,7 @@ void Field::Initialize(CommonResources* resources,NRLib::TPS_Camera* camera)
 	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
 	// オブジェクトを作成
-	m_box = DirectX::GeometricPrimitive::CreateBox(context, Vector3(20.f, 2.f, 20.f));
+	m_box = DirectX::GeometricPrimitive::CreateBox(context, Vector3(50.f, 2.f, 50.f));
 
 	// 各フィールドオブジェクトの位置を設定
 	m_boxPos = Vector3(0.f, -1.f, 0.f);

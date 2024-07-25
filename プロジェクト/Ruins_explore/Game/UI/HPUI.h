@@ -13,8 +13,8 @@ private:
     //  座標用の変数を作る
     DirectX::SimpleMath::Vector3 m_Position;
 
-    //  サイズ用の変数を作る
-    float m_Scale;
+    //  サイズ用の変数
+    float m_scale;
 
     // 入力レイアウト 
     Microsoft::WRL::ComPtr<ID3D11InputLayout> m_InputLayout;
@@ -32,6 +32,10 @@ private:
     std::unique_ptr<
         DirectX::PrimitiveBatch<DirectX::VertexPositionColor>
     > m_Batch;
+    // 現在のHP
+    float m_currentHP;
+    // 最大HP
+    float m_maxHP;
 
 public:
     HPUI(ID3D11Device1* device);
@@ -42,4 +46,5 @@ public:
 
     void SetPosition(const DirectX::SimpleMath::Vector3& pos);
     void SetScale(const float& ratio);
+    void SetHP(float currentHP, float maxHP);
 };
