@@ -198,6 +198,7 @@
     <ClInclude Include="Game\Stage\Field.h" />
     <ClInclude Include="Game\Stage\Sky.h" />
     <ClInclude Include="Game\UI\HPUI.h" />
+    <ClInclude Include="Game\UI\TextUI.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
     <ClInclude Include="Libraries\MyLib\DebugCamera.h" />
     <ClInclude Include="Libraries\MyLib\DebugString.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="Game\Stage\Field.cpp" />
     <ClCompile Include="Game\Stage\Sky.cpp" />
     <ClCompile Include="Game\UI\HPUI.cpp" />
+    <ClCompile Include="Game\UI\TextUI.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
     <ClCompile Include="Libraries\MyLib\DebugCamera.cpp" />
     <ClCompile Include="Libraries\MyLib\DebugString.cpp" />

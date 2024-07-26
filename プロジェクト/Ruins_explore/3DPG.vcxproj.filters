@@ -144,6 +144,9 @@
     <ClInclude Include="Game\UI\HPUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\TextUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -213,6 +216,9 @@
       <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\HPUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\TextUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>

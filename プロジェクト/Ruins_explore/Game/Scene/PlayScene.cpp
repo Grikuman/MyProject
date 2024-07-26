@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "PlayScene.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/DebugCamera.h"
 #include "Libraries/MyLib/DebugString.h"
@@ -14,9 +13,6 @@
 #include "WorkTool/Graphics.h"
 #include "Libraries/NRLib/FixedCamera.h"
 #include <iostream>
-#include "Game/Stage/Sky.h"
-#include "Game/Stage/Field.h"
-#include "Game/Enemy/EnemySpawner.h"
 #include "WorkTool/Collision.h"
 
 using namespace DirectX;
@@ -32,7 +28,9 @@ PlayScene::PlayScene()
 	m_player{},
 	m_sky{},
 	m_field{},
-	m_enemySpawner{}
+	m_enemySpawner{},
+	m_textUI{},
+	m_gameTime{}
 {
 }
 
@@ -54,18 +52,26 @@ void PlayScene::Initialize(CommonResources* resources)
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
-	// プレイヤーを生成
+	// プレイヤーを作成
 	m_player = std::make_unique<Player>();
 	m_player->Initialize(m_commonResources);
-	// 天球を生成
+	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize(m_commonResources);
-	// フィールドを生成
+	// フィールドを作成
 	m_field = std::make_unique<Field>();
 	m_field->Initialize(m_commonResources, m_player->GetCamera());
-	// エネミースポナーを生成
+	// エネミースポナーを作成
 	m_enemySpawner = std::make_unique<EnemySpawner>();
 	m_enemySpawner->Initialize(m_commonResources, m_player->GetCamera());
+	//TextUIを作成
+	m_textUI = std::make_unique<TextUI>(
+		m_commonResources->GetDeviceResources()->GetD3DDevice(),
+		m_commonResources->GetDeviceResources()->GetD3DDeviceContext()
+		);
+
+	// ゲーム時間を設定
+	m_gameTime = MAX_GAMETIME;
 }
 
 //---------------------------------------------------------
@@ -74,6 +80,10 @@ void PlayScene::Initialize(CommonResources* resources)
 void PlayScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
+	
+	//ゲーム時間
+	m_gameTime -= elapsedTime;
+
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
 	// 天球を更新
@@ -82,6 +92,8 @@ void PlayScene::Update(float elapsedTime)
 	m_field->Update();
 	// エネミースポナーを更新
 	m_enemySpawner->Update(m_player->GetBoundingSphere(),m_player->GetIsAttack());
+	// TextUIを更新
+	m_textUI->Update(m_gameTime);
 }
 
 //---------------------------------------------------------
@@ -97,6 +109,8 @@ void PlayScene::Render()
 	m_field->Render();
 	// エネミースポナーを描画
 	m_enemySpawner->Render();
+	//TextUIを描画
+	m_textUI->Render();
 }
 
 //---------------------------------------------------------
@@ -108,6 +122,7 @@ void PlayScene::Finalize()
 	m_sky->Finalize();
 	m_field->Finalize();
 	m_enemySpawner->Finalize();
+	m_textUI->Finalize();
 }
 
 //---------------------------------------------------------

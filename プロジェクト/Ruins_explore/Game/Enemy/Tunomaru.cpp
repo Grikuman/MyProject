@@ -65,9 +65,9 @@ void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matr
         m_cylinder->Draw(world, view, proj, color);
         m_hpUI->Render(context, view, proj);
     }
-    auto debugString = m_commonResources->GetDebugString();
-    debugString->AddString("Enemy");
-    debugString->AddString("%f", m_hp);
+    //auto debugString = m_commonResources->GetDebugString();
+    //debugString->AddString("Enemy");
+    //debugString->AddString("%f", m_hp);
 }
 
 void Tunomaru::Finalize()
