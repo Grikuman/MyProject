@@ -76,13 +76,17 @@ void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* cam
 	m_tunomaru[1]->Initialize(m_commonResources,Vector3(-2.f, 0.f, -5.f));
 	// 当たり判定
 	m_collision = std::make_unique<Collision>();
+
+	// シーン遷移フラグを初期化
+	m_isChangeScene = false;
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere,bool isPlayerAttack)
+void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerAttack)
 {
+	m_aliveEnemy = MAX_ENEMY;
 	// つのまるの処理
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
@@ -101,7 +105,11 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere,bool isPlayerAt
 			m_aliveEnemy--;
 		}
 	}
-
+	// 敵が全員やられたらシーン遷移フラグをON
+	if (m_aliveEnemy <= 0.f)
+	{
+		m_isChangeScene = true;
+	}
 }
 
 //---------------------------------------------------------
@@ -128,4 +136,14 @@ void EnemySpawner::Finalize()
 	{
 		m_tunomaru[i]->Finalize();
 	}
+}
+
+// シーン遷移するかどうか取得する
+bool EnemySpawner::IsChangeScene()
+{
+	if (m_isChangeScene)
+	{
+		return true;
+	}
+	return false;
 }

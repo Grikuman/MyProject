@@ -94,6 +94,14 @@ void PlayScene::Update(float elapsedTime)
 	m_enemySpawner->Update(m_player->GetBoundingSphere(),m_player->GetIsAttack());
 	// TextUIを更新
 	m_textUI->Update(m_gameTime);
+
+	// 敵が全員死んだらシーン遷移を行う
+	if (m_enemySpawner->IsChangeScene())
+	{
+		m_isChangeScene = true;
+	}
+	// 次のシーンIDを取得する
+	GetNextSceneID();
 }
 
 //---------------------------------------------------------

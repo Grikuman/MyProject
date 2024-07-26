@@ -25,6 +25,8 @@ private:
 	NRLib::TPS_Camera* m_camera;
 	// ¶‘¶‚µ‚Ä‚¢‚é“G‚Ì”
 	int m_aliveEnemy;
+	// “G‚ÌÅ‘å”
+	const int MAX_ENEMY = 2;
 	// ‚»‚ê‚¼‚ê‚Ì“G‚Ì”
 	static const int MAX_TUNOMARU = 2;
 	static const int MAX_TATEMARU = 2;
@@ -35,6 +37,9 @@ private:
 	// “–‚½‚è”»’è
 	std::unique_ptr<Collision> m_collision;
 
+	// ƒV[ƒ“‘JˆÚƒtƒ‰ƒO
+	bool m_isChangeScene;
+
 public:
 	EnemySpawner();
 	~EnemySpawner();
@@ -43,5 +48,7 @@ public:
 	void Update(DirectX::BoundingSphere boundingSphere,bool isAttack);
 	void Render();
 	void Finalize();
+
+	bool IsChangeScene();
 public:
 };

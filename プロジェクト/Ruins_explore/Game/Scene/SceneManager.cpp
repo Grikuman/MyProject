@@ -6,6 +6,8 @@
 #include "SceneManager.h"
 //---------------------------
 #include "PlayScene.h"
+#include "TitleScene.h"
+#include "ResultScene.h"
 //---------------------------
 #include "Game/Screen.h"
 #include "Game/CommonResources.h"
@@ -42,7 +44,7 @@ void SceneManager::Initialize(CommonResources* resources)
 	assert(resources);
 	m_commonResources = resources;
 
-	ChangeScene(IScene::SceneID::PLAY);
+	ChangeScene(IScene::SceneID::TITLE);
 }
 
 //---------------------------------------------------------
@@ -96,8 +98,14 @@ void SceneManager::CreateScene(IScene::SceneID sceneID)
 
 	switch (sceneID)
 	{
+		case IScene::SceneID::TITLE:
+			m_currentScene = std::make_unique<TitleScene>();
+			break;
 		case IScene::SceneID::PLAY:
 			m_currentScene = std::make_unique<PlayScene>();
+			break;
+		case IScene::SceneID::RESULT:
+			m_currentScene = std::make_unique<ResultScene>();
 			break;
 		default:
 			assert(!"SceneManager::CreateScene::ÉVÅ[ÉìñºÇ™ë∂ç›ÇµÇ‹ÇπÇÒÅI");
