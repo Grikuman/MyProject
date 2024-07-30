@@ -11,7 +11,6 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "Libraries/MyLib/GridFloor.h"
 #include "WorkTool/Collision.h"
 #include "Body.h"
 
@@ -57,8 +56,6 @@ void Player::Update(float elapsedTime)
     UNREFERENCED_PARAMETER(elapsedTime);
 	// プレイヤーの胴体を更新する
 	m_body->Update(elapsedTime);
-
-	
 }
 
 //---------------------------------------------------------

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Camera" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAQAAAAQAAIgAAAAAAAAAAACAAAAAAAgAA=</HashCode>
+      <FileName>Framework\Camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Graphics" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAhAAAAAhQFAQFAACAEECAgHCkSAhjAIHAgDBIQACE=</HashCode>
+      <FileName>Framework\Graphics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Resources" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAgAAIAAAAAAAACAACCAAFQAAAACAAAAgCAAAAAA=</HashCode>
+      <FileName>Framework\Resources.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteString2D" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAgAAAEAAAAAIBAAQAAAACAAAAAAABAgAAAAAAA=</HashCode>
+      <FileName>Framework\SpriteString2D.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAQCQQAYAGAAABoCBAAAiAAADCCJAiAARISAQ=</HashCode>
+      <FileName>Game\Game.h</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PlayScene" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAcAAAAAACgEAQEAAQAAISSECAAAAAAAABABCABIBAU=</HashCode>
+      <FileName>Game\PlayScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoccerPlayer" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAgAIwCAkFSAAAAAABCAEEAAAgABAABAiAAAAAAA=</HashCode>
+      <FileName>Game\SoccerPlayer\SoccerPlayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoccerBall" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCSAABCAQSAMHSJEBAgJACAECACCgETAABASCAIAAAE=</HashCode>
+      <FileName>Game\SoccerBall\SoccerBall.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IState" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAhAAAAAAAAAgAAAABAAAAEAAAA=</HashCode>
+      <FileName>Interface\IState.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerIdling" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAABAAAAAAAAAgAAAAhAAAAEAQAA=</HashCode>
+      <FileName>Game\SoccerPlayer\State\PlayerIdling.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStrikeForwarding" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAkAAQAAAABAAAAAAAAAgAAAABAAAAEAAAA=</HashCode>
+      <FileName>Game\SoccerPlayer\State\PlayerStrikeFowarding.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DX::DeviceResources" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgAIhAAAAAIWAJBEyAIBKAKQERAAAYrQIEWkBiyEIIo=</HashCode>
+      <FileName>Framework\DeviceResources.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DX::com_exception" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAACAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\pch.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DX::StepTimer" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQEQAAAAQEQAABQEAIAIAAIAABQCAAgCAwBQJAAwAA=</HashCode>
+      <FileName>Framework\StepTimer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DX::AnimationSDKMESH" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgoBAgBAAEAAAAAAAQAKARAAAAAQIFAAwIBAAAAA=</HashCode>
+      <FileName>Framework\Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DX::AnimationCMO" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgkgAIgBAAEAAAAAAAAAAABAAAAEAAAAAgABAAAAA=</HashCode>
+      <FileName>Framework\Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="`anonymous-namespace'::SDKANIMATION_FILE_HEADER" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEgI=</HashCode>
+      <FileName>Framework\Animation.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="`anonymous-namespace'::SDKANIMATION_DATA" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQEAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Animation.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="`anonymous-namespace'::SDKANIMATION_FRAME_DATA" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Animation.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="`anonymous-namespace'::Clip" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAIAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\Animation.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="`anonymous-namespace'::Keyframe" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Framework\Animation.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="DX::IDeviceNotify" Collapsed="true">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAEAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Framework\DeviceResources.h</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>
