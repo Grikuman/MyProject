@@ -12,8 +12,7 @@ using namespace DirectX;
 
 using Microsoft::WRL::ComPtr;
 
-Game::Game() noexcept(false)
-    :
+Game::Game() noexcept(false) : m_fullscreen(false),
     m_deviceResources{},
     m_timer{},
     m_commonStates{},

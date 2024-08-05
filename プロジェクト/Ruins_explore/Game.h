@@ -51,6 +51,13 @@ public:
     // Properties
     void GetDefaultSize( int& width, int& height ) const noexcept;
 
+    void SetFullscreenState(BOOL value)
+    {
+        m_fullscreen = value;
+        m_deviceResources->GetSwapChain()->SetFullscreenState(m_fullscreen, nullptr);
+        if (value) m_deviceResources->CreateWindowSizeDependentResources();
+    }
+
 private:
 
     void Update(DX::StepTimer const& timer);
@@ -60,6 +67,8 @@ private:
 
     void CreateDeviceDependentResources();
     void CreateWindowSizeDependentResources();
+
+    BOOL m_fullscreen;
 
     // Device resources.
     std::unique_ptr<DX::DeviceResources>    m_deviceResources;

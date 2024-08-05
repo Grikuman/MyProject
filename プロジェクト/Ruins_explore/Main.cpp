@@ -55,6 +55,17 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     if (FAILED(hr))
         return 1;
 
+    static bool s_fullscreen = false;
+    // 画面モード選択
+    if (MessageBox(NULL, L"フルスクリーンにしますか？", L"画面モード設定", MB_YESNO) == IDYES)
+    {
+        s_fullscreen = true;
+    }
+    else
+    {
+        s_fullscreen = false;
+    }
+
     g_game = std::make_unique<Game>();
 
     // Register class and create window
@@ -109,6 +120,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
         GetClientRect(hwnd, &rc);
 
         g_game->Initialize(hwnd, rc.right - rc.left, rc.bottom - rc.top);
+
+        if (s_fullscreen) g_game->SetFullscreenState(TRUE);
     }
 
     // Main message loop
@@ -125,6 +138,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
             g_game->Tick();
         }
     }
+
+    if (s_fullscreen) g_game->SetFullscreenState(FALSE);
 
     g_game.reset();
 
@@ -174,23 +189,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_SIZE:
-        if (wParam == SIZE_MINIMIZED)
-        {
-            if (!s_minimized)
-            {
-                s_minimized = true;
-                if (!s_in_suspend && game)
-                    game->OnSuspending();
-                s_in_suspend = true;
-            }
-        }
-        else if (s_minimized)
-        {
-            s_minimized = false;
-            if (s_in_suspend && game)
-                game->OnResuming();
-            s_in_suspend = false;
-        }
+        
         // フルスクリーン切り替え時にコメント化すると、画面サイズがリサイズされずに最大化できる
         // フルスクリーン時でも、見た目の1280x720サイズを保持する
         //else if (!s_in_sizemove && game)
