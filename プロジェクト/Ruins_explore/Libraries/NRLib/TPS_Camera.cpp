@@ -1,6 +1,6 @@
 /*
 	@file	TPS_Camera.cpp
-	@brief	TPSカメラクラス
+	@brief	TPSカメラクラス、ばね付き
 */
 #include "pch.h"
 #include "TPS_Camera.h"
@@ -30,8 +30,14 @@ void NRLib::TPS_Camera::Update(
 	const DirectX::SimpleMath::Matrix& rotate
 )
 {
+	/*
+		ToDo::追従カメラなので、引数はelapsedTimeだけにしたい
+		→newTarget,rotateはカメラの内部的に計算したい
+	*/
+
 	// targetの位置を更新する
-	m_target =newTarget;
+	//m_target = newTarget;	// バネなし
+	m_target += (newTarget - m_target) * 0.05f;	// バネ付き
 
 	// カメラ座標を計算する
 	CalculateEyePosition(rotate);
@@ -69,16 +75,13 @@ void NRLib::TPS_Camera::CalculateProjectionMatrix()
 //-------------------------------------------------------------------
 void NRLib::TPS_Camera::CalculateEyePosition(const DirectX::SimpleMath::Matrix& rotate)
 {
-	// 既定の進行方向ベクトル
-	DirectX::SimpleMath::Vector3 forward = DirectX::SimpleMath::Vector3::Forward;
-
-	// カメラがターゲットからどれくらい離れているか
-	forward.y = CAMERA_HIGHT;
-	forward.z = CAMERA_DISTANCE;
+	// カメラのデフォルトの座標ベクトル
+	DirectX::SimpleMath::Vector3 eye{ 0.0f,CAMERA_HIGHT,CAMERA_DISTANCE };
 
 	// ターゲットの向いている方向に追従する
-	forward = DirectX::SimpleMath::Vector3::Transform(forward, rotate);
+	eye = DirectX::SimpleMath::Vector3::Transform(eye, rotate);
 
 	// カメラ座標を計算する
-	m_eye = m_target + forward;
+	//m_eye = m_target + eye;	// バネなし
+	m_eye += (m_target + eye - m_eye) * 0.05f;	// バネ付き
 }
