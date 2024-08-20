@@ -22,23 +22,12 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerIdling::PlayerIdling(Player* player)
+PlayerIdling::PlayerIdling(Player* player, const std::unique_ptr<DirectX::Model>& model)
 	:
     m_player(player),
     m_commonResources{},
-	m_camera{},
-	m_collision{},
-	m_model{},
-	m_position{},
-	m_speed{},
-	m_velocity{},
-	m_rotate{},
-	m_cameraRotate{},
-    m_setYaw{},
-    m_isAttack{},
-    m_playerAngle{}
+	m_model{ model }
 {
-    m_isAttack = true;
 }
 
 //---------------------------------------------------------
@@ -57,18 +46,6 @@ void PlayerIdling::Initialize(CommonResources* resources)
 	assert(resources);
 	m_commonResources = resources;
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
-	//カメラを作成
-	m_camera = std::make_unique<NRLib::TPS_Camera>();
-	//当たり判定クラスを生成
-	m_collision = std::make_unique<Collision>();
-	//プレイヤー座標の初期化
-	m_position = DirectX::SimpleMath::Vector3(0.f, 0.5f, 0.f);
-
-	// モデルを読み込む準備
-	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
-	fx->SetDirectory(L"Resources/Models");
-	// モデルを読み込む
-	m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
 }
 
 //---------------------------------------------------------
@@ -77,45 +54,28 @@ void PlayerIdling::Initialize(CommonResources* resources)
 void PlayerIdling::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
-    m_speed = DirectX::SimpleMath::Vector3::Zero;                       // 速度のリセット
-    m_world = Matrix::Identity;                                         // 行列の初期化
-    m_world *= Matrix::CreateScale(0.004f);
 
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
-    m_isAttack = true;
-    // 速度を初期化
-    m_velocity = Vector3::Zero;
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動
     //*======================================================*
     if (kb.W)
     {
-        m_velocity = Vector3::Forward;
+        m_player->SetVelocity(Vector3::Forward);
     }
     if (kb.A)
     {
-        m_playerAngle++;
+        m_player->SetAngle(m_player->GetAngle() + 1.0f);
     }
     if (kb.S)
     {
-        m_velocity = Vector3::Backward;
+        m_player->SetVelocity(Vector3::Backward);
     }
     if (kb.D)
     {
-        m_playerAngle--;
+        m_player->SetAngle(m_player->GetAngle() - 1.0f);
     }
-    // 移動量を補正する
-    m_velocity *= 0.05f;
-    
-    // 回転行列を作成する
-    Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_playerAngle));
-
-    // 回転を加味して実際に移動する
-    m_position += Vector3::Transform(m_velocity, matrix);
-
-    // カメラを更新する
-    m_camera->Update(m_position,matrix);
 }
 
 
@@ -128,13 +88,13 @@ void PlayerIdling::Render()
     DirectX::SimpleMath::Matrix view, proj;
     auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
     auto states = m_commonResources->GetCommonStates();
-    view = m_camera->GetViewMatrix();
-    proj = m_camera->GetProjectionMatrix();
+    view = m_player->GetCamera()->GetViewMatrix();
+    proj = m_player->GetCamera()->GetProjectionMatrix();
 
     // プレイヤーの描画
     Matrix world = Matrix::CreateScale(0.004f);
-    world *= Matrix::CreateRotationY(XMConvertToRadians(m_playerAngle));
-    world *= Matrix::CreateTranslation(m_position);
+    world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
+    world *= Matrix::CreateTranslation(m_player->GetPosition());
     m_model->Draw(context, *states, world, view, proj); // モデルを描画する
 }
 
@@ -145,22 +105,4 @@ void PlayerIdling::Render()
 void PlayerIdling::Finalize()
 {
     
-}
-
-// 別の行動へ移行する処理
-void PlayerIdling::ChangeState()
-{
-    auto& kb = m_commonResources->GetInputManager()->GetKeyboardTracker();
-
-    if (kb->IsKeyPressed(DirectX::Keyboard::F))
-    {
-        m_player->ChangeState(m_player->GetPlayerAttack());
-    }
-}
-
-DirectX::BoundingSphere PlayerIdling::GetBoundingSphere()
-{
-    Vector3 center = m_position; // 当たり判定球の中心
-    float radius = 0.5f;         // 敵のサイズに応じて調整
-    return DirectX::BoundingSphere(center, radius);
 }

@@ -18,9 +18,4 @@ public:
 	virtual void Render() = 0;
 	// 後処理を行う
 	virtual void Finalize() = 0;
-
-	virtual NRLib::TPS_Camera* GetCamera() const = 0;
-
-	// バウンディングスフィアを取得する
-	virtual DirectX::BoundingSphere GetBoundingSphere() = 0;
 };
