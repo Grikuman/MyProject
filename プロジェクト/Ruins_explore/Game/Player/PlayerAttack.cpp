@@ -66,7 +66,7 @@ void PlayerAttack::Update(const float& elapsedTime)
     }
     if (kb.A)
     {
-        m_player->SetAngle(m_player->GetAngle() + 1.0f);
+        m_player->SetAngle(m_player->GetAngle() + 2.0f);
     }
     if (kb.S)
     {
@@ -74,7 +74,7 @@ void PlayerAttack::Update(const float& elapsedTime)
     }
     if (kb.D)
     {
-        m_player->SetAngle(m_player->GetAngle() - 1.0f);
+        m_player->SetAngle(m_player->GetAngle() - 2.0f);
     }
 }
 

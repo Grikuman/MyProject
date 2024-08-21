@@ -77,6 +77,8 @@ void Player::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 
+	auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
 
@@ -94,6 +96,15 @@ void Player::Update(float elapsedTime)
 
 	// カメラを更新する
 	m_camera->Update(m_position, matrix);
+
+	if (kb.F)
+	{
+		ChangeState(m_playerIdling.get());
+	}
+	if (kb.G)
+	{
+		ChangeState(m_playerAttack.get());
+	}
 }
 
 //---------------------------------------------------------
@@ -110,8 +121,7 @@ void Player::Render()
 //---------------------------------------------------------
 void Player::Finalize()
 {
-	m_playerIdling.reset();
-	m_playerAttack.reset();
+	
 }
 
 NRLib::TPS_Camera* Player::GetCamera()
@@ -128,8 +138,11 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 
 bool Player::GetIsAttack()
 {
-	
-	return true;
+	if (m_currentState == m_playerAttack.get())
+	{
+		return true;
+	}
+	return false;
 }
 
 void Player::ChangeState(IState* newState)

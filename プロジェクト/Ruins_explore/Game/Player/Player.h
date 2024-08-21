@@ -37,9 +37,9 @@ public:
 	void Finalize();
 public:
 	// プレイヤーアイドリングを取得する
-	PlayerIdling* GetPlayerIdling() const { return m_playerIdling.get(); }
+	PlayerIdling* GetPlayerIdling() { return m_playerIdling.get(); }
 	// プレイヤーストライクフォワーディングを取得する
-	PlayerAttack* GetPlayerAttack() const { return m_playerAttack.get(); }
+	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
 
 public:
 	// 位置を取得する
@@ -47,7 +47,7 @@ public:
 	// 速度を取得する
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
 	// 角度を取得する
-	float GetAngle() { return m_playerAngle; }
+	float GetAngle() const { return m_playerAngle; }
 
 	// 攻撃しているか取得する
 	bool GetIsAttack();
