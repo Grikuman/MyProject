@@ -40,7 +40,7 @@ private:
 	const std::unique_ptr<DirectX::Model>& m_model;
 	
 	// ダッシュを行う時間
-	const float DASHTIME = 30;
+	static const int DASHTIME = 30;
 	// ダッシュ時間
 	float m_dashTime;
 };

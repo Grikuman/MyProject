@@ -14,9 +14,10 @@ Tunomaru::Tunomaru()
     m_cylinder{},
     m_position{},
     m_isHit(false),
-    m_hp{}
+    m_hp{},
+    m_isAlive{true}
 {
-    m_state = ALIVE; // 初期値は生存にしておく
+    
 }
 
 Tunomaru::~Tunomaru() {}
@@ -43,8 +44,9 @@ void Tunomaru::Update()
     //生存しているか判定する
     IsDead(); 
 
+    // HPUIを動かす
     m_hpUI->SetPosition(DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.5f, m_position.z));
-
+    // HPUIのHP情報を更新
     m_hpUI->SetHP(m_hp, MAXHP);
 }
 
@@ -55,12 +57,14 @@ void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matr
     world *= Matrix::CreateTranslation(m_position);
 
     XMVECTORF32 color = Colors::White;
+    // ダメージを受けている場合
     if (m_isHit)
     {
+        // 赤色の表示する
         color = Colors::Red;
     }
-
-    if (m_state == ALIVE && m_hp >= 0)
+    // 生存している場合
+    if (m_isAlive == true)
     {
         m_cylinder->Draw(world, view, proj, color);
         m_hpUI->Render(context, view, proj);
@@ -74,22 +78,7 @@ void Tunomaru::Finalize()
 {
     // do nothing.
 }
-// 状態を設定する
-void Tunomaru::SetState(int state)
-{
-    m_state = static_cast<STATE>(state);
-}
-// 状態を取得する
-int Tunomaru::GetState() const
-{
-    return m_state;
-}
-// 攻撃を受けた際にHPを減らす
-void Tunomaru::Hit(float damage)
-{
-    m_hp -= damage;
-    m_isHit = true;
-}
+
 // バウンディングスフィアを取得する
 BoundingSphere Tunomaru::GetBoundingSphere() const
 {
@@ -102,7 +91,7 @@ void Tunomaru::IsDead()
 {
     if (m_hp <= 0)
     {
-        m_state = DEAD;
+        m_isAlive = false;
         m_hp = 0.0f;
     }
 }

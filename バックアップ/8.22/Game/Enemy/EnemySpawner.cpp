@@ -90,15 +90,14 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerA
 	{
 		// 各つのまるを更新
 		m_tunomaru[i]->Update();
-		// 条件:つのまるとプレイヤーが当たっている　かつ　プレイヤーが攻撃している場合
+		// 条件:つのまるとプレイヤーが当たっている　かつ　プレイヤーが攻撃している
 		if (m_collision->SphereIntersects(boundingSphere, m_tunomaru[i]->GetBoundingSphere()) && isPlayerAttack)
 		{
 			// つのまるにダメージ処理
-			m_tunomaru[i]->SetHP(m_tunomaru[i]->GetHP() - 0.5f);
-			m_tunomaru[i]->SetHit(true);
+			m_tunomaru[i]->Hit(0.5f);
 		}
-		// つのまるが死亡している場合は
-		if (m_tunomaru[i]->GetIsAlive() == false)
+		// つのまるが死亡しているか判定する
+		if (m_tunomaru[i]->GetState() == Tunomaru::STATE::DEAD)
 		{
 			// 生存している敵の数を減らす
 			m_aliveEnemy--;

@@ -1,5 +1,5 @@
 /*
-	@file	PlayerDash.h
+	@file	PlayerIdling.h
 	@brief	プレイヤーシーンクラス
 */
 #pragma once
@@ -15,13 +15,13 @@ namespace NRLib
 	class TPS_Camera;
 };
 
-class PlayerDash : public IState
+class PlayerIdling : public IState
 {
 public:
 	// コンストラクタ
-	PlayerDash(Player* player, const std::unique_ptr<DirectX::Model>& model);
+	PlayerIdling(Player* player, const std::unique_ptr<DirectX::Model>& model);
 	// デストラクタ
-	~PlayerDash();
+	~PlayerIdling();
 	// 初期化する
 	void Initialize(CommonResources* resources);
 	// 更新する
@@ -38,9 +38,4 @@ private:
 	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
-	
-	// ダッシュを行う時間
-	const float DASHTIME = 30;
-	// ダッシュ時間
-	float m_dashTime;
 };

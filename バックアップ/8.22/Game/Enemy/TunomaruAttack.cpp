@@ -49,7 +49,7 @@ void PlayerDash::Initialize(CommonResources* resources)
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
 
     // ƒ_ƒbƒVƒ…ŠÔ‚ğİ’è
-    m_dashTime = DASHTIME;
+    m_dashTime = static_cast<float>(DASHTIME);
 }
 
 //---------------------------------------------------------
@@ -63,7 +63,7 @@ void PlayerDash::Update(const float& elapsedTime)
     m_dashTime--;
     if (m_dashTime <= 0.f)
     {
-        m_dashTime = DASHTIME;
+        m_dashTime = static_cast<float>(DASHTIME);
         m_player->ChangeState(m_player->GetPlayerIdling());
     }
 }
