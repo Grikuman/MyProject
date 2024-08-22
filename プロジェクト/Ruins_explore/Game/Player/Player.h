@@ -6,6 +6,7 @@
 #include "IState.h"
 #include "PlayerIdling.h"
 #include "PlayerAttack.h"
+#include "PlayerDash.h"
 
 // 前方宣言
 class CommonResources;
@@ -38,8 +39,10 @@ public:
 public:
 	// プレイヤーアイドリングを取得する
 	PlayerIdling* GetPlayerIdling() { return m_playerIdling.get(); }
-	// プレイヤーストライクフォワーディングを取得する
+	// プレイヤーアタックを取得する
 	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
+	// プレイヤーダッシュを取得する
+	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
 
 public:
 	// 位置を取得する
@@ -81,6 +84,8 @@ private:
 	std::unique_ptr<PlayerIdling> m_playerIdling;
 	// アタック状態
 	std::unique_ptr<PlayerAttack> m_playerAttack;
+	// ダッシュ状態
+	std::unique_ptr<PlayerDash> m_playerDash;
 
 	// 位置
 	DirectX::SimpleMath::Vector3 m_position;

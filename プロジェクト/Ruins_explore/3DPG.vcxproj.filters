@@ -153,6 +153,9 @@
     <ClInclude Include="Game\Player\PlayerAttack.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Player\PlayerDash.h">
+      <Filter>Game\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -228,6 +231,9 @@
       <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\PlayerAttack.cpp">
+      <Filter>Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\PlayerDash.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
   </ItemGroup>

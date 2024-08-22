@@ -62,11 +62,18 @@ void Player::Initialize(CommonResources* resources)
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 
-	//プレイヤーのステートを作成
+	// ステートを作成
+	// アイドリング状態
 	m_playerIdling = std::make_unique<PlayerIdling>(this,m_model);
 	m_playerIdling->Initialize(resources);
+	// アタック状態
 	m_playerAttack = std::make_unique<PlayerAttack>(this,m_model);
 	m_playerAttack->Initialize(resources);
+	// ダッシュ状態
+	m_playerDash = std::make_unique<PlayerDash>(this, m_model);
+	m_playerDash->Initialize(resources);
+
+	// 初期ステートを設定
 	m_currentState = m_playerIdling.get();
 }
 
@@ -104,6 +111,10 @@ void Player::Update(float elapsedTime)
 	if (kb.G)
 	{
 		ChangeState(m_playerAttack.get());
+	}
+	if (kb.H)
+	{
+		ChangeState(m_playerDash.get());
 	}
 }
 

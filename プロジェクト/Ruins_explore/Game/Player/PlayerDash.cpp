@@ -1,10 +1,10 @@
 /*
-	@file	PlayerIdling.cpp
+	@file	PlayerDash.cpp
 	@brief	プレイヤーシーンクラス
 */
 #include "pch.h"
 #include "Player.h"
-#include "PlayerIdling.h"
+#include "PlayerDash.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/DebugCamera.h"
@@ -22,18 +22,19 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerIdling::PlayerIdling(Player* player, const std::unique_ptr<DirectX::Model>& model)
+PlayerDash::PlayerDash(Player* player, const std::unique_ptr<DirectX::Model>& model)
 	:
     m_player(player),
     m_commonResources{},
-	m_model{ model }
+	m_model{ model },
+    m_dashTime{}
 {
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerIdling::~PlayerIdling()
+PlayerDash::~PlayerDash()
 {
 
 }
@@ -41,40 +42,29 @@ PlayerIdling::~PlayerIdling()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerIdling::Initialize(CommonResources* resources)
+void PlayerDash::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+
+    // ダッシュ時間を設定
+    m_dashTime = static_cast<float>(DASHTIME);
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerIdling::Update(const float& elapsedTime)
+void PlayerDash::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
 
-    auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
-
-    //*======================================================*
-    //　処理:プレイヤーの速度設定と移動
-    //*======================================================*
-    if (kb.W)
+    m_player->SetVelocity(Vector3::Forward * 5.f);
+    m_dashTime--;
+    if (m_dashTime <= 0.f)
     {
-        m_player->SetVelocity(Vector3::Forward);
-    }
-    if (kb.A)
-    {
-        m_player->SetAngle(m_player->GetAngle() + 2.0f);
-    }
-    if (kb.S)
-    {
-        m_player->SetVelocity(Vector3::Backward);
-    }
-    if (kb.D)
-    {
-        m_player->SetAngle(m_player->GetAngle() - 2.0f);
+        m_dashTime = static_cast<float>(DASHTIME);
+        m_player->ChangeState(m_player->GetPlayerIdling());
     }
 }
 
@@ -83,7 +73,7 @@ void PlayerIdling::Update(const float& elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerIdling::Render()
+void PlayerDash::Render()
 {
     DirectX::SimpleMath::Matrix view, proj;
     auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
@@ -102,7 +92,7 @@ void PlayerIdling::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void PlayerIdling::Finalize()
+void PlayerDash::Finalize()
 {
     
 }
