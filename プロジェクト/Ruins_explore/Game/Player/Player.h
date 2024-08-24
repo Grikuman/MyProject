@@ -8,10 +8,11 @@
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
 
+#include "Game/UI/PlayerUIManager.h"
+
 // 前方宣言
 class CommonResources;
 class GeometricPrimitive;
-class Collision;
 
 
 
@@ -51,6 +52,10 @@ public:
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
 	// 角度を取得する
 	float GetAngle() const { return m_playerAngle; }
+	// 体力を取得する
+	float GetHP() const { return m_hp; }
+	// 最大体力を取得する
+	float GetMAXHP() const { return MAXHP; }
 
 	// 攻撃しているか取得する
 	bool GetIsAttack();
@@ -67,10 +72,14 @@ public:
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 	// 角度を設定する
 	void SetAngle(const float angle) { m_playerAngle = angle; }
+	// 体力を設定する
+	void SetHP(const float hp) { m_hp = hp; }
 
 	// ステートを変更する
 	void ChangeState(IState* newState);
 private:
+	// UI管理クラス
+	std::unique_ptr<PlayerUIManager> m_playerUIManager;
 	// 現在のステート
 	IState* m_currentState;
 	// 共通リソース
@@ -93,4 +102,8 @@ private:
 	DirectX::SimpleMath::Vector3 m_velocity;
 	// 角度
 	float m_playerAngle;
+	// 体力
+	float m_hp;
+	// 最大体力
+	const float MAXHP = 100.f;
 };

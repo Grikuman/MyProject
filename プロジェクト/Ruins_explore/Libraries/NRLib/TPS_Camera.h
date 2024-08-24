@@ -11,10 +11,10 @@ namespace NRLib
 	private:
 		// ターゲットからのデフォルト距離
 		const float CAMERA_DISTANCE = 15.0f;
-		const float CAMERA_HIGHT = 8.0f;
+		const float CAMERA_HIGHT = 6.0f;
 
 		// 画角
-		const float FOV = DirectX::XMConvertToRadians(45.0f);
+		const float FOV = DirectX::XMConvertToRadians(40.0f);
 		
 		// 近い投影面
 		const float NEAR_PLANE = 1.0f;

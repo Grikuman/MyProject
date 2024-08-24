@@ -108,14 +108,14 @@ void PlayScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void PlayScene::Render()
 {
-	// プレイヤーを描画
-	m_player->Render();
 	// 天球を描画
 	//m_sky->Render();
 	// フィールドを描画
 	m_field->Render();
 	// エネミースポナーを描画
 	m_enemySpawner->Render();
+	// プレイヤーを描画
+	m_player->Render();
 	//TextUIを描画
 	m_textUI->Render();
 }

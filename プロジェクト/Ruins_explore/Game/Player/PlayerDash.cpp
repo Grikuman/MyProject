@@ -46,7 +46,6 @@ void PlayerDash::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
 
     // ƒ_ƒbƒVƒ…ŠÔ‚ğİ’è
     m_dashTime = DASHTIME;

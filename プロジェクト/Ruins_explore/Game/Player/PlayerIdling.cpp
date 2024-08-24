@@ -45,7 +45,6 @@ void PlayerIdling::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
 }
 
 //---------------------------------------------------------

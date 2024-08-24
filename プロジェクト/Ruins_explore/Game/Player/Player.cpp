@@ -11,7 +11,6 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -21,6 +20,7 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Player::Player()
 	:
+	m_playerUIManager{},
 	m_commonResources{},
 	m_playerIdling{},
 	m_playerAttack{},
@@ -32,6 +32,8 @@ Player::Player()
 {
 	//プレイヤー座標の初期化
 	m_position = DirectX::SimpleMath::Vector3(0.f, 0.5f, 0.f);
+	// 体力を設定
+	m_hp = MAXHP;
 }
 
 //---------------------------------------------------------
@@ -53,14 +55,18 @@ void Player::Initialize(CommonResources* resources)
 	//D3Dデバイスを取得
 	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
 
+	// UI管理クラスを作成
+	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
+	m_playerUIManager->Initialize(resources);
+
+	//カメラを作成
+	m_camera = std::make_unique<NRLib::TPS_Camera>();
+
 	// モデルを読み込む準備
 	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
 	fx->SetDirectory(L"Resources/Models");
 	// モデルを読み込む
 	m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
-
-	//カメラを作成
-	m_camera = std::make_unique<NRLib::TPS_Camera>();
 
 	// ステートを作成
 	// アイドリング状態
@@ -104,6 +110,9 @@ void Player::Update(float elapsedTime)
 	// カメラを更新する
 	m_camera->Update(m_position, matrix);
 
+	// UI管理クラスを更新する
+	m_playerUIManager->Update();
+
 	if (kb.F)
 	{
 		ChangeState(m_playerIdling.get());
@@ -125,6 +134,9 @@ void Player::Render()
 {
 	// プレイヤーのステートを描画する
 	m_currentState->Render();
+
+	// UI管理クラスを描画する
+	m_playerUIManager->Render();
 }
 
 //---------------------------------------------------------
@@ -132,7 +144,10 @@ void Player::Render()
 //---------------------------------------------------------
 void Player::Finalize()
 {
-	
+	m_playerUIManager->Finalize();
+	m_playerIdling.reset();
+	m_playerAttack.reset();
+	m_playerDash.reset();
 }
 
 NRLib::TPS_Camera* Player::GetCamera()

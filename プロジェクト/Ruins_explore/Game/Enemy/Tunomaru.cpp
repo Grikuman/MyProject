@@ -76,7 +76,7 @@ void Tunomaru::Render(DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matr
 
 void Tunomaru::Finalize()
 {
-    // do nothing.
+    
 }
 
 // バウンディングスフィアを取得する
