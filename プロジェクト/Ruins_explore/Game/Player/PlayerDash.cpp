@@ -81,7 +81,7 @@ void PlayerDash::Render()
     proj = m_player->GetCamera()->GetProjectionMatrix();
 
     // ƒvƒŒƒCƒ„[‚Ì•`‰æ
-    Matrix world = Matrix::CreateScale(0.004f);
+    Matrix world = Matrix::CreateScale(0.4f);
     world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
     world *= Matrix::CreateTranslation(m_player->GetPosition());
     m_model->Draw(context, *states, world, view, proj); // ƒ‚ƒfƒ‹‚ð•`‰æ‚·‚é

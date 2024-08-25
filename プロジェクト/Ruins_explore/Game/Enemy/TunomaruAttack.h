@@ -3,44 +3,39 @@
 	@brief	プレイヤーシーンクラス
 */
 #pragma once
-#include "IState.h"
+#include "IEnemyState.h"
 #include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;
-class Player;
+class Tunomaru;
 
 namespace NRLib
 {
 	class TPS_Camera;
 };
 
-class PlayerDash : public IState
+class TunomaruAttack : public IEnemyState
 {
 public:
 	// コンストラクタ
-	PlayerDash(Player* player, const std::unique_ptr<DirectX::Model>& model);
+	TunomaruAttack(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
 	// デストラクタ
-	~PlayerDash();
+	~TunomaruAttack();
 	// 初期化する
 	void Initialize(CommonResources* resources);
 	// 更新する
-	void Update(const float& elapsedTime);
+	void Update();
 	// 描画する
-	void Render();
+	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
 	// 後処理する
 	void Finalize();
 
 private:
-	//プレイヤー
-	Player* m_player;
+	// つのまる
+	Tunomaru* m_tunomaru;
 	// 共通リソース
 	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
-	
-	// ダッシュを行う時間
-	static const int DASHTIME = 30;
-	// ダッシュ時間
-	float m_dashTime;
 };

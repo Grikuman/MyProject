@@ -126,7 +126,7 @@
     <ClInclude Include="Game\Enemy\EnemySpawner.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\IEnemy.h">
+    <ClInclude Include="Game\Enemy\IEnemyState.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Enemy\Tunomaru.h">
@@ -161,6 +161,12 @@
     </ClInclude>
     <ClInclude Include="Game\UI\PlayerHPUI.h">
       <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\TunomaruAttack.h">
+      <Filter>Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\TunomaruSearch.h">
+      <Filter>Game\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="Game\UI\PlayerHPUI.cpp">
       <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\TunomaruAttack.cpp">
+      <Filter>Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\TunomaruSearch.cpp">
+      <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

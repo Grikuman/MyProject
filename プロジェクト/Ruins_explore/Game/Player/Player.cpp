@@ -66,7 +66,7 @@ void Player::Initialize(CommonResources* resources)
 	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
 	fx->SetDirectory(L"Resources/Models");
 	// モデルを読み込む
-	m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NewPlayer.cmo", *fx);
 
 	// ステートを作成
 	// アイドリング状態

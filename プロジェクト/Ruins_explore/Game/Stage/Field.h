@@ -37,4 +37,8 @@ public:
 	void Render();
 	void Finalize();
 	std::vector<DirectX::BoundingBox> GetFieldCollision();
+
+private:
+	std::unique_ptr<DirectX::Model> m_pyramid;
+
 };

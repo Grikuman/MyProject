@@ -62,8 +62,8 @@ void PlayScene::Initialize(CommonResources* resources)
 	m_field = std::make_unique<Field>();
 	m_field->Initialize(m_commonResources, m_player->GetCamera());
 	// エネミースポナーを作成
-	m_enemySpawner = std::make_unique<EnemySpawner>();
-	m_enemySpawner->Initialize(m_commonResources, m_player->GetCamera());
+	m_enemySpawner = std::make_unique<EnemySpawner>(m_player.get());
+	m_enemySpawner->Initialize(m_commonResources);
 	//TextUIを作成
 	m_textUI = std::make_unique<TextUI>(
 		m_commonResources->GetDeviceResources()->GetD3DDevice(),
@@ -118,6 +118,10 @@ void PlayScene::Render()
 	m_player->Render();
 	//TextUIを描画
 	m_textUI->Render();
+
+	//auto debugString = m_commonResources->GetDebugString();
+	//debugString->AddString("Enemy");
+	//debugString->AddString("%f", m_hp);
 }
 
 //---------------------------------------------------------

@@ -184,8 +184,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\CommonResources.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
-    <ClInclude Include="Game\Enemy\IEnemy.h" />
+    <ClInclude Include="Game\Enemy\IEnemyState.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
+    <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
+    <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
     <ClInclude Include="Game\Player\IState.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\Player\PlayerAttack.h" />
@@ -222,6 +224,8 @@
     <ClCompile Include="Game\CommonResources.cpp" />
     <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
+    <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
+    <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
     <ClCompile Include="Game\Player\Player.cpp" />
     <ClCompile Include="Game\Player\PlayerAttack.cpp" />
     <ClCompile Include="Game\Player\PlayerDash.cpp" />

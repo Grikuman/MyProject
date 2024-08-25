@@ -6,6 +6,7 @@
 
 // 前方宣言
 class CommonResources;
+class Player;
 class Tunomaru;
 class Tatemaru;
 class Collision;
@@ -21,8 +22,8 @@ class EnemySpawner
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
-	// カメラオブジェクトへのポインタ
-	NRLib::TPS_Camera* m_camera;
+	// プレイヤー
+	Player* m_player;
 	// 生存している敵の数
 	int m_aliveEnemy;
 	// 敵の最大数
@@ -39,10 +40,10 @@ private:
 	bool m_isChangeScene;
 
 public:
-	EnemySpawner();
+	EnemySpawner(Player* player);
 	~EnemySpawner();
 
-	void Initialize(CommonResources* resources, NRLib::TPS_Camera* camera);
+	void Initialize(CommonResources* resources);
 	void Update(DirectX::BoundingSphere boundingSphere,bool isAttack);
 	void Render();
 	void Finalize();

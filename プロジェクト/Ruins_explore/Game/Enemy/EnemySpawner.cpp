@@ -19,6 +19,7 @@
 */
 #include "pch.h"
 #include "Game/Enemy/EnemySpawner.h"
+#include "Game/Player/Player.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
@@ -35,14 +36,16 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-EnemySpawner::EnemySpawner()
+EnemySpawner::EnemySpawner(Player* player)
 	:
 	m_commonResources{},
-	m_camera{},
+	m_player{player},
 	m_aliveEnemy{},
 	m_tunomaru{},
-	m_collision{}
+	m_collision{},
+	m_isChangeScene{}
 {
+
 }
 
 //---------------------------------------------------------
@@ -56,22 +59,21 @@ EnemySpawner::~EnemySpawner()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void EnemySpawner::Initialize(CommonResources* resources, NRLib::TPS_Camera* camera)
+void EnemySpawner::Initialize(CommonResources* resources)
 {
 	assert(resources);
 	m_commonResources = resources;
-	m_camera = camera;
 	// 生成するエネミー数を生存確認用変数に設定する
 	m_aliveEnemy = MAX_TUNOMARU;
 	// 各エネミーを生成する
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
 		// つのまるを生成する
-		m_tunomaru[i] = std::make_unique<Tunomaru>();
+		m_tunomaru[i] = std::make_unique<Tunomaru>(m_player);
 	}
 	// 敵の初期位置を設定する
-	m_tunomaru[0]->Initialize(m_commonResources,Vector3(2.f, 0.f, -5.f));
-	m_tunomaru[1]->Initialize(m_commonResources,Vector3(-2.f, 0.f, -5.f));
+	m_tunomaru[0]->Initialize(m_commonResources,Vector3(2.f, 1.f, -8.f));
+	m_tunomaru[1]->Initialize(m_commonResources,Vector3(-2.f, 1.f, -8.f));
 	// 当たり判定
 	m_collision = std::make_unique<Collision>();
 
@@ -116,13 +118,10 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerA
 //---------------------------------------------------------
 void EnemySpawner::Render()
 {
-	DirectX::SimpleMath::Matrix world = Matrix::Identity;
-	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
-	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
 		// つのまるを描画
-		m_tunomaru[i]->Render(view,proj);
+		m_tunomaru[i]->Render();
 	}
 }
 
