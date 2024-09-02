@@ -25,8 +25,6 @@ private:
 	DirectX::SimpleMath::Vector3 m_boxPos;
 	// カメラのポインタ
 	NRLib::TPS_Camera* m_camera;
-	// バウンディングボックスの格納用
-	std::vector<DirectX::BoundingBox> m_vBoundingBox;
 
 public:
 	Field();
@@ -36,7 +34,6 @@ public:
 	void Update();
 	void Render();
 	void Finalize();
-	std::vector<DirectX::BoundingBox> GetFieldCollision();
 
 private:
 	std::unique_ptr<DirectX::Model> m_pyramid;

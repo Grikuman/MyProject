@@ -22,7 +22,6 @@ Field::Field()
 	:
 	m_commonResources{},
 	m_camera{},
-	m_vBoundingBox{},
 	m_pyramid{}
 {
 }
@@ -87,7 +86,7 @@ void Field::Render()
 	world = Matrix::CreateScale(0.1f);
 	world *= Matrix::CreateTranslation(Vector3(0.f, 0.f, 0.f));
 	
-	m_pyramid->Draw(context, *states, world, view, proj);
+	//m_pyramid->Draw(context, *states, world, view, proj);
 }
 
 //---------------------------------------------------------
@@ -96,9 +95,4 @@ void Field::Render()
 void Field::Finalize()
 {
 	// do nothing.
-}
-
-std::vector<DirectX::BoundingBox> Field::GetFieldCollision()
-{
-	return m_vBoundingBox;
 }

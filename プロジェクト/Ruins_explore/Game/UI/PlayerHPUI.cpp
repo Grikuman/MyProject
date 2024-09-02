@@ -60,9 +60,9 @@ void PlayerHPUI::Initialize(CommonResources* resources)
     auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
 
     // 画像を読み込む
-    CreateWICTextureFromFile(device, context, L"Resources/Textures/HP.jpg", nullptr, m_tex_Green.GetAddressOf());
-    CreateWICTextureFromFile(device, context, L"Resources/Textures/HP_red.jpg", nullptr, m_tex_Red.GetAddressOf());
-    CreateWICTextureFromFile(device, context, L"Resources/Textures/HP_Back.png", nullptr, m_tex_BackGround.GetAddressOf());
+    CreateWICTextureFromFile(device, context, L"Resources/Textures/HealthGauge.png", nullptr, m_tex_Green.GetAddressOf());
+    CreateWICTextureFromFile(device, context, L"Resources/Textures/HealthGauge_Red.png", nullptr, m_tex_Red.GetAddressOf());
+    CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_icon.png", nullptr, m_tex_BackGround.GetAddressOf());
 
     // スプライトバッチを設定する
     m_spriteBatch = std::make_unique<SpriteBatch>(context);
