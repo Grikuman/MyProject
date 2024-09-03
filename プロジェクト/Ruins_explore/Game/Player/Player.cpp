@@ -28,12 +28,15 @@ Player::Player()
 	m_model{},
 	m_camera{},
 	m_velocity{},
-	m_playerAngle{}
+	m_playerAngle{},
+	m_chargeCnt{}
 {
 	//プレイヤー座標の初期化
 	m_position = DirectX::SimpleMath::Vector3(0.f, 0.5f, 0.f);
 	// 体力を設定
-	m_hp = MAXHP;
+	m_hp = MAX_HP;
+	// スタミナを設定
+	m_stamina = MAX_STAMINA;
 }
 
 //---------------------------------------------------------
@@ -92,6 +95,22 @@ void Player::Update(float elapsedTime)
 
 	auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
 
+	// スタミナ回復カウントを行う
+	if (m_stamina != MAX_STAMINA)
+	{
+		m_chargeCnt++;
+	}
+	else // 最大の場合カウントをしない
+	{
+		m_chargeCnt = 0.f; // カウントリセット
+	}
+	// 3秒カウント
+	if (m_chargeCnt >= 180.f)
+	{
+		m_stamina++;       // スタミナを回復する
+		m_chargeCnt = 0.f; // カウントリセット
+	}
+
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
 
@@ -120,10 +139,6 @@ void Player::Update(float elapsedTime)
 	if (kb.G)
 	{
 		ChangeState(m_playerAttack.get());
-	}
-	if (kb.H)
-	{
-		ChangeState(m_playerDash.get());
 	}
 }
 

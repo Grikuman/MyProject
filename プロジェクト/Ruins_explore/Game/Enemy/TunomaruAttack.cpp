@@ -55,7 +55,7 @@ void TunomaruAttack::Initialize(CommonResources* resources)
 void TunomaruAttack::Update()
 {
 	// ƒvƒŒƒCƒ„[‚ðUŒ‚
-	m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 0.1f);
+	m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
 
 	// ‰ñ“]s—ñ‚ðì¬‚·‚é
 	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_tunomaru->GetAngle()));

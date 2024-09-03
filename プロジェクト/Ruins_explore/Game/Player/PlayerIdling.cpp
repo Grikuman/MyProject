@@ -61,19 +61,29 @@ void PlayerIdling::Update(const float& elapsedTime)
     //*======================================================*
     if (kb.W)
     {
-        m_player->SetVelocity(Vector3::Forward);
+        m_player->SetVelocity(Vector3::Forward);         // 移動
     }
     if (kb.A)
     {
-        m_player->SetAngle(m_player->GetAngle() + 2.0f);
+        m_player->SetAngle(m_player->GetAngle() + 2.0f); // 回転
     }
     if (kb.S)
     {
-        m_player->SetVelocity(Vector3::Backward);
+        m_player->SetVelocity(Vector3::Backward);        // 移動
     }
     if (kb.D)
     {
-        m_player->SetAngle(m_player->GetAngle() - 2.0f);
+        m_player->SetAngle(m_player->GetAngle() - 2.0f); // 回転
+    }
+
+    // スタミナがある場合
+    if (m_player->GetStamina() >= 1)
+    {
+        if (kb.Space)
+        {
+            m_player->SetStamina(m_player->GetStamina() - 1); // スタミナを消費
+            m_player->ChangeState(m_player->GetPlayerDash()); // ステートをダッシュに変更
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 	@brief	プレイヤーのUIを管理するクラス
 */
 #pragma once
-#include "PlayerHPUI.h"
+#include "PlayerStatusUI.h"
 
 // 前方宣言
 class CommonResources;
@@ -28,5 +28,5 @@ private:
 	// Player
 	Player* m_player;
 	// HPUIクラス
-	std::unique_ptr<PlayerHPUI> m_playerHPUI;
+	std::unique_ptr<PlayerStatusUI> m_playerStatusUI;
 };

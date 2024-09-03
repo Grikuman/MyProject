@@ -18,7 +18,7 @@ using namespace DirectX::SimpleMath;
 PlayerUIManager::PlayerUIManager(Player* player)
 	:
 	m_player{player},
-	m_playerHPUI{}
+	m_playerStatusUI{}
 {
 
 }
@@ -39,8 +39,8 @@ void PlayerUIManager::Initialize(CommonResources* resources)
 	assert(resources);
 
 	// プレイヤーのHPUIを作成する
-	m_playerHPUI = std::make_unique<PlayerHPUI>(m_player);
-	m_playerHPUI->Initialize(resources);
+	m_playerStatusUI = std::make_unique<PlayerStatusUI>(m_player);
+	m_playerStatusUI->Initialize(resources);
 }
 
 //---------------------------------------------------------
@@ -49,7 +49,7 @@ void PlayerUIManager::Initialize(CommonResources* resources)
 void PlayerUIManager::Update()
 {
 	// プレイヤーのHPUIを更新する
-	m_playerHPUI->Update();
+	m_playerStatusUI->Update();
 }
 
 //---------------------------------------------------------
@@ -58,7 +58,7 @@ void PlayerUIManager::Update()
 void PlayerUIManager::Render()
 {
 	// プレイヤーのHPUIを描画する
-	m_playerHPUI->Render();
+	m_playerStatusUI->Render();
 }
 
 //---------------------------------------------------------
@@ -66,5 +66,5 @@ void PlayerUIManager::Render()
 //---------------------------------------------------------
 void PlayerUIManager::Finalize()
 {
-	m_playerHPUI->Finalize();
+	m_playerStatusUI->Finalize();
 }

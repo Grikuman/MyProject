@@ -53,9 +53,13 @@ public:
 	// 角度を取得する
 	float GetAngle() const { return m_playerAngle; }
 	// 体力を取得する
-	float GetHP() const { return m_hp; }
+	int GetHP() const { return m_hp; }
 	// 最大体力を取得する
-	float GetMAXHP() const { return MAXHP; }
+	int GetMAXHP() const { return MAX_HP; }
+	// スタミナを取得する
+	int GetStamina() const { return m_stamina; }
+	// 最大スタミナを取得する
+	int GetMAXSTAMINA() const { return MAX_STAMINA; }
 
 	// 攻撃しているか取得する
 	bool GetIsAttack();
@@ -73,7 +77,9 @@ public:
 	// 角度を設定する
 	void SetAngle(const float angle) { m_playerAngle = angle; }
 	// 体力を設定する
-	void SetHP(const float hp) { m_hp = hp; }
+	void SetHP(const int hp) { m_hp = hp; }
+	// スタミナを設定する
+	void SetStamina(const int stamina) { m_stamina = stamina; }
 
 	// ステートを変更する
 	void ChangeState(IState* newState);
@@ -103,7 +109,13 @@ private:
 	// 角度
 	float m_playerAngle;
 	// 体力
-	float m_hp;
+	int m_hp;
 	// 最大体力
-	const float MAXHP = 100.f;
+	const int MAX_HP = 6;
+	// スタミナ
+	int m_stamina;
+	// 最大スタミナ
+	const int MAX_STAMINA = 6;
+	// スタミナの回復カウント
+	float m_chargeCnt;
 };
