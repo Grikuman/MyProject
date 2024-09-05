@@ -54,8 +54,13 @@ void TunomaruAttack::Initialize(CommonResources* resources)
 //---------------------------------------------------------
 void TunomaruAttack::Update()
 {
-	// ƒvƒŒƒCƒ„[‚ðUŒ‚
-	m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
+	// ƒvƒŒƒCƒ„[‚ª–³“G‚Å‚È‚¯‚ê‚Î
+	if (m_tunomaru->GetPlayer()->GetInvincible() == false)
+	{
+		// ƒvƒŒƒCƒ„[‚ðUŒ‚
+		m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
+		m_tunomaru->GetPlayer()->SetInvincible(true);
+	}
 
 	// ‰ñ“]s—ñ‚ðì¬‚·‚é
 	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_tunomaru->GetAngle()));
@@ -68,8 +73,6 @@ void TunomaruAttack::Update()
 
 	m_tunomaru->ChangeState(m_tunomaru->GetTunomaruSearch());
 }
-
-
 
 //---------------------------------------------------------
 // •`‰æ‚·‚é

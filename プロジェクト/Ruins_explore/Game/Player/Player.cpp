@@ -29,7 +29,9 @@ Player::Player()
 	m_camera{},
 	m_velocity{},
 	m_playerAngle{},
-	m_chargeCnt{}
+	m_chargeCnt{},
+	m_invincible{false},
+	m_invincibleTime{}
 {
 	//プレイヤー座標の初期化
 	m_position = DirectX::SimpleMath::Vector3(0.f, 0.5f, 0.f);
@@ -37,6 +39,8 @@ Player::Player()
 	m_hp = MAX_HP;
 	// スタミナを設定
 	m_stamina = MAX_STAMINA;
+	// 無敵時間を設定する
+	m_invincibleTime = 120.f;
 }
 
 //---------------------------------------------------------
@@ -90,10 +94,22 @@ void Player::Initialize(CommonResources* resources)
 // 更新する
 //---------------------------------------------------------
 void Player::Update(float elapsedTime)
-{
-	UNREFERENCED_PARAMETER(elapsedTime);
+{	UNREFERENCED_PARAMETER(elapsedTime);
 
 	auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+
+	// 無敵の場合は
+	if (m_invincible)
+	{
+		// 無敵時間を減少させる
+		m_invincibleTime--;
+		// 無敵時間が終わると
+		if (m_invincibleTime <= 0.f)
+		{
+			m_invincibleTime = 120.f; // リセット
+			m_invincible = false;     // 無敵解除
+		}
+	}
 
 	// スタミナ回復カウントを行う
 	if (m_stamina != MAX_STAMINA)
@@ -133,10 +149,6 @@ void Player::Update(float elapsedTime)
 	m_playerUIManager->Update();
 
 	if (kb.F)
-	{
-		ChangeState(m_playerIdling.get());
-	}
-	if (kb.G)
 	{
 		ChangeState(m_playerAttack.get());
 	}

@@ -60,6 +60,8 @@ public:
 	int GetStamina() const { return m_stamina; }
 	// 最大スタミナを取得する
 	int GetMAXSTAMINA() const { return MAX_STAMINA; }
+	// 無敵を取得
+	bool GetInvincible() const { return m_invincible; }
 
 	// 攻撃しているか取得する
 	bool GetIsAttack();
@@ -80,6 +82,8 @@ public:
 	void SetHP(const int hp) { m_hp = hp; }
 	// スタミナを設定する
 	void SetStamina(const int stamina) { m_stamina = stamina; }
+	//無敵を設定する
+	void SetInvincible(const bool invincible) { m_invincible = invincible; }
 
 	// ステートを変更する
 	void ChangeState(IState* newState);
@@ -118,4 +122,8 @@ private:
 	const int MAX_STAMINA = 6;
 	// スタミナの回復カウント
 	float m_chargeCnt;
+	// 無敵
+	bool m_invincible;
+	// 無敵時間
+	float m_invincibleTime;
 };
