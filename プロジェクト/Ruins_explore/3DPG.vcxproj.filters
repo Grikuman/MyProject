@@ -59,6 +59,9 @@
     <Filter Include="Resources\Shaders">
       <UniqueIdentifier>{11c25b0e-086c-401c-ba6c-a9e59d2abb86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Effect">
+      <UniqueIdentifier>{988c5e3a-520a-4def-9a9b-2efc8cfed130}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -168,6 +171,9 @@
     <ClInclude Include="Game\Enemy\TunomaruSearch.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Effect\SwordEffect.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -256,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\TunomaruSearch.cpp">
       <Filter>Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Effect\SwordEffect.cpp">
+      <Filter>Game\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -78,6 +78,16 @@ void Tunomaru::Update()
     m_hpUI->SetPosition(DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.6f, m_position.z));
     // HPUIのHP情報を更新
     m_hpUI->SetHP(m_hp, MAXHP);
+
+    // プレイヤーが攻撃
+    if (m_player->GetIsAttack())
+    {
+        // 攻撃範囲内にいるならダメージを受ける
+        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(GetBoundingSphere()))
+        {
+            m_hp -= 1.f;
+        }
+    }
 }
 
 void Tunomaru::Render()

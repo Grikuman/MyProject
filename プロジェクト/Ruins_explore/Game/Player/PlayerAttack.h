@@ -9,6 +9,7 @@
 // 前方宣言
 class CommonResources;
 class Player;
+class SwordEffect;
 
 namespace NRLib
 {
@@ -30,6 +31,9 @@ public:
 	void Render();
 	// 後処理する
 	void Finalize();
+public:
+	// 攻撃範囲を取得
+	DirectX::BoundingSphere GetAttackRange();
 
 private:
 	//プレイヤー
@@ -38,4 +42,9 @@ private:
 	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
+	// 斬撃エフェクト
+	std::unique_ptr<SwordEffect> m_swordEffect;
+	
+	// カウント
+	int m_cnt;
 };

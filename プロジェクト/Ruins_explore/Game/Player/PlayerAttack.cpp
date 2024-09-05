@@ -13,6 +13,7 @@
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "Game/Effect/SwordEffect.h"
 #include <iostream>
 #include<iostream>
 
@@ -26,8 +27,11 @@ PlayerAttack::PlayerAttack(Player* player, const std::unique_ptr<DirectX::Model>
 	:
     m_player(player),
     m_commonResources{},
-	m_model{ model }
+	m_model{ model },
+    m_swordEffect{},
+    m_cnt{}
 {
+
 }
 
 //---------------------------------------------------------
@@ -43,8 +47,15 @@ PlayerAttack::~PlayerAttack()
 //---------------------------------------------------------
 void PlayerAttack::Initialize(CommonResources* resources)
 {
-	assert(resources);
-	m_commonResources = resources;
+    assert(resources);
+    m_commonResources = resources;
+
+    auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+
+    // 斬撃エフェクトを作成
+    m_swordEffect = std::make_unique<SwordEffect>(device);
+    // 位置を設定する
+    m_swordEffect->SetPosition(m_player->GetPosition());
 }
 
 //---------------------------------------------------------
@@ -56,24 +67,16 @@ void PlayerAttack::Update(const float& elapsedTime)
 
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
 
-    //*======================================================*
-    //　処理:プレイヤーの速度設定と移動
-    //*======================================================*
-    if (kb.W)
+    // エフェクトを更新する
+    m_swordEffect->SetPosition(m_player->GetPosition());
+    m_swordEffect->Update();
+
+    // カウント
+    m_cnt++;
+    if (m_cnt >= 30)
     {
-        m_player->SetVelocity(Vector3::Forward);
-    }
-    if (kb.A)
-    {
-        m_player->SetAngle(m_player->GetAngle() + 2.0f);
-    }
-    if (kb.S)
-    {
-        m_player->SetVelocity(Vector3::Backward);
-    }
-    if (kb.D)
-    {
-        m_player->SetAngle(m_player->GetAngle() - 2.0f);
+        m_cnt = 0;
+        m_player->ChangeState(m_player->GetPlayerIdling());
     }
 }
 
@@ -95,6 +98,10 @@ void PlayerAttack::Render()
     world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
     world *= Matrix::CreateTranslation(m_player->GetPosition());
     m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+
+    world = Matrix::Identity;
+    // エフェクトを描画する
+    m_swordEffect->Render(context,view,proj);
 }
 
 
@@ -104,4 +111,11 @@ void PlayerAttack::Render()
 void PlayerAttack::Finalize()
 {
     
+}
+
+DirectX::BoundingSphere PlayerAttack::GetAttackRange()
+{
+    Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
+    float radius = 2.f;                       // 範囲に応じて調整
+    return DirectX::BoundingSphere(center, radius);
 }

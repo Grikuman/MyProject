@@ -183,6 +183,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\CommonResources.h" />
+    <ClInclude Include="Game\Effect\SwordEffect.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
     <ClInclude Include="Game\Enemy\IEnemyState.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
@@ -222,6 +223,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\CommonResources.cpp" />
+    <ClCompile Include="Game\Effect\SwordEffect.cpp" />
     <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />

@@ -87,18 +87,13 @@ void EnemySpawner::Initialize(CommonResources* resources)
 void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerAttack)
 {
 	m_aliveEnemy = MAX_ENEMY;
+
 	// つのまるの処理
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
 		// 各つのまるを更新
 		m_tunomaru[i]->Update();
-		// 条件:つのまるとプレイヤーが当たっている　かつ　プレイヤーが攻撃している場合
-		if (m_collision->SphereIntersects(boundingSphere, m_tunomaru[i]->GetBoundingSphere()) && isPlayerAttack)
-		{
-			// つのまるにダメージ処理
-			m_tunomaru[i]->SetHP(m_tunomaru[i]->GetHP() - 0.5f);
-			m_tunomaru[i]->SetHit(true);
-		}
+		
 		// つのまるが死亡している場合は
 		if (m_tunomaru[i]->GetIsAlive() == false)
 		{
@@ -106,6 +101,7 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerA
 			m_aliveEnemy--;
 		}
 	}
+	
 	// 敵が全員やられたらシーン遷移フラグをON
 	if (m_aliveEnemy <= 0.f)
 	{

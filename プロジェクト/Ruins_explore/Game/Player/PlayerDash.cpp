@@ -14,7 +14,6 @@
 #include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
 #include <iostream>
-#include<iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
