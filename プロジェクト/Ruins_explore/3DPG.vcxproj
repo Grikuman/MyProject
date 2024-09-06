@@ -183,6 +183,8 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Game\CommonResources.h" />
+    <ClInclude Include="Game\Effect\InvincibleEffect.h" />
+    <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Effect\SwordEffect.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
     <ClInclude Include="Game\Enemy\IEnemyState.h" />
@@ -205,7 +207,7 @@
     <ClInclude Include="Game\UI\HPUI.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
-    <ClInclude Include="Game\UI\TextUI.h" />
+    <ClInclude Include="Game\UI\TimeUI.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
     <ClInclude Include="Libraries\MyLib\DebugCamera.h" />
     <ClInclude Include="Libraries\MyLib\DebugString.h" />
@@ -223,6 +225,8 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game\CommonResources.cpp" />
+    <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
+    <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Effect\SwordEffect.cpp" />
     <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
@@ -241,7 +245,7 @@
     <ClCompile Include="Game\UI\HPUI.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
-    <ClCompile Include="Game\UI\TextUI.cpp" />
+    <ClCompile Include="Game\UI\TimeUI.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
     <ClCompile Include="Libraries\MyLib\DebugCamera.cpp" />
     <ClCompile Include="Libraries\MyLib\DebugString.cpp" />

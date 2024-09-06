@@ -9,6 +9,7 @@
 #include "PlayerDash.h"
 
 #include "Game/UI/PlayerUIManager.h"
+#include "Game/Effect/PlayerEffectManager.h"
 
 // 前方宣言
 class CommonResources;
@@ -90,6 +91,8 @@ public:
 private:
 	// UI管理クラス
 	std::unique_ptr<PlayerUIManager> m_playerUIManager;
+	// エフェクト管理クラス
+	std::unique_ptr<PlayerEffectManager> m_playerEffectMaanager;
 	// 現在のステート
 	IState* m_currentState;
 	// 共通リソース

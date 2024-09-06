@@ -9,7 +9,7 @@
 #include "Game/Stage/Sky.h"
 #include "Game/Stage/Field.h"
 #include "Game/Enemy/EnemySpawner.h"
-#include "Game/UI/TextUI.h"
+#include "Game/UI/TimeUI.h"
 
 
 namespace NRLib
@@ -36,7 +36,7 @@ private:
 	std::unique_ptr<EnemySpawner> m_enemySpawner;
 
 	//TextUI
-	std::unique_ptr<TextUI> m_textUI;
+	std::unique_ptr<TimeUI> m_timeUI;
 
 	// シーンチェンジフラグ
 	bool m_isChangeScene;

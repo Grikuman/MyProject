@@ -1,12 +1,12 @@
 #include "pch.h"
-#include "TextUI.h"
+#include "TimeUI.h"
 
 using namespace DirectX;
 
 /// <summary>
 /// Constructor
 /// </summary>
-TextUI::TextUI(ID3D11Device* device, ID3D11DeviceContext* context)
+TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     :
     m_time{}
 {
@@ -18,12 +18,12 @@ TextUI::TextUI(ID3D11Device* device, ID3D11DeviceContext* context)
 /// <summary>
 /// Destructor
 /// </summary>
-TextUI::~TextUI()
+TimeUI::~TimeUI()
 {
     Finalize();
 }
 
-void TextUI::Update(float elapedTime)
+void TimeUI::Update(float elapedTime)
 {
     m_time = elapedTime;
 }
@@ -31,7 +31,7 @@ void TextUI::Update(float elapedTime)
 /// <summary>
 /// Render 
 /// </summary>
-void TextUI::Render()
+void TimeUI::Render()
 {
     spriteBatch->Begin();
 
@@ -53,7 +53,7 @@ void TextUI::Render()
 /// <summary>
 /// Finalize 
 /// </summary>
-void TextUI::Finalize()
+void TimeUI::Finalize()
 {
     spriteBatch.reset();
     spriteFont.reset();

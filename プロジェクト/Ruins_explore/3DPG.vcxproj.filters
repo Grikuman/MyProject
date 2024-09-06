@@ -138,7 +138,7 @@
     <ClInclude Include="Game\UI\HPUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\TextUI.h">
+    <ClInclude Include="Game\UI\TimeUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scene\TitleScene.h">
@@ -172,6 +172,12 @@
       <Filter>Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Effect\SwordEffect.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Effect\InvincibleEffect.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Effect\PlayerEffectManager.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
   </ItemGroup>
@@ -233,7 +239,7 @@
     <ClCompile Include="Game\UI\HPUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\UI\TextUI.cpp">
+    <ClCompile Include="Game\UI\TimeUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scene\TitleScene.cpp">
@@ -264,6 +270,12 @@
       <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Effect\SwordEffect.cpp">
+      <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Effect\InvincibleEffect.cpp">
+      <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Effect\PlayerEffectManager.cpp">
       <Filter>Game\Effect</Filter>
     </ClCompile>
   </ItemGroup>

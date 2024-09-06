@@ -5,11 +5,11 @@
 #include <SpriteFont.h>
 #include <wrl/client.h>
 
-class TextUI
+class TimeUI
 {
 public:
-    TextUI(ID3D11Device* device, ID3D11DeviceContext* context);
-    ~TextUI();
+    TimeUI(ID3D11Device* device, ID3D11DeviceContext* context);
+    ~TimeUI();
 
     void Update(float elapedTime);
     void Render();

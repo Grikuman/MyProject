@@ -29,7 +29,7 @@ PlayScene::PlayScene()
 	m_sky{},
 	m_field{},
 	m_enemySpawner{},
-	m_textUI{},
+	m_timeUI{},
 	m_gameTime{}
 {
 }
@@ -65,7 +65,7 @@ void PlayScene::Initialize(CommonResources* resources)
 	m_enemySpawner = std::make_unique<EnemySpawner>(m_player.get());
 	m_enemySpawner->Initialize(m_commonResources);
 	//TextUIを作成
-	m_textUI = std::make_unique<TextUI>(
+	m_timeUI = std::make_unique<TimeUI>(
 		m_commonResources->GetDeviceResources()->GetD3DDevice(),
 		m_commonResources->GetDeviceResources()->GetD3DDeviceContext()
 		);
@@ -93,7 +93,7 @@ void PlayScene::Update(float elapsedTime)
 	// エネミースポナーを更新
 	m_enemySpawner->Update(m_player->GetBoundingSphere(), m_player->GetIsAttack());
 	// TextUIを更新
-	m_textUI->Update(m_gameTime);
+	m_timeUI->Update(m_gameTime);
 	// 敵が全員死んだらシーン遷移を行う
 	if (m_enemySpawner->IsChangeScene())
 	{
@@ -117,11 +117,7 @@ void PlayScene::Render()
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画
-	m_textUI->Render();
-
-	//auto debugString = m_commonResources->GetDebugString();
-	//debugString->AddString("Enemy");
-	//debugString->AddString("%f", m_hp);
+	m_timeUI->Render();
 }
 
 //---------------------------------------------------------
@@ -133,7 +129,7 @@ void PlayScene::Finalize()
 	m_sky->Finalize();
 	m_field->Finalize();
 	m_enemySpawner->Finalize();
-	m_textUI->Finalize();
+	m_timeUI->Finalize();
 }
 
 //---------------------------------------------------------

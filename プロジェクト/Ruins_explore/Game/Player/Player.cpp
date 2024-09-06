@@ -21,6 +21,7 @@ using namespace DirectX::SimpleMath;
 Player::Player()
 	:
 	m_playerUIManager{},
+	m_playerEffectMaanager{},
 	m_commonResources{},
 	m_playerIdling{},
 	m_playerAttack{},
@@ -65,6 +66,10 @@ void Player::Initialize(CommonResources* resources)
 	// UI管理クラスを作成
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
 	m_playerUIManager->Initialize(resources);
+
+	// エフェクト管理クラスを作成する
+	m_playerEffectMaanager = std::make_unique<PlayerEffectManager>(this);
+	m_playerEffectMaanager->Initialize(resources);
 
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
@@ -148,6 +153,9 @@ void Player::Update(float elapsedTime)
 	// UI管理クラスを更新する
 	m_playerUIManager->Update();
 
+	// エフェクト管理クラスを更新する
+	m_playerEffectMaanager->Update();
+
 	if (kb.F)
 	{
 		ChangeState(m_playerAttack.get());
@@ -164,6 +172,9 @@ void Player::Render()
 
 	// UI管理クラスを描画する
 	m_playerUIManager->Render();
+
+	// エフェクト管理クラス描画する
+	m_playerEffectMaanager->Render();
 }
 
 //---------------------------------------------------------
@@ -172,6 +183,7 @@ void Player::Render()
 void Player::Finalize()
 {
 	m_playerUIManager->Finalize();
+	m_playerEffectMaanager->Finalize();
 	m_playerIdling.reset();
 	m_playerAttack.reset();
 	m_playerDash.reset();

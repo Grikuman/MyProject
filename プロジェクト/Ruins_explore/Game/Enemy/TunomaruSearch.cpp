@@ -73,7 +73,7 @@ void TunomaruSearch::Update()
     randomMoveTimer += 1.0f / 60.0f;
 
     // ‹——£‚ª10.fˆÈ“à‚È‚çƒvƒŒƒCƒ„[‚ğ’Ç‚¢‚©‚¯‚é
-    if (distance < 7.0f)
+    if (distance < 15.0f)
     {
         Vector3 direction = playerPos - tunomaruPos;
         direction.Normalize();
