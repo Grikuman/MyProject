@@ -23,7 +23,7 @@
     <ProjectGuid>{9606f935-c8db-41f0-88df-fe4670116909}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Ruins_explore</ProjectName>
+    <ProjectName>Ruins_explorer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -207,6 +207,7 @@
     <ClInclude Include="Game\UI\HPUI.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
+    <ClInclude Include="Game\UI\TitleSceneUI.h" />
     <ClInclude Include="Game\UI\TimeUI.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
     <ClInclude Include="Libraries\MyLib\DebugCamera.h" />
@@ -245,6 +246,7 @@
     <ClCompile Include="Game\UI\HPUI.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
+    <ClCompile Include="Game\UI\TitleSceneUI.cpp" />
     <ClCompile Include="Game\UI\TimeUI.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
     <ClCompile Include="Libraries\MyLib\DebugCamera.cpp" />

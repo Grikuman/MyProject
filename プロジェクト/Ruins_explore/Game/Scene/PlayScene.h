@@ -22,21 +22,17 @@ class PlayScene final : public IScene
 private:
 	// 共通リソース
 	CommonResources* m_commonResources;
-
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
-
 	// 天球
 	std::unique_ptr<Sky> m_sky;
-
 	// フィールド
 	std::unique_ptr<Field> m_field;
-
 	// エネミースポナー
 	std::unique_ptr<EnemySpawner> m_enemySpawner;
-
 	//TextUI
 	std::unique_ptr<TimeUI> m_timeUI;
+	// プレイシーンUI
 
 	// シーンチェンジフラグ
 	bool m_isChangeScene;

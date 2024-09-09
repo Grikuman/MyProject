@@ -180,6 +180,9 @@
     <ClInclude Include="Game\Effect\PlayerEffectManager.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\TitleSceneUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp">
       <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\TitleSceneUI.cpp">
+      <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
