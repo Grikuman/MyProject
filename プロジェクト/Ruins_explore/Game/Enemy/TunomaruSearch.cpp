@@ -62,7 +62,7 @@ void TunomaruSearch::Update()
     float distance = Vector3::Distance(playerPos, tunomaruPos);
 
     // 距離が1.f以内なら攻撃モードに移行する
-    if (distance < 1.0f)
+    if (distance < 6.0f)
     {
         m_tunomaru->ChangeState(m_tunomaru->GetTunomaruAttack());
         return;
@@ -73,7 +73,7 @@ void TunomaruSearch::Update()
     randomMoveTimer += 1.0f / 60.0f;
 
     // 距離が10.f以内ならプレイヤーを追いかける
-    if (distance < 15.0f)
+    if (distance < 20.0f)
     {
         Vector3 direction = playerPos - tunomaruPos;
         direction.Normalize();

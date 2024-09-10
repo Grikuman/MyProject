@@ -38,4 +38,8 @@ private:
 	CommonResources* m_commonResources;
 	// ƒ‚ƒfƒ‹
 	const std::unique_ptr<DirectX::Model>& m_model;
+
+	// “ËiŠÔ
+	float m_rushTime;
+	float MAX_RUSHTIME = 120.f;
 };

@@ -29,6 +29,8 @@ TunomaruAttack::TunomaruAttack(Tunomaru* tunomaru, const std::unique_ptr<DirectX
     m_commonResources{},
 	m_model{ model }
 {
+	// 突進時間を設定する
+	m_rushTime = MAX_RUSHTIME;
 }
 
 //---------------------------------------------------------
@@ -54,12 +56,27 @@ void TunomaruAttack::Initialize(CommonResources* resources)
 //---------------------------------------------------------
 void TunomaruAttack::Update()
 {
-	// プレイヤーが無敵でなければ
-	if (m_tunomaru->GetPlayer()->GetInvincible() == false)
+	// 突進する
+	m_tunomaru->SetVelocity(Vector3::Forward * 2.f);
+	// 突進時間を減らす
+	m_rushTime--;
+	// つのまるとプレイヤーが接触した場合
+	if (m_tunomaru->GetBoundingSphere().Intersects(m_tunomaru->GetPlayer()->GetBoundingSphere()))
 	{
-		// プレイヤーを攻撃
-		m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
-		m_tunomaru->GetPlayer()->SetInvincible(true);
+		// プレイヤーが無敵でなければ
+		if (m_tunomaru->GetPlayer()->GetInvincible() == false)
+		{
+			// プレイヤーを攻撃
+			m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
+				m_tunomaru->GetPlayer()->SetInvincible(true);
+		}
+	}
+	
+	// 突進時間が終了した場合
+	if (m_rushTime <= 0.f)
+	{
+		m_rushTime = MAX_RUSHTIME;
+		m_tunomaru->ChangeState(m_tunomaru->GetTunomaruSearch());
 	}
 
 	// 回転行列を作成する
