@@ -183,6 +183,9 @@
     <ClInclude Include="Game\UI\TitleSceneUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\TunomaruDown.h">
+      <Filter>Game\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="Game\UI\TitleSceneUI.cpp">
       <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\TunomaruDown.cpp">
+      <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

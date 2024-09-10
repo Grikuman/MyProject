@@ -15,13 +15,13 @@ namespace NRLib
 	class TPS_Camera;
 };
 
-class TunomaruAttack : public IEnemyState
+class TunomaruDown : public IEnemyState
 {
 public:
 	// コンストラクタ
-	TunomaruAttack(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
+	TunomaruDown(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
 	// デストラクタ
-	~TunomaruAttack();
+	~TunomaruDown();
 	// 初期化する
 	void Initialize(CommonResources* resources);
 	// 更新する
@@ -39,7 +39,8 @@ private:
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
 
-	// 突進時間
-	float m_rushTime;
-	const float MAX_RUSHTIME = 120.f;
+	// ダウン時間
+	float m_downTime;
+	// 時間
+	const float MAX_DOWNTIME = 90.f;
 };

@@ -8,6 +8,7 @@
 
 #include "TunomaruSearch.h"
 #include "TunomaruAttack.h"
+#include "TunomaruDown.h"
 
 class CommonResources;
 class Player;
@@ -37,6 +38,8 @@ public:
     TunomaruSearch* GetTunomaruSearch() { return m_tunomaruSearch.get(); }
     // つのまるアタックを取得する
     TunomaruAttack* GetTunomaruAttack() { return m_tunomaruAttack.get(); }
+    // つのまるダウンを取得する
+    TunomaruDown* GetTunomaruDown() { return m_tunomaruDown.get(); }
 
 public:
     // 位置を設定する
@@ -93,6 +96,8 @@ private:
     std::unique_ptr<TunomaruSearch> m_tunomaruSearch;
     // アタック状態
     std::unique_ptr<TunomaruAttack> m_tunomaruAttack;
+    // ダウン状態
+    std::unique_ptr<TunomaruDown> m_tunomaruDown;
 
     // 位置
     DirectX::SimpleMath::Vector3 m_position;

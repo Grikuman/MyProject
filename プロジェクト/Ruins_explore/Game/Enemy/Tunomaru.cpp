@@ -59,6 +59,9 @@ void Tunomaru::Initialize(CommonResources* resources,Vector3 position)
     // アタック状態
     m_tunomaruAttack = std::make_unique<TunomaruAttack>(this,m_model);
     m_tunomaruAttack->Initialize(resources);
+    // ダウン状態
+    m_tunomaruDown = std::make_unique<TunomaruDown>(this, m_model);
+    m_tunomaruDown->Initialize(resources);
 
     // ステートを設定する
     m_currentState = m_tunomaruSearch.get();

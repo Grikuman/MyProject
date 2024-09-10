@@ -61,9 +61,15 @@ void TunomaruSearch::Update()
     // プレイヤーとの距離を計算する
     float distance = Vector3::Distance(playerPos, tunomaruPos);
 
-    // 距離が1.f以内なら攻撃モードに移行する
-    if (distance < 6.0f)
+    // 距離が10.f以内ならアタック状態へ移行する
+    if (distance < 5.0f)
     {
+        // プレイヤーへの向きを計算する
+        Vector3 direction = playerPos - tunomaruPos;
+        direction.Normalize();
+        float newAngle = atan2f(-direction.x, -direction.z);
+        m_tunomaru->SetAngle(XMConvertToDegrees(newAngle));
+        // アタック状態へ移行する
         m_tunomaru->ChangeState(m_tunomaru->GetTunomaruAttack());
         return;
     }
@@ -72,7 +78,7 @@ void TunomaruSearch::Update()
     static float randomMoveTimer = 0.0f;
     randomMoveTimer += 1.0f / 60.0f;
 
-    // 距離が10.f以内ならプレイヤーを追いかける
+    // 距離が20.f以内ならプレイヤーを追いかける
     if (distance < 20.0f)
     {
         Vector3 direction = playerPos - tunomaruPos;
@@ -94,7 +100,7 @@ void TunomaruSearch::Update()
 
             // つのまるの角度を更新する
             m_tunomaru->SetAngle(randomAngle);
-            m_tunomaru->SetVelocity(randomDirection * 0.05f); // 適切な速度でランダムに移動
+            m_tunomaru->SetVelocity(randomDirection * 0.1f); // 適切な速度でランダムに移動
 
             // ランダムな方向に移動
             m_tunomaru->SetPotision(tunomaruPos + randomDirection * 0.1f);

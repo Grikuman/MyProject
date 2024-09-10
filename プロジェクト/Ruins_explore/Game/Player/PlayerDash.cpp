@@ -57,12 +57,27 @@ void PlayerDash::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
 
+    auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+
+    // 真っ直ぐ進む
     m_player->SetVelocity(Vector3::Forward * 5.f);
+    // ダッシュ時間を減少させる
     m_dashTime--;
+    // ダッシュ時間が終了した場合
     if (m_dashTime <= 0.f)
     {
+        // ダッシュ時間をリセットする
         m_dashTime = DASHTIME;
+        // アイドリング状態へ移行する
         m_player->ChangeState(m_player->GetPlayerIdling());
+    }
+    if (kb.A)
+    {
+        m_player->SetAngle(m_player->GetAngle() + 3.0f); // 回転
+    }
+    if (kb.D)
+    {
+        m_player->SetAngle(m_player->GetAngle() - 3.0f); // 回転
     }
 }
 
