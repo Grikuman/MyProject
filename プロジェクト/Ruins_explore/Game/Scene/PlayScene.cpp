@@ -91,7 +91,7 @@ void PlayScene::Update(float elapsedTime)
 	// フィールドを更新
 	m_field->Update();
 	// エネミースポナーを更新
-	m_enemySpawner->Update(m_player->GetBoundingSphere(), m_player->GetIsAttack());
+	m_enemySpawner->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
 	// 敵が全員死んだらシーン遷移を行う

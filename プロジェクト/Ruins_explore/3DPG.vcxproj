@@ -186,6 +186,10 @@
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Effect\SwordEffect.h" />
+    <ClInclude Include="Game\Enemy\Boss\RockBoss.h" />
+    <ClInclude Include="Game\Enemy\Boss\RockBossAttack.h" />
+    <ClInclude Include="Game\Enemy\Boss\RockBossDown.h" />
+    <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
     <ClInclude Include="Game\Enemy\IEnemyState.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
@@ -230,6 +234,10 @@
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Effect\SwordEffect.cpp" />
+    <ClCompile Include="Game\Enemy\Boss\RockBoss.cpp" />
+    <ClCompile Include="Game\Enemy\Boss\RockBossAttack.cpp" />
+    <ClCompile Include="Game\Enemy\Boss\RockBossDown.cpp" />
+    <ClCompile Include="Game\Enemy\Boss\RockBossSearch.cpp" />
     <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />

@@ -22,13 +22,7 @@
 #include "Game/Player/Player.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include <GeometricPrimitive.h>
 #include "Libraries/NRLib/TPS_Camera.h"
-#include "Game/Enemy/Tunomaru.h"
-#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -42,7 +36,7 @@ EnemySpawner::EnemySpawner(Player* player)
 	m_player{player},
 	m_aliveEnemy{},
 	m_tunomaru{},
-	m_collision{},
+	m_rockBoss{},
 	m_isChangeScene{}
 {
 
@@ -65,17 +59,23 @@ void EnemySpawner::Initialize(CommonResources* resources)
 	m_commonResources = resources;
 	// 生成するエネミー数を生存確認用変数に設定する
 	m_aliveEnemy = MAX_TUNOMARU;
-	// 各エネミーを生成する
+	//------------------------------------------------------------------
+	// * 各エネミーを生成する *
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
-		// つのまるを生成する
+		// つのまる
 		m_tunomaru[i] = std::make_unique<Tunomaru>(m_player);
 	}
-	// 敵の初期位置を設定する
-	m_tunomaru[0]->Initialize(m_commonResources,Vector3(2.f, 1.f, -8.f));
-	m_tunomaru[1]->Initialize(m_commonResources,Vector3(-2.f, 1.f, -8.f));
-	// 当たり判定
-	m_collision = std::make_unique<Collision>();
+	// 岩ボス
+	m_rockBoss = std::make_unique<RockBoss>(m_player);
+
+	//------------------------------------------------------------------
+	// * 敵の初期位置を設定する *
+	// つのまる
+	m_tunomaru[0]->Initialize(resources,Vector3(2.f, 1.f, -8.f));
+	m_tunomaru[1]->Initialize(resources,Vector3(-2.f, 1.f, -8.f));
+	// 岩ボス
+	m_rockBoss->Initialize(resources, Vector3(0.f, 0.f, 0.f));
 
 	// シーン遷移フラグを初期化
 	m_isChangeScene = false;
@@ -84,7 +84,7 @@ void EnemySpawner::Initialize(CommonResources* resources)
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerAttack)
+void EnemySpawner::Update()
 {
 	m_aliveEnemy = MAX_ENEMY;
 
@@ -101,6 +101,9 @@ void EnemySpawner::Update(DirectX::BoundingSphere boundingSphere, bool isPlayerA
 			m_aliveEnemy--;
 		}
 	}
+
+	// 岩ボスを更新する
+	m_rockBoss->Update();
 	
 	// 敵が全員やられたらシーン遷移フラグをON
 	if (m_aliveEnemy <= 0.f)
@@ -119,6 +122,8 @@ void EnemySpawner::Render()
 		// つのまるを描画
 		m_tunomaru[i]->Render();
 	}
+	// 岩ボスを描画
+	m_rockBoss->Render();
 }
 
 //---------------------------------------------------------
@@ -130,6 +135,7 @@ void EnemySpawner::Finalize()
 	{
 		m_tunomaru[i]->Finalize();
 	}
+	m_rockBoss->Finalize();
 }
 
 // シーン遷移するかどうか取得する
