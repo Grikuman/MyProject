@@ -71,7 +71,7 @@ void RockBossDown::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath:
 	auto states = m_commonResources->GetCommonStates();
 
 	// ƒ[ƒ‹ƒhs—ñ
-	Matrix world = Matrix::CreateScale(0.009f);
+	Matrix world = Matrix::CreateScale(1.f);
 	world *= Matrix::CreateRotationX(XMConvertToRadians(-30.f));
 	world *= Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
 	world *= Matrix::CreateTranslation(m_rockBoss->GetPosition());

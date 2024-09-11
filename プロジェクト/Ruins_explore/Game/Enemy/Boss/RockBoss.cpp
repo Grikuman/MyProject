@@ -46,7 +46,7 @@ void RockBoss::Initialize(CommonResources* resources,Vector3 position)
     std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
     fx->SetDirectory(L"Resources/Models");
     // モデルを読み込む
-    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
+    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
 
     //* ステートを作成する *
     // サーチ状態
