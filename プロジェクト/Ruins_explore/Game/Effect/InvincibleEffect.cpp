@@ -4,6 +4,7 @@
 #include "Game/CommonResources.h"
 #include "Game/Player/Player.h"
 #include "WorkTool/DeviceResources.h"
+#include "Libraries/NRLib/TPS_Camera.h"
 
 InvincibleEffect::InvincibleEffect(Player* player)
     :
@@ -82,7 +83,7 @@ void InvincibleEffect::Render()
     // 球体のワールド行列を計算して描画
     DirectX::SimpleMath::Matrix world = 
         DirectX::SimpleMath::Matrix::CreateTranslation(
-        m_player->GetPosition() + DirectX::SimpleMath::Vector3(0.f,0.5f,0.f));
+        m_player->GetPosition() + DirectX::SimpleMath::Vector3(0.f,0.6f,0.f));
     m_sphere->Draw(world, m_player->GetCamera()->GetViewMatrix(), m_player->GetCamera()->GetProjectionMatrix(), color);
 
     // ブレンドステートをリセットする

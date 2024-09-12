@@ -1,10 +1,9 @@
 /*
-	@file	PlayerIdling.h
-	@brief	プレイヤーシーンクラス
+	ファイル: PlayerIdling.h
+	クラス  : プレイヤーアイドリングクラス
 */
 #pragma once
 #include "IState.h"
-#include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;

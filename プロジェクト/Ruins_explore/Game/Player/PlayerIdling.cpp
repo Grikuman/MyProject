@@ -1,20 +1,15 @@
 /*
-	@file	PlayerIdling.cpp
-	@brief	プレイヤーシーンクラス
+    ファイル: PlayerIdling.cpp
+    クラス  : プレイヤーアイドリングクラス
 */
 #include "pch.h"
 #include "Player.h"
 #include "PlayerIdling.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
-#include <iostream>
-#include<iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

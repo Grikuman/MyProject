@@ -1,16 +1,14 @@
 /*
-	@file	PlayerAttack.h
-	@brief	プレイヤーシーンクラス
+	ファイル: PlayerAttack.h
+	クラス  : プレイヤーアタッククラス
 */
 #pragma once
 #include "IState.h"
-#include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;
 class Player;
 class SwordEffect;
-
 namespace NRLib
 {
 	class TPS_Camera;

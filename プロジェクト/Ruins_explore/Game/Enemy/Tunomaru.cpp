@@ -1,17 +1,21 @@
+/*
+    ファイル: Tunomaru.cpp
+    クラス  : つのまるクラス
+*/
+#pragma once
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/DebugString.h"
-#include <cassert>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 Tunomaru::Tunomaru(Player* player)
-    : m_commonResources{},
+    : 
+    m_commonResources{},
     m_player{player},
     m_model{},
     m_ball{},

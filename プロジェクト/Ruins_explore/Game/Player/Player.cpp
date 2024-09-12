@@ -1,16 +1,13 @@
 /*
-	@file	Player.cpp
-	@brief	プレイヤーシーンクラス
+	ファイル: Player.cpp
+	クラス  : プレイヤークラス
 */
 #include "pch.h"
 #include "Player.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
+#include "Libraries/NRLib/TPS_Camera.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

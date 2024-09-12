@@ -1,5 +1,8 @@
+/*
+    ファイル: Tunomaru.h
+    クラス  : つのまるクラス
+*/
 #pragma once
-
 #include <memory>
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>

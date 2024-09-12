@@ -1,10 +1,9 @@
 /*
-	@file	PlayerDash.h
-	@brief	プレイヤーシーンクラス
+	ファイル: TunomaruSearch.h
+	クラス  : つのまるサーチクラス
 */
 #pragma once
 #include "IEnemyState.h"
-#include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;

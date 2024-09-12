@@ -1,10 +1,9 @@
 /*
-	@file	PlayerDash.h
-	@brief	プレイヤーシーンクラス
+	ファイル: PlayerDash.h
+	クラス  : プレイヤーダッシュクラス
 */
 #pragma once
 #include "IState.h"
-#include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;
@@ -40,7 +39,7 @@ private:
 	const std::unique_ptr<DirectX::Model>& m_model;
 	
 	// ダッシュを行う時間
-	const float DASHTIME = 30;
+	const float DASHTIME = 15;
 	// ダッシュ時間
 	float m_dashTime;
 };

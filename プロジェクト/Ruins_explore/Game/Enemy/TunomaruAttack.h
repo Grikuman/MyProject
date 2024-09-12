@@ -1,10 +1,9 @@
 /*
-	@file	PlayerDash.h
-	@brief	プレイヤーシーンクラス
+	ファイル: TunomaruAttack.h
+	クラス  : つのまるアタッククラス
 */
 #pragma once
 #include "IEnemyState.h"
-#include <GeometricPrimitive.h>
 
 // 前方宣言
 class CommonResources;

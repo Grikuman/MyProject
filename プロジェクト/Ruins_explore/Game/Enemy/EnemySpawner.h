@@ -1,6 +1,6 @@
 /*
-	@file	EnemySpawner.h
-	@brief	一般的なシーンクラス
+	ファイル: EnemySpawner.h
+	クラス  : 敵生成クラス
 */
 #pragma once
 #include "Game/Enemy/Tunomaru.h"

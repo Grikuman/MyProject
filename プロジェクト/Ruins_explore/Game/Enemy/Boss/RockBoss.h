@@ -1,4 +1,7 @@
-//*
+/*
+    ファイル: RockBoss.h
+    クラス  : 岩ボスクラス
+*/
 #pragma once
 #include <memory>
 #include <GeometricPrimitive.h>

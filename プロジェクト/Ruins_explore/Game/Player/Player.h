@@ -1,6 +1,6 @@
 /*
-	@file	Player.h
-	@brief	プレイヤーシーンクラス
+	ファイル: Player.h
+	クラス  : プレイヤークラス
 */
 #pragma once
 #include "IState.h"
@@ -14,12 +14,8 @@
 // 前方宣言
 class CommonResources;
 class GeometricPrimitive;
-
-
-
 namespace NRLib
 {
-	class FixedCamera;
 	class TPS_Camera;
 };
 

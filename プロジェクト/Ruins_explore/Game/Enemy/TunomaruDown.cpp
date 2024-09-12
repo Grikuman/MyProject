@@ -1,21 +1,14 @@
 /*
-	@file	TunomaruDown.cpp
-	@brief	プレイヤーシーンクラス
+	ファイル: TunomaruDown.cpp
+	クラス  : つのまるダウンクラス
 */
+#pragma once
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
 #include "TunomaruDown.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include "Libraries/NRLib/TPS_Camera.h"
-#include <iostream>
-#include<iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

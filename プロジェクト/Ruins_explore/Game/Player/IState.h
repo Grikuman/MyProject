@@ -4,7 +4,6 @@
 */
 #pragma once
 #include "Game/CommonResources.h"
-#include "Libraries/NRLib/TPS_Camera.h"
 
 class IState
 {

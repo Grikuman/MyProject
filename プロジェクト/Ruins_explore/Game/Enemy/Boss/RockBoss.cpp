@@ -1,3 +1,8 @@
+/*
+    ファイル: RockBoss.cpp
+    クラス  : 岩ボスクラス
+*/
+#pragma once
 #include "pch.h"
 #include "RockBoss.h"
 #include "Game/Player/Player.h"
@@ -46,7 +51,27 @@ void RockBoss::Initialize(CommonResources* resources,Vector3 position)
     std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
     fx->SetDirectory(L"Resources/Models");
     // モデルを読み込む
-    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
+    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss_brick.cmo", *fx);
+    // ライトを切る設定
+    //m_model->UpdateEffects([](DirectX::IEffect* effect)
+    //{
+    //    // ライトをきる
+    //    auto lights = dynamic_cast<DirectX::IEffectLights*>(effect);
+    //    if (lights)
+    //    {
+    //        lights->SetLightEnabled(0, false);
+    //        lights->SetLightEnabled(1, false);
+    //        lights->SetLightEnabled(2, false);
+    //        // 環境光を黒に
+    //        lights->SetAmbientLightColor(DirectX::Colors::Black);
+    //    }
+    //    // 自己発光させる
+    //    auto basicEffect = dynamic_cast<DirectX::BasicEffect*>(effect);
+    //    if (basicEffect)
+    //    {
+    //        basicEffect->SetEmissiveColor(DirectX::Colors::White);
+    //    }
+    //});
 
     //* ステートを作成する *
     // サーチ状態
@@ -102,7 +127,7 @@ void RockBoss::Finalize()
 BoundingSphere RockBoss::GetBoundingSphere() const
 {
     Vector3 center = m_position;
-    float radius = 1.f;
+    float radius = 3.f;
     return BoundingSphere(center, radius);
 }
 // 生存しているか判定する

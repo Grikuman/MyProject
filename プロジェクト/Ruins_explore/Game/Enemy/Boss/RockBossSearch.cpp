@@ -9,7 +9,6 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
-#include <iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -56,8 +55,8 @@ void RockBossSearch::Update()
     // プレイヤーとの距離を計算する
     float distance = Vector3::Distance(playerPos, RockBossPos);
 
-    // 距離が10.f以内ならアタック状態へ移行する
-    if (distance < 5.0f)
+    // 距離が5.f以内ならアタック状態へ移行する
+    if (distance < 3.0f)
     {
         // プレイヤーへの向きを計算する
         Vector3 direction = playerPos - RockBossPos;
@@ -76,7 +75,7 @@ void RockBossSearch::Update()
         direction.Normalize();
         float newAngle = atan2f(-direction.x, -direction.z);
         m_rockBoss->SetAngle(XMConvertToDegrees(newAngle));
-        m_rockBoss->SetPotision(RockBossPos + direction * 0.01f);
+        m_rockBoss->SetPotision(RockBossPos + direction * 0.04f);
     }
 }
 

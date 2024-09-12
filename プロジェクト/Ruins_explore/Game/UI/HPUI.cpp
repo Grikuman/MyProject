@@ -140,8 +140,8 @@ void HPUI::Render(ID3D11DeviceContext1* context, SimpleMath::Matrix view, Simple
     // 深度バッファに書き込み参照する 
     context->OMSetDepthStencilState(m_States->DepthDefault(), 0);
 
-    // カリングはなし 
-    context->RSSetState(m_States->CullNone());
+    // 裏面は描画しない(背面カリング)
+    context->RSSetState(m_States->CullCounterClockwise());
 
     // エフェクトの設定
     m_BatchEffect->SetWorld(SimpleMath::Matrix::Identity);

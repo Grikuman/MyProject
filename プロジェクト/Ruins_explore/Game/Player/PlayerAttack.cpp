@@ -1,21 +1,15 @@
 /*
-	@file	PlayerAttack.cpp
-	@brief	プレイヤーシーンクラス
+    ファイル: PlayerAttack.cpp
+    クラス  : プレイヤーアタッククラス
 */
 #include "pch.h"
 #include "Player.h"
 #include "PlayerAttack.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include "Libraries/NRLib/TPS_Camera.h"
 #include "Game/Effect/SwordEffect.h"
-#include <iostream>
-#include<iostream>
+#include "Libraries/NRLib/TPS_Camera.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

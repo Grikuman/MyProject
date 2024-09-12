@@ -1,19 +1,14 @@
 /*
-	@file	PlayerDash.cpp
-	@brief	プレイヤーシーンクラス
+    ファイル: PlayerDash.cpp
+    クラス  : プレイヤーダッシュクラス
 */
 #include "pch.h"
 #include "Player.h"
 #include "PlayerDash.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
 #include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
-#include <iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -60,7 +55,7 @@ void PlayerDash::Update(const float& elapsedTime)
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
 
     // 真っ直ぐ進む
-    m_player->SetVelocity(Vector3::Forward * 5.f);
+    m_player->SetVelocity(Vector3::Forward * 4.f);
     // ダッシュ時間を減少させる
     m_dashTime--;
     // ダッシュ時間が終了した場合

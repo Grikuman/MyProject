@@ -20,7 +20,9 @@ RockBossAttack::RockBossAttack(RockBoss* RockBoss, const std::unique_ptr<DirectX
 	:
     m_rockBoss(RockBoss),
     m_commonResources{},
-	m_model{ model }
+	m_model{ model },
+	m_rotateCnt{},
+	m_atackStartTime{}
 {
 	
 }
@@ -48,6 +50,29 @@ void RockBossAttack::Initialize(CommonResources* resources)
 //---------------------------------------------------------
 void RockBossAttack::Update()
 {
+	// 攻撃までの猶予時間をカウントする
+	m_atackStartTime++;
+
+	// 回転させる
+	if (m_atackStartTime >= ATACKSTART_TIME)
+	{
+		m_rotateCnt += 10.f;
+		m_rockBoss->SetAngle(m_rockBoss->GetAngle() + m_rotateCnt);
+		// プレイヤーが攻撃範囲内にいる　かつ　プレイヤーがダメージを受けない部分にいない
+		if (GetAttackBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()) &&
+			!GetNoDamageBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()))
+		{
+			// プレイヤーが無敵でなければ
+			if (!m_rockBoss->GetPlayer()->GetInvincible())
+			{
+				// プレイヤーへダメージ処理
+				m_rockBoss->GetPlayer()->SetHP(m_rockBoss->GetPlayer()->GetHP() - 1);
+				// プレイヤーを無敵に
+				m_rockBoss->GetPlayer()->SetInvincible(true);
+			}
+		}
+	}
+
 	// 回転行列を作成する
 	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
 
@@ -56,6 +81,14 @@ void RockBossAttack::Update()
 
 	// 回転を加味して実際に移動する
 	m_rockBoss->SetPotision(m_rockBoss->GetPosition() + Vector3::Transform(m_rockBoss->GetVelocity(), matrix));
+
+	// 2回転した場合
+	if (m_rotateCnt >= 720.f)
+	{
+		m_rotateCnt = 0.f;
+		m_atackStartTime = 0.f;
+		m_rockBoss->ChangeState(m_rockBoss->GetRockBossDown());
+	}
 }
 
 //---------------------------------------------------------
@@ -86,4 +119,18 @@ void RockBossAttack::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMat
 void RockBossAttack::Finalize()
 {
     
+}
+
+DirectX::BoundingSphere RockBossAttack::GetAttackBoundingSphere() const
+{
+	Vector3 center = m_rockBoss->GetPosition();
+	float radius = 3.f;
+	return DirectX::BoundingSphere(center,radius);
+}
+
+DirectX::BoundingSphere RockBossAttack::GetNoDamageBoundingSphere() const
+{
+	Vector3 center = m_rockBoss->GetPosition();
+	float radius = 1.f;
+	return DirectX::BoundingSphere(center,radius);
 }

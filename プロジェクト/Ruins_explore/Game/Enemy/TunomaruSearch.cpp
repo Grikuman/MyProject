@@ -1,21 +1,14 @@
 /*
-	@file	TunomaruSearch.cpp
-	@brief	プレイヤーシーンクラス
+    ファイル: TunomaruSearch.cpp
+    クラス  : つのまるサーチクラス
 */
+#pragma once
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
 #include "TunomaruSearch.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include "Libraries/NRLib/TPS_Camera.h"
-#include <iostream>
-#include<iostream>
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

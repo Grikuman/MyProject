@@ -1,6 +1,6 @@
 /*
-	@file	EnemySpawner.cpp
-	@brief	一般的なシーンクラス
+	ファイル: EnemySpawner.cpp
+	クラス  : 敵生成クラス
 
 	//敵の構想案
 
@@ -58,7 +58,7 @@ void EnemySpawner::Initialize(CommonResources* resources)
 	assert(resources);
 	m_commonResources = resources;
 	// 生成するエネミー数を生存確認用変数に設定する
-	m_aliveEnemy = MAX_TUNOMARU;
+	m_aliveEnemy = MAX_TUNOMARU + 1;
 	//------------------------------------------------------------------
 	// * 各エネミーを生成する *
 	for (int i = 0; i < MAX_TUNOMARU; i++)
@@ -75,7 +75,7 @@ void EnemySpawner::Initialize(CommonResources* resources)
 	m_tunomaru[0]->Initialize(resources,Vector3(2.f, 1.f, -8.f));
 	m_tunomaru[1]->Initialize(resources,Vector3(-2.f, 1.f, -8.f));
 	// 岩ボス
-	m_rockBoss->Initialize(resources, Vector3(0.f, 0.f, 0.f));
+	m_rockBoss->Initialize(resources, Vector3(0.f, 0.f, -10.f));
 
 	// シーン遷移フラグを初期化
 	m_isChangeScene = false;
