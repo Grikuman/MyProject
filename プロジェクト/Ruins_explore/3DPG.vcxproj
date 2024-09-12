@@ -196,6 +196,7 @@
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
     <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
+    <ClInclude Include="Game\Graphics.h" />
     <ClInclude Include="Game\Player\IState.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\Player\PlayerAttack.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
+    <ClCompile Include="Game\Graphics.cpp" />
     <ClCompile Include="Game\Player\Player.cpp" />
     <ClCompile Include="Game\Player\PlayerAttack.cpp" />
     <ClCompile Include="Game\Player\PlayerDash.cpp" />

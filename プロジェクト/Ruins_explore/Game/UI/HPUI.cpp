@@ -4,6 +4,7 @@
 #include <PrimitiveBatch.h> 
 #include <VertexTypes.h> 
 #include <CommonStates.h>
+#include "Game/Graphics.h"
 //#include <WICTextureLoader.h> 
 
 using namespace DirectX;
@@ -66,6 +67,8 @@ void HPUI::Render(ID3D11DeviceContext1* context, SimpleMath::Matrix view, Simple
 {
     // プリミティブバッチの作成 
     m_Batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(context);
+
+    //m_Batch = Graphics::GetInstance()->GetPrimitiveBatch();
 
     // カメラの位置を取得
     SimpleMath::Matrix invView = view.Invert();

@@ -11,6 +11,8 @@
 #include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
 
+#include "Game/Graphics.h"
+
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
@@ -50,6 +52,8 @@ void PlayerIdling::Update(const float& elapsedTime)
     UNREFERENCED_PARAMETER(elapsedTime);
 
     auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+
+    
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動

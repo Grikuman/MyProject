@@ -29,9 +29,8 @@ private:
     std::unique_ptr<DirectX::BasicEffect> m_BatchEffect;
 
     // プリミティブバッチ 
-    std::unique_ptr<
-        DirectX::PrimitiveBatch<DirectX::VertexPositionColor>
-    > m_Batch;
+    std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>> m_Batch;
+    //DirectX::PrimitiveBatch<DirectX::VertexPositionColor>* m_Batch;
     // 現在のHP
     float m_currentHP;
     // 最大HP

@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "Game/Screen.h"
+#include "Game/Graphics.h"
 
 extern void ExitGame() noexcept;
 
@@ -50,6 +51,8 @@ void Game::Initialize(HWND window, int width, int height)
     auto device  = m_deviceResources->GetD3DDevice();
     auto context = m_deviceResources->GetD3DDeviceContext();
 
+    //Graphics::GetInstance()->SetContext(context);
+
     // 入力マネージャを作成する
     m_inputManager = std::make_unique<mylib::InputManager>(window);
 
@@ -74,6 +77,8 @@ void Game::Initialize(HWND window, int width, int height)
         m_debugString.get(),
         m_inputManager.get()
     );
+
+    //Graphics::GetInstance()->Initialize();
 
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();
