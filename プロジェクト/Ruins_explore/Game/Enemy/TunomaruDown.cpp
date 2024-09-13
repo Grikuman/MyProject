@@ -9,6 +9,7 @@
 #include "TunomaruDown.h"
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -19,7 +20,6 @@ using namespace DirectX::SimpleMath;
 TunomaruDown::TunomaruDown(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model)
 	:
     m_tunomaru(tunomaru),
-    m_commonResources{},
 	m_model{ model }
 {
 	// ダウン時間を設定する
@@ -37,10 +37,8 @@ TunomaruDown::~TunomaruDown()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void TunomaruDown::Initialize(CommonResources* resources)
+void TunomaruDown::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
 
 }
 
@@ -64,11 +62,14 @@ void TunomaruDown::Update()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void TunomaruDown::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
+void TunomaruDown::Render()
 {
+	DirectX::SimpleMath::Matrix view, proj;
 	// リソースを取得する
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = m_commonResources->GetCommonStates();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states = Graphics::GetInstance()->GetCommonStates();
+	view = Graphics::GetInstance()->GetViewMatrix();
+	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// ワールド行列
 	Matrix world = Matrix::CreateScale(0.009f);

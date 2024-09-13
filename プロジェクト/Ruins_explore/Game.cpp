@@ -5,7 +5,8 @@
 #include "pch.h"
 #include "Game.h"
 #include "Game/Screen.h"
-#include "Game/Graphics.h"
+#include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 extern void ExitGame() noexcept;
 
@@ -17,15 +18,9 @@ Game::Game() noexcept(false) : m_fullscreen(false),
     m_deviceResources{},
     m_timer{},
     m_commonStates{},
-    m_commonResources{},
-    m_sceneManager{},
-    m_debugString{},
-    m_inputManager{}
+    m_sceneManager{}
 {
-    m_deviceResources = std::make_unique<DX::DeviceResources>();
-    // TODO: Provide parameters for swapchain format, depth/stencil format, and backbuffer count.
-    //   Add DX::DeviceResources::c_AllowTearing to opt-in to variable rate displays.
-    //   Add DX::DeviceResources::c_EnableHDR for HDR10 display.
+    m_deviceResources = Graphics::GetInstance()->GetDeviceResources();
     m_deviceResources->RegisterDeviceNotify(this);
 }
 
@@ -51,38 +46,15 @@ void Game::Initialize(HWND window, int width, int height)
     auto device  = m_deviceResources->GetD3DDevice();
     auto context = m_deviceResources->GetD3DDeviceContext();
 
-    //Graphics::GetInstance()->SetContext(context);
+    // グラフィックスを初期化
+    Graphics::GetInstance()->Initialize();
 
-    // 入力マネージャを作成する
-    m_inputManager = std::make_unique<mylib::InputManager>(window);
-
-    // コモンステートを作成する
-    m_commonStates = std::make_unique<CommonStates>(device);
-
-    // デバッグ文字列を作成する
-    m_debugString = std::make_unique<mylib::DebugString>(
-        device,
-        context,
-        L"Resources/Fonts/SegoeUI_18.spritefont"
-    );
-
-    // 共通リソースを作成する
-    m_commonResources = std::make_unique<CommonResources>();
-
-    // シーンへ渡す共通リソースを設定する
-    m_commonResources->Initialize(
-        &m_timer,
-        m_deviceResources.get(),
-        m_commonStates.get(),
-        m_debugString.get(),
-        m_inputManager.get()
-    );
-
-    //Graphics::GetInstance()->Initialize();
+    // リソースを読み込む
+    Resources::GetInstance()->LoadResources();
 
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();
-    m_sceneManager->Initialize(m_commonResources.get());
+    m_sceneManager->Initialize();
 
     // ★追記ココまで↑↑↑★
 }
@@ -110,13 +82,13 @@ void Game::Update(DX::StepTimer const& timer)
     // ★追記ココから↓↓↓★
 
     // 入力マネージャを更新する
-    m_inputManager->Update();
+    Graphics::GetInstance()->Update();
 
     // キーボードステートを取得する
-    auto keyboardState = m_inputManager->GetKeyboardState();
+    auto keyboardState = Graphics::GetInstance()->GetKeyboardState();
 
     // 「ECS」キーで終了する
-    if (keyboardState.Escape)
+    if (keyboardState->Escape)
     {
         ExitGame();
     }
@@ -157,7 +129,7 @@ void Game::Render()
     m_sceneManager->Render();
 
     // デバッグ文字列を描画する
-    m_debugString->Render(m_commonStates.get());
+    //m_debugString->Render(m_commonStates.get());
 
     // ★追記ココまで↑↑↑★
 

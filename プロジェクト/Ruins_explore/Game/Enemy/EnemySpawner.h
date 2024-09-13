@@ -22,15 +22,13 @@ public:
 	EnemySpawner(Player* player);
 	~EnemySpawner();
 
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	void Update();
 	void Render();
 	void Finalize();
 
 	bool IsChangeScene();
 private:
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// プレイヤー
 	Player* m_player;
 	// 敵の最大数

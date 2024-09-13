@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "TimeUI.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 
@@ -11,8 +12,8 @@ TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     m_time{}
 {
     // スプライトバッチとスプライトフォントを初期化
-    spriteBatch = std::make_unique<SpriteBatch>(context);
-    spriteFont = std::make_unique<SpriteFont>(device, L"Resources/Fonts/SegoeUI_18.spritefont");
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+    m_spriteFont = Graphics::GetInstance()->GetFont();
 }
 
 /// <summary>
@@ -33,13 +34,13 @@ void TimeUI::Update(float elapedTime)
 /// </summary>
 void TimeUI::Render()
 {
-    spriteBatch->Begin();
+    m_spriteBatch->Begin();
 
     // 数値を文字列に変換
     std::wstring timeString = L"TimeLimit : " + std::to_wstring(m_time);
 
     // 表示するテキスト、位置、色を指定して描画
-    spriteFont->DrawString(spriteBatch.get(), timeString.c_str(), 
+    m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(), 
         SimpleMath::Vector2(width - 400, 20), // position
         Colors::White,                        // color
         0.f,                                  // rotate
@@ -47,7 +48,7 @@ void TimeUI::Render()
         1.4f                                  // scale
     );
 
-    spriteBatch->End();
+    m_spriteBatch->End();
 }
 
 /// <summary>
@@ -55,6 +56,5 @@ void TimeUI::Render()
 /// </summary>
 void TimeUI::Finalize()
 {
-    spriteBatch.reset();
-    spriteFont.reset();
+    
 }

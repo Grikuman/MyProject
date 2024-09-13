@@ -10,7 +10,7 @@ public:
     PlayerEffectManager(Player* player);
     ~PlayerEffectManager();
     // 初期化する
-    void Initialize(CommonResources* resources);
+    void Initialize();
     // 更新する
     void Update();
     // 描画する
@@ -18,8 +18,6 @@ public:
     // 後処理する
     void Finalize();
 private:
-    // 共通のステート
-    CommonResources* m_commonResources;
     // プレイヤー
     Player* m_player;
     // 無敵エフェクトクラス

@@ -12,7 +12,6 @@
 #include "RockBossAttack.h"
 #include "RockBossDown.h"
 
-class CommonResources;
 class Player;
 
 class RockBoss
@@ -23,9 +22,7 @@ public:
     // デストラクタ
     ~RockBoss();
     // 初期化する
-    void Initialize(
-        CommonResources* resources, 
-        DirectX::SimpleMath::Vector3 position);
+    void Initialize(DirectX::SimpleMath::Vector3 position);
     // 更新する
     void Update();
     // 描画する
@@ -80,8 +77,6 @@ private:
     void CheckAlive();
 
 private:
-    // 共有リソース
-    CommonResources* m_commonResources;
     // プレイヤー
     Player* m_player;
     // ステート

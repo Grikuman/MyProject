@@ -36,19 +36,14 @@ ResultScene::~ResultScene()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void ResultScene::Initialize(CommonResources* resources)
+void ResultScene::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
 	// スプライトバッチとスプライトフォントを初期化
-	spriteBatch = std::make_unique<SpriteBatch>(m_commonResources->GetDeviceResources()->GetD3DDeviceContext());
-	spriteFont = std::make_unique<SpriteFont>(
-		m_commonResources->GetDeviceResources()->GetD3DDevice(),
-		L"Resources/Fonts/SegoeUI_18.spritefont");
+	m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+	m_spriteFont = Graphics::GetInstance()->GetFont();
 }
 
 //---------------------------------------------------------
@@ -69,13 +64,13 @@ void ResultScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void ResultScene::Render()
 {
-	spriteBatch->Begin();
+	m_spriteBatch->Begin();
 
 	// 数値を文字列に変換
 	std::wstring timeString = L"Space to Title";
 
 	// 表示するテキスト、位置、色を指定して描画
-	spriteFont->DrawString(spriteBatch.get(), timeString.c_str(),
+	m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(),
 		SimpleMath::Vector2(width / 2, height / 2), // position
 		Colors::White,                        // color
 		0.f,                                  // rotate
@@ -83,7 +78,7 @@ void ResultScene::Render()
 		3.f                                   // scale
 	);
 
-	spriteBatch->End();
+	m_spriteBatch->End();
 }
 
 //---------------------------------------------------------

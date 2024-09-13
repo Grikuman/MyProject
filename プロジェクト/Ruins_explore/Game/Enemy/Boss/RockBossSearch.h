@@ -22,19 +22,17 @@ public:
 	// デストラクタ
 	~RockBossSearch();
 	// 初期化する
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	// 更新する
 	void Update();
 	// 描画する
-	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+	void Render();
 	// 後処理する
 	void Finalize();
 
 private:
 	// 岩ボス
 	RockBoss* m_rockBoss;
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
 };

@@ -23,6 +23,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -32,7 +33,6 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 EnemySpawner::EnemySpawner(Player* player)
 	:
-	m_commonResources{},
 	m_player{player},
 	m_aliveEnemy{},
 	m_tunomaru{},
@@ -53,10 +53,8 @@ EnemySpawner::~EnemySpawner()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void EnemySpawner::Initialize(CommonResources* resources)
+void EnemySpawner::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
 	// 生成するエネミー数を生存確認用変数に設定する
 	m_aliveEnemy = MAX_TUNOMARU + 1;
 	//------------------------------------------------------------------
@@ -72,10 +70,10 @@ void EnemySpawner::Initialize(CommonResources* resources)
 	//------------------------------------------------------------------
 	// * 敵の初期位置を設定する *
 	// つのまる
-	m_tunomaru[0]->Initialize(resources,Vector3(2.f, 1.f, -8.f));
-	m_tunomaru[1]->Initialize(resources,Vector3(-2.f, 1.f, -8.f));
+	m_tunomaru[0]->Initialize(Vector3(2.f, 1.f, -8.f));
+	m_tunomaru[1]->Initialize(Vector3(-2.f, 1.f, -8.f));
 	// 岩ボス
-	m_rockBoss->Initialize(resources, Vector3(0.f, 0.f, -10.f));
+	m_rockBoss->Initialize(Vector3(0.f, 0.f, -10.f));
 
 	// シーン遷移フラグを初期化
 	m_isChangeScene = false;

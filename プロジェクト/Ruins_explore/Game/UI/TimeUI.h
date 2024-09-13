@@ -19,8 +19,8 @@ private:
     const float width = 1280;
     const float height = 720;
 
-    std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
-    std::unique_ptr<DirectX::SpriteFont> spriteFont;
+    DirectX::SpriteBatch* m_spriteBatch;
+    DirectX::SpriteFont* m_spriteFont;
 
     //Œo‰ßŽžŠÔ
     float m_time;

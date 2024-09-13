@@ -6,16 +6,15 @@
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 Tunomaru::Tunomaru(Player* player)
     : 
-    m_commonResources{},
     m_player{player},
     m_model{},
     m_ball{},
@@ -32,14 +31,12 @@ Tunomaru::Tunomaru(Player* player)
 
 Tunomaru::~Tunomaru() {}
 
-void Tunomaru::Initialize(CommonResources* resources,Vector3 position)
+void Tunomaru::Initialize(Vector3 position)
 {
-    assert(resources);
-    m_commonResources = resources;
     // コンテキストを取得する
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
     // D3Dデバイスを取得する
-    auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
     // ボールを読み込む
     m_ball = DirectX::GeometricPrimitive::CreateSphere(context, 2.f);
     // 位置を設定する
@@ -52,20 +49,20 @@ void Tunomaru::Initialize(CommonResources* resources,Vector3 position)
     m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 
     //HPUIを作成する
-    m_hpUI = std::make_unique<HPUI>(m_commonResources->GetDeviceResources()->GetD3DDevice());
+    m_hpUI = std::make_unique<HPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
     m_hpUI->SetScale(1.f);
     m_hpUI->SetPosition(m_position);
 
     //* ステートを作成する *
     // サーチ状態
     m_tunomaruSearch = std::make_unique<TunomaruSearch>(this, m_model);
-    m_tunomaruSearch->Initialize(resources);
+    m_tunomaruSearch->Initialize();
     // アタック状態
     m_tunomaruAttack = std::make_unique<TunomaruAttack>(this,m_model);
-    m_tunomaruAttack->Initialize(resources);
+    m_tunomaruAttack->Initialize();
     // ダウン状態
     m_tunomaruDown = std::make_unique<TunomaruDown>(this, m_model);
-    m_tunomaruDown->Initialize(resources);
+    m_tunomaruDown->Initialize();
 
     // ステートを設定する
     m_currentState = m_tunomaruSearch.get();
@@ -99,11 +96,11 @@ void Tunomaru::Update()
 
 void Tunomaru::Render()
 {
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-    auto view = m_player->GetCamera()->GetViewMatrix();
-    auto proj = m_player->GetCamera()->GetProjectionMatrix();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+    auto view = Graphics::GetInstance()->GetViewMatrix();
+    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
     // 現在のステートを描画する
-    m_currentState->Render(view, proj);
+    m_currentState->Render();
     // 生存していたら
     if (m_isAlive == true)
     {

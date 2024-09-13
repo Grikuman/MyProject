@@ -10,8 +10,7 @@
 #include "Libraries/MyLib/InputManager.h"
 #include <cassert>
 #include "Libraries/NRLib/TPS_Camera.h"
-
-#include "Game/Graphics.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -22,7 +21,6 @@ using namespace DirectX::SimpleMath;
 PlayerIdling::PlayerIdling(Player* player, const std::unique_ptr<DirectX::Model>& model)
 	:
     m_player(player),
-    m_commonResources{},
 	m_model{ model }
 {
 }
@@ -38,10 +36,9 @@ PlayerIdling::~PlayerIdling()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerIdling::Initialize(CommonResources* resources)
+void PlayerIdling::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
+	
 }
 
 //---------------------------------------------------------
@@ -51,26 +48,26 @@ void PlayerIdling::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
 
-    auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+    auto kb = Graphics::GetInstance()->GetKeyboardState();
 
     
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動
     //*======================================================*
-    if (kb.W)
+    if (kb->W)
     {
         m_player->SetVelocity(Vector3::Forward);         // 移動
     }
-    if (kb.A)
+    if (kb->A)
     {
         m_player->SetAngle(m_player->GetAngle() + 2.0f); // 回転
     }
-    if (kb.S)
+    if (kb->S)
     {
         m_player->SetVelocity(Vector3::Backward);        // 移動
     }
-    if (kb.D)
+    if (kb->D)
     {
         m_player->SetAngle(m_player->GetAngle() - 2.0f); // 回転
     }
@@ -78,7 +75,7 @@ void PlayerIdling::Update(const float& elapsedTime)
     // スタミナがある場合
     if (m_player->GetStamina() >= 1)
     {
-        if (kb.Space)
+        if (kb->Space)
         {
             m_player->SetStamina(m_player->GetStamina() - 1); // スタミナを消費
             m_player->ChangeState(m_player->GetPlayerDash()); // ステートをダッシュに変更
@@ -94,10 +91,11 @@ void PlayerIdling::Update(const float& elapsedTime)
 void PlayerIdling::Render()
 {
     DirectX::SimpleMath::Matrix view, proj;
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = m_commonResources->GetCommonStates();
-    view = m_player->GetCamera()->GetViewMatrix();
-    proj = m_player->GetCamera()->GetProjectionMatrix();
+
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+    auto states = Graphics::GetInstance()->GetCommonStates();
+    view = Graphics::GetInstance()->GetViewMatrix();
+    proj = Graphics::GetInstance()->GetProjectionMatrix();
 
     // プレイヤーの描画
     Matrix world = Matrix::CreateScale(0.4f);

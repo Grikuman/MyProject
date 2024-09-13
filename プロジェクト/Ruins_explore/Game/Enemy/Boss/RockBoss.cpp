@@ -11,12 +11,13 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/DebugString.h"
 #include <cassert>
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 RockBoss::RockBoss(Player* player)
-    : m_commonResources{},
+    :
     m_player{player},
     m_model{},
     m_ball{},
@@ -34,14 +35,12 @@ RockBoss::RockBoss(Player* player)
 
 RockBoss::~RockBoss() {}
 
-void RockBoss::Initialize(CommonResources* resources,Vector3 position)
+void RockBoss::Initialize(Vector3 position)
 {
-    assert(resources);
-    m_commonResources = resources;
     // コンテキストを取得する
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
     // D3Dデバイスを取得する
-    auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
     // ボールを読み込む
     m_ball = DirectX::GeometricPrimitive::CreateSphere(context, 2.f);
     // 位置を設定する
@@ -76,13 +75,13 @@ void RockBoss::Initialize(CommonResources* resources,Vector3 position)
     //* ステートを作成する *
     // サーチ状態
     m_RockBossSearch = std::make_unique<RockBossSearch>(this, m_model);
-    m_RockBossSearch->Initialize(resources);
+    m_RockBossSearch->Initialize();
     // アタック状態
     m_RockBossAttack = std::make_unique<RockBossAttack>(this,m_model);
-    m_RockBossAttack->Initialize(resources);
+    m_RockBossAttack->Initialize();
     // ダウン状態
     m_RockBossDown = std::make_unique<RockBossDown>(this, m_model);
-    m_RockBossDown->Initialize(resources);
+    m_RockBossDown->Initialize();
 
     // ステートを設定する
     m_currentState = m_RockBossSearch.get();
@@ -111,11 +110,11 @@ void RockBoss::Update()
 
 void RockBoss::Render()
 {
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-    auto view = m_player->GetCamera()->GetViewMatrix();
-    auto proj = m_player->GetCamera()->GetProjectionMatrix();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+    auto view = Graphics::GetInstance()->GetViewMatrix();
+    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
     // 現在のステートを描画する
-    m_currentState->Render(view, proj);
+    m_currentState->Render();
 }
 
 void RockBoss::Finalize()

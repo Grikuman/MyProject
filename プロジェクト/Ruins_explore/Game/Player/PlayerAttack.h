@@ -6,7 +6,6 @@
 #include "IState.h"
 
 // 前方宣言
-class CommonResources;
 class Player;
 class SwordEffect;
 namespace NRLib
@@ -22,7 +21,7 @@ public:
 	// デストラクタ
 	~PlayerAttack();
 	// 初期化する
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	// 更新する
 	void Update(const float& elapsedTime);
 	// 描画する
@@ -36,8 +35,6 @@ public:
 private:
 	//プレイヤー
 	Player* m_player;
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
 	// 斬撃エフェクト

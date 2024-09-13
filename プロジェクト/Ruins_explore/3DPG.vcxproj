@@ -196,7 +196,6 @@
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
     <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
-    <ClInclude Include="Game\Graphics.h" />
     <ClInclude Include="Game\Player\IState.h" />
     <ClInclude Include="Game\Player\Player.h" />
     <ClInclude Include="Game\Player\PlayerAttack.h" />
@@ -209,7 +208,6 @@
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\Screen.h" />
     <ClInclude Include="Game\Stage\Field.h" />
-    <ClInclude Include="Game\Stage\Sky.h" />
     <ClInclude Include="Game\UI\HPUI.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
@@ -228,6 +226,8 @@
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="WorkTool\Collision.h" />
     <ClInclude Include="WorkTool\DeviceResources.h" />
+    <ClInclude Include="WorkTool\Graphics.h" />
+    <ClInclude Include="WorkTool\Resources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -244,7 +244,6 @@
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
-    <ClCompile Include="Game\Graphics.cpp" />
     <ClCompile Include="Game\Player\Player.cpp" />
     <ClCompile Include="Game\Player\PlayerAttack.cpp" />
     <ClCompile Include="Game\Player\PlayerDash.cpp" />
@@ -254,7 +253,6 @@
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
     <ClCompile Include="Game\Stage\Field.cpp" />
-    <ClCompile Include="Game\Stage\Sky.cpp" />
     <ClCompile Include="Game\UI\HPUI.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
@@ -276,6 +274,8 @@
     </ClCompile>
     <ClCompile Include="WorkTool\Collision.cpp" />
     <ClCompile Include="WorkTool\DeviceResources.cpp" />
+    <ClCompile Include="WorkTool\Graphics.cpp" />
+    <ClCompile Include="WorkTool\Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

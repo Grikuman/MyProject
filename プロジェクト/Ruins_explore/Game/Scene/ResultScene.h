@@ -27,14 +27,14 @@ private:
 	const float width = 1280;
 	const float height = 720;
 
-	std::unique_ptr<DirectX::SpriteBatch> spriteBatch;
-	std::unique_ptr<DirectX::SpriteFont> spriteFont;
+	DirectX::SpriteBatch* m_spriteBatch;
+	DirectX::SpriteFont* m_spriteFont;
 
 public:
 	ResultScene();
 	~ResultScene() override;
 
-	void Initialize(CommonResources* resources) override;
+	void Initialize() override;
 	void Update(float elapsedTime)override;
 	void Render() override;
 	void Finalize() override;

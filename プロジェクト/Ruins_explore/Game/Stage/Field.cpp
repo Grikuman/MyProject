@@ -11,6 +11,7 @@
 #include <cassert>
 #include <GeometricPrimitive.h>
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -20,8 +21,6 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Field::Field()
 	:
-	m_commonResources{},
-	m_camera{},
 	m_pyramid{}
 {
 }
@@ -37,13 +36,10 @@ Field::~Field()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Field::Initialize(CommonResources* resources,NRLib::TPS_Camera* camera)
+void Field::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-	m_camera = camera;
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
 
 	// オブジェクトを作成
 	m_box = DirectX::GeometricPrimitive::CreateBox(context, Vector3(50.f, 2.f, 50.f));
@@ -71,13 +67,13 @@ void Field::Update()
 //---------------------------------------------------------
 void Field::Render()
 {
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = m_commonResources->GetCommonStates();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states = Graphics::GetInstance()->GetCommonStates();
 
 	// world行列は上書きして使い回す
 	DirectX::SimpleMath::Matrix world = Matrix::Identity;
-	DirectX::SimpleMath::Matrix view = m_camera->GetViewMatrix();
-	DirectX::SimpleMath::Matrix proj = m_camera->GetProjectionMatrix();
+	DirectX::SimpleMath::Matrix view = Graphics::GetInstance()->GetViewMatrix();
+	DirectX::SimpleMath::Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// オブジェクトの描画
 	world *= Matrix::CreateTranslation(m_boxPos);

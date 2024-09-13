@@ -9,6 +9,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -19,7 +20,6 @@ using namespace DirectX::SimpleMath;
 RockBossDown::RockBossDown(RockBoss* RockBoss, const std::unique_ptr<DirectX::Model>& model)
 	:
     m_rockBoss(RockBoss),
-    m_commonResources{},
 	m_model{ model }
 {
 	// ダウン時間を設定する
@@ -37,11 +37,9 @@ RockBossDown::~RockBossDown()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void RockBossDown::Initialize(CommonResources* resources)
+void RockBossDown::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-
+	
 }
 
 //---------------------------------------------------------
@@ -64,11 +62,14 @@ void RockBossDown::Update()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void RockBossDown::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
+void RockBossDown::Render()
 {
+	DirectX::SimpleMath::Matrix view, proj;
 	// リソースを取得する
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = m_commonResources->GetCommonStates();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states = Graphics::GetInstance()->GetCommonStates();
+	view = Graphics::GetInstance()->GetViewMatrix();
+	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// ワールド行列
 	Matrix world = Matrix::CreateScale(1.f);

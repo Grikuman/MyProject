@@ -20,12 +20,10 @@ namespace NRLib
 class PlayScene final : public IScene
 {
 private:
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// 天球
-	std::unique_ptr<Sky> m_sky;
+	//std::unique_ptr<Sky> m_sky;
 	// フィールド
 	std::unique_ptr<Field> m_field;
 	// エネミースポナー
@@ -46,7 +44,7 @@ public:
 	PlayScene();
 	~PlayScene() override;
 
-	void Initialize(CommonResources* resources) override;
+	void Initialize() override;
 	void Update(float elapsedTime)override;
 	void Render() override;
 	void Finalize() override;

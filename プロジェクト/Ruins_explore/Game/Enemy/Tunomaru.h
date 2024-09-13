@@ -13,7 +13,6 @@
 #include "TunomaruAttack.h"
 #include "TunomaruDown.h"
 
-class CommonResources;
 class Player;
 
 class Tunomaru
@@ -24,9 +23,7 @@ public:
     // デストラクタ
     ~Tunomaru();
     // 初期化する
-    void Initialize(
-        CommonResources* resources, 
-        DirectX::SimpleMath::Vector3 position);
+    void Initialize(DirectX::SimpleMath::Vector3 position);
     // 更新する
     void Update();
     // 描画する
@@ -84,8 +81,6 @@ public:
 private:
     //HPUI
     std::unique_ptr<HPUI> m_hpUI;
-    // 共有リソース
-    CommonResources* m_commonResources;
     // プレイヤー
     Player* m_player;
     // ステート

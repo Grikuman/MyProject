@@ -1,14 +1,13 @@
 #pragma once
 #include "pch.h"
 #include "Game/Effect/InvincibleEffect.h"
-#include "Game/CommonResources.h"
 #include "Game/Player/Player.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "WorkTool/Graphics.h"
 
 InvincibleEffect::InvincibleEffect(Player* player)
     :
-    m_commonResources{},
     m_player{ player },
     m_sphere{},
     m_blendState{ nullptr },
@@ -23,12 +22,10 @@ InvincibleEffect::~InvincibleEffect()
 }
 
 // 初期化
-void InvincibleEffect::Initialize(CommonResources* resources)
+void InvincibleEffect::Initialize()
 {
-    m_commonResources = resources;
-
-    auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // 球を作成する
     m_sphere = DirectX::GeometricPrimitive::CreateSphere(context, 2.f);
@@ -71,7 +68,7 @@ void InvincibleEffect::Update()
 // 描画する
 void InvincibleEffect::Render()
 {
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // ブレンドステートを有効にする
     float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };

@@ -11,6 +11,7 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
+#include "WorkTool/Graphics.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -20,7 +21,6 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Sky::Sky()
 	:
-	m_commonResources{},
 	m_debugCamera{},
 	m_projection{},
 	m_model{}
@@ -38,17 +38,14 @@ Sky::~Sky()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Sky::Initialize(CommonResources* resources)
+void Sky::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-
-	auto device  = m_commonResources->GetDeviceResources()->GetD3DDevice();
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto states  = m_commonResources->GetCommonStates();
+	auto device  = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states  = Graphics::GetInstance()->GetCommonStates();
 
 	// デバッグカメラを作成する
-	RECT rect = m_commonResources->GetDeviceResources()->GetOutputSize();
+	RECT rect = Graphics::GetInstance()->GetDeviceResources()->GetOutputSize();
 	m_debugCamera = std::make_unique<mylib::DebugCamera>();
 	m_debugCamera->Initialize(rect.right, rect.bottom);
 

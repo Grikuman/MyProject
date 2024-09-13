@@ -8,10 +8,7 @@
 #include "StepTimer.h"
 
 // ★includeの追記★
-#include "Game/CommonResources.h"
 #include "Game/Scene/SceneManager.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
 
 
 // A basic game implementation that creates a D3D11 device and
@@ -71,7 +68,7 @@ private:
     BOOL m_fullscreen;
 
     // Device resources.
-    std::unique_ptr<DX::DeviceResources>    m_deviceResources;
+    DX::DeviceResources*                    m_deviceResources;
 
     // Rendering loop timer.
     DX::StepTimer                           m_timer;
@@ -81,17 +78,8 @@ private:
     // コモンステート
     std::unique_ptr<DirectX::CommonStates>  m_commonStates;
 
-    // コモンリソース
-    std::unique_ptr<CommonResources>        m_commonResources;
-
     // シーンマネージャー
     std::unique_ptr<SceneManager>           m_sceneManager;
-
-    // デバッグストリング
-    std::unique_ptr<mylib::DebugString>     m_debugString;
-
-    // 入力マネージャ
-    std::unique_ptr<mylib::InputManager>    m_inputManager;
 
     // ★追記ココまで↑↑↑★
 };

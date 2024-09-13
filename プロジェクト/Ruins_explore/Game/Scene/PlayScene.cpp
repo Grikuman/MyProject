@@ -23,10 +23,9 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 PlayScene::PlayScene()
 	:
-	m_commonResources{},
 	m_isChangeScene{},
 	m_player{},
-	m_sky{},
+	//m_sky{},
 	m_field{},
 	m_enemySpawner{},
 	m_timeUI{},
@@ -44,30 +43,27 @@ PlayScene::~PlayScene()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayScene::Initialize(CommonResources* resources)
+void PlayScene::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
 	// プレイヤーを作成
 	m_player = std::make_unique<Player>();
-	m_player->Initialize(m_commonResources);
+	m_player->Initialize();
 	// 天球を作成
-	m_sky = std::make_unique <Sky>();
-	m_sky->Initialize(m_commonResources);
+	//m_sky = std::make_unique <Sky>();
+	//m_sky->Initialize();
 	// フィールドを作成
 	m_field = std::make_unique<Field>();
-	m_field->Initialize(m_commonResources, m_player->GetCamera());
+	m_field->Initialize();
 	// エネミースポナーを作成
 	m_enemySpawner = std::make_unique<EnemySpawner>(m_player.get());
-	m_enemySpawner->Initialize(m_commonResources);
+	m_enemySpawner->Initialize();
 	//TextUIを作成
 	m_timeUI = std::make_unique<TimeUI>(
-		m_commonResources->GetDeviceResources()->GetD3DDevice(),
-		m_commonResources->GetDeviceResources()->GetD3DDeviceContext()
+		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
+		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
 		);
 
 	// ゲーム時間を設定
@@ -87,7 +83,7 @@ void PlayScene::Update(float elapsedTime)
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
 	// 天球を更新
-	m_sky->Update();
+	//m_sky->Update();
 	// フィールドを更新
 	m_field->Update();
 	// エネミースポナーを更新
@@ -126,7 +122,7 @@ void PlayScene::Render()
 void PlayScene::Finalize()
 {
 	m_player->Finalize();
-	m_sky->Finalize();
+	//m_sky->Finalize();
 	m_field->Finalize();
 	m_enemySpawner->Finalize();
 	m_timeUI->Finalize();

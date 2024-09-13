@@ -4,7 +4,7 @@
 #include <PrimitiveBatch.h> 
 #include <VertexTypes.h> 
 #include <CommonStates.h>
-#include "Game/Graphics.h"
+#include "WorkTool/Graphics.h"
 //#include <WICTextureLoader.h> 
 
 using namespace DirectX;

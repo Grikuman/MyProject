@@ -123,9 +123,6 @@
     <ClInclude Include="Libraries\MyLib\FollowCamera.h">
       <Filter>Libraries\MyLib</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Stage\Sky.h">
-      <Filter>Game\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Stage\Field.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
@@ -201,6 +198,12 @@
     <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h">
       <Filter>Game\Enemy\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="WorkTool\Graphics.h">
+      <Filter>WorkTool</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkTool\Resources.h">
+      <Filter>WorkTool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -244,9 +247,6 @@
     </ClCompile>
     <ClCompile Include="WorkTool\Collision.cpp">
       <Filter>WorkTool</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Stage\Sky.cpp">
-      <Filter>Game\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\Field.cpp">
       <Filter>Game\Stage</Filter>
@@ -316,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\Boss\RockBossSearch.cpp">
       <Filter>Game\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkTool\Resources.cpp">
+      <Filter>WorkTool</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkTool\Graphics.cpp">
+      <Filter>WorkTool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

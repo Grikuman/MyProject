@@ -5,7 +5,6 @@
 #pragma once
 
 // 前方宣言
-class CommonResources;
 class Player;
 
 class PlayerStatusUI
@@ -16,7 +15,7 @@ public:
     // デストラクタ
     ~PlayerStatusUI();
     // 初期化する
-    void Initialize(CommonResources* resources);
+    void Initialize();
     // 更新する
     void Update();
     // 描画する
@@ -24,13 +23,11 @@ public:
     // 後処理する
     void Finalize();
 private:
-    // 共通リソース
-    CommonResources* m_commonResources;
     // Player
     Player* m_player;
 
     //スプライトバッチ
-    std::unique_ptr<DirectX::DX11::SpriteBatch> m_spriteBatch;
+    DirectX::DX11::SpriteBatch* m_spriteBatch;
     // 体力(赤色)
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_tex_HealthRed[6];
     // 体力(灰色)

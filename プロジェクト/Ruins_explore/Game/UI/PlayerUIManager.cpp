@@ -34,13 +34,11 @@ PlayerUIManager::~PlayerUIManager()
 //---------------------------------------------------------
 // ‰Šú‰»‚·‚é
 //---------------------------------------------------------
-void PlayerUIManager::Initialize(CommonResources* resources)
+void PlayerUIManager::Initialize()
 {
-	assert(resources);
-
 	// ƒvƒŒƒCƒ„[‚ÌHPUI‚ğì¬‚·‚é
 	m_playerStatusUI = std::make_unique<PlayerStatusUI>(m_player);
-	m_playerStatusUI->Initialize(resources);
+	m_playerStatusUI->Initialize();
 }
 
 //---------------------------------------------------------

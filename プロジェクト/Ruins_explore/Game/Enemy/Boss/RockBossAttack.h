@@ -6,7 +6,6 @@
 #include "Game/Enemy/IEnemyState.h"
 
 // 前方宣言
-class CommonResources;
 class RockBoss;
 
 namespace NRLib
@@ -22,11 +21,11 @@ public:
 	// デストラクタ
 	~RockBossAttack();
 	// 初期化する
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	// 更新する
 	void Update();
 	// 描画する
-	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+	void Render();
 	// 後処理する
 	void Finalize();
 
@@ -38,8 +37,6 @@ public:
 private:
 	// 岩ボス
 	RockBoss* m_rockBoss;
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// モデル
 	const std::unique_ptr<DirectX::Model>& m_model;
 

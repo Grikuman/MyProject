@@ -4,9 +4,8 @@
 */
 #include "pch.h"
 #include "Player.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
+#include "WorkTool/Graphics.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 
 using namespace DirectX;
@@ -18,8 +17,7 @@ using namespace DirectX::SimpleMath;
 Player::Player()
 	:
 	m_playerUIManager{},
-	m_playerEffectMaanager{},
-	m_commonResources{},
+	m_playerEffectManager{},
 	m_playerIdling{},
 	m_playerAttack{},
 	m_currentState{},
@@ -52,21 +50,18 @@ Player::~Player()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Player::Initialize(CommonResources* resources)
+void Player::Initialize()
 {
-	assert(resources);
-	m_commonResources = resources;
-
 	//D3Dデバイスを取得
-	auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
+	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
 
 	// UI管理クラスを作成
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
-	m_playerUIManager->Initialize(resources);
+	m_playerUIManager->Initialize();
 
 	// エフェクト管理クラスを作成する
-	m_playerEffectMaanager = std::make_unique<PlayerEffectManager>(this);
-	m_playerEffectMaanager->Initialize(resources);
+	m_playerEffectManager = std::make_unique<PlayerEffectManager>(this);
+	m_playerEffectManager->Initialize();
 
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
@@ -80,13 +75,13 @@ void Player::Initialize(CommonResources* resources)
 	// ステートを作成
 	// アイドリング状態
 	m_playerIdling = std::make_unique<PlayerIdling>(this,m_model);
-	m_playerIdling->Initialize(resources);
+	m_playerIdling->Initialize();
 	// アタック状態
 	m_playerAttack = std::make_unique<PlayerAttack>(this,m_model);
-	m_playerAttack->Initialize(resources);
+	m_playerAttack->Initialize();
 	// ダッシュ状態
 	m_playerDash = std::make_unique<PlayerDash>(this, m_model);
-	m_playerDash->Initialize(resources);
+	m_playerDash->Initialize();
 
 	// 初期ステートを設定
 	m_currentState = m_playerIdling.get();
@@ -98,7 +93,8 @@ void Player::Initialize(CommonResources* resources)
 void Player::Update(float elapsedTime)
 {	UNREFERENCED_PARAMETER(elapsedTime);
 
-	auto kb = m_commonResources->GetInputManager()->GetKeyboardState(); // キーボード
+    // キーボードを取得する
+	auto kb = Graphics::GetInstance()->GetKeyboardState();
 
 	// 無敵の場合は
 	if (m_invincible)
@@ -151,9 +147,13 @@ void Player::Update(float elapsedTime)
 	m_playerUIManager->Update();
 
 	// エフェクト管理クラスを更新する
-	m_playerEffectMaanager->Update();
+	m_playerEffectManager->Update();
 
-	if (kb.F)
+	// ビューとプロジェクションを設定する
+	Graphics::GetInstance()->SetViewMatrix(m_camera->GetViewMatrix());
+	Graphics::GetInstance()->SetProjectionMatrix(m_camera->GetProjectionMatrix());
+
+	if (kb->F)
 	{
 		ChangeState(m_playerAttack.get());
 	}
@@ -171,7 +171,7 @@ void Player::Render()
 	m_playerUIManager->Render();
 
 	// エフェクト管理クラス描画する
-	m_playerEffectMaanager->Render();
+	m_playerEffectManager->Render();
 }
 
 //---------------------------------------------------------
@@ -180,7 +180,7 @@ void Player::Render()
 void Player::Finalize()
 {
 	m_playerUIManager->Finalize();
-	m_playerEffectMaanager->Finalize();
+	m_playerEffectManager->Finalize();
 	m_playerIdling.reset();
 	m_playerAttack.reset();
 	m_playerDash.reset();

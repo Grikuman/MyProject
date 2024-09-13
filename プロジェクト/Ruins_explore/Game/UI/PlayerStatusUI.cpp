@@ -9,6 +9,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "PlayerUIManager.h"
+#include "WorkTool/Graphics.h"
 
 
 using namespace DirectX;
@@ -21,7 +22,6 @@ using namespace Microsoft::WRL;
 PlayerStatusUI::PlayerStatusUI(Player* player)
     :
     m_player{player},
-    m_commonResources{},
     m_healthPosition{},
     m_backPosition{},
     m_framePosition{},
@@ -49,11 +49,8 @@ PlayerStatusUI::~PlayerStatusUI()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerStatusUI::Initialize(CommonResources* resources)
+void PlayerStatusUI::Initialize()
 {
-    assert(resources);
-    m_commonResources = resources;
-
     // スタミナの位置を設定する
     for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
@@ -71,8 +68,8 @@ void PlayerStatusUI::Initialize(CommonResources* resources)
 
 
     // Direct3Dリソースの初期化
-    auto device = m_commonResources->GetDeviceResources()->GetD3DDevice();
-    auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // 画像を読み込む
     CreateWICTextureFromFile(device, context, L"Resources/Textures/Status_icon.png", nullptr, m_tex_StatusIcon.GetAddressOf());
@@ -85,7 +82,7 @@ void PlayerStatusUI::Initialize(CommonResources* resources)
     }
 
     // スプライトバッチを設定する
-    m_spriteBatch = std::make_unique<SpriteBatch>(context);
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
 }
 
 //---------------------------------------------------------

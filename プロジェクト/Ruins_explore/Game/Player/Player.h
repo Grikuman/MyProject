@@ -12,8 +12,7 @@
 #include "Game/Effect/PlayerEffectManager.h"
 
 // 前方宣言
-class CommonResources;
-class GeometricPrimitive;
+
 namespace NRLib
 {
 	class TPS_Camera;
@@ -27,7 +26,7 @@ public:
 	// デストラクタ
 	~Player();
 	// 初期化する
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	// 更新する
 	void Update(float elapsedTime);
 	// 描画する
@@ -88,11 +87,9 @@ private:
 	// UI管理クラス
 	std::unique_ptr<PlayerUIManager> m_playerUIManager;
 	// エフェクト管理クラス
-	std::unique_ptr<PlayerEffectManager> m_playerEffectMaanager;
+	std::unique_ptr<PlayerEffectManager> m_playerEffectManager;
 	// 現在のステート
 	IState* m_currentState;
-	// 共通リソース
-	CommonResources* m_commonResources;
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
 	// モデル

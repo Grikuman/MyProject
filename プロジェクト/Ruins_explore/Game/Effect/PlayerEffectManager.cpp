@@ -1,13 +1,11 @@
 #pragma once
 #include "pch.h"
 #include "Game/Effect/PlayerEffectManager.h"
-#include "Game/CommonResources.h"
 #include "Game/Player/Player.h"
 
 // コンストラクタ
 PlayerEffectManager::PlayerEffectManager(Player* player)
     :
-    m_commonResources{},
     m_player{player},
     m_invincibleEffect{}
 {
@@ -20,14 +18,12 @@ PlayerEffectManager::~PlayerEffectManager()
 }
 
 // 初期化
-void PlayerEffectManager::Initialize(CommonResources* resources)
+void PlayerEffectManager::Initialize()
 {
-    m_commonResources = resources;
-
     // 無敵エフェクトを作成する
     m_invincibleEffect = std::make_unique<InvincibleEffect>(m_player);
     // 無敵エフェクトを初期化する
-    m_invincibleEffect->Initialize(resources);
+    m_invincibleEffect->Initialize();
 }
 
 // 更新する

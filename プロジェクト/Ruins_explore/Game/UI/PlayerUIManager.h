@@ -6,7 +6,6 @@
 #include "PlayerStatusUI.h"
 
 // 前方宣言
-class CommonResources;
 class Player;
 
 class PlayerUIManager
@@ -17,7 +16,7 @@ public:
 	// デストラクタ
 	~PlayerUIManager();
 	// 初期化する
-	void Initialize(CommonResources* resources);
+	void Initialize();
 	// 更新する
 	void Update();
 	// 描画する
