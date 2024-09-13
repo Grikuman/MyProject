@@ -17,7 +17,7 @@ class PlayerAttack : public IState
 {
 public:
 	// コンストラクタ
-	PlayerAttack(Player* player, const std::unique_ptr<DirectX::Model>& model);
+	PlayerAttack(Player* player);
 	// デストラクタ
 	~PlayerAttack();
 	// 初期化する
@@ -36,7 +36,7 @@ private:
 	//プレイヤー
 	Player* m_player;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 	// 斬撃エフェクト
 	std::unique_ptr<SwordEffect> m_swordEffect;
 	

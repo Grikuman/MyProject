@@ -7,6 +7,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "Libraries/NRLib/TPS_Camera.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -70,17 +71,18 @@ void Player::Initialize()
 	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
 	fx->SetDirectory(L"Resources/Models");
 	// モデルを読み込む
-	m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NewPlayer.cmo", *fx);
+	//m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NewPlayer.cmo", *fx);
+	m_model = Resources::GetInstance()->GetModel(L"Player");
 
 	// ステートを作成
 	// アイドリング状態
-	m_playerIdling = std::make_unique<PlayerIdling>(this,m_model);
+	m_playerIdling = std::make_unique<PlayerIdling>(this);
 	m_playerIdling->Initialize();
 	// アタック状態
-	m_playerAttack = std::make_unique<PlayerAttack>(this,m_model);
+	m_playerAttack = std::make_unique<PlayerAttack>(this);
 	m_playerAttack->Initialize();
 	// ダッシュ状態
-	m_playerDash = std::make_unique<PlayerDash>(this, m_model);
+	m_playerDash = std::make_unique<PlayerDash>(this);
 	m_playerDash->Initialize();
 
 	// 初期ステートを設定

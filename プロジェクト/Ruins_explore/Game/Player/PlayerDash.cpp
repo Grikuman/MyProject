@@ -5,11 +5,9 @@
 #include "pch.h"
 #include "Player.h"
 #include "PlayerDash.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,10 +15,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerDash::PlayerDash(Player* player, const std::unique_ptr<DirectX::Model>& model)
+PlayerDash::PlayerDash(Player* player)
 	:
     m_player(player),
-	m_model{ model },
+	m_model{},
     m_dashTime{}
 {
 }
@@ -38,6 +36,8 @@ PlayerDash::~PlayerDash()
 //---------------------------------------------------------
 void PlayerDash::Initialize()
 {
+    // モデルを取得する
+    m_model = Resources::GetInstance()->GetModel(L"Player");
     // ダッシュ時間を設定
     m_dashTime = DASHTIME;
 }

@@ -93,7 +93,7 @@ private:
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
 	// モデル
-	std::unique_ptr<DirectX::Model> m_model;
+	DirectX::Model* m_model;
 
 	// アイドリング状態
 	std::unique_ptr<PlayerIdling> m_playerIdling;

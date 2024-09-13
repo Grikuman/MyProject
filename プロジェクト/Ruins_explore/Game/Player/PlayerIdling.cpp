@@ -5,12 +5,9 @@
 #include "pch.h"
 #include "Player.h"
 #include "PlayerIdling.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
-#include <cassert>
-#include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -18,10 +15,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerIdling::PlayerIdling(Player* player, const std::unique_ptr<DirectX::Model>& model)
+PlayerIdling::PlayerIdling(Player* player)
 	:
     m_player(player),
-	m_model{ model }
+	m_model{}
 {
 }
 
@@ -38,7 +35,8 @@ PlayerIdling::~PlayerIdling()
 //---------------------------------------------------------
 void PlayerIdling::Initialize()
 {
-	
+    // モデルを取得する
+    m_model = Resources::GetInstance()->GetModel(L"Player");
 }
 
 //---------------------------------------------------------
@@ -48,9 +46,8 @@ void PlayerIdling::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
 
+    // キーボードを取得する
     auto kb = Graphics::GetInstance()->GetKeyboardState();
-
-    
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動
@@ -90,10 +87,11 @@ void PlayerIdling::Update(const float& elapsedTime)
 //---------------------------------------------------------
 void PlayerIdling::Render()
 {
-    DirectX::SimpleMath::Matrix view, proj;
-
+    // コンテキスト・ステートを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
     auto states = Graphics::GetInstance()->GetCommonStates();
+    // ビュー・プロジェクションを取得する
+    DirectX::SimpleMath::Matrix view, proj;
     view = Graphics::GetInstance()->GetViewMatrix();
     proj = Graphics::GetInstance()->GetProjectionMatrix();
 

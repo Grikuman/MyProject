@@ -6,10 +6,9 @@
 #include "Player.h"
 #include "PlayerAttack.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
 #include "Game/Effect/SwordEffect.h"
-#include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,10 +16,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerAttack::PlayerAttack(Player* player, const std::unique_ptr<DirectX::Model>& model)
+PlayerAttack::PlayerAttack(Player* player)
 	:
     m_player(player),
-	m_model{ model },
+	m_model{},
     m_swordEffect{},
     m_cnt{}
 {
@@ -42,6 +41,9 @@ void PlayerAttack::Initialize()
 {
     // デバイスを取得する
     auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+
+    // モデルを取得する
+    m_model = Resources::GetInstance()->GetModel(L"Player");
 
     // 斬撃エフェクトを作成
     m_swordEffect = std::make_unique<SwordEffect>(device);

@@ -32,11 +32,15 @@ public:
 	// リソースを読み込む
 	void LoadResources();
 
+	// モデルを取得する
+	DirectX::Model* GetModel(const wchar_t* name);
+	// テクスチャを格納する
+
 private:
 	static std::unique_ptr<Resources> m_resources;
 	// モデル格納
 	std::unordered_map<const wchar_t*, std::unique_ptr<DirectX::Model>> m_models;
-	// 画像格納
+	// テクスチャ格納
 	std::unordered_map<const wchar_t*, std::unique_ptr<DirectX::SpriteBatch>> m_textures;
 };
 

@@ -17,7 +17,7 @@ class PlayerDash : public IState
 {
 public:
 	// コンストラクタ
-	PlayerDash(Player* player, const std::unique_ptr<DirectX::Model>& model);
+	PlayerDash(Player* player);
 	// デストラクタ
 	~PlayerDash();
 	// 初期化する
@@ -33,7 +33,7 @@ private:
 	//プレイヤー
 	Player* m_player;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 	
 	// ダッシュを行う時間
 	const float DASHTIME = 15;
