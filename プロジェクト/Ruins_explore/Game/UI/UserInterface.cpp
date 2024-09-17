@@ -246,7 +246,6 @@ void tito::UserInterface::Render()
 	context->VSSetShader(nullptr, nullptr, 0);
 	context->GSSetShader(nullptr, nullptr, 0);
 	context->PSSetShader(nullptr, nullptr, 0);
-
 }
 
 void tito::UserInterface::SetWindowSize(const int& width, const int& height)

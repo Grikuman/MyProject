@@ -108,6 +108,8 @@ void PlayScene::Render()
 	//m_sky->Render();
 	// フィールドを描画
 	m_field->Render();
+	// プレイヤーを描画
+	//m_player->Render();
 	// エネミースポナーを描画
 	m_enemySpawner->Render();
 	// プレイヤーを描画

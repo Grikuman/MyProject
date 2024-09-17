@@ -18,5 +18,6 @@ float4 main(PS_INPUT input) : SV_TARGET
     float smoothValue = input.color.x;
     output.a *= lerp(1.0f, 0.0f, smoothstep(smoothValue, smoothValue + 0.5f, input.tex.x));
 	
+	
 	return output;
 }

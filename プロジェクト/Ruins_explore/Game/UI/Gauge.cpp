@@ -19,6 +19,8 @@
 #include <CommonStates.h>
 #include <vector>
 
+#include "WorkTool/Graphics.h"
+
 using namespace DirectX;
 
 tito::Gauge::Gauge()
@@ -30,6 +32,7 @@ tito::Gauge::Gauge()
     ,m_gauge(nullptr)
     ,m_frame(nullptr)
 {
+    
 }
 
 tito::Gauge::~Gauge()
@@ -42,29 +45,31 @@ void tito::Gauge::Initialize(DX::DeviceResources* pDR,int width,int height)
     m_windowWidth = width;
     m_windowHeight = height;
 
-    m_baseTexturePath = L"Resources/Textures/frame_back.png";
+    m_baseTexturePath = L"Resources/Textures/HP.jpg";
 
-    Add(L"Resources/Textures/frame.png"
+    Add(L"Resources/Textures/HelthGaugeFrame.png"
         , SimpleMath::Vector2(0, 500)
         , SimpleMath::Vector2(1.0f,1.0f)
         , tito::ANCHOR::MIDDLE_LEFT);
-
 }
 
 void tito::Gauge::Update()
 {
-
-    auto keystate = Keyboard::Get().GetState();
-    m_tracker.Update(keystate);
+    // キーボードを取得する
+    auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
+    
+    
+    //auto keystate = Keyboard::Get().GetState();
+    //m_tracker.Update(keystate);
 
     float ratio = m_gauge->GetRenderRatio();
 
-    if (m_tracker.pressed.Right)
+    if (kb->IsKeyPressed(Keyboard::D))
     {
         ratio += 0.1f;
         ratio = std::min(1.0f, ratio);
     }
-    if (m_tracker.pressed.Left)
+    if (kb->IsKeyPressed(Keyboard::A))
     {
         ratio -= 0.1f;
         ratio = std::max(0.0f, ratio);
@@ -85,7 +90,7 @@ void tito::Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position
 {
     m_base = std::make_unique<tito::UserInterface>();
     m_base->Create(m_pDR
-        , L"Resources/Textures/frame_base.png"
+        , L"Resources/Textures/HP_red.jpg"
         , position
         , scale
         , anchor);
@@ -108,8 +113,6 @@ void tito::Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position
         , scale
         , anchor);
     m_frame->SetWindowSize(m_windowWidth, m_windowHeight);
-
-
 }
 
 

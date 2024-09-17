@@ -111,7 +111,8 @@ void EnemySpawner::Update()
 		m_isChangeScene = true;
 	}
 
-	// 敵のUI管理クラスを初期化する
+	// 敵のUI管理クラスを更新する
+	m_enemyUIManager->Update();
 }
 
 //---------------------------------------------------------
