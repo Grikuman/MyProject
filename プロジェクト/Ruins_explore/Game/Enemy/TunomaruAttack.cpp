@@ -9,6 +9,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -16,10 +17,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-TunomaruAttack::TunomaruAttack(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model)
+TunomaruAttack::TunomaruAttack(Tunomaru* tunomaru)
 	:
     m_tunomaru(tunomaru),
-	m_model{ model }
+	m_model{}
 {
 	// 突進時間を設定する
 	m_rushTime = MAX_RUSHTIME;
@@ -39,7 +40,7 @@ TunomaruAttack::~TunomaruAttack()
 //---------------------------------------------------------
 void TunomaruAttack::Initialize()
 {
-	
+	m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 }
 
 //---------------------------------------------------------

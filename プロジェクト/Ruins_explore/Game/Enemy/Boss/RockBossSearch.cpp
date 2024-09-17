@@ -10,6 +10,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,10 +18,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-RockBossSearch::RockBossSearch(RockBoss* RockBoss, const std::unique_ptr<DirectX::Model>& model)
+RockBossSearch::RockBossSearch(RockBoss* RockBoss)
 	:
     m_rockBoss(RockBoss),
-	m_model{ model }
+	m_model{}
 {
 
 }
@@ -38,7 +39,7 @@ RockBossSearch::~RockBossSearch()
 //---------------------------------------------------------
 void RockBossSearch::Initialize()
 {
-	
+    m_model = Resources::GetInstance()->GetModel(L"RockBoss");
 }
 
 //---------------------------------------------------------

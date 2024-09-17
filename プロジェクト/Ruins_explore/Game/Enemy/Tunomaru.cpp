@@ -55,13 +55,13 @@ void Tunomaru::Initialize(Vector3 position)
 
     //* ステートを作成する *
     // サーチ状態
-    m_tunomaruSearch = std::make_unique<TunomaruSearch>(this, m_model);
+    m_tunomaruSearch = std::make_unique<TunomaruSearch>(this);
     m_tunomaruSearch->Initialize();
     // アタック状態
-    m_tunomaruAttack = std::make_unique<TunomaruAttack>(this,m_model);
+    m_tunomaruAttack = std::make_unique<TunomaruAttack>(this);
     m_tunomaruAttack->Initialize();
     // ダウン状態
-    m_tunomaruDown = std::make_unique<TunomaruDown>(this, m_model);
+    m_tunomaruDown = std::make_unique<TunomaruDown>(this);
     m_tunomaruDown->Initialize();
 
     // ステートを設定する

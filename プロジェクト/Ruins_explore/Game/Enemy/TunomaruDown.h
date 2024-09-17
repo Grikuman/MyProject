@@ -17,7 +17,7 @@ class TunomaruDown : public IEnemyState
 {
 public:
 	// コンストラクタ
-	TunomaruDown(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
+	TunomaruDown(Tunomaru* tunomaru);
 	// デストラクタ
 	~TunomaruDown();
 	// 初期化する
@@ -33,7 +33,7 @@ private:
 	// つのまる
 	Tunomaru* m_tunomaru;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 
 	// ダウン時間
 	float m_downTime;

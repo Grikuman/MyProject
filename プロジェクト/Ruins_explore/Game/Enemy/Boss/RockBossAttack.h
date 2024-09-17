@@ -17,7 +17,7 @@ class RockBossAttack : public IEnemyState
 {
 public:
 	// コンストラクタ
-	RockBossAttack(RockBoss* RockBoss, const std::unique_ptr<DirectX::Model>& model);
+	RockBossAttack(RockBoss* RockBoss);
 	// デストラクタ
 	~RockBossAttack();
 	// 初期化する
@@ -38,7 +38,7 @@ private:
 	// 岩ボス
 	RockBoss* m_rockBoss;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 
 	// 攻撃までの猶予時間
 	float m_atackStartTime;

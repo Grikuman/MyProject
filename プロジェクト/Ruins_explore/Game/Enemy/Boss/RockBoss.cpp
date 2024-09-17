@@ -46,11 +46,6 @@ void RockBoss::Initialize(Vector3 position)
     // 位置を設定する
     m_position = position;
 
-    // モデルを読み込む準備
-    std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
-    fx->SetDirectory(L"Resources/Models");
-    // モデルを読み込む
-    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss_brick.cmo", *fx);
     // ライトを切る設定
     //m_model->UpdateEffects([](DirectX::IEffect* effect)
     //{
@@ -74,13 +69,13 @@ void RockBoss::Initialize(Vector3 position)
 
     //* ステートを作成する *
     // サーチ状態
-    m_RockBossSearch = std::make_unique<RockBossSearch>(this, m_model);
+    m_RockBossSearch = std::make_unique<RockBossSearch>(this);
     m_RockBossSearch->Initialize();
     // アタック状態
-    m_RockBossAttack = std::make_unique<RockBossAttack>(this,m_model);
+    m_RockBossAttack = std::make_unique<RockBossAttack>(this);
     m_RockBossAttack->Initialize();
     // ダウン状態
-    m_RockBossDown = std::make_unique<RockBossDown>(this, m_model);
+    m_RockBossDown = std::make_unique<RockBossDown>(this);
     m_RockBossDown->Initialize();
 
     // ステートを設定する

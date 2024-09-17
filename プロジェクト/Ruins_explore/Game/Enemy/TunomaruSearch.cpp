@@ -10,6 +10,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,10 +18,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-TunomaruSearch::TunomaruSearch(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model)
+TunomaruSearch::TunomaruSearch(Tunomaru* tunomaru)
 	:
     m_tunomaru(tunomaru),
-	m_model{ model }
+	m_model{}
 {
 }
 
@@ -37,7 +38,8 @@ TunomaruSearch::~TunomaruSearch()
 //---------------------------------------------------------
 void TunomaruSearch::Initialize()
 {
-
+    // モデルを取得する
+    m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 }
 
 //---------------------------------------------------------

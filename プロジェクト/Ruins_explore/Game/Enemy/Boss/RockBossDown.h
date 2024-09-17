@@ -12,7 +12,7 @@ class RockBossDown : public IEnemyState
 {
 public:
 	// コンストラクタ
-	RockBossDown(RockBoss* RockBoss, const std::unique_ptr<DirectX::Model>& model);
+	RockBossDown(RockBoss* RockBoss);
 	// デストラクタ
 	~RockBossDown();
 	// 初期化する
@@ -25,10 +25,10 @@ public:
 	void Finalize();
 
 private:
-	// つのまる
+	// 岩ボス
 	RockBoss* m_rockBoss;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 
 	// ダウン時間
 	float m_downTime;

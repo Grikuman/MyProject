@@ -10,6 +10,7 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "PlayerUIManager.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 
 using namespace DirectX;
@@ -66,19 +67,15 @@ void PlayerStatusUI::Initialize()
     // ゲージの枠の位置を設定する
     m_framePosition = Vector2(120.f, 610.f);
 
-
-    // Direct3Dリソースの初期化
-    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-
     // 画像を読み込む
-    CreateWICTextureFromFile(device, context, L"Resources/Textures/Status_icon.png", nullptr, m_tex_StatusIcon.GetAddressOf());
+    m_tex_StatusIcon            = Resources::GetInstance()->GetTexture(L"Status_Icon");
+
     for (int i = 0; i < 6; i++)
     {
-        CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Red.png", nullptr, m_tex_HealthRed[i].GetAddressOf());
-        CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Gray.png", nullptr, m_tex_HealthGray[i].GetAddressOf());
-        CreateWICTextureFromFile(device, context, L"Resources/Textures/Stamina_Yellow.png", nullptr, m_tex_StaminaYellow[i].GetAddressOf());
-        CreateWICTextureFromFile(device, context, L"Resources/Textures/Stamina_Gray.png", nullptr, m_tex_StaminaGray[i].GetAddressOf());
+        m_tex_HealthRed[i]      = Resources::GetInstance()->GetTexture(L"Health_Red");
+        m_tex_HealthGray[i]     = Resources::GetInstance()->GetTexture(L"Health_Gray");
+        m_tex_StaminaYellow[i]  = Resources::GetInstance()->GetTexture(L"Stamina_Yellow");
+        m_tex_StaminaGray[i]    = Resources::GetInstance()->GetTexture(L"Stamina_Gray");
     }
 
     // スプライトバッチを設定する

@@ -10,6 +10,7 @@
 #include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -17,10 +18,10 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-TunomaruDown::TunomaruDown(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model)
+TunomaruDown::TunomaruDown(Tunomaru* tunomaru)
 	:
     m_tunomaru(tunomaru),
-	m_model{ model }
+	m_model{}
 {
 	// ダウン時間を設定する
 	m_downTime = MAX_DOWNTIME;
@@ -39,7 +40,7 @@ TunomaruDown::~TunomaruDown()
 //---------------------------------------------------------
 void TunomaruDown::Initialize()
 {
-
+	m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 }
 
 //---------------------------------------------------------

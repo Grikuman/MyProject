@@ -12,7 +12,7 @@ class TunomaruSearch : public IEnemyState
 {
 public:
 	// コンストラクタ
-	TunomaruSearch(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
+	TunomaruSearch(Tunomaru* tunomaru);
 	// デストラクタ
 	~TunomaruSearch();
 	// 初期化する
@@ -28,5 +28,5 @@ private:
 	// つのまる
 	Tunomaru* m_tunomaru;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 };

@@ -17,7 +17,7 @@ class TunomaruAttack : public IEnemyState
 {
 public:
 	// コンストラクタ
-	TunomaruAttack(Tunomaru* tunomaru, const std::unique_ptr<DirectX::Model>& model);
+	TunomaruAttack(Tunomaru* tunomaru);
 	// デストラクタ
 	~TunomaruAttack();
 	// 初期化する
@@ -33,7 +33,7 @@ private:
 	// つのまる
 	Tunomaru* m_tunomaru;
 	// モデル
-	const std::unique_ptr<DirectX::Model>& m_model;
+	DirectX::Model* m_model;
 
 	// 突進時間
 	float m_rushTime;

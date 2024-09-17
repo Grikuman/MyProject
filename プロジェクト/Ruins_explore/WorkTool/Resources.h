@@ -34,14 +34,15 @@ public:
 
 	// モデルを取得する
 	DirectX::Model* GetModel(const wchar_t* name);
-	// テクスチャを格納する
+	// テクスチャを取得する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetTexture(const wchar_t* name);
 
 private:
 	static std::unique_ptr<Resources> m_resources;
 	// モデル格納
 	std::unordered_map<const wchar_t*, std::unique_ptr<DirectX::Model>> m_models;
 	// テクスチャ格納
-	std::unordered_map<const wchar_t*, std::unique_ptr<DirectX::SpriteBatch>> m_textures;
+	std::unordered_map<const wchar_t*, Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>> m_textures;
 };
 
 #endif		// Resources_DEFINED
