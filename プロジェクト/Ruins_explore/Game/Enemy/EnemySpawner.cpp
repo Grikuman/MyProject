@@ -20,10 +20,9 @@
 #include "pch.h"
 #include "Game/Enemy/EnemySpawner.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
-#include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
+#include "Game/UI/EnemyUIManager.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -37,9 +36,11 @@ EnemySpawner::EnemySpawner(Player* player)
 	m_aliveEnemy{},
 	m_tunomaru{},
 	m_rockBoss{},
-	m_isChangeScene{}
+	m_isChangeScene{},
+	m_enemyUIManager{}
 {
-
+	// シーン遷移フラグを初期化
+	m_isChangeScene = false;
 }
 
 //---------------------------------------------------------
@@ -57,7 +58,7 @@ void EnemySpawner::Initialize()
 {
 	// 生成するエネミー数を生存確認用変数に設定する
 	m_aliveEnemy = MAX_TUNOMARU + 1;
-	//------------------------------------------------------------------
+	
 	// * 各エネミーを生成する *
 	for (int i = 0; i < MAX_TUNOMARU; i++)
 	{
@@ -67,7 +68,6 @@ void EnemySpawner::Initialize()
 	// 岩ボス
 	m_rockBoss = std::make_unique<RockBoss>(m_player);
 
-	//------------------------------------------------------------------
 	// * 敵の初期位置を設定する *
 	// つのまる
 	m_tunomaru[0]->Initialize(Vector3(2.f, 1.f, -8.f));
@@ -75,8 +75,10 @@ void EnemySpawner::Initialize()
 	// 岩ボス
 	m_rockBoss->Initialize(Vector3(0.f, 0.f, -10.f));
 
-	// シーン遷移フラグを初期化
-	m_isChangeScene = false;
+	// 敵のUI管理クラス
+	m_enemyUIManager = std::make_unique<EnemyUIManager>();
+	// 初期化する
+	m_enemyUIManager->Initialize();
 }
 
 //---------------------------------------------------------
@@ -108,6 +110,8 @@ void EnemySpawner::Update()
 	{
 		m_isChangeScene = true;
 	}
+
+	// 敵のUI管理クラスを初期化する
 }
 
 //---------------------------------------------------------
@@ -122,6 +126,9 @@ void EnemySpawner::Render()
 	}
 	// 岩ボスを描画
 	m_rockBoss->Render();
+
+	// 敵のUI管理クラスを描画する
+	m_enemyUIManager->Render();
 }
 
 //---------------------------------------------------------
@@ -134,6 +141,7 @@ void EnemySpawner::Finalize()
 		m_tunomaru[i]->Finalize();
 	}
 	m_rockBoss->Finalize();
+	m_enemyUIManager->Finalize();
 }
 
 // シーン遷移するかどうか取得する

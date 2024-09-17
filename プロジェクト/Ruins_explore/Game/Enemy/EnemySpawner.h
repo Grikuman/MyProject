@@ -7,8 +7,8 @@
 #include "Game/Enemy/Boss/RockBoss.h"
 
 // 前方宣言
-class CommonResources;
 class Player;
+class EnemyUIManager;
 
 namespace NRLib
 {
@@ -39,6 +39,8 @@ private:
 	std::unique_ptr<Tunomaru> m_tunomaru[MAX_TUNOMARU];
 	// 岩ボス
 	std::unique_ptr<RockBoss> m_rockBoss;
+	// 敵のUI管理クラス
+	std::unique_ptr<EnemyUIManager> m_enemyUIManager;
 
 	// 生存している敵の数
 	int m_aliveEnemy;
