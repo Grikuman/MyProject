@@ -4,8 +4,7 @@
 #include <fstream>
 #include <assert.h>
 
-
-tito::BinaryFile tito::BinaryFile::LoadFile(const wchar_t * fileName)
+BinaryFile BinaryFile::LoadFile(const wchar_t* fileName)
 {
 	BinaryFile bin;
 
@@ -37,12 +36,12 @@ tito::BinaryFile tito::BinaryFile::LoadFile(const wchar_t * fileName)
 	return std::move(bin);
 }
 
-tito::BinaryFile::BinaryFile()
+BinaryFile::BinaryFile()
 {
 	m_size = 0;
 }
 
-tito::BinaryFile::BinaryFile(BinaryFile && in)
+BinaryFile::BinaryFile(BinaryFile&& in)
 {
 	m_data = std::move(in.m_data);
 	m_size = in.m_size;

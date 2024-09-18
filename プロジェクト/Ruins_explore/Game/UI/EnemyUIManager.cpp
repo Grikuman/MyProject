@@ -33,7 +33,7 @@ EnemyUIManager::~EnemyUIManager()
 void EnemyUIManager::Initialize()
 {
 
-	m_gauge = std::make_unique<tito::Gauge>();
+	m_gauge = std::make_unique<Gauge>();
 	
 	m_gauge->Initialize(Graphics::GetInstance()->GetDeviceResources(), 1280,720);
 }
@@ -41,9 +41,9 @@ void EnemyUIManager::Initialize()
 //---------------------------------------------------------
 // XV‚·‚é
 //---------------------------------------------------------
-void EnemyUIManager::Update()
+void EnemyUIManager::Update(float bossHP)
 {
-	m_gauge->Update();
+	m_gauge->Update(bossHP);
 }
 
 //---------------------------------------------------------

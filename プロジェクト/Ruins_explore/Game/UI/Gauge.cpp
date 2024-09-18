@@ -23,7 +23,7 @@
 
 using namespace DirectX;
 
-tito::Gauge::Gauge()
+Gauge::Gauge()
     : m_menuIndex(0)
     ,m_windowHeight(0)
     ,m_windowWidth(0)
@@ -35,11 +35,11 @@ tito::Gauge::Gauge()
     
 }
 
-tito::Gauge::~Gauge()
+Gauge::~Gauge()
 {
 }
 
-void tito::Gauge::Initialize(DX::DeviceResources* pDR,int width,int height)
+void Gauge::Initialize(DX::DeviceResources* pDR,int width,int height)
 {
     // デバイス・画面サイズを設定
 	m_pDR = pDR;
@@ -53,10 +53,10 @@ void tito::Gauge::Initialize(DX::DeviceResources* pDR,int width,int height)
     Add(L"Resources/Textures/HealthGaugeFrame.png"
         , SimpleMath::Vector2(width / 2, 50)
         , SimpleMath::Vector2(1.0f,1.0f)
-        , tito::ANCHOR::MIDDLE_CENTER);
+        , UserInterface::MIDDLE_CENTER);
 }
 
-void tito::Gauge::Update()
+void Gauge::Update(float bossHP)
 {
     // キーボードを取得する
     auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
@@ -81,7 +81,7 @@ void tito::Gauge::Update()
 
 }
 
-void tito::Gauge::Render()
+void Gauge::Render()
 {
     // 各テクスチャを描画する
     m_base->Render();
@@ -89,10 +89,10 @@ void tito::Gauge::Render()
     m_frame->Render();
 }
 
-void tito::Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position, DirectX::SimpleMath::Vector2 scale, tito::ANCHOR anchor)
+void Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position, DirectX::SimpleMath::Vector2 scale, UserInterface::ANCHOR anchor)
 {
     // 体力ゲージ(赤色)を作成する
-    m_base = std::make_unique<tito::UserInterface>();
+    m_base = std::make_unique<UserInterface>();
     m_base->Create(m_pDR
         , L"Resources/Textures/HP_red.jpg"
         , position
@@ -101,7 +101,7 @@ void tito::Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position
     m_base->SetWindowSize(m_windowWidth, m_windowHeight);
 
     // 体力ゲージ(緑色)を作成する
-    m_gauge = std::make_unique<tito::UserInterface>();
+    m_gauge = std::make_unique<UserInterface>();
     m_gauge->Create(m_pDR
         , m_baseTexturePath
         , position
@@ -112,7 +112,7 @@ void tito::Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position
     //m_gauge->SetRenderRatioOffset(0.3f);
 
     // 体力ゲージの枠を作成する
-    m_frame = std::make_unique<tito::UserInterface>();
+    m_frame = std::make_unique<UserInterface>();
     m_frame->Create(m_pDR
         , path
         , position + DirectX::SimpleMath::Vector2(0.f, 5.f)

@@ -4,30 +4,28 @@
 #pragma once
 
 #include <memory>
-namespace tito
+
+class BinaryFile
 {
-	class BinaryFile
-	{
-	protected:
+protected:
 
-		// データ
-		std::unique_ptr<char[]> m_data;
+	// データ
+	std::unique_ptr<char[]> m_data;
 
-		// サイズ
-		unsigned int m_size;
+	// サイズ
+	unsigned int m_size;
 
-	public:
+public:
 
-		// ファイル名を指定してロード
-		static tito::BinaryFile LoadFile(const wchar_t* fileName);
+	// ファイル名を指定してロード
+	static BinaryFile LoadFile(const wchar_t* fileName);
 
-		BinaryFile();
+	BinaryFile();
 
-		// ムーブコンストラクタ
-		BinaryFile(BinaryFile&& in);
+	// ムーブコンストラクタ
+	BinaryFile(BinaryFile&& in);
 
-		// アクセサ
-		char* GetData() { return m_data.get(); }
-		unsigned int GetSize() { return m_size; }
-	};
-}
+	// アクセサ
+	char* GetData() { return m_data.get(); }
+	unsigned int GetSize() { return m_size; }
+};

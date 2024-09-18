@@ -16,7 +16,7 @@ public:
 	// 初期化する
 	void Initialize();
 	// 更新する
-	void Update();
+	void Update(float bossHP);
 	// 描画する
 	void Render();
 	// 後処理する
@@ -24,5 +24,5 @@ public:
 
 private:
 	// ボスの体力ゲージ
-	std::unique_ptr<tito::Gauge> m_gauge;
+	std::unique_ptr<Gauge> m_gauge;
 };

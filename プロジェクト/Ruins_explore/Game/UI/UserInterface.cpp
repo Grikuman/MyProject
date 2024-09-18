@@ -23,7 +23,7 @@ using namespace DirectX;
 /// <summary>
 /// インプットレイアウト
 /// </summary>
-const std::vector<D3D11_INPUT_ELEMENT_DESC> tito::UserInterface::INPUT_LAYOUT =
+const std::vector<D3D11_INPUT_ELEMENT_DESC> UserInterface::INPUT_LAYOUT =
 {
 	{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	{ "COLOR",	0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, sizeof(SimpleMath::Vector3), D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -33,7 +33,7 @@ const std::vector<D3D11_INPUT_ELEMENT_DESC> tito::UserInterface::INPUT_LAYOUT =
 /// <summary>
 /// コンストラクタ
 /// </summary>
-tito::UserInterface::UserInterface()
+UserInterface::UserInterface()
 	:m_pDR(nullptr)
 	,m_windowHeight(0)
 	,m_windowWidth(0)
@@ -53,7 +53,7 @@ tito::UserInterface::UserInterface()
 /// <summary>
 /// デストラクタ
 /// </summary>
-tito::UserInterface::~UserInterface()
+UserInterface::~UserInterface()
 {
 }
 
@@ -61,7 +61,7 @@ tito::UserInterface::~UserInterface()
 /// テクスチャリソース読み込み関数
 /// </summary>
 /// <param name="path">相対パス(Resources/Textures/・・・.pngなど）</param>
-void tito::UserInterface::LoadTexture(const wchar_t* path)
+void UserInterface::LoadTexture(const wchar_t* path)
 {
 
 	DirectX::CreateWICTextureFromFile(m_pDR->GetD3DDevice(), path, m_res.ReleaseAndGetAddressOf(), m_texture.ReleaseAndGetAddressOf());
@@ -80,7 +80,7 @@ void tito::UserInterface::LoadTexture(const wchar_t* path)
 /// 生成関数
 /// </summary>
 /// <param name="pDR">ユーザーリソース等から持ってくる</param>
-void tito::UserInterface::Create(DX::DeviceResources* pDR
+void UserInterface::Create(DX::DeviceResources* pDR
 	, const wchar_t* path
 	, DirectX::SimpleMath::Vector2 position
 	, DirectX::SimpleMath::Vector2 scale
@@ -105,37 +105,37 @@ void tito::UserInterface::Create(DX::DeviceResources* pDR
 
 }
 
-void tito::UserInterface::SetScale(DirectX::SimpleMath::Vector2 scale)
+void UserInterface::SetScale(DirectX::SimpleMath::Vector2 scale)
 {
 	m_scale = scale;
 }
-void tito::UserInterface::SetPosition(DirectX::SimpleMath::Vector2 position)
+void UserInterface::SetPosition(DirectX::SimpleMath::Vector2 position)
 {
 	m_position = position;
 }
-void tito::UserInterface::SetAnchor(tito::ANCHOR anchor)
+void UserInterface::SetAnchor(ANCHOR anchor)
 {
 	m_anchor = anchor;
 }
-void tito::UserInterface::SetRenderRatio(float ratio)
+void UserInterface::SetRenderRatio(float ratio)
 {
 	m_renderRatio = ratio;
 }
-void tito::UserInterface::SetRenderRatioOffset(float offset)
+void UserInterface::SetRenderRatioOffset(float offset)
 {
 	m_renderRatioOffset = offset;
 }
 /// <summary>
 /// Shader作成部分だけ分離した関数
 /// </summary>
-void tito::UserInterface::CreateShader()
+void UserInterface::CreateShader()
 {
 	auto device = m_pDR->GetD3DDevice();
 
 	//	コンパイルされたシェーダファイルを読み込み
-	tito::BinaryFile VSData = tito::BinaryFile::LoadFile(L"Resources/Shaders/UIVS.cso");
-	tito::BinaryFile GSData = tito::BinaryFile::LoadFile(L"Resources/Shaders/UIGS.cso");
-	tito::BinaryFile PSData = tito::BinaryFile::LoadFile(L"Resources/Shaders/UIPS.cso");
+	BinaryFile VSData = BinaryFile::LoadFile(L"Resources/Shaders/UIVS.cso");
+	BinaryFile GSData = BinaryFile::LoadFile(L"Resources/Shaders/UIGS.cso");
+	BinaryFile PSData = BinaryFile::LoadFile(L"Resources/Shaders/UIPS.cso");
 
 	//	インプットレイアウトの作成
 	device->CreateInputLayout(&INPUT_LAYOUT[0],
@@ -179,20 +179,21 @@ void tito::UserInterface::CreateShader()
 /// <summary>
 /// 描画関数
 /// </summary>
-void tito::UserInterface::Render()
+void UserInterface::Render()
 {
 	auto context = m_pDR->GetD3DDeviceContext();
-		//	頂点情報
-		//	Position.xy	:拡縮用スケール
-		//	Position.z	:アンカータイプ(0～8)の整数で指定
-		//	Color.xy　	:アンカー座標(ピクセル指定:1280 ×720)
-		//	Color.zw	:画像サイズ
-		//	Tex.xy		:x = ゲージ画像の描画範囲(0～1), y = 0
+
 	VertexPositionColorTexture vertex[1] = {
 		VertexPositionColorTexture(
-			 SimpleMath::Vector3(m_scale.x, m_scale.y, static_cast<float>(m_anchor))
-			,SimpleMath::Vector4(m_position.x, m_position.y, static_cast<float>(m_textureWidth), static_cast<float>(m_textureHeight))
-			,SimpleMath::Vector2(m_renderRatio - m_renderRatioOffset,0))
+			 SimpleMath::Vector3(
+				 m_scale.x, m_scale.y,                 // Position.xy: 拡縮用スケール
+				 static_cast<float>(m_anchor))         // Position.z : アンカータイプ(0～8)の整数で指定
+			,SimpleMath::Vector4(
+				m_position.x, m_position.y,            // Color.xy　 : アンカー座標(ピクセル指定:1280 ×720)
+				static_cast<float>(m_textureWidth),    // Color.zw	 : 画像サイズ
+				static_cast<float>(m_textureHeight))   // Color.zw	 : 画像サイズ
+			,SimpleMath::Vector2(
+				m_renderRatio - m_renderRatioOffset,0))// Tex.xy	 :  x = ゲージ画像の描画範囲(0～1), y = 0
 	};
 
 	//	シェーダーに渡す追加のバッファを作成する。(ConstBuffer）
@@ -248,7 +249,8 @@ void tito::UserInterface::Render()
 	context->PSSetShader(nullptr, nullptr, 0);
 }
 
-void tito::UserInterface::SetWindowSize(const int& width, const int& height)
+// 画面サイズを設定する
+void UserInterface::SetWindowSize(const int& width, const int& height)
 {
 	m_windowWidth = width;
 	m_windowHeight = height;
