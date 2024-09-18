@@ -9,6 +9,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -83,15 +84,8 @@ void Tunomaru::Update()
     // HPUIのHP情報を更新
     m_hpUI->SetHP(m_hp, MAXHP);
 
-    // プレイヤーが攻撃
-    if (m_player->GetIsAttack())
-    {
-        // 攻撃範囲内にいるならダメージを受ける
-        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(GetBoundingSphere()))
-        {
-            m_hp -= 1.f;
-        }
-    }
+    // プレイヤーとの当たり判定
+    Collision::GetInstance()->CheckHitTunomaru(this);
 }
 
 void Tunomaru::Render()

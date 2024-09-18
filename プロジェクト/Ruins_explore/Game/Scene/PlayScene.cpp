@@ -68,6 +68,9 @@ void PlayScene::Initialize()
 
 	// ゲーム時間を設定
 	m_gameTime = MAX_GAMETIME;
+
+	// 当たり判定クラスにプレイヤーを設定する
+	Collision::GetInstance()->SetPlayer(m_player.get());
 }
 
 //---------------------------------------------------------

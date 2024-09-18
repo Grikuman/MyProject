@@ -4,16 +4,47 @@
 //*=======================================================*
 #pragma once
 
+class Player;
+class Tunomaru;
+class RockBoss;
+
 class Collision
 {
 public:
-	// 地面との当たり判定を行い、bool値で結果を返す（プレイヤー座標,地面の設定）
-	bool CheckGround(
-		DirectX::SimpleMath::Vector3 position,
-		DirectX::SimpleMath::Vector3 ground
-	);
+	// コリジョンのインスタンス取得
+	static Collision* const GetInstance();
+private:
+	// コンストラクタ
+	Collision();
+	// インスタンスをコピーすることを禁止する
+	void operator=(const Collision&) = delete;
+	// インスタンスをムーブすることを禁止する
+	Collision& operator= (Collision&&) = delete;
+	// コピーコンストラクタは禁止する
+	Collision(const Collision&) = delete;
+	// ムーブコンストラクタは禁止する
+	Collision(Collision&&) = delete;
 
-	bool SphereIntersects(DirectX::BoundingSphere box1, DirectX::BoundingSphere box2);
+public:
+	//デストラクタ
+	~Collision() = default;
+	// 更新する
+	void Update();
+	// 終了処理
+	void Finalize();
+
+public:
+	// プレイヤーを設定する
+	void SetPlayer(Player* player) { m_player = player; };
+public:
+	// つのまるとの当たり判定
+	void CheckHitTunomaru(Tunomaru* tunomaru);
+	// ボスとの当たり判定
+	void CheckHitRockBoss(RockBoss* rockboss);
 
 private:
+	// コリジョンクラス
+	static std::unique_ptr<Collision> m_collision;
+	// プレイヤー
+	Player* m_player;
 };

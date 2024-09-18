@@ -31,46 +31,46 @@ public:
     void Finalize();
 public:
     // プレイヤーを取得する
-    Player* GetPlayer() { return m_player; }
+    Player* GetPlayer()                  { return m_player; }
 
     // 岩ボスサーチを取得する
-    RockBossSearch* GetRockBossSearch() { return m_RockBossSearch.get(); }
+    RockBossSearch* GetRockBossSearch()  { return m_RockBossSearch.get(); }
     // 岩ボスアタックを取得する
-    RockBossAttack* GetRockBossAttack() { return m_RockBossAttack.get(); }
+    RockBossAttack* GetRockBossAttack()  { return m_RockBossAttack.get(); }
     // 岩ボスダウンを取得する
-    RockBossDown* GetRockBossDown() { return m_RockBossDown.get(); }
+    RockBossDown* GetRockBossDown()      { return m_RockBossDown.get(); }
 
 public:
     // 位置を設定する
-    void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
+    void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
     // 速度を設定する
-    void SetVelocity(const DirectX::SimpleMath::Vector3 velocity) { m_velocity = velocity; }
+    void SetVelocity(const DirectX::SimpleMath::Vector3 velocity)  { m_velocity = velocity; }
     // 角度を設定する
-    void SetAngle(const float angle) { m_angle = angle; }
+    void SetAngle(const float angle)                               { m_angle = angle; }
     // 体力を設定する
-    void SetHP(const float hp) { m_hp = hp; }
+    void SetHP(const float hp)                                     { m_hp = hp; }
     // ダメージを受けているか設定する
-    void SetHit(const bool isHit) { m_isHit = isHit; }
+    void SetHit(const bool isHit)                                  { m_isHit = isHit; }
     // 生存状況を設定する
-    void SetAlive(const bool isAlive) { m_isAlive = isAlive; }
+    void SetAlive(const bool isAlive)                              { m_isAlive = isAlive; }
 
     // ステートを変更する
-    void ChangeState(IEnemyState* newState);
+    void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
 public:
     // 位置を取得する
-    DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
+    DirectX::SimpleMath::Vector3 GetPosition() const  { return m_position; }
     // 速度を取得する
-    DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
+    DirectX::SimpleMath::Vector3 GetVelocity() const  { return m_velocity; }
     // 角度を取得する
-    float GetAngle() const { return m_angle; }
+    float GetAngle() const                            { return m_angle; }
     // 体力を取得する
-    float GetHP() const { return m_hp; }
+    float GetHP() const                               { return m_hp; }
     // 最大体力を取得する
-    float GetMAXHP() const { return MAXHP; }
+    float GetMAXHP() const                            { return MAXHP; }
     // ダメージを受けているか取得する
-    bool GetHit() const { return m_isHit; }
+    bool GetHit() const                               { return m_isHit; }
     // 生存状況を取得する
-    bool GetIsAlive() const { return m_isAlive; }
+    bool GetIsAlive() const                           { return m_isAlive; }
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const;
 

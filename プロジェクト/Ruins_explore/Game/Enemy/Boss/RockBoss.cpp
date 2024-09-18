@@ -12,6 +12,7 @@
 #include "Libraries/MyLib/DebugString.h"
 #include <cassert>
 #include "WorkTool/Graphics.h"
+#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -92,15 +93,8 @@ void RockBoss::Update()
     //現在のステートを更新する
     m_currentState->Update();
 
-    // プレイヤーが攻撃
-    if (m_player->GetIsAttack())
-    {
-        // 攻撃範囲内にいるならダメージを受ける
-        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(GetBoundingSphere()))
-        {
-            m_hp -= 1.f;
-        }
-    }
+    // プレイヤーとの当たり判定
+    Collision::GetInstance()->CheckHitRockBoss(this);
 }
 
 void RockBoss::Render()
@@ -132,9 +126,4 @@ void RockBoss::CheckAlive()
         m_isAlive = false;
         m_hp = 0.0f;
     }
-}
-
-void RockBoss::ChangeState(IEnemyState* newState)
-{
-    m_currentState = newState;
 }

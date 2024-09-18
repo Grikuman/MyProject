@@ -15,7 +15,7 @@
 
 class Player;
 
-class Tunomaru
+class Tunomaru 
 {
 public:
     // コンストラクタ
