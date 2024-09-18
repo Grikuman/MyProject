@@ -19,6 +19,7 @@
 #include <CommonStates.h>
 #include <vector>
 
+#include <string>
 #include "WorkTool/Graphics.h"
 
 using namespace DirectX;
@@ -31,6 +32,10 @@ Gauge::Gauge()
     ,m_baseTexturePath(nullptr)
     ,m_gauge(nullptr)
     ,m_frame(nullptr)
+    ,m_spriteBatch{}
+    ,m_spriteFont{}
+    ,m_currentHP{}
+    ,m_maxHP{}
 {
     
 }
@@ -54,28 +59,21 @@ void Gauge::Initialize(DX::DeviceResources* pDR,int width,int height)
         , SimpleMath::Vector2(width / 2, 50)
         , SimpleMath::Vector2(1.0f,1.0f)
         , UserInterface::MIDDLE_CENTER);
+
+    // スプライトバッチ
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+    // スプライトフォント
+    m_spriteFont = Graphics::GetInstance()->GetFont();
 }
 
-void Gauge::Update(float bossHP)
+void Gauge::Update(float bossHP,float MAX_BossHP)
 {
-    // キーボードを取得する
-    auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
-
-    // 比率を取得する
-    float ratio = m_gauge->GetRenderRatio();
-
-    // * キー入力で比率を変更する *
-    if (kb->IsKeyPressed(Keyboard::D))
-    {
-        ratio += 0.1f;
-        ratio = std::min(1.0f, ratio);
-    }
-    if (kb->IsKeyPressed(Keyboard::A))
-    {
-        ratio -= 0.1f;
-        ratio = std::max(0.0f, ratio);
-    }
-
+    m_currentHP = bossHP;
+    m_maxHP = MAX_BossHP;
+    // 比率
+    float ratio;
+    // 現在の体力割合を計算する
+    ratio = m_currentHP / m_maxHP;
     // 比率を設定する
     m_gauge->SetRenderRatio(ratio);
 
@@ -86,7 +84,23 @@ void Gauge::Render()
     // 各テクスチャを描画する
     m_base->Render();
     m_gauge->Render();
-    m_frame->Render();
+    //m_frame->Render();
+
+    // スプライトバッチを開始
+    m_spriteBatch->Begin();
+
+    // ボス名
+    m_spriteFont->DrawString(m_spriteBatch, L"BOSS", DirectX::SimpleMath::Vector2(610,2));
+   
+    // ボスの体力割合を表示する
+    m_spriteFont->DrawString(
+        m_spriteBatch,
+        (std::to_wstring(static_cast<int>(m_currentHP)) + L"/" + std::to_wstring(static_cast<int>(m_maxHP))).c_str(),
+        DirectX::SimpleMath::Vector2(597, 32)
+    );
+    // スプライトバッチを終了
+    m_spriteBatch->End();
+
 }
 
 void Gauge::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position, DirectX::SimpleMath::Vector2 scale, UserInterface::ANCHOR anchor)

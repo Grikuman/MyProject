@@ -41,9 +41,9 @@ void EnemyUIManager::Initialize()
 //---------------------------------------------------------
 // XV‚·‚é
 //---------------------------------------------------------
-void EnemyUIManager::Update(float bossHP)
+void EnemyUIManager::Update(float bossHP,float MAX_BossHP)
 {
-	m_gauge->Update(bossHP);
+	m_gauge->Update(bossHP,MAX_BossHP);
 }
 
 //---------------------------------------------------------

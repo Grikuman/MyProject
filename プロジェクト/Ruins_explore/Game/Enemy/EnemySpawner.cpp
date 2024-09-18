@@ -112,7 +112,7 @@ void EnemySpawner::Update()
 	}
 
 	// 敵のUI管理クラスを更新する
-	m_enemyUIManager->Update(m_rockBoss->GetHP());
+	m_enemyUIManager->Update(m_rockBoss->GetHP(),m_rockBoss->GetMAXHP());
 }
 
 //---------------------------------------------------------

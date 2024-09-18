@@ -16,7 +16,7 @@ public:
 	// ‰Šú‰»‚·‚é
 	void Initialize();
 	// XV‚·‚é
-	void Update(float bossHP);
+	void Update(float bossHP,float MAX_BossHP);
 	// •`‰æ‚·‚é
 	void Render();
 	// Œãˆ—‚·‚é

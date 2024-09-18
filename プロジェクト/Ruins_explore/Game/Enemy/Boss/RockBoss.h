@@ -65,6 +65,8 @@ public:
     float GetAngle() const { return m_angle; }
     // ‘Ì—Í‚ğæ“¾‚·‚é
     float GetHP() const { return m_hp; }
+    // Å‘å‘Ì—Í‚ğæ“¾‚·‚é
+    float GetMAXHP() const { return MAXHP; }
     // ƒ_ƒ[ƒW‚ğó‚¯‚Ä‚¢‚é‚©æ“¾‚·‚é
     bool GetHit() const { return m_isHit; }
     // ¶‘¶ó‹µ‚ğæ“¾‚·‚é

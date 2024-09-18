@@ -41,12 +41,21 @@ private:
 
 	DirectX::Keyboard::KeyboardStateTracker m_tracker;
 
+	// スプライトバッチ
+	DirectX::SpriteBatch* m_spriteBatch;
+	// スプライトフォント
+	DirectX::SpriteFont* m_spriteFont;
+	// ボスの現在の体力
+	float m_currentHP;
+	// ボスの最大体力
+	float m_maxHP;
+
 public:
 	Gauge();
 	~Gauge();
 
 	void Initialize(DX::DeviceResources* pDR, int width, int height);
-	void Update(float bossHP);
+	void Update(float bossHP,float MAX_BossHP);
 	void Render();
 
 	void Add(const wchar_t* path
