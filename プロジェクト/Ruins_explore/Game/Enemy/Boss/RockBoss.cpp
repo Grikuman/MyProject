@@ -6,7 +6,6 @@
 #include "pch.h"
 #include "RockBoss.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/DebugString.h"

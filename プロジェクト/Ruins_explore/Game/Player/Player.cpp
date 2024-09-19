@@ -67,11 +67,6 @@ void Player::Initialize()
 	//カメラを作成
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 
-	// モデルを読み込む準備
-	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
-	fx->SetDirectory(L"Resources/Models");
-	// モデルを読み込む
-	//m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NewPlayer.cmo", *fx);
 	m_model = Resources::GetInstance()->GetModel(L"Player");
 
 	// ステートを作成

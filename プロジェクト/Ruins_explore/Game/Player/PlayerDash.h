@@ -7,7 +7,6 @@
 
 // ‘O•ûéŒ¾
 class Player;
-
 namespace NRLib
 {
 	class TPS_Camera;

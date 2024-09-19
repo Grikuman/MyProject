@@ -114,9 +114,6 @@
     <ClInclude Include="WorkTool\DeviceResources.h">
       <Filter>WorkTool</Filter>
     </ClInclude>
-    <ClInclude Include="Game\CommonResources.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\NRLib\TPS_Camera.h">
       <Filter>Libraries\NRLib</Filter>
     </ClInclude>
@@ -254,9 +251,6 @@
       <Filter>WorkTool</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game\CommonResources.cpp">
-      <Filter>WorkTool</Filter>
-    </ClCompile>
     <ClCompile Include="Libraries\NRLib\TPS_Camera.cpp">
       <Filter>Libraries\NRLib</Filter>
     </ClCompile>

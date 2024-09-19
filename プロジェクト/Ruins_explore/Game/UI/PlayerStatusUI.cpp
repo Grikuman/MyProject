@@ -5,7 +5,7 @@
 #include "pch.h"
 #include "PlayerStatusUI.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
+
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "PlayerUIManager.h"
@@ -88,7 +88,7 @@ void PlayerStatusUI::Initialize()
 void PlayerStatusUI::Update()
 {
     // Œ»Ý‚ÌHPŠ„‡‚ðŒvŽZ
-    m_scale = m_player->GetHP() / m_player->GetMAXHP();
+    m_scale = static_cast<float>(m_player->GetHP() / m_player->GetMAXHP());
 }
 
 //---------------------------------------------------------

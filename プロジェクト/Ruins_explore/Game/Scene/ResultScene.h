@@ -4,7 +4,6 @@
 */
 #pragma once
 #include "IScene.h"
-#include "Game/CommonResources.h"
 #include <memory>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>
@@ -18,9 +17,6 @@ namespace NRLib
 class ResultScene final : public IScene
 {
 private:
-	// 共通リソース
-	CommonResources* m_commonResources;
-
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
 

@@ -21,7 +21,6 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 ResultScene::ResultScene()
 	:
-	m_commonResources{},
 	m_isChangeScene{}
 {
 }
@@ -52,7 +51,7 @@ void ResultScene::Initialize()
 void ResultScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
-	auto& kb = m_commonResources->GetInputManager()->GetKeyboardTracker();
+	auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
 	if (kb->IsKeyPressed(DirectX::Keyboard::Space))
 	{
 		m_isChangeScene = true;

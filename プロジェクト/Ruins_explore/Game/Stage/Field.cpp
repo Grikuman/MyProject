@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "Game/Stage/Field.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/InputManager.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"

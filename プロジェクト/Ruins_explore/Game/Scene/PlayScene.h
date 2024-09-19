@@ -4,8 +4,8 @@
 */
 #pragma once
 #include "IScene.h"
-#include "Game/CommonResources.h"
 #include "Game/Player/Player.h"
+
 #include "Game/Stage/Sky.h"
 #include "Game/Stage/Field.h"
 #include "Game/Enemy/EnemySpawner.h"

@@ -10,7 +10,6 @@
 #include "ResultScene.h"
 //---------------------------
 #include "Game/Screen.h"
-#include "Game/CommonResources.h"
 #include"WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include "Libraries/MyLib/InputManager.h"

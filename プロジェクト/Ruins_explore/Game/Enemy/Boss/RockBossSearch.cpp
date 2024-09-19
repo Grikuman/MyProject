@@ -6,7 +6,6 @@
 #include "Game/Enemy/Boss/RockBoss.h"
 #include "RockBossSearch.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"

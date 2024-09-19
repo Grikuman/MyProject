@@ -48,6 +48,7 @@ void PlayerIdling::Update(const float& elapsedTime)
 
     // キーボードを取得する
     auto kb = Graphics::GetInstance()->GetKeyboardState();
+    auto dashkb = Graphics::GetInstance()->GetKeyboardStateTracker();
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動
@@ -72,7 +73,8 @@ void PlayerIdling::Update(const float& elapsedTime)
     // スタミナがある場合
     if (m_player->GetStamina() >= 1)
     {
-        if (kb->Space)
+        // スペースキーを押したら
+        if (dashkb->IsKeyPressed(DirectX::Keyboard::Space))
         {
             m_player->SetStamina(m_player->GetStamina() - 1); // スタミナを消費
             m_player->ChangeState(m_player->GetPlayerDash()); // ステートをダッシュに変更
@@ -96,7 +98,7 @@ void PlayerIdling::Render()
     proj = Graphics::GetInstance()->GetProjectionMatrix();
 
     // プレイヤーの描画
-    Matrix world = Matrix::CreateScale(0.4f);
+    Matrix world = Matrix::CreateScale(1.f);
     world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
     world *= Matrix::CreateTranslation(m_player->GetPosition());
     m_model->Draw(context, *states, world, view, proj); // モデルを描画する

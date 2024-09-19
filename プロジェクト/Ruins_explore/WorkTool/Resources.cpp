@@ -37,7 +37,7 @@ void Resources::LoadResources()
 	// * モデル *
 	//============
 	// プレイヤー
-	std::unique_ptr<DirectX::Model> player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NewPlayer.cmo", *fx);
+	std::unique_ptr<DirectX::Model> player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// 岩ボス
@@ -56,6 +56,9 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> stamina_yellow;   // スタミナ(黄色)
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> stamina_gray;     // スタミナ(灰色)
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> status_icon;      // ステータスアイコン
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ruins_explorer;   // タイトル文字
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titleselect;      // タイトルセレクト
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> selecticon;       // セレクトアイコン
 
 	// 読み込む
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Red.png", nullptr, health_red.GetAddressOf());
@@ -63,6 +66,9 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Stamina_Yellow.png", nullptr, stamina_yellow.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Stamina_Gray.png", nullptr, stamina_gray.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Status_icon.png", nullptr, status_icon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Ruins_Explorer.png", nullptr, ruins_explorer.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleSelect.png", nullptr, titleselect.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/SelectIcon.png", nullptr, selecticon.GetAddressOf());
 
 	// テクスチャを登録する
 	m_textures.emplace(L"Health_Red", health_red);
@@ -70,6 +76,9 @@ void Resources::LoadResources()
 	m_textures.emplace(L"Stamina_Yellow", stamina_yellow);
 	m_textures.emplace(L"Stamina_Gray", stamina_gray);
 	m_textures.emplace(L"Status_Icon", status_icon);
+	m_textures.emplace(L"Ruins_Explorer", ruins_explorer);
+	m_textures.emplace(L"TitleSelect", titleselect);
+	m_textures.emplace(L"SelectIcon", selecticon);
 }
 
 // モデルを取得する

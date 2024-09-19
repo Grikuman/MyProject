@@ -7,7 +7,7 @@
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
 #include "TunomaruDown.h"
-#include "Game/CommonResources.h"
+
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"

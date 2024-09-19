@@ -4,14 +4,11 @@
 */
 #pragma once
 
-// 前方宣言
-class Player;
-
 class TitleSceneUI
 {
 public:
     // コンストラクタ
-    TitleSceneUI(Player* player);
+    TitleSceneUI();
     // デストラクタ
     ~TitleSceneUI();
     // 初期化する
@@ -22,15 +19,24 @@ public:
     void Render();
     // 後処理する
     void Finalize();
+public:
+    // シーン遷移
+    bool ChangeScene() const { return m_changeSceneFlag; }
 private:
-    // Player
-    Player* m_player;
+    // シーン遷移フラグ
+    bool m_changeSceneFlag;
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
 
-    // 背景
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_tex_backGround;
+    // タイトル文字
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_ruinsExplorer;
+    // タイトルセレクト
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_titleSelect;
+    // セレクトアイコン
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_selectIcon;
 
-    // 背景の位置
-    DirectX::SimpleMath::Vector2 m_backGroundPos;
+    // セレクト位置
+    DirectX::SimpleMath::Vector2 m_selectPos;
+    // セレクトフラグ
+    bool m_selectFlag;
 };

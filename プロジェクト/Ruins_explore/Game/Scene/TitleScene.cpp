@@ -20,7 +20,8 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 TitleScene::TitleScene()
 	:
-	m_isChangeScene{}
+	m_isChangeScene{},
+	m_titleSceneUI{}
 {
 }
 
@@ -43,6 +44,11 @@ void TitleScene::Initialize()
 	m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
 	// スプライトフォントを取得する
 	m_spriteFont = Graphics::GetInstance()->GetFont();
+
+	// タイトルUI管理クラスを作成する
+	m_titleSceneUI = std::make_unique<TitleSceneUI>();
+	// 初期化する
+	m_titleSceneUI->Initialize();
 }
 
 //---------------------------------------------------------
@@ -52,10 +58,17 @@ void TitleScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 	auto keyboard = Graphics::GetInstance()->GetKeyboardStateTracker();
+
 	if (keyboard->IsKeyPressed(DirectX::Keyboard::Space))
 	{
-		m_isChangeScene = true;
+		if (m_titleSceneUI->ChangeScene())
+		{
+			m_isChangeScene = true;
+		}
 	}
+
+	// タイトルUI管理クラスを更新する
+	m_titleSceneUI->Update();
 }
 
 //---------------------------------------------------------
@@ -78,6 +91,8 @@ void TitleScene::Render()
 	);
 
 	m_spriteBatch->End();
+
+	m_titleSceneUI->Render();
 }
 
 //---------------------------------------------------------
@@ -85,7 +100,7 @@ void TitleScene::Render()
 //---------------------------------------------------------
 void TitleScene::Finalize()
 {
-
+	m_titleSceneUI->Finalize();
 }
 
 //---------------------------------------------------------

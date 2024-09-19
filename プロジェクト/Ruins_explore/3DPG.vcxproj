@@ -182,7 +182,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Game\CommonResources.h" />
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Effect\SwordEffect.h" />
@@ -235,7 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game\CommonResources.cpp" />
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Effect\SwordEffect.cpp" />

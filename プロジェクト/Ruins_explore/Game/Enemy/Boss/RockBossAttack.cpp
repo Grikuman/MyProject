@@ -6,11 +6,11 @@
 #include "RockBoss.h"
 #include "RockBossAttack.h"
 #include "Game/Player/Player.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/Collision.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
