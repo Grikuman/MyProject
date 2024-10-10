@@ -219,6 +219,12 @@
     <ClInclude Include="Game\UI\PlayerUIManager.h">
       <Filter>Game\UI\PlayerUI</Filter>
     </ClInclude>
+    <ClInclude Include="WorkTool\Data.h">
+      <Filter>WorkTool</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\ResultSceneUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -346,6 +352,12 @@
     </ClCompile>
     <ClCompile Include="Game\UI\PlayerUIManager.cpp">
       <Filter>Game\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkTool\Data.cpp">
+      <Filter>WorkTool</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\ResultSceneUI.cpp">
+      <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -213,6 +213,7 @@
     <ClInclude Include="Game\UI\HPUI.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
+    <ClInclude Include="Game\UI\ResultSceneUI.h" />
     <ClInclude Include="Game\UI\TitleSceneUI.h" />
     <ClInclude Include="Game\UI\TimeUI.h" />
     <ClInclude Include="Game\UI\UserInterface.h" />
@@ -228,6 +229,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="WorkTool\Collision.h" />
+    <ClInclude Include="WorkTool\Data.h" />
     <ClInclude Include="WorkTool\DeviceResources.h" />
     <ClInclude Include="WorkTool\Graphics.h" />
     <ClInclude Include="WorkTool\Resources.h" />
@@ -261,6 +263,7 @@
     <ClCompile Include="Game\UI\HPUI.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
+    <ClCompile Include="Game\UI\ResultSceneUI.cpp" />
     <ClCompile Include="Game\UI\TitleSceneUI.cpp" />
     <ClCompile Include="Game\UI\TimeUI.cpp" />
     <ClCompile Include="Game\UI\UserInterface.cpp" />
@@ -279,6 +282,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WorkTool\Collision.cpp" />
+    <ClCompile Include="WorkTool\Data.cpp" />
     <ClCompile Include="WorkTool\DeviceResources.cpp" />
     <ClCompile Include="WorkTool\Graphics.cpp" />
     <ClCompile Include="WorkTool\Resources.cpp" />

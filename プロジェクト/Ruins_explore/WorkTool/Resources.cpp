@@ -59,6 +59,15 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ruins_explorer;   // タイトル文字
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titleselect;      // タイトルセレクト
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> selecticon;       // セレクトアイコン
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> i_rotate;         // iのぐるぐる
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> o_rotate;         // oのぐるぐる
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titlebackground;  // タイトル背景
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> black;            // 黒
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> clear;            // クリア文字
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> dead;             // 死亡文字
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultclear;      // クリア画面
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultdead;       // 死亡画面
+
 
 	// 読み込む
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Red.png", nullptr, health_red.GetAddressOf());
@@ -69,6 +78,14 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Ruins_Explorer.png", nullptr, ruins_explorer.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleSelect.png", nullptr, titleselect.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/SelectIcon.png", nullptr, selecticon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/i_rotate.png", nullptr, i_rotate.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/o_rotate.png", nullptr, o_rotate.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleScene.png", nullptr, titlebackground.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Black.png", nullptr, black.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Clear_text.png", nullptr, clear.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Dead_text.png", nullptr, dead.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Alive.png", nullptr, resultclear.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Dead.png", nullptr, resultdead.GetAddressOf());
 
 	// テクスチャを登録する
 	m_textures.emplace(L"Health_Red", health_red);
@@ -79,6 +96,14 @@ void Resources::LoadResources()
 	m_textures.emplace(L"Ruins_Explorer", ruins_explorer);
 	m_textures.emplace(L"TitleSelect", titleselect);
 	m_textures.emplace(L"SelectIcon", selecticon);
+	m_textures.emplace(L"i_Rotate", i_rotate);
+	m_textures.emplace(L"o_Rotate", o_rotate);
+	m_textures.emplace(L"TitleBackGround", titlebackground);
+	m_textures.emplace(L"Black", black);
+	m_textures.emplace(L"Clear", clear);
+	m_textures.emplace(L"Dead", dead);
+	m_textures.emplace(L"ResultClear", resultclear);
+	m_textures.emplace(L"ResultDead", resultdead);
 }
 
 // モデルを取得する

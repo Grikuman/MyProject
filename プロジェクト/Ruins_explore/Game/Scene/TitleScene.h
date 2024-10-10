@@ -28,17 +28,12 @@ public:
 
 	SceneID GetNextSceneID() const;
 
+	void ChangeScene();
+
 private:
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
 
-	const float width = 1280;
-	const float height = 720;
-
-	// スプライトバッチ
-	DirectX::SpriteBatch* m_spriteBatch;
-	// スプライトフォント
-	DirectX::SpriteFont* m_spriteFont;
 	// タイトルUI管理クラス
 	std::unique_ptr<TitleSceneUI> m_titleSceneUI;
 };

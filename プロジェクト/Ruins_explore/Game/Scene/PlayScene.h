@@ -50,4 +50,6 @@ public:
 	void Finalize() override;
 
 	SceneID GetNextSceneID() const;
+	// プレイ画面のスクリーンを撮る
+	void SaveScreenshotOnExit(IDXGISwapChain* swapChain, ID3D11DeviceContext* deviceContext);
 };

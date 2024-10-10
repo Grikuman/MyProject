@@ -7,6 +7,7 @@
 #include "Game/Screen.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/Data.h"
 
 extern void ExitGame() noexcept;
 

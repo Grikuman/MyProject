@@ -14,6 +14,10 @@
 #include "Libraries/NRLib/FixedCamera.h"
 #include <iostream>
 #include "WorkTool/Collision.h"
+#include "WorkTool/Data.h"
+#include <wrl/client.h>
+#include "ScreenGrab.h"
+#include "wincodec.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -93,11 +97,39 @@ void PlayScene::Update(float elapsedTime)
 	m_enemySpawner->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
+
+
 	// 敵が全員死んだらシーン遷移を行う
 	if (m_enemySpawner->IsChangeScene())
 	{
 		m_isChangeScene = true;
+		// プレイ結果をClearにする
+		Data::GetInstance()->SetPlaySceneResult(true);
 	}
+	// プレイヤーの体力が0になったらシーン遷移を行う
+	if (m_player->GetHP() <= 0)
+	{
+		m_isChangeScene = true;
+		// プレイ結果をDeadにする
+		Data::GetInstance()->SetPlaySceneResult(false);
+	}
+
+
+	auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
+	if (kb->IsKeyPressed(Keyboard::Q))
+	{
+		m_isChangeScene = true;
+		// プレイ結果をClearにする
+		Data::GetInstance()->SetPlaySceneResult(true);
+	}
+	if (kb->IsKeyPressed(Keyboard::E))
+	{
+		m_isChangeScene = true;
+		// プレイ結果をDeadにする
+		Data::GetInstance()->SetPlaySceneResult(false);
+	}
+
+
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -146,4 +178,19 @@ IScene::SceneID PlayScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
+}
+
+void PlayScene::SaveScreenshotOnExit(IDXGISwapChain* swapChain, ID3D11DeviceContext* deviceContext)
+{
+	// スワップチェインのバックバッファを取得
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
+	HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+
+	// スクリーンショットを PNG ファイルに保存
+	hr = DirectX::SaveWICTextureToFile(
+		deviceContext,
+		backBuffer.Get(),
+		GUID_ContainerFormatPng,  // PNG形式で保存
+		L"PlayScreen.png"  // ファイル名
+	);
 }

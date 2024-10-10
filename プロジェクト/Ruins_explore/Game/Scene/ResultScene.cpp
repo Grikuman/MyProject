@@ -40,9 +40,9 @@ void ResultScene::Initialize()
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
-	// スプライトバッチとスプライトフォントを初期化
-	m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-	m_spriteFont = Graphics::GetInstance()->GetFont();
+	// リザルトシーンUI
+	m_resultSceneUI = std::make_unique<ResultSceneUI>(this);
+	m_resultSceneUI->Initialize();
 }
 
 //---------------------------------------------------------
@@ -56,6 +56,8 @@ void ResultScene::Update(float elapsedTime)
 	{
 		m_isChangeScene = true;
 	}
+
+	m_resultSceneUI->Update();
 }
 
 //---------------------------------------------------------
@@ -63,21 +65,7 @@ void ResultScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void ResultScene::Render()
 {
-	m_spriteBatch->Begin();
-
-	// 数値を文字列に変換
-	std::wstring timeString = L"Space to Title";
-
-	// 表示するテキスト、位置、色を指定して描画
-	m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(),
-		SimpleMath::Vector2(width / 2, height / 2), // position
-		Colors::White,                        // color
-		0.f,                                  // rotate
-		SimpleMath::Vector2::Zero,
-		3.f                                   // scale
-	);
-
-	m_spriteBatch->End();
+	m_resultSceneUI->Render();
 }
 
 //---------------------------------------------------------
@@ -101,4 +89,9 @@ IScene::SceneID ResultScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
+}
+
+void ResultScene::ChangeScene()
+{
+	m_isChangeScene = true;
 }

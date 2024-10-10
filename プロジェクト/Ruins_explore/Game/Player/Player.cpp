@@ -8,6 +8,7 @@
 #include "WorkTool/Graphics.h"
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/Data.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

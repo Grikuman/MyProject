@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "IScene.h"
+#include "Game/UI/ResultSceneUI.h"
 #include <memory>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>
@@ -26,6 +27,9 @@ private:
 	DirectX::SpriteBatch* m_spriteBatch;
 	DirectX::SpriteFont* m_spriteFont;
 
+	// リザルトUIクラス
+	std::unique_ptr<ResultSceneUI> m_resultSceneUI;
+
 public:
 	ResultScene();
 	~ResultScene() override;
@@ -36,4 +40,5 @@ public:
 	void Finalize() override;
 
 	SceneID GetNextSceneID() const;
+	void ChangeScene();
 };

@@ -40,13 +40,8 @@ void TitleScene::Initialize()
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
-	// スプライトバッチを取得する
-	m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-	// スプライトフォントを取得する
-	m_spriteFont = Graphics::GetInstance()->GetFont();
-
 	// タイトルUI管理クラスを作成する
-	m_titleSceneUI = std::make_unique<TitleSceneUI>();
+	m_titleSceneUI = std::make_unique<TitleSceneUI>(this);
 	// 初期化する
 	m_titleSceneUI->Initialize();
 }
@@ -59,14 +54,6 @@ void TitleScene::Update(float elapsedTime)
 	UNREFERENCED_PARAMETER(elapsedTime);
 	auto keyboard = Graphics::GetInstance()->GetKeyboardStateTracker();
 
-	if (keyboard->IsKeyPressed(DirectX::Keyboard::Space))
-	{
-		if (m_titleSceneUI->ChangeScene())
-		{
-			m_isChangeScene = true;
-		}
-	}
-
 	// タイトルUI管理クラスを更新する
 	m_titleSceneUI->Update();
 }
@@ -76,22 +63,6 @@ void TitleScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void TitleScene::Render()
 {
-	m_spriteBatch->Begin();
-
-	// 数値を文字列に変換
-	std::wstring timeString = L"Space to Start";
-
-	// 表示するテキスト、位置、色を指定して描画
-	m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(),
-		SimpleMath::Vector2(width / 2, height / 2), // position
-		Colors::White,                        // color
-		0.f,                                  // rotate
-		SimpleMath::Vector2::Zero,
-		3.f                                   // scale
-	);
-
-	m_spriteBatch->End();
-
 	m_titleSceneUI->Render();
 }
 
@@ -116,4 +87,9 @@ IScene::SceneID TitleScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
+}
+
+void TitleScene::ChangeScene()
+{
+	m_isChangeScene = true;
 }
