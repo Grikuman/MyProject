@@ -40,6 +40,8 @@ private:
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_resultDead;
     // 黒
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_black;
+    // スペースキー
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pushSpaceKey;
 
     // セレクト位置
     DirectX::SimpleMath::Vector2 m_selectPos;
@@ -47,6 +49,10 @@ private:
     bool m_selectFlag;
     // アルファ値
     float m_alpha;
+    // スペースキーのアルファ値
+    float m_spaceAlpha;
     // フェードフラグ
     bool m_fadeFlag;
+    // 時間
+    float m_time;
 };

@@ -86,7 +86,7 @@ private:
     // ステート
     IEnemyState* m_currentState;
     // モデル
-    std::unique_ptr<DirectX::Model> m_model;
+    DirectX::Model* m_model;
     // モデル
     std::unique_ptr<DirectX::GeometricPrimitive> m_ball;
 

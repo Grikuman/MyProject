@@ -67,6 +67,7 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> dead;             // 死亡文字
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultclear;      // クリア画面
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultdead;       // 死亡画面
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pushspacekey;     // スペースキー
 
 
 	// 読み込む
@@ -86,6 +87,7 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Dead_text.png", nullptr, dead.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Alive.png", nullptr, resultclear.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Dead.png", nullptr, resultdead.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/PushSpaceKey.png", nullptr, pushspacekey.GetAddressOf());
 
 	// テクスチャを登録する
 	m_textures.emplace(L"Health_Red", health_red);
@@ -104,6 +106,7 @@ void Resources::LoadResources()
 	m_textures.emplace(L"Dead", dead);
 	m_textures.emplace(L"ResultClear", resultclear);
 	m_textures.emplace(L"ResultDead", resultdead);
+	m_textures.emplace(L"PushSpaceKey", pushspacekey);
 }
 
 // モデルを取得する

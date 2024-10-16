@@ -9,6 +9,7 @@
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Resources.h"
 #include "WorkTool/Data.h"
+#include "WorkTool/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -92,7 +93,7 @@ void Player::Update(float elapsedTime)
 {	UNREFERENCED_PARAMETER(elapsedTime);
 
     // キーボードを取得する
-	auto kb = Graphics::GetInstance()->GetKeyboardState();
+	auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
 	// 無敵の場合は
 	if (m_invincible)

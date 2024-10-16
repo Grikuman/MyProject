@@ -12,6 +12,7 @@
 #include <cassert>
 #include "WorkTool/Graphics.h"
 #include "Libraries/NRLib/FixedCamera.h"
+#include "WorkTool/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -51,7 +52,7 @@ void ResultScene::Initialize()
 void ResultScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
-	auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
+	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 	if (kb->IsKeyPressed(DirectX::Keyboard::Space))
 	{
 		m_isChangeScene = true;

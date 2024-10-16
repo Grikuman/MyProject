@@ -12,6 +12,7 @@ public:
 	{
 		NONE,
 		TITLE,
+		MAPSELECT,
 		PLAY,
 		RESULT
 	};

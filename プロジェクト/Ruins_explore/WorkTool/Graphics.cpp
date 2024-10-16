@@ -24,9 +24,6 @@ Graphics::Graphics()
 	m_primitiveBatch{},				     // プリミティブバッチ
 	m_effectFactory{},				     // エフェクトファクトリー
 	m_inputLayout{},					 // 入力レイアウト
-	m_keyboard{},                        // キーボード
-	m_keyboardStateTracker{},            // キーボードステートトラッカー
-	m_keyboardState{},                   // キーボードステート
 	m_screenW{},						 // スクリーンサイズ
 	m_screenH{},						 // スクリーンサイズ
 	m_view{},						     // ビュー行列
@@ -73,17 +70,13 @@ void Graphics::Initialize()
 	);
 	// エフェクトファクトリを生成する
 	m_effectFactory = std::make_unique<DirectX::EffectFactory>(m_device);
-	// キーボードを生成する
-	m_keyboard = std::make_unique<DirectX::Keyboard>();
-	m_keyboardStateTracker = std::make_unique<DirectX::Keyboard::KeyboardStateTracker>();
-	m_keyboardState = std::make_unique<DirectX::Keyboard::State>();
 }
 
 // 更新する
 void Graphics::Update()
 {
 	// キーボードを更新する
-	UpdateKeyboardState();
+	//UpdateKeyboardState();
 }
 
 // 描画プリミティブを開始する
@@ -118,12 +111,5 @@ void Graphics::DrawPrimitiveEnd()
 {
 	// プリミティブバッチを終了する
 	m_primitiveBatch->End();
-}
-
-// キーボードを更新する
-void Graphics::UpdateKeyboardState()
-{
-	*m_keyboardState = m_keyboard->GetState();
-	m_keyboardStateTracker->Update(*m_keyboardState);
 }
 

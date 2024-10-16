@@ -116,7 +116,7 @@ void TunomaruSearch::Render()
     proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// ƒ[ƒ‹ƒhs—ñ
-	Matrix world = Matrix::CreateScale(0.009f);
+	Matrix world = Matrix::CreateScale(1.f);
 	world *= Matrix::CreateRotationY(XMConvertToRadians(m_tunomaru->GetAngle()));
 	world *= Matrix::CreateTranslation(m_tunomaru->GetPosition());
 	// ¶‘¶‚µ‚Ä‚¢‚½‚ç

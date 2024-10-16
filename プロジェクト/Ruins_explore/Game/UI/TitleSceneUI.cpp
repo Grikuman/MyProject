@@ -8,6 +8,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/InputDevice.h"
 #include "Game/Scene/TitleScene.h"
 
 
@@ -69,7 +70,7 @@ void TitleSceneUI::Initialize()
 void TitleSceneUI::Update()
 {
     // キーボードを取得する
-    auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
+    auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
     // 回転
     m_rotate += 1.f;

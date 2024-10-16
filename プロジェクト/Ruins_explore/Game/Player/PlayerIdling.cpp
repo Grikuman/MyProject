@@ -8,6 +8,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -47,8 +48,8 @@ void PlayerIdling::Update(const float& elapsedTime)
     UNREFERENCED_PARAMETER(elapsedTime);
 
     // キーボードを取得する
-    auto kb = Graphics::GetInstance()->GetKeyboardState();
-    auto dashkb = Graphics::GetInstance()->GetKeyboardStateTracker();
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+    auto dashkb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
     //*======================================================*
     //　処理:プレイヤーの速度設定と移動
@@ -66,6 +67,22 @@ void PlayerIdling::Update(const float& elapsedTime)
         m_player->SetVelocity(Vector3::Backward);        // 移動
     }
     if (kb->D)
+    {
+        m_player->SetAngle(m_player->GetAngle() - 2.0f); // 回転
+    }
+    if (kb->Up)
+    {
+        m_player->SetVelocity(Vector3::Forward);         // 移動
+    }
+    if (kb->Left)
+    {
+        m_player->SetAngle(m_player->GetAngle() + 2.0f); // 回転
+    }
+    if (kb->Down)
+    {
+        m_player->SetVelocity(Vector3::Backward);        // 移動
+    }
+    if (kb->Right)
     {
         m_player->SetAngle(m_player->GetAngle() - 2.0f); // 回転
     }

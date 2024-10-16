@@ -64,8 +64,8 @@ void EnemySpawner::Initialize()
 
 	// * “G‚Ì‰ŠúˆÊ’u‚ðÝ’è‚·‚é *
 	// ‚Â‚Ì‚Ü‚é
-	m_tunomaru[0]->Initialize(Vector3(2.f, 1.f, -8.f));
-	m_tunomaru[1]->Initialize(Vector3(-2.f, 1.f, -8.f));
+	m_tunomaru[0]->Initialize(Vector3(2.f, 0.f, -8.f));
+	m_tunomaru[1]->Initialize(Vector3(-2.f, 0.f, -8.f));
 	// Šâƒ{ƒX
 	m_rockBoss->Initialize(Vector3(0.f, 0.f, -10.f));
 

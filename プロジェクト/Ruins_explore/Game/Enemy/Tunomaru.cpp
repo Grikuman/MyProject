@@ -10,6 +10,7 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Collision.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -43,11 +44,7 @@ void Tunomaru::Initialize(Vector3 position)
     // ˆÊ’u‚ğİ’è‚·‚é
     m_position = position;
 
-    // ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş€”õ
-    std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
-    fx->SetDirectory(L"Resources/Models");
-    // ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
-    m_model = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
+    m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 
     //HPUI‚ğì¬‚·‚é
     m_hpUI = std::make_unique<HPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());

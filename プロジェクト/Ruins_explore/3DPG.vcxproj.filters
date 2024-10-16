@@ -225,6 +225,15 @@
     <ClInclude Include="Game\UI\ResultSceneUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Scene\MapSelectScene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\MapSelectUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkTool\InputDevice.h">
+      <Filter>WorkTool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -358,6 +367,15 @@
     </ClCompile>
     <ClCompile Include="Game\UI\ResultSceneUI.cpp">
       <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\MapSelectScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\MapSelectUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkTool\InputDevice.cpp">
+      <Filter>WorkTool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

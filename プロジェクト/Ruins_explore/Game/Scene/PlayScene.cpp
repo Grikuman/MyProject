@@ -18,6 +18,7 @@
 #include <wrl/client.h>
 #include "ScreenGrab.h"
 #include "wincodec.h"
+#include "WorkTool/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -114,8 +115,7 @@ void PlayScene::Update(float elapsedTime)
 		Data::GetInstance()->SetPlaySceneResult(false);
 	}
 
-
-	auto kb = Graphics::GetInstance()->GetKeyboardStateTracker();
+	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 	if (kb->IsKeyPressed(Keyboard::Q))
 	{
 		m_isChangeScene = true;

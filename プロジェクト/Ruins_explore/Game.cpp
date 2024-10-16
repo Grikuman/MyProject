@@ -8,6 +8,7 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 #include "WorkTool/Data.h"
+#include "WorkTool/InputDevice.h"
 
 extern void ExitGame() noexcept;
 
@@ -53,6 +54,9 @@ void Game::Initialize(HWND window, int width, int height)
     // リソースを読み込む
     Resources::GetInstance()->LoadResources();
 
+    // インプットデバイスを初期化
+    InputDevice::GetInstance()->Initialize();
+
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();
     m_sceneManager->Initialize();
@@ -85,8 +89,11 @@ void Game::Update(DX::StepTimer const& timer)
     // 入力マネージャを更新する
     Graphics::GetInstance()->Update();
 
+    // インプットデバイスを更新する
+    InputDevice::GetInstance()->Update();
+
     // キーボードステートを取得する
-    auto keyboardState = Graphics::GetInstance()->GetKeyboardState();
+    auto keyboardState = InputDevice::GetInstance()->GetKeyboardState();
 
     // 「ECS」キーで終了する
     if (keyboardState->Escape)

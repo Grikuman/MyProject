@@ -32,12 +32,6 @@ public:
 	DirectX::SpriteFont* GetFont()                                                   { return m_spriteFont.get(); }
 	// EffectFactoryクラスのインスタンスを取得する
 	DirectX::EffectFactory* GetFX() const                                            { return m_effectFactory.get(); }
-	// キーボードのインスタンスを取得する
-	DirectX::Keyboard* GetKeyboard()                                                 { return m_keyboard.get(); }
-	// キーボードステートトラッカーのインスタンスを取得する
-	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker()               { return m_keyboardStateTracker.get(); }
-	// キーボードステートのインスタンスを取得する
-	DirectX::Keyboard::State* GetKeyboardState()                                     { return m_keyboardState.get(); }
 	// ビュー行列を設定する
 	void SetViewMatrix(const DirectX::SimpleMath::Matrix& view)                      { m_view = view; }
 	// ビュー行列を取得する
@@ -51,7 +45,7 @@ public:
 
 private:
 	// キーボードを更新する
-	void UpdateKeyboardState();
+	//void UpdateKeyboardState();
 private:
 	// コンストラクタ
 	Graphics();
@@ -96,10 +90,6 @@ private:
 	std::unique_ptr<DirectX::EffectFactory>                                   m_effectFactory;
 	// 入力レイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout>                                 m_inputLayout;
-	// キーボード
-	std::unique_ptr<DirectX::Keyboard>                                        m_keyboard;
-	std::unique_ptr<DirectX::Keyboard::KeyboardStateTracker>                  m_keyboardStateTracker;
-	std::unique_ptr<DirectX::Keyboard::State>                                 m_keyboardState;
 	// スクリーンサイズ
 	int                                                                       m_screenW, m_screenH;
 	// ビュー行列

@@ -66,9 +66,6 @@ void Field::Update()
 //---------------------------------------------------------
 void Field::Render()
 {
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-
 	// worlds—ñ‚Íã‘‚«‚µ‚ÄŽg‚¢‰ñ‚·
 	DirectX::SimpleMath::Matrix world = Matrix::Identity;
 	DirectX::SimpleMath::Matrix view = Graphics::GetInstance()->GetViewMatrix();

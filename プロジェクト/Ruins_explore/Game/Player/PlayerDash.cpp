@@ -8,6 +8,7 @@
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -49,7 +50,7 @@ void PlayerDash::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
 
-    auto kb = Graphics::GetInstance()->GetKeyboardState();
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
     // ^‚Á’¼‚®i‚Þ
     m_player->SetVelocity(Vector3::Forward * 4.f);

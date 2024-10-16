@@ -201,6 +201,7 @@
     <ClInclude Include="Game\Player\PlayerDash.h" />
     <ClInclude Include="Game\Player\PlayerIdling.h" />
     <ClInclude Include="Game\Scene\IScene.h" />
+    <ClInclude Include="Game\Scene\MapSelectScene.h" />
     <ClInclude Include="Game\Scene\PlayScene.h" />
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\SceneManager.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Game\UI\EnemyUIManager.h" />
     <ClInclude Include="Game\UI\Gauge.h" />
     <ClInclude Include="Game\UI\HPUI.h" />
+    <ClInclude Include="Game\UI\MapSelectUI.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
     <ClInclude Include="Game\UI\ResultSceneUI.h" />
@@ -232,6 +234,7 @@
     <ClInclude Include="WorkTool\Data.h" />
     <ClInclude Include="WorkTool\DeviceResources.h" />
     <ClInclude Include="WorkTool\Graphics.h" />
+    <ClInclude Include="WorkTool\InputDevice.h" />
     <ClInclude Include="WorkTool\Resources.h" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +255,7 @@
     <ClCompile Include="Game\Player\PlayerAttack.cpp" />
     <ClCompile Include="Game\Player\PlayerDash.cpp" />
     <ClCompile Include="Game\Player\PlayerIdling.cpp" />
+    <ClCompile Include="Game\Scene\MapSelectScene.cpp" />
     <ClCompile Include="Game\Scene\PlayScene.cpp" />
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
@@ -261,6 +265,7 @@
     <ClCompile Include="Game\UI\EnemyUIManager.cpp" />
     <ClCompile Include="Game\UI\Gauge.cpp" />
     <ClCompile Include="Game\UI\HPUI.cpp" />
+    <ClCompile Include="Game\UI\MapSelectUI.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
     <ClCompile Include="Game\UI\ResultSceneUI.cpp" />
@@ -285,6 +290,7 @@
     <ClCompile Include="WorkTool\Data.cpp" />
     <ClCompile Include="WorkTool\DeviceResources.cpp" />
     <ClCompile Include="WorkTool\Graphics.cpp" />
+    <ClCompile Include="WorkTool\InputDevice.cpp" />
     <ClCompile Include="WorkTool\Resources.cpp" />
   </ItemGroup>
   <ItemGroup>

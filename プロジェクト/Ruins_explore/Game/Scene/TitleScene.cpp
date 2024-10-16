@@ -52,7 +52,6 @@ void TitleScene::Initialize()
 void TitleScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
-	auto keyboard = Graphics::GetInstance()->GetKeyboardStateTracker();
 
 	// タイトルUI管理クラスを更新する
 	m_titleSceneUI->Update();
