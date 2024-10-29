@@ -35,7 +35,7 @@ private:
 	// モデル
 	DirectX::Model* m_model;
 
-	// ダウン時間
+	// ダウンしている時間
 	float m_downTime;
 	// 時間
 	const float MAX_DOWNTIME = 90.f;

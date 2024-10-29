@@ -40,6 +40,7 @@ TunomaruAttack::~TunomaruAttack()
 //---------------------------------------------------------
 void TunomaruAttack::Initialize()
 {
+	// ƒ‚ƒfƒ‹‚ðŽæ“¾‚·‚é
 	m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 }
 

@@ -234,6 +234,9 @@
     <ClInclude Include="WorkTool\InputDevice.h">
       <Filter>WorkTool</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Stage\Sky.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -376,6 +379,9 @@
     </ClCompile>
     <ClCompile Include="WorkTool\InputDevice.cpp">
       <Filter>WorkTool</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\Sky.cpp">
+      <Filter>Game\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

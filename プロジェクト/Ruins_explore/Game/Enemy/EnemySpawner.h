@@ -21,12 +21,15 @@ class EnemySpawner
 public:
 	EnemySpawner(Player* player);
 	~EnemySpawner();
-
+	// 初期化する
 	void Initialize();
+	// 更新する
 	void Update();
+	// 描画する
 	void Render();
+	// 終了処理
 	void Finalize();
-
+	// シーン変更する
 	bool IsChangeScene();
 private:
 	// プレイヤー

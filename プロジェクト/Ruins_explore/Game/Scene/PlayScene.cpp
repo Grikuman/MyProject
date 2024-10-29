@@ -116,18 +116,18 @@ void PlayScene::Update(float elapsedTime)
 	}
 
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	if (kb->IsKeyPressed(Keyboard::Q))
-	{
-		m_isChangeScene = true;
-		// プレイ結果をClearにする
-		Data::GetInstance()->SetPlaySceneResult(true);
-	}
-	if (kb->IsKeyPressed(Keyboard::E))
-	{
-		m_isChangeScene = true;
-		// プレイ結果をDeadにする
-		Data::GetInstance()->SetPlaySceneResult(false);
-	}
+	//if (kb->IsKeyPressed(Keyboard::Q))
+	//{
+	//	m_isChangeScene = true;
+	//	// プレイ結果をClearにする
+	//	Data::GetInstance()->SetPlaySceneResult(true);
+	//}
+	//if (kb->IsKeyPressed(Keyboard::E))
+	//{
+	//	m_isChangeScene = true;
+	//	// プレイ結果をDeadにする
+	//	Data::GetInstance()->SetPlaySceneResult(false);
+	//}
 
 
 	// 次のシーンIDを取得する

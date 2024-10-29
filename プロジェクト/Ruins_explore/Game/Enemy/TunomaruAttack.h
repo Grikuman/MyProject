@@ -8,11 +8,6 @@
 // ‘O•ûéŒ¾
 class Tunomaru;
 
-namespace NRLib
-{
-	class TPS_Camera;
-};
-
 class TunomaruAttack : public IEnemyState
 {
 public:
@@ -37,5 +32,6 @@ private:
 
 	// “ËiŠÔ
 	float m_rushTime;
+	// 
 	const float MAX_RUSHTIME = 120.f;
 };

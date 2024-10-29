@@ -208,6 +208,7 @@
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\Screen.h" />
     <ClInclude Include="Game\Stage\Field.h" />
+    <ClInclude Include="Game\Stage\Sky.h" />
     <ClInclude Include="Game\UI\BinaryFile.h" />
     <ClInclude Include="Game\UI\EnemyUIManager.h" />
     <ClInclude Include="Game\UI\Gauge.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
     <ClCompile Include="Game\Stage\Field.cpp" />
+    <ClCompile Include="Game\Stage\Sky.cpp" />
     <ClCompile Include="Game\UI\BinaryFile.cpp" />
     <ClCompile Include="Game\UI\EnemyUIManager.cpp" />
     <ClCompile Include="Game\UI\Gauge.cpp" />

@@ -9,7 +9,7 @@
 class Resources final
 {
 public:
-	//グラフィッククラスのインスタンス取得
+	//リソースクラスのインスタンス取得
 	static Resources* const GetInstance();
 	
 private:
@@ -25,8 +25,6 @@ private:
 	Resources(Resources&&) = delete;
 
 public:
-	// 初期化する
-	void Initialize();
 	// デストラクタ
 	~Resources() = default;
 	// リソースを読み込む

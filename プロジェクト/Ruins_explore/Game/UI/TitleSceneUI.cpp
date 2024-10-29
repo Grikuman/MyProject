@@ -145,10 +145,10 @@ void TitleSceneUI::Render()
     // セレクトアイコン
     m_spriteBatch->Draw(m_selectIcon.Get(), m_selectPos);
     // i
-    m_spriteBatch->Draw(m_i_Rotate.Get(), Vector2(480, 210), nullptr, 
+    m_spriteBatch->Draw(m_i_Rotate.Get(), Vector2(485, 210), nullptr, 
         Colors::White, XMConvertToRadians(m_rotate), Vector2(25, 25));
     // o
-    m_spriteBatch->Draw(m_o_Rotate.Get(), Vector2(815, 250), nullptr, 
+    m_spriteBatch->Draw(m_o_Rotate.Get(), Vector2(810, 255), nullptr, 
         Colors::White, XMConvertToRadians(m_rotate), Vector2(25, 25));
     // フェードの色
     Color color = Color(0.0f, 0.0f, 0.0f, m_alpha);
