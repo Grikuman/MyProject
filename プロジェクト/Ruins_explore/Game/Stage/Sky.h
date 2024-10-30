@@ -4,17 +4,10 @@
 */
 #pragma once
 
-namespace mylib
-{
-	class DebugCamera;
-}
-
 // 一般的なシーンクラス
 class Sky
 {
 private:
-	// デバッグカメラ
-	std::unique_ptr<mylib::DebugCamera> m_debugCamera;
 	// 射影行列
 	DirectX::SimpleMath::Matrix m_projection;
 

@@ -72,7 +72,7 @@ void RockBossDown::Render()
 	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// ƒ[ƒ‹ƒhs—ñ
-	Matrix world = Matrix::CreateScale(1.f);
+	Matrix world = Matrix::CreateScale(0.8f);
 	world *= Matrix::CreateRotationX(XMConvertToRadians(-30.f));
 	world *= Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
 	world *= Matrix::CreateTranslation(m_rockBoss->GetPosition());

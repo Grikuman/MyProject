@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "Sky.h"
-#include "Game/CommonResources.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/DebugCamera.h"
 #include "Libraries/MyLib/DebugString.h"
@@ -21,7 +20,6 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 Sky::Sky()
 	:
-	m_debugCamera{},
 	m_projection{},
 	m_model{}
 {
@@ -44,15 +42,10 @@ void Sky::Initialize()
 	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 	auto states  = Graphics::GetInstance()->GetCommonStates();
 
-	// デバッグカメラを作成する
-	RECT rect = Graphics::GetInstance()->GetDeviceResources()->GetOutputSize();
-	m_debugCamera = std::make_unique<mylib::DebugCamera>();
-	m_debugCamera->Initialize(rect.right, rect.bottom);
-
 	// 射影行列を作成する
 	m_projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
 		XMConvertToRadians(45.0f),
-		static_cast<float>(rect.right) / static_cast<float>(rect.bottom),
+		1280 / 720,
 		0.1f, 1000.0f
 	);
 	/*
@@ -79,8 +72,7 @@ void Sky::Initialize()
 //---------------------------------------------------------
 void Sky::Update()
 {
-	// デバッグカメラを更新する
-	m_debugCamera->Update(m_commonResources->GetInputManager());
+	
 }
 
 //---------------------------------------------------------
@@ -88,11 +80,11 @@ void Sky::Update()
 //---------------------------------------------------------
 void Sky::Render()
 {
-	auto context = m_commonResources->GetDeviceResources()->GetD3DDeviceContext();
-	auto states  = m_commonResources->GetCommonStates();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states  = Graphics::GetInstance()->GetCommonStates();
 
 	// ビュー行列を取得する
-	Matrix view = m_debugCamera->GetViewMatrix();
+	Matrix view = Graphics::GetInstance()->GetViewMatrix();
 
 
 	// モデルのエフェクト情報を更新する

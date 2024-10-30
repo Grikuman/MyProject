@@ -23,7 +23,7 @@ private:
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// 天球
-	//std::unique_ptr<Sky> m_sky;
+	std::unique_ptr<Sky> m_sky;
 	// フィールド
 	std::unique_ptr<Field> m_field;
 	// エネミースポナー

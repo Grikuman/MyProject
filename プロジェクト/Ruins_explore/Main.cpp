@@ -189,13 +189,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_SIZE:
-        
+        if (wParam == SIZE_MINIMIZED)
+        {
+            if (!s_minimized)
+            {
+                s_minimized = true;
+                if (!s_in_suspend && game)
+                    game->OnSuspending();
+                s_in_suspend = true;
+            }
+        }
+        else if (s_minimized)
+        {
+            s_minimized = false;
+            if (s_in_suspend && game)
+                game->OnResuming();
+            s_in_suspend = false;
+        }
         // フルスクリーン切り替え時にコメント化すると、画面サイズがリサイズされずに最大化できる
         // フルスクリーン時でも、見た目の1280x720サイズを保持する
-        //else if (!s_in_sizemove && game)
-        //{
-        //    game->OnWindowSizeChanged(LOWORD(lParam), HIWORD(lParam));
-        //}
+        else if (!s_in_sizemove && game)
+        {
+            game->OnWindowSizeChanged(LOWORD(lParam), HIWORD(lParam));
+        }
         break;
 
     case WM_ENTERSIZEMOVE:

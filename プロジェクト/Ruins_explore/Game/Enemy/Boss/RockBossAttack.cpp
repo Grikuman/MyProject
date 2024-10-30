@@ -55,8 +55,8 @@ void RockBossAttack::Update()
 	// 回転させる
 	if (m_atackStartTime >= ATACKSTART_TIME)
 	{
-		m_rotateCnt += 10.f;
-		m_rockBoss->SetAngle(m_rockBoss->GetAngle() + m_rotateCnt);
+		m_rotateCnt += 20.f;
+		m_rockBoss->SetAngle(m_rockBoss->GetAngle() + 20.f);
 		// プレイヤーが攻撃範囲内にいる　かつ　プレイヤーがダメージを受けない部分にいない
 		if (GetAttackBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()) &&
 			!GetNoDamageBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()))
@@ -81,8 +81,8 @@ void RockBossAttack::Update()
 	// 回転を加味して実際に移動する
 	m_rockBoss->SetPotision(m_rockBoss->GetPosition() + Vector3::Transform(m_rockBoss->GetVelocity(), matrix));
 
-	// 2回転した場合
-	if (m_rotateCnt >= 720.f)
+	// 
+	if (m_rotateCnt >= 360.f)
 	{
 		m_rotateCnt = 0.f;
 		m_atackStartTime = 0.f;
@@ -103,7 +103,7 @@ void RockBossAttack::Render()
 	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// ワールド行列
-	Matrix world = Matrix::CreateScale(1.f);
+	Matrix world = Matrix::CreateScale(0.8f);
 	world *= Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
 	world *= Matrix::CreateTranslation(m_rockBoss->GetPosition());
 	// 生存していたら

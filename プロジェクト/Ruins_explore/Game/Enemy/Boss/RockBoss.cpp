@@ -88,9 +88,11 @@ void RockBoss::Update()
 
     //生存しているか確認する
     CheckAlive(); 
-
-    //現在のステートを更新する
-    m_currentState->Update();
+    if (m_isAlive)
+    {
+        //現在のステートを更新する
+        m_currentState->Update();
+    }
 
     // プレイヤーとの当たり判定
     Collision::GetInstance()->CheckHitRockBoss(this);

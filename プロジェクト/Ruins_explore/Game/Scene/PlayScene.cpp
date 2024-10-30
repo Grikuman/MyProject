@@ -30,7 +30,7 @@ PlayScene::PlayScene()
 	:
 	m_isChangeScene{},
 	m_player{},
-	//m_sky{},
+	m_sky{},
 	m_field{},
 	m_enemySpawner{},
 	m_timeUI{},
@@ -57,8 +57,8 @@ void PlayScene::Initialize()
 	m_player = std::make_unique<Player>();
 	m_player->Initialize();
 	// 天球を作成
-	//m_sky = std::make_unique <Sky>();
-	//m_sky->Initialize();
+	m_sky = std::make_unique <Sky>();
+	m_sky->Initialize();
 	// フィールドを作成
 	m_field = std::make_unique<Field>();
 	m_field->Initialize();
@@ -115,20 +115,23 @@ void PlayScene::Update(float elapsedTime)
 		Data::GetInstance()->SetPlaySceneResult(false);
 	}
 
+	//------------------------------------------------------------------
+	// デバッグ機能
+	//------------------------------------------------------------------
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	//if (kb->IsKeyPressed(Keyboard::Q))
-	//{
-	//	m_isChangeScene = true;
-	//	// プレイ結果をClearにする
-	//	Data::GetInstance()->SetPlaySceneResult(true);
-	//}
-	//if (kb->IsKeyPressed(Keyboard::E))
-	//{
-	//	m_isChangeScene = true;
-	//	// プレイ結果をDeadにする
-	//	Data::GetInstance()->SetPlaySceneResult(false);
-	//}
-
+	if (kb->IsKeyPressed(Keyboard::Q))
+	{
+		m_isChangeScene = true;
+		// プレイ結果をClearにする
+		Data::GetInstance()->SetPlaySceneResult(true);
+	}
+	if (kb->IsKeyPressed(Keyboard::E))
+	{
+		m_isChangeScene = true;
+		// プレイ結果をDeadにする
+		Data::GetInstance()->SetPlaySceneResult(false);
+	}
+	//------------------------------------------------------------------
 
 	// 次のシーンIDを取得する
 	GetNextSceneID();
@@ -140,11 +143,9 @@ void PlayScene::Update(float elapsedTime)
 void PlayScene::Render()
 {
 	// 天球を描画
-	//m_sky->Render();
+	m_sky->Render();
 	// フィールドを描画
 	m_field->Render();
-	// プレイヤーを描画
-	//m_player->Render();
 	// エネミースポナーを描画
 	m_enemySpawner->Render();
 	// プレイヤーを描画
@@ -159,7 +160,7 @@ void PlayScene::Render()
 void PlayScene::Finalize()
 {
 	m_player->Finalize();
-	//m_sky->Finalize();
+	m_sky->Finalize();
 	m_field->Finalize();
 	m_enemySpawner->Finalize();
 	m_timeUI->Finalize();
