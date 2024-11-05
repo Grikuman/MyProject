@@ -87,11 +87,23 @@ void Tunomaru::Update()
 
 void Tunomaru::Render()
 {
+    DirectX::SimpleMath::Matrix view, proj;
+    // リソースを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto view = Graphics::GetInstance()->GetViewMatrix();
-    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
-    // 現在のステートを描画する
-    m_currentState->Render();
+    auto states = Graphics::GetInstance()->GetCommonStates();
+    view = Graphics::GetInstance()->GetViewMatrix();
+    proj = Graphics::GetInstance()->GetProjectionMatrix();
+
+    // ワールド行列
+    Matrix world = Matrix::CreateScale(1.f);
+    world *= Matrix::CreateRotationY(XMConvertToRadians(m_angle));
+    world *= Matrix::CreateTranslation(m_position);
+    // 生存していたら
+    if (m_isAlive == true)
+    {
+        // モデル表示
+        m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+    }
     // 生存していたら
     if (m_isAlive == true)
     {

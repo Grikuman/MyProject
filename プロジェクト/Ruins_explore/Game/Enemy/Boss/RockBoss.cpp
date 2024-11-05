@@ -12,6 +12,7 @@
 #include <cassert>
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Collision.h"
+#include "WorkTool/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -45,6 +46,9 @@ void RockBoss::Initialize(Vector3 position)
     m_ball = DirectX::GeometricPrimitive::CreateSphere(context, 2.f);
     // 位置を設定する
     m_position = position;
+
+    // モデルを読み込む
+    m_model = Resources::GetInstance()->GetModel(L"RockBoss");
 
     // ライトを切る設定
     //m_model->UpdateEffects([](DirectX::IEffect* effect)
@@ -100,11 +104,23 @@ void RockBoss::Update()
 
 void RockBoss::Render()
 {
+    DirectX::SimpleMath::Matrix view, proj;
+    // リソースを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto view = Graphics::GetInstance()->GetViewMatrix();
-    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
-    // 現在のステートを描画する
-    m_currentState->Render();
+    auto states  = Graphics::GetInstance()->GetCommonStates();
+    view         = Graphics::GetInstance()->GetViewMatrix();
+    proj         = Graphics::GetInstance()->GetProjectionMatrix();
+
+    // 生存している場合
+    if (m_isAlive == true)
+    {
+        // ワールド行列
+        Matrix world = Matrix::CreateScale(0.8f);
+        world *= Matrix::CreateRotationY(XMConvertToRadians(m_angle));
+        world *= Matrix::CreateTranslation(m_position);
+        // モデル表示
+        m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+    }
 }
 
 void RockBoss::Finalize()

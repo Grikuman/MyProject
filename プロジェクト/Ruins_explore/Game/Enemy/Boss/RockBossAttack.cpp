@@ -91,31 +91,6 @@ void RockBossAttack::Update()
 }
 
 //---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
-void RockBossAttack::Render()
-{
-	DirectX::SimpleMath::Matrix view, proj;
-	// リソースを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
-
-	// ワールド行列
-	Matrix world = Matrix::CreateScale(0.8f);
-	world *= Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
-	world *= Matrix::CreateTranslation(m_rockBoss->GetPosition());
-	// 生存していたら
-	if (m_rockBoss->GetIsAlive() == true)
-	{
-		// モデル表示
-		m_model->Draw(context, *states, world, view, proj); // モデルを描画する
-	}
-}
-
-
-//---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
 void RockBossAttack::Finalize()
