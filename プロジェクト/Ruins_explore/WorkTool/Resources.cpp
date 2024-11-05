@@ -32,6 +32,8 @@ void Resources::LoadResources()
 	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 	// エフェクトファクトリーを取得する
 	DirectX::EffectFactory* fx = Graphics::GetInstance()->GetFX();
+	// ディレクトリを設定する
+	fx->SetDirectory(L"Resources/Models");
 
 	//============
 	// * モデル *

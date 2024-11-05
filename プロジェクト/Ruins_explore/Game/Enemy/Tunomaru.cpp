@@ -46,6 +46,27 @@ void Tunomaru::Initialize(Vector3 position)
 
     m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 
+    // ライトを切る設定
+    m_model->UpdateEffects([](DirectX::IEffect* effect)
+    {
+        // ライトをきる
+        auto lights = dynamic_cast<DirectX::IEffectLights*>(effect);
+        if (lights)
+        {
+            lights->SetLightEnabled(0, false);
+            lights->SetLightEnabled(1, false);
+            lights->SetLightEnabled(2, false);
+            // 環境光を黒に
+            lights->SetAmbientLightColor(DirectX::Colors::Black);
+        }
+        // 自己発光させる
+        auto basicEffect = dynamic_cast<DirectX::BasicEffect*>(effect);
+        if (basicEffect)
+        {
+            basicEffect->SetEmissiveColor(DirectX::Colors::White);
+        }
+    });
+
     //HPUIを作成する
     m_hpUI = std::make_unique<HPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
     m_hpUI->SetScale(1.f);
