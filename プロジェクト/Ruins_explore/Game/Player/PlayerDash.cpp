@@ -49,21 +49,42 @@ void PlayerDash::Initialize()
 void PlayerDash::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
-
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
-    // 真っ直ぐ進む
-    m_player->SetVelocity(Vector3::Forward * 4.f);
-    // ダッシュ時間を減少させる
-    m_dashTime--;
-    // ダッシュ時間が終了した場合
-    if (m_dashTime <= 0.f)
-    {
-        // ダッシュ時間をリセットする
-        m_dashTime = DASHTIME;
-        // アイドリング状態へ移行する
-        m_player->ChangeState(m_player->GetPlayerIdling());
-    }
+    
+    // プレイヤー入力
+    PlayerInput();
+
+    // ダッシュする
+    Dash();
+}
+
+
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void PlayerDash::Render()
+{
+   
+}
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void PlayerDash::Finalize()
+{
+    
+}
+
+//---------------------------------------------------------
+// プレイヤー入力
+//---------------------------------------------------------
+void PlayerDash::PlayerInput()
+{
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    // プレイヤー入力
     if (kb->A)
     {
         m_player->SetAngle(m_player->GetAngle() + 3.0f); // 回転
@@ -74,30 +95,22 @@ void PlayerDash::Update(const float& elapsedTime)
     }
 }
 
-
-
 //---------------------------------------------------------
-// 描画する
+// ダッシュ処理
 //---------------------------------------------------------
-void PlayerDash::Render()
+void PlayerDash::Dash()
 {
-    DirectX::SimpleMath::Matrix view, proj;
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-    view = Graphics::GetInstance()->GetViewMatrix();
-    proj = Graphics::GetInstance()->GetProjectionMatrix();
+    // 真っ直ぐ進む
+    m_player->SetVelocity(Vector3::Forward * 4.f);
+    // ダッシュ時間を減少させる
+    m_dashTime--;
 
-    // プレイヤーの描画
-    Matrix world = Matrix::CreateScale(1.f);
-    world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
-    world *= Matrix::CreateTranslation(m_player->GetPosition());
-    m_model->Draw(context, *states, world, view, proj); // モデルを描画する
-}
-
-//---------------------------------------------------------
-// 後始末する
-//---------------------------------------------------------
-void PlayerDash::Finalize()
-{
-    
+    // ダッシュ時間が終了した場合
+    if (m_dashTime <= 0.f)
+    {
+        // ダッシュ時間をリセットする
+        m_dashTime = DASHTIME;
+        // アイドリング状態へ移行する
+        m_player->ChangeState(m_player->GetPlayerIdling());
+    }
 }

@@ -8,6 +8,13 @@
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
 
+#include "Parts/IPlayerPart.h"
+#include "Parts/PlayerBody.h"
+#include "Parts/PlayerRightHand.h"
+#include "Parts/PlayerLeftHand.h"
+#include "Parts/PlayerRightFoot.h"
+#include "Parts/PlayerLeftFoot.h"
+
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
 
@@ -84,6 +91,11 @@ public:
 	// ステートを変更する
 	void ChangeState(IState* newState);
 private:
+	// 無敵処理
+	void Invincible();
+	// スタミナ回復処理
+	void ChargeStamina();
+private:
 	// UI管理クラス
 	std::unique_ptr<PlayerUIManager> m_playerUIManager;
 	// エフェクト管理クラス
@@ -92,8 +104,9 @@ private:
 	IState* m_currentState;
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
-	// モデル
-	DirectX::Model* m_model;
+
+	// プレイヤーのパーツ
+	std::vector<std::unique_ptr<IPlayerPart>> m_parts;
 
 	// アイドリング状態
 	std::unique_ptr<PlayerIdling> m_playerIdling;
@@ -111,11 +124,11 @@ private:
 	// 体力
 	int m_hp;
 	// 最大体力
-	const int MAX_HP = 6;
+	static const int MAX_HP = 6;
 	// スタミナ
 	int m_stamina;
 	// 最大スタミナ
-	const int MAX_STAMINA = 6;
+	static const int MAX_STAMINA = 6;
 	// スタミナの回復カウント
 	float m_chargeCnt;
 	// 無敵

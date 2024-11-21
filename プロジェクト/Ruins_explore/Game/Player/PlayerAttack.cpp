@@ -78,21 +78,10 @@ void PlayerAttack::Update(const float& elapsedTime)
 //---------------------------------------------------------
 void PlayerAttack::Render()
 {
-    // コンテキスト・ステートを取得する
+    // コンテキスト：ビュー：プロジェクション
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-    // ビュー・プロジェクションを取得する
-    DirectX::SimpleMath::Matrix view, proj;
-    view = Graphics::GetInstance()->GetViewMatrix();
-    proj = Graphics::GetInstance()->GetProjectionMatrix();
-
-    // プレイヤーの描画
-    Matrix world = Matrix::CreateScale(1.f);
-    world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
-    world *= Matrix::CreateTranslation(m_player->GetPosition());
-    m_model->Draw(context, *states, world, view, proj); // モデルを描画する
-
-    world = Matrix::Identity;
+    auto view = Graphics::GetInstance()->GetViewMatrix();
+    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
     // エフェクトを描画する
     m_swordEffect->Render(context,view,proj);
 }

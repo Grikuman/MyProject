@@ -46,14 +46,50 @@ void PlayerIdling::Initialize()
 void PlayerIdling::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
+    
+    // プレイヤー入力
+    PlayerInput();
 
     // キーボードを取得する
-    auto kb = InputDevice::GetInstance()->GetKeyboardState();
     auto dashkb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
-    //*======================================================*
-    //　処理:プレイヤーの速度設定と移動
-    //*======================================================*
+    // スタミナがある場合
+    if (m_player->GetStamina() >= 1)
+    {
+        // スペースキーを押したら
+        if (dashkb->IsKeyPressed(DirectX::Keyboard::Space))
+        {
+            m_player->SetStamina(m_player->GetStamina() - 1); // スタミナを消費
+            m_player->ChangeState(m_player->GetPlayerDash()); // ステートをダッシュに変更
+        }
+    }
+}
+
+
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void PlayerIdling::Render()
+{
+    
+}
+
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void PlayerIdling::Finalize()
+{
+    
+}
+
+//---------------------------------------------------------
+// プレイヤー入力
+//---------------------------------------------------------
+void PlayerIdling::PlayerInput()
+{
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
     if (kb->W)
     {
         m_player->SetVelocity(Vector3::Forward);         // 移動
@@ -86,46 +122,4 @@ void PlayerIdling::Update(const float& elapsedTime)
     {
         m_player->SetAngle(m_player->GetAngle() - 2.0f); // 回転
     }
-
-    // スタミナがある場合
-    if (m_player->GetStamina() >= 1)
-    {
-        // スペースキーを押したら
-        if (dashkb->IsKeyPressed(DirectX::Keyboard::Space))
-        {
-            m_player->SetStamina(m_player->GetStamina() - 1); // スタミナを消費
-            m_player->ChangeState(m_player->GetPlayerDash()); // ステートをダッシュに変更
-        }
-    }
-}
-
-
-
-//---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
-void PlayerIdling::Render()
-{
-    // コンテキスト・ステートを取得する
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-    // ビュー・プロジェクションを取得する
-    DirectX::SimpleMath::Matrix view, proj;
-    view = Graphics::GetInstance()->GetViewMatrix();
-    proj = Graphics::GetInstance()->GetProjectionMatrix();
-
-    // プレイヤーの描画
-    Matrix world = Matrix::CreateScale(1.f);
-    world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
-    world *= Matrix::CreateTranslation(m_player->GetPosition());
-    m_model->Draw(context, *states, world, view, proj); // モデルを描画する
-}
-
-
-//---------------------------------------------------------
-// 後始末する
-//---------------------------------------------------------
-void PlayerIdling::Finalize()
-{
-    
 }

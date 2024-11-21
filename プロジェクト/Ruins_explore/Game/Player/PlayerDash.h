@@ -29,6 +29,12 @@ public:
 	void Finalize();
 
 private:
+	// プレイヤー入力
+	void PlayerInput();
+	// ダッシュ処理
+	void Dash();
+
+private:
 	//プレイヤー
 	Player* m_player;
 	// モデル

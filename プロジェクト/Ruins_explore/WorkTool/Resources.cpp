@@ -39,15 +39,24 @@ void Resources::LoadResources()
 	// * モデル *
 	//============
 	// プレイヤー
-	std::unique_ptr<DirectX::Model> player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	// プレイヤー
+	std::unique_ptr<DirectX::Model> PlayerBody = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	// プレイヤー
+	std::unique_ptr<DirectX::Model> PlayerHand = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	// プレイヤー
+	std::unique_ptr<DirectX::Model> PlayerFoot = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
 	// つのまる
-	std::unique_ptr<DirectX::Model> tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
+	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// 岩ボス
-	std::unique_ptr<DirectX::Model> rockBoss   = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
+	std::unique_ptr<DirectX::Model> RockBoss   = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
 	// モデルを登録する
-	m_models.emplace(L"Player", std::move(player));
-	m_models.emplace(L"Tunomaru", std::move(tunomaru));
-	m_models.emplace(L"RockBoss", std::move(rockBoss));
+	m_models.emplace(L"Player", std::move(Player));
+	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
+	m_models.emplace(L"PlayerHand", std::move(PlayerHand));
+	m_models.emplace(L"PlayerFoot", std::move(PlayerFoot));
+	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
+	m_models.emplace(L"RockBoss", std::move(RockBoss));
 
 	//================
 	// * テクスチャ *

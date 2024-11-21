@@ -10,11 +10,11 @@ namespace NRLib
 	{
 	private:
 		// ターゲットからのデフォルト距離
-		const float CAMERA_DISTANCE = 15.0f;
-		const float CAMERA_HIGHT = 6.0f;
+		const float CAMERA_DISTANCE = 10.0f;
+		const float CAMERA_HIGHT = 4.5f;
 
 		// 画角
-		const float FOV = DirectX::XMConvertToRadians(40.0f);
+		const float FOV = DirectX::XMConvertToRadians(45.0f);
 		
 		// 近い投影面
 		const float NEAR_PLANE = 1.0f;
@@ -53,15 +53,15 @@ namespace NRLib
 
 
 		// getter
-		const DirectX::SimpleMath::Matrix& GetViewMatrix() const { return m_view; }
+		const DirectX::SimpleMath::Matrix& GetViewMatrix() const          { return m_view; }
 
-		const DirectX::SimpleMath::Matrix& GetProjectionMatrix() const { return m_projection; }
+		const DirectX::SimpleMath::Matrix& GetProjectionMatrix() const    { return m_projection; }
 
-		const DirectX::SimpleMath::Vector3& GetEyePosition() const { return m_eye; }
+		const DirectX::SimpleMath::Vector3& GetEyePosition() const        { return m_eye; }
 
-		const DirectX::SimpleMath::Vector3& GetTargetPosition() const { return m_target; }
+		const DirectX::SimpleMath::Vector3& GetTargetPosition() const     { return m_target; }
 
-		const DirectX::SimpleMath::Vector3& GetUpVector() const { return m_up; }
+		const DirectX::SimpleMath::Vector3& GetUpVector() const           { return m_up; }
 
 
 	private:

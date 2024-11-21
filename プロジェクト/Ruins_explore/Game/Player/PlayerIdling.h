@@ -23,6 +23,9 @@ public:
 	void Render();
 	// 後処理する
 	void Finalize();
+private:
+	// プレイヤー入力
+	void PlayerInput();
 
 private:
 	//プレイヤー

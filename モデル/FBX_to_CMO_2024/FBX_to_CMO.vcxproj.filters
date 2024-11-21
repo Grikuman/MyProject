@@ -41,7 +41,13 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\Tunomaru.fbx">
+    <MeshContentTask Include="Assets\FBX\PlayerBody.fbx">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\FBX\PlayerFoot.fbx">
+      <Filter>Assets</Filter>
+    </MeshContentTask>
+    <MeshContentTask Include="Assets\FBX\PlayerHand.fbx">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>

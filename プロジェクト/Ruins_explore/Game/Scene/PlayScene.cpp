@@ -103,14 +103,14 @@ void PlayScene::Update(float elapsedTime)
 	// 敵が全員死んだらシーン遷移を行う
 	if (m_enemySpawner->IsChangeScene())
 	{
-		m_isChangeScene = true;
+		//m_isChangeScene = true;
 		// プレイ結果をClearにする
 		Data::GetInstance()->SetPlaySceneResult(true);
 	}
 	// プレイヤーの体力が0になったらシーン遷移を行う
 	if (m_player->GetHP() <= 0)
 	{
-		m_isChangeScene = true;
+		//m_isChangeScene = true;
 		// プレイ結果をDeadにする
 		Data::GetInstance()->SetPlaySceneResult(false);
 	}
