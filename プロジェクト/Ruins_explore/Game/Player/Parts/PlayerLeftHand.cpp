@@ -63,11 +63,16 @@ void PlayerLeftHand::Render()
 	view = Graphics::GetInstance()->GetViewMatrix();
 	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
-	// プレイヤーの描画
+	// ワールド計算
 	Matrix world = Matrix::CreateScale(1.f);
 	world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
-	world *= Matrix::CreateTranslation(m_player->GetPosition());
-	m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+	// 中央からずらす座標
+	Vector3 shiftPosition = Vector3::Transform(Vector3(-1.4f, 0.8f, 0.f), Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle())));
+	// 最終計算
+	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
+
+	// モデルを描画する
+	m_model->Draw(context, *states, world, view, proj);
 }
 
 //---------------------------------------------------------

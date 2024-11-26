@@ -41,11 +41,11 @@ void Resources::LoadResources()
 	// プレイヤー
 	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
 	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerBody = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	std::unique_ptr<DirectX::Model> PlayerBody = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerBody.cmo", *fx);
 	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerHand = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	std::unique_ptr<DirectX::Model> PlayerHand = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerHand.cmo", *fx);
 	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerFoot = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
+	std::unique_ptr<DirectX::Model> PlayerFoot = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerFoot.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// 岩ボス
