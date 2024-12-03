@@ -6,7 +6,7 @@
 #include <memory>
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>
-#include "Game/Enemy/IEnemyState.h"
+#include "Game/Interface/IEnemyState.h"
 
 #include "RockBossSearch.h"
 #include "RockBossAttack.h"

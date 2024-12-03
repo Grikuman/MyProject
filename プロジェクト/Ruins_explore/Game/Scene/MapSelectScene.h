@@ -3,7 +3,7 @@
 	@brief	マップセレクトシーンクラス
 */
 #pragma once
-#include "IScene.h"
+#include "Game/Interface/IScene.h"
 
 class MapSelectUI;
 

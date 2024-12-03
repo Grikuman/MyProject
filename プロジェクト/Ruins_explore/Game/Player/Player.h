@@ -3,12 +3,12 @@
 	クラス  : プレイヤークラス
 */
 #pragma once
-#include "IState.h"
+#include "Game/Interface/IState.h"
 #include "PlayerIdling.h"
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
 
-#include "Parts/IPlayerPart.h"
+#include "Game/Interface/IPlayerPart.h"
 #include "Parts/PlayerBody.h"
 #include "Parts/PlayerRightHand.h"
 #include "Parts/PlayerLeftHand.h"

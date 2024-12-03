@@ -3,7 +3,7 @@
 	クラス  : 岩ボスダウンクラス
 */
 #pragma once
-#include "Game/Enemy/IEnemyState.h"
+#include "Game/Interface/IEnemyState.h"
 
 // 前方宣言
 class Tunomaru;

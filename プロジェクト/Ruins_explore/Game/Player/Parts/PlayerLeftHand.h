@@ -3,7 +3,7 @@
 	クラス  : プレイヤークラス
 */
 #pragma once
-#include "IPlayerPart.h"
+#include "Game/Interface/IPlayerPart.h"
 
 // 前方宣言
 class Player;

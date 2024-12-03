@@ -3,7 +3,7 @@
 	@brief	プレイシーンクラス
 */
 #pragma once
-#include "IScene.h"
+#include "Game/Interface/IScene.h"
 #include <memory>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>

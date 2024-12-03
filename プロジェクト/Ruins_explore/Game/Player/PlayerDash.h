@@ -3,7 +3,7 @@
 	クラス  : プレイヤーダッシュクラス
 */
 #pragma once
-#include "IState.h"
+#include "Game/Interface/IState.h"
 
 // 前方宣言
 class Player;

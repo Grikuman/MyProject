@@ -3,7 +3,7 @@
 	クラス  : 岩ボスアタッククラス
 */
 #pragma once
-#include "Game/Enemy/IEnemyState.h"
+#include "Game/Interface/IEnemyState.h"
 
 // 前方宣言
 class RockBoss;

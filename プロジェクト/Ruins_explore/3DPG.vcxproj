@@ -190,13 +190,16 @@
     <ClInclude Include="Game\Enemy\Boss\RockBossDown.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
-    <ClInclude Include="Game\Enemy\IEnemyState.h" />
+    <ClInclude Include="Game\Enemy\ICollisionObject.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
     <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
-    <ClInclude Include="Game\Player\IState.h" />
-    <ClInclude Include="Game\Player\Parts\IPlayerPart.h" />
+    <ClInclude Include="Game\Interface\ICollisionObject.h" />
+    <ClInclude Include="Game\Interface\IEnemyState.h" />
+    <ClInclude Include="Game\Interface\IPlayerPart.h" />
+    <ClInclude Include="Game\Interface\IScene.h" />
+    <ClInclude Include="Game\Interface\IState.h" />
     <ClInclude Include="Game\Player\Parts\PlayerBody.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftFoot.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftHand.h" />
@@ -206,7 +209,6 @@
     <ClInclude Include="Game\Player\PlayerAttack.h" />
     <ClInclude Include="Game\Player\PlayerDash.h" />
     <ClInclude Include="Game\Player\PlayerIdling.h" />
-    <ClInclude Include="Game\Scene\IScene.h" />
     <ClInclude Include="Game\Scene\MapSelectScene.h" />
     <ClInclude Include="Game\Scene\PlayScene.h" />
     <ClInclude Include="Game\Scene\ResultScene.h" />

@@ -3,7 +3,7 @@
 	クラス  : つのまるアタッククラス
 */
 #pragma once
-#include "IEnemyState.h"
+#include "Game/Interface/IEnemyState.h"
 
 // 前方宣言
 class Tunomaru;

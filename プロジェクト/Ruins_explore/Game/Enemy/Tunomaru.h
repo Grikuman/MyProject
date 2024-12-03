@@ -7,7 +7,8 @@
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>
 #include "Game/UI/HPUI.h"
-#include "IEnemyState.h"
+#include "Game/Interface/IEnemyState.h"
+
 
 #include "TunomaruSearch.h"
 #include "TunomaruAttack.h"
@@ -15,7 +16,7 @@
 
 class Player;
 
-class Tunomaru 
+class Tunomaru
 {
 public:
     // コンストラクタ

@@ -7,6 +7,7 @@
 class Player;
 class Tunomaru;
 class RockBoss;
+class ICollisionObject;
 
 class Collision
 {
@@ -41,6 +42,16 @@ public:
 	void CheckHitTunomaru(Tunomaru* tunomaru);
 	// ボスとの当たり判定
 	void CheckHitRockBoss(RockBoss* rockboss);
+
+public:
+	// 球と球の攻撃判定
+	void SphereAttackSphere(ICollisionObject* attacker, ICollisionObject target);
+	// 球と球の衝突判定
+	void SphereToSphere(ICollisionObject* object1, ICollisionObject* object2);
+
+public:
+	// 箱と箱の当たり判定
+	void BoxToBox();
 
 private:
 	// コリジョンクラス

@@ -7,6 +7,7 @@
 #include "Game/Player/Player.h"
 #include "Game/Enemy/Tunomaru.h"
 #include "Game/Enemy/Boss/RockBoss.h"
+#include "Game/Interface/ICollisionObject.h"
 
 std::unique_ptr<Collision> Collision::m_collision = nullptr;
 
@@ -63,6 +64,29 @@ void Collision::CheckHitRockBoss(RockBoss* rockboss)
             rockboss->SetHP(rockboss->GetHP() - 0.5f);
         }
     }
+}
+//---------------------------------------------------------
+// ãÖÇ∆ãÖÇÃçUåÇîªíË
+//---------------------------------------------------------
+void Collision::SphereAttackSphere(ICollisionObject* attacker,ICollisionObject target)
+{
+    
+}
+
+//---------------------------------------------------------
+// ãÖÇ∆ãÖÇÃìñÇΩÇËîªíË
+//---------------------------------------------------------
+void Collision::SphereToSphere(ICollisionObject* object1, ICollisionObject* object2)
+{
+
+}
+
+//---------------------------------------------------------
+// î†Ç∆î†ÇÃìñÇΩÇËîªíË
+//---------------------------------------------------------
+void Collision::BoxToBox()
+{
+
 }
 
 
