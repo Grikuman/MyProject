@@ -99,7 +99,7 @@ void RockBoss::Update()
     }
 
     // プレイヤーとの当たり判定
-    Collision::GetInstance()->CheckHitRockBoss(this);
+    Collision::GetInstance()->CheckHitPlayerToEnemy(this);
 }
 
 void RockBoss::Render()
@@ -134,6 +134,11 @@ BoundingSphere RockBoss::GetBoundingSphere() const
     Vector3 center = m_position;
     float radius = 3.f;
     return BoundingSphere(center, radius);
+}
+// ダメージを与える
+void RockBoss::Damage(const float damage)
+{
+    m_hp -= damage;
 }
 // 生存しているか判定する
 void RockBoss::CheckAlive()

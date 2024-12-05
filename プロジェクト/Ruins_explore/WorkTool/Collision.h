@@ -37,21 +37,23 @@ public:
 public:
 	// プレイヤーを設定する
 	void SetPlayer(Player* player) { m_player = player; };
+
+
+	//----------------------------------------------------------------------------
+	// 攻撃の判定 
+	//----------------------------------------------------------------------------
 public:
-	// つのまるとの当たり判定
-	void CheckHitTunomaru(Tunomaru* tunomaru);
+	// プレイヤーから敵への攻撃判定
+	void CheckHitPlayerToEnemy(ICollisionObject* enemy);
 	// ボスとの当たり判定
 	void CheckHitRockBoss(RockBoss* rockboss);
 
+	//----------------------------------------------------------------------------
+	// 衝突の判定
+	//----------------------------------------------------------------------------
 public:
-	// 球と球の攻撃判定
-	void SphereAttackSphere(ICollisionObject* attacker, ICollisionObject target);
-	// 球と球の衝突判定
-	void SphereToSphere(ICollisionObject* object1, ICollisionObject* object2);
-
-public:
-	// 箱と箱の当たり判定
-	void BoxToBox();
+	// プレイヤーと球オブジェクトの押し戻し判定
+	void CheckPushBack(ICollisionObject* object);
 
 private:
 	// コリジョンクラス

@@ -12,12 +12,8 @@ public:
     virtual ~ICollisionObject() = default;
 
     // バウンディングスフィアを取得する
-    virtual DirectX::BoundingSphere GetBoundingSphere() const
-    {
-        return m_boundingSphere;
-    }
+    virtual DirectX::BoundingSphere GetBoundingSphere() const = 0;
 
-private:
-    // バウンディングスフィア
-    DirectX::BoundingSphere m_boundingSphere;
+    // ダメージを与える
+    virtual void Damage(const float damage) = 0;
 };

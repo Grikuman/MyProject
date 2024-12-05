@@ -7,6 +7,7 @@
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>
 #include "Game/Interface/IEnemyState.h"
+#include "Game/Interface/ICollisionObject.h"
 
 #include "RockBossSearch.h"
 #include "RockBossAttack.h"
@@ -14,7 +15,7 @@
 
 class Player;
 
-class RockBoss
+class RockBoss : public ICollisionObject
 {
 public:
     // コンストラクタ
@@ -71,8 +72,13 @@ public:
     bool GetHit() const                               { return m_isHit; }
     // 生存状況を取得する
     bool GetIsAlive() const                           { return m_isAlive; }
+    
+    // インターフェース類
+public:
     // バウンディングスフィアを取得する
-    DirectX::BoundingSphere GetBoundingSphere() const;
+    DirectX::BoundingSphere GetBoundingSphere() const override;
+    // ダメージを与える
+    void Damage(const float damage) override;
 
 private:
     // 生存しているか判定する

@@ -103,7 +103,8 @@ void Tunomaru::Update()
     m_hpUI->SetHP(m_hp, MAXHP);
 
     // プレイヤーとの当たり判定
-    Collision::GetInstance()->CheckHitTunomaru(this);
+    Collision::GetInstance()->CheckHitPlayerToEnemy(this);
+    Collision::GetInstance()->CheckPushBack(this);
 }
 
 void Tunomaru::Render()
@@ -144,6 +145,11 @@ BoundingSphere Tunomaru::GetBoundingSphere() const
     Vector3 center = m_position;
     float radius = 1.f;
     return BoundingSphere(center, radius);
+}
+// ダメージを与える
+void Tunomaru::Damage(const float damage)
+{
+    m_hp -= damage;
 }
 // 生存しているか判定する
 void Tunomaru::CheckAlive()
