@@ -21,6 +21,9 @@ public:
 	void Update();
 	// 後処理する
 	void Finalize();
+private:
+	// 時間
+	const float MAX_DOWNTIME = 90.f;
 
 private:
 	// 岩ボス
@@ -30,6 +33,4 @@ private:
 
 	// ダウン時間
 	float m_downTime;
-	// 時間
-	const float MAX_DOWNTIME = 90.f;
 };

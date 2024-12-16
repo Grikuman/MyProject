@@ -5,6 +5,21 @@
 
 class SwordEffect
 {
+public:
+    // プレイヤーの位置を設定する
+    void SetPosition(const DirectX::SimpleMath::Vector3& position);
+public:
+    // コンストラクタ
+    SwordEffect(ID3D11Device* device);
+    // デストラクタ
+    ~SwordEffect();
+    // 更新処理
+    void Update();
+    // 描画処理
+    void Render(ID3D11DeviceContext1* context,DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matrix proj);
+    // 終了処理
+    void Finalize();
+
 private:
     // 共通のステート
     std::unique_ptr<DirectX::CommonStates> m_commonStates;
@@ -21,20 +36,5 @@ private:
     DirectX::SimpleMath::Vector3 m_position;
     // 画像変更カウント
     int m_cnt;
-
-public:
-    SwordEffect(ID3D11Device* device);
-    ~SwordEffect();
-
-    void Update();
-
-    // プレイヤーの位置を設定する
-    void SetPosition(const DirectX::SimpleMath::Vector3& position);
-
-    void Render(
-        ID3D11DeviceContext1* context,
-        DirectX::SimpleMath::Matrix view,
-        DirectX::SimpleMath::Matrix proj);
-    void Finalize();
 };
 

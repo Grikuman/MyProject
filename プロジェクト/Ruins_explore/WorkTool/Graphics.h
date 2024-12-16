@@ -44,9 +44,6 @@ public:
 	void SetContext(ID3D11DeviceContext* context)                                    { m_context = context; }
 
 private:
-	// キーボードを更新する
-	//void UpdateKeyboardState();
-private:
 	// コンストラクタ
 	Graphics();
 	// インスタンスをコピーすることを禁止する

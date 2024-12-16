@@ -32,12 +32,14 @@ public:
 	// シーン変更する
 	bool IsChangeScene();
 private:
-	// プレイヤー
-	Player* m_player;
 	// 敵の最大数
 	const int MAX_ENEMY = 2;
 	// それぞれの敵の数
 	static const int MAX_TUNOMARU = 2;
+
+private:
+	// プレイヤー
+	Player* m_player;
 	// つのまる
 	std::unique_ptr<Tunomaru> m_tunomaru[MAX_TUNOMARU];
 	// 岩ボス
