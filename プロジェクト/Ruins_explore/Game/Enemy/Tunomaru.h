@@ -37,11 +37,11 @@ public:
     Player* GetPlayer() { return m_player; }
 
     // つのまるサーチを取得する
-    TunomaruSearch* GetTunomaruSearch() { return m_tunomaruSearch.get(); }
+    TunomaruSearch* GetTunomaruSearch()                           { return m_tunomaruSearch.get(); }
     // つのまるアタックを取得する
-    TunomaruAttack* GetTunomaruAttack() { return m_tunomaruAttack.get(); }
+    TunomaruAttack* GetTunomaruAttack()                           { return m_tunomaruAttack.get(); }
     // つのまるダウンを取得する
-    TunomaruDown* GetTunomaruDown()     { return m_tunomaruDown.get(); }
+    TunomaruDown* GetTunomaruDown()                               { return m_tunomaruDown.get(); }
 
 public:
     // 位置を設定する

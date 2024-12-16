@@ -120,6 +120,7 @@ void Tunomaru::Render()
     Matrix world = Matrix::CreateScale(1.f);
     world *= Matrix::CreateRotationY(XMConvertToRadians(m_angle));
     world *= Matrix::CreateTranslation(m_position);
+
     // ê∂ë∂ÇµÇƒÇ¢ÇΩÇÁ
     if (m_isAlive == true)
     {

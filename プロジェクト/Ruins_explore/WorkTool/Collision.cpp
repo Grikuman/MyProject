@@ -53,18 +53,18 @@ void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
 }
 
 // 岩ボスとの当たり判定
-void Collision::CheckHitRockBoss(RockBoss* rockboss)
-{
-    // プレイヤーが攻撃
-    if (m_player->GetIsAttack())
-    {
-        // 攻撃範囲内にいるならダメージを受ける
-        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(rockboss->GetBoundingSphere()))
-        {
-            rockboss->SetHP(rockboss->GetHP() - 0.5f);
-        }
-    }
-}
+//void Collision::CheckHitRockBoss(RockBoss* rockboss)
+//{
+//    // プレイヤーが攻撃
+//    if (m_player->GetIsAttack())
+//    {
+//        // 攻撃範囲内にいるならダメージを受ける
+//        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(rockboss->GetBoundingSphere()))
+//        {
+//            rockboss->SetHP(rockboss->GetHP() - 0.5f);
+//        }
+//    }
+//}
 
 //---------------------------------------------------------
 // プレイヤーと敵の押し戻し判定

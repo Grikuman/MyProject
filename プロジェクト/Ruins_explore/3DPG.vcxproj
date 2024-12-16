@@ -190,7 +190,6 @@
     <ClInclude Include="Game\Enemy\Boss\RockBossDown.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h" />
     <ClInclude Include="Game\Enemy\EnemySpawner.h" />
-    <ClInclude Include="Game\Enemy\ICollisionObject.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />

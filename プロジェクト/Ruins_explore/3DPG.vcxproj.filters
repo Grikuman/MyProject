@@ -249,9 +249,6 @@
     <ClInclude Include="Game\Player\Parts\PlayerRightHand.h">
       <Filter>Game\Player\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\ICollisionObject.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Interface\ICollisionObject.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>

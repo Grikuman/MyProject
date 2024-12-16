@@ -28,7 +28,7 @@ void InvincibleEffect::Initialize()
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // 球を作成する
-    m_sphere = DirectX::GeometricPrimitive::CreateSphere(context, 2.6f);
+    m_sphere = DirectX::GeometricPrimitive::CreateSphere(context, 3.6f);
 
     // ブレンドステートを作成する
     D3D11_BLEND_DESC blendDesc = {};
@@ -75,7 +75,7 @@ void InvincibleEffect::Render()
     context->OMSetBlendState(m_blendState, blendFactor, 0xFFFFFFFF);
 
     // 球体の色と透明度を設定
-    DirectX::SimpleMath::Color color(0.0f, 1.0f, 1.0f, m_alpha);
+    DirectX::SimpleMath::Color color(1.0f, 1.0f, 1.0f, m_alpha);
 
     // 球体のワールド行列を計算して描画
     DirectX::SimpleMath::Matrix world = 

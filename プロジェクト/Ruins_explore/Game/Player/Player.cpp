@@ -105,7 +105,6 @@ void Player::Update(float elapsedTime)
 	//現在のステートを更新する
 	m_currentState->Update(elapsedTime);
 
-
 	// 回転行列を作成する
 	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_playerAngle));
 	// 移動量を補正する
@@ -188,7 +187,7 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 	return DirectX::BoundingSphere(center, radius);
 }
 //---------------------------------------------------------
-// 更新する
+// 攻撃しているか取得する
 //---------------------------------------------------------
 bool Player::GetIsAttack()
 {
@@ -199,7 +198,7 @@ bool Player::GetIsAttack()
 	return false;
 }
 //---------------------------------------------------------
-// 更新する
+// ステートを変更する
 //---------------------------------------------------------
 void Player::ChangeState(IState* newState)
 {

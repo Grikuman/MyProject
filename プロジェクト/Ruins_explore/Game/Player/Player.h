@@ -42,11 +42,11 @@ public:
 	void Finalize();
 public:
 	// プレイヤーアイドリングを取得する
-	PlayerIdling* GetPlayerIdling() { return m_playerIdling.get(); }
+	PlayerIdling* GetPlayerIdling()                  { return m_playerIdling.get(); }
 	// プレイヤーアタックを取得する
-	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
+	PlayerAttack* GetPlayerAttack()                  { return m_playerAttack.get(); }
 	// プレイヤーダッシュを取得する
-	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
+	PlayerDash* GetPlayerDash()                      { return m_playerDash.get(); }
 
 public:
 	// 位置を取得する
@@ -54,17 +54,17 @@ public:
 	// 速度を取得する
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
 	// 角度を取得する
-	float GetAngle() const { return m_playerAngle; }
+	float GetAngle() const                           { return m_playerAngle; }
 	// 体力を取得する
-	int GetHP() const { return m_hp; }
+	int GetHP() const                                { return m_hp; }
 	// 最大体力を取得する
-	int GetMAXHP() const { return MAX_HP; }
+	int GetMAXHP() const                             { return MAX_HP; }
 	// スタミナを取得する
-	int GetStamina() const { return m_stamina; }
+	int GetStamina() const                           { return m_stamina; }
 	// 最大スタミナを取得する
-	int GetMAXSTAMINA() const { return MAX_STAMINA; }
+	int GetMAXSTAMINA() const                        { return MAX_STAMINA; }
 	// 無敵を取得
-	bool GetInvincible() const { return m_invincible; }
+	bool GetInvincible() const                       { return m_invincible; }
 
 	// 攻撃しているか取得する
 	bool GetIsAttack();
@@ -80,13 +80,13 @@ public:
 	// 速度を設定する
 	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 	// 角度を設定する
-	void SetAngle(const float angle) { m_playerAngle = angle; }
+	void SetAngle(const float angle)                               { m_playerAngle = angle; }
 	// 体力を設定する
-	void SetHP(const int hp) { m_hp = hp; }
+	void SetHP(const int hp)                                       { m_hp = hp; }
 	// スタミナを設定する
-	void SetStamina(const int stamina) { m_stamina = stamina; }
+	void SetStamina(const int stamina)                             { m_stamina = stamina; }
 	//無敵を設定する
-	void SetInvincible(const bool invincible) { m_invincible = invincible; }
+	void SetInvincible(const bool invincible)                      { m_invincible = invincible; }
 
 	// ステートを変更する
 	void ChangeState(IState* newState);
