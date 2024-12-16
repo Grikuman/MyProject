@@ -38,6 +38,7 @@ private:
 	// 歩行処理
 	void Walk();
 
+private:
 	// モデル
 	DirectX::Model* m_model;
 	// プレイヤー

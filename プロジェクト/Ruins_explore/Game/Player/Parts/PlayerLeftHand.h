@@ -25,6 +25,7 @@ public:
 	// 後処理する
 	void Finalize()    override;
 
+private:
 	// モデル
 	DirectX::Model* m_model;
 	// プレイヤー

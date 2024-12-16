@@ -20,19 +20,6 @@ class Player;
 class Tunomaru : public ICollisionObject
 {
 public:
-    // コンストラクタ
-    Tunomaru(Player* player);
-    // デストラクタ
-    ~Tunomaru();
-    // 初期化する
-    void Initialize(DirectX::SimpleMath::Vector3 position);
-    // 更新する
-    void Update();
-    // 描画する
-    void Render();
-    // 後処理をする
-    void Finalize();
-public:
     // プレイヤーを取得する
     Player* GetPlayer() { return m_player; }
 
@@ -71,20 +58,36 @@ public:
     // 生存状況を取得する
     bool GetIsAlive() const                                       { return m_isAlive; }
 
-    // インターフェース類
+public:
+    // コンストラクタ
+    Tunomaru(Player* player);
+    // デストラクタ
+    ~Tunomaru();
+    // 初期化する
+    void Initialize(DirectX::SimpleMath::Vector3 position);
+    // 更新する
+    void Update();
+    // 描画する
+    void Render();
+    // 後処理をする
+    void Finalize();
 public:
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
     // ダメージを与える
     void Damage(const float damage) override;
+public:
+    // ステートを変更する
+    void ChangeState(IEnemyState* newState);
 
 private:
     // 生存しているか判定する
     void CheckAlive();
 
-public:
-    // ステートを変更する
-    void ChangeState(IEnemyState* newState);
+private:
+    // 最大体力
+    const float MAXHP = 100;
+
 private:
     //HPUI
     std::unique_ptr<HPUI> m_hpUI;
@@ -112,8 +115,6 @@ private:
     float m_angle;
     // 体力
     float m_hp;
-    // 最大体力
-    const float MAXHP = 100;
     // ダメージを受けているか
     bool m_isHit;
     // 生存状況

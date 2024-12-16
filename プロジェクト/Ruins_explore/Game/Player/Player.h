@@ -67,7 +67,7 @@ public:
 	bool GetInvincible() const                       { return m_invincible; }
 
 	// 攻撃しているか取得する
-	bool GetIsAttack();
+	bool IsAttack();
 	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
 

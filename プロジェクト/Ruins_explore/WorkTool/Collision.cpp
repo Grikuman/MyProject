@@ -42,7 +42,7 @@ void Collision::Finalize()
 void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
 {
     // プレイヤーが攻撃
-    if (m_player->GetIsAttack())
+    if (m_player->IsAttack())
     {
         // 攻撃範囲内にいるならダメージを受ける
         if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))

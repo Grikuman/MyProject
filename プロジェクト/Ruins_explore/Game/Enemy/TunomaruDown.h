@@ -26,6 +26,9 @@ public:
 	void Update();
 	// Œãˆ—‚·‚é
 	void Finalize();
+private:
+	// ŠÔ
+	const float MAX_DOWNTIME = 90.f;
 
 private:
 	// ‚Â‚Ì‚Ü‚é
@@ -35,6 +38,4 @@ private:
 
 	// ƒ_ƒEƒ“‚µ‚Ä‚¢‚éŠÔ
 	float m_downTime;
-	// ŠÔ
-	const float MAX_DOWNTIME = 90.f;
 };

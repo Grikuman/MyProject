@@ -33,6 +33,9 @@ private:
 	void PlayerInput();
 	// ダッシュ処理
 	void Dash();
+private:
+	// ダッシュを行う時間
+	const float DASHTIME = 15;
 
 private:
 	//プレイヤー
@@ -40,8 +43,6 @@ private:
 	// モデル
 	DirectX::Model* m_model;
 	
-	// ダッシュを行う時間
-	const float DASHTIME = 15;
 	// ダッシュ時間
-	float m_dashTime;
+	float m_dashTime; 
 };

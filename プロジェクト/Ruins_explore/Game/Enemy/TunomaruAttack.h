@@ -21,6 +21,9 @@ public:
 	void Update();
 	// Œãˆ—‚·‚é
 	void Finalize();
+private:
+	// “ËiŠÔ
+	const float MAX_RUSHTIME = 120.f;
 
 private:
 	// ‚Â‚Ì‚Ü‚é
@@ -30,6 +33,4 @@ private:
 
 	// “ËiŠÔ
 	float m_rushTime;
-	// 
-	const float MAX_RUSHTIME = 120.f;
 };

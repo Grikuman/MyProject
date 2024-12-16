@@ -30,7 +30,7 @@ Player::Player()
 	m_playerAngle      {},
 	m_chargeCnt        {},
 	m_invincible       { false },
-	m_invincibleTime   { 120.f },
+	m_invincibleTime   { 120.0f },
 	m_stamina          { MAX_STAMINA },
 	m_hp               { MAX_HP }
 {
@@ -189,7 +189,7 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 //---------------------------------------------------------
 // UŒ‚‚µ‚Ä‚¢‚é‚©æ“¾‚·‚é
 //---------------------------------------------------------
-bool Player::GetIsAttack()
+bool Player::IsAttack()
 {
 	if (m_currentState == m_playerAttack.get())
 	{

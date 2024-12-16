@@ -16,6 +16,9 @@ namespace NRLib
 class PlayerAttack : public IState
 {
 public:
+	// 攻撃範囲を取得
+	DirectX::BoundingSphere GetAttackRange();
+public:
 	// コンストラクタ
 	PlayerAttack(Player* player);
 	// デストラクタ
@@ -28,9 +31,6 @@ public:
 	void Render();
 	// 後処理する
 	void Finalize();
-public:
-	// 攻撃範囲を取得
-	DirectX::BoundingSphere GetAttackRange();
 
 private:
 	//プレイヤー
