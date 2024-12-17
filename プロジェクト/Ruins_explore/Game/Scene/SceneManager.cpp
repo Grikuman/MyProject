@@ -108,7 +108,6 @@ void SceneManager::CreateScene(IScene::SceneID sceneID)
 			break;
 		default:
 			assert(!"SceneManager::CreateScene::シーン名が存在しません！");
-			// no break
 	}
 
 	assert(m_currentScene && "SceneManager::CreateScene::次のシーンが生成されませんでした！");

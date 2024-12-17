@@ -10,20 +10,24 @@ class GeometricPrimitive;
 // 一般的なシーンクラス
 class Field
 {
+public:
+	// コンストラクタ
+	Field();
+	// デストラクタ
+	~Field();
+	// 初期化する
+	void Initialize();
+	// 更新する
+	void Update();
+	// 描画する
+	void Render();
+	// 終了処理
+	void Finalize();
 private:
 	// ステージのモデル
 	std::unique_ptr<DirectX::GeometricPrimitive> m_box;
 	// ステージの座標
 	DirectX::SimpleMath::Vector3 m_boxPos;
-
-public:
-	Field();
-	~Field();
-
-	void Initialize();
-	void Update();
-	void Render();
-	void Finalize();
 
 private:
 	std::unique_ptr<DirectX::Model> m_pyramid;

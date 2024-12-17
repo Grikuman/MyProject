@@ -17,28 +17,41 @@ namespace NRLib
 
 class ResultScene final : public IScene
 {
+public:
+	// 次のシーンIDを取得する
+	SceneID GetNextSceneID() const;
+
+public:
+	// シーンを変更する
+	void ChangeScene();
+
+public:
+	// コンストラクタ
+	ResultScene();
+	// デストラクタ
+	~ResultScene() override;
+	// 初期化する
+	void Initialize() override;
+	// 更新する
+	void Update(float elapsedTime) override;
+	// 描画する
+	void Render() override;
+	// 終了処理
+	void Finalize() override;
+private:
+	// 画面の幅・高さ
+	const float width = 1280;
+	const float height = 720;
+
 private:
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
 
-	const float width = 1280;
-	const float height = 720;
-
+	// スプライトバッチ
 	DirectX::SpriteBatch* m_spriteBatch;
+	// スプライトフォント
 	DirectX::SpriteFont* m_spriteFont;
 
 	// リザルトUIクラス
 	std::unique_ptr<ResultSceneUI> m_resultSceneUI;
-
-public:
-	ResultScene();
-	~ResultScene() override;
-
-	void Initialize() override;
-	void Update(float elapsedTime)override;
-	void Render() override;
-	void Finalize() override;
-
-	SceneID GetNextSceneID() const;
-	void ChangeScene();
 };

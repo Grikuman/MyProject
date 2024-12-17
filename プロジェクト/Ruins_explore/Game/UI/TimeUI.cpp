@@ -2,11 +2,9 @@
 #include "TimeUI.h"
 #include "WorkTool/Graphics.h"
 
-using namespace DirectX;
-
-/// <summary>
-/// Constructor
-/// </summary>
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     :
     m_time{}
@@ -16,22 +14,25 @@ TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     m_spriteFont = Graphics::GetInstance()->GetFont();
 }
 
-/// <summary>
-/// Destructor
-/// </summary>
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 TimeUI::~TimeUI()
 {
     Finalize();
 }
 
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void TimeUI::Update(float elapedTime)
 {
     m_time = elapedTime;
 }
 
-/// <summary>
-/// Render 
-/// </summary>
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void TimeUI::Render()
 {
     m_spriteBatch->Begin();
@@ -41,19 +42,19 @@ void TimeUI::Render()
 
     // 表示するテキスト、位置、色を指定して描画
     m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(), 
-        SimpleMath::Vector2(width - 400, 20), // position
-        Colors::White,                        // color
+        DirectX::SimpleMath::Vector2(width - 400, 20), // position
+        DirectX::Colors::White,                        // color
         0.f,                                  // rotate
-        SimpleMath::Vector2::Zero,
+        DirectX::SimpleMath::Vector2::Zero,
         1.4f                                  // scale
     );
 
     m_spriteBatch->End();
 }
 
-/// <summary>
-/// Finalize 
-/// </summary>
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void TimeUI::Finalize()
 {
     

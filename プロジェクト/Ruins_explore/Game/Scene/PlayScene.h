@@ -19,6 +19,28 @@ namespace NRLib
 
 class PlayScene final : public IScene
 {
+public:
+	// 次のシーンIDを取得する
+	SceneID GetNextSceneID() const;
+
+public:
+	// コンストラクタ
+	PlayScene();
+	// コンストラクタ
+	~PlayScene() override;
+	// 初期化する
+	void Initialize() override;
+	// 更新する
+	void Update(float elapsedTime)override;
+	// 描画する
+	void Render() override;
+	// 終了処理
+	void Finalize() override;
+
+private:
+	// ゲームの制限時間
+	static const int MAX_GAMETIME = 60;
+
 private:
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
@@ -34,22 +56,6 @@ private:
 
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
-
 	// ゲーム時間
 	float m_gameTime;
-	// ゲームの制限時間
-	static const int MAX_GAMETIME = 60;
-
-public:
-	PlayScene();
-	~PlayScene() override;
-
-	void Initialize() override;
-	void Update(float elapsedTime)override;
-	void Render() override;
-	void Finalize() override;
-
-	SceneID GetNextSceneID() const;
-	// プレイ画面のスクリーンを撮る
-	void SaveScreenshotOnExit(IDXGISwapChain* swapChain, ID3D11DeviceContext* deviceContext);
 };

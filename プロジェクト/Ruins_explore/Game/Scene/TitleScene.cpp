@@ -12,9 +12,6 @@
 #include <cassert>
 #include "WorkTool/Graphics.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -66,7 +63,7 @@ void TitleScene::Render()
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void TitleScene::Finalize()
 {
@@ -88,6 +85,9 @@ IScene::SceneID TitleScene::GetNextSceneID() const
 	return IScene::SceneID::NONE;
 }
 
+//---------------------------------------------------------
+// シーン遷移する
+//---------------------------------------------------------
 void TitleScene::ChangeScene()
 {
 	m_isChangeScene = true;

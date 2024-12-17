@@ -11,10 +11,6 @@
 #include "WorkTool/Data.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-using namespace Microsoft::WRL;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -84,11 +80,11 @@ void ResultSceneUI::Update()
     // フラグごとにセレクトアイコンの位置を移動
     if (m_selectFlag)
     {
-        m_selectPos = Vector2(500, 390);
+        m_selectPos = DirectX::SimpleMath::Vector2(500, 390);
     }
     else
     {
-        m_selectPos = Vector2(500, 510);
+        m_selectPos = DirectX::SimpleMath::Vector2(500, 510);
     }
 
     // フェードイン処理
@@ -109,6 +105,8 @@ void ResultSceneUI::Update()
 //---------------------------------------------------------
 void ResultSceneUI::Render()
 {
+    using namespace DirectX::SimpleMath;
+
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
 
@@ -123,15 +121,12 @@ void ResultSceneUI::Render()
         m_spriteBatch->Draw(m_resultDead.Get(), Vector2(0, 0));
         m_spriteBatch->Draw(m_dead.Get(), Vector2(200, 50));
     }
-    // スペースキーのフェードカラー
-    Color spacecolor = Color(0.9f, 0.9f, 0.9f, m_spaceAlpha);
+    
     // スペースキー
-    m_spriteBatch->Draw(m_pushSpaceKey.Get(), Vector2(400, 580),spacecolor);
+    m_spriteBatch->Draw(m_pushSpaceKey.Get(), DirectX::SimpleMath::Vector2(400, 580), Color(0.9f, 0.9f, 0.9f, m_spaceAlpha));
 
-    // フェードの色
-    Color color = Color(0.0f, 0.0f, 0.0f, m_alpha);
     // 黒のフェード
-    m_spriteBatch->Draw(m_black.Get(), Vector2(0, 0), color);
+    m_spriteBatch->Draw(m_black.Get(), Vector2(0, 0), Color(0.0f, 0.0f, 0.0f, m_alpha));
 
     // 通常のスプライトバッチを終了
     m_spriteBatch->End();

@@ -10,11 +10,6 @@
 #include "WorkTool/Resources.h"
 #include "WorkTool/InputDevice.h"
 
-
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-using namespace Microsoft::WRL;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -38,8 +33,6 @@ void MapSelectUI::Initialize()
 {
     // スプライトバッチを設定する
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-    // 画像読み込み
-    //m_   = Resources::GetInstance()->GetTexture(L"Ruins_Explorer");
 }
 
 //---------------------------------------------------------

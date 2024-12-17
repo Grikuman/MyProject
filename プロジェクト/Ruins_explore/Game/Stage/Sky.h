@@ -7,22 +7,23 @@
 // 一般的なシーンクラス
 class Sky
 {
+public:
+	// コンストラクタ
+	Sky();
+	// デストラクタ
+	~Sky();
+	// 初期化する
+	void Initialize();
+	// 更新する
+	void Update();
+	// 描画する
+	void Render();
+	// 終了処理
+	void Finalize();
 private:
 	// 射影行列
 	DirectX::SimpleMath::Matrix m_projection;
 
-	// ★以下、追記する変数など★
-
 	// モデルの描画で使用する
-	std::unique_ptr<DirectX::Model> m_model;	// モデル
-
-
-public:
-	Sky();
-	~Sky();
-
-	void Initialize();
-	void Update();
-	void Render();
-	void Finalize();
+	std::unique_ptr<DirectX::Model> m_model;
 };

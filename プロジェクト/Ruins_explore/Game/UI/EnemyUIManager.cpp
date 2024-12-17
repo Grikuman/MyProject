@@ -6,9 +6,6 @@
 #include "Gauge.h"
 #include "WorkTool/Graphics.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------

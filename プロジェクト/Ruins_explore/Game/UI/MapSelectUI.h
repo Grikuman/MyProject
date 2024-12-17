@@ -27,7 +27,4 @@ private:
     MapSelectScene* m_mapSelectScene;;
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
-
-    // 
-    //Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_;
 };

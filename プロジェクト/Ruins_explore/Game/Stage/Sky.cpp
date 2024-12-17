@@ -118,17 +118,12 @@ void Sky::Render()
 
 	// モデルを描画する
 	m_model->Draw(context, *states, world, view, m_projection);
-
-
-	// デバッグ情報を表示する
-	//auto debugString = m_commonResources->GetDebugString();
-	//debugString->AddString("SkySphere");
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void Sky::Finalize()
 {
-	// do nothing.
+	
 }

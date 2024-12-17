@@ -11,9 +11,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -87,6 +84,9 @@ IScene::SceneID MapSelectScene::GetNextSceneID() const
 	return IScene::SceneID::NONE;
 }
 
+//---------------------------------------------------------
+// シーンを変更する
+//---------------------------------------------------------
 void MapSelectScene::ChangeScene()
 {
 	m_isChangeScene = true;

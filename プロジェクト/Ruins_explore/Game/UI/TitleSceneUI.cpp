@@ -72,7 +72,7 @@ void TitleSceneUI::Update()
     // キーボードを取得する
     auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
-    // 回転
+    // 文字回転
     m_rotate += 1.f;
 
     //フェードに移行していなければ
@@ -160,7 +160,7 @@ void TitleSceneUI::Render()
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void TitleSceneUI::Finalize()
 {

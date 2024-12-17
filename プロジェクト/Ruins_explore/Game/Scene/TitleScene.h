@@ -18,16 +18,22 @@ namespace NRLib
 class TitleScene final : public IScene
 {
 public:
+	// コンストラクタ
 	TitleScene();
+	// デストラクタ
 	~TitleScene() override;
-
+	// 初期化する
 	void Initialize() override;
+	// 更新する
 	void Update(float elapsedTime)override;
+	// 描画する
 	void Render() override;
+	// 終了処理
 	void Finalize() override;
 
+	// 次のシーンIDを取得する
 	SceneID GetNextSceneID() const;
-
+	// シーン遷移する
 	void ChangeScene();
 
 private:

@@ -21,6 +21,22 @@
 
 class Gauge
 {
+public:
+	// コンストラクタ
+	Gauge();
+	// デストラクタ
+	~Gauge();
+	// 初期化する
+	void Initialize(DX::DeviceResources* pDR, int width, int height);
+	// 更新する
+	void Update(float bossHP, float MAX_BossHP);
+	//描画する
+	void Render();
+	// 追加する
+	void Add(const wchar_t* path
+		, DirectX::SimpleMath::Vector2 position
+		, DirectX::SimpleMath::Vector2 scale
+		, UserInterface::ANCHOR anchor);
 private:
 	unsigned int m_menuIndex;
 	DX::DeviceResources* m_pDR;
@@ -49,18 +65,4 @@ private:
 	float m_currentHP;
 	// ボスの最大体力
 	float m_maxHP;
-
-public:
-	Gauge();
-	~Gauge();
-
-	void Initialize(DX::DeviceResources* pDR, int width, int height);
-	void Update(float bossHP,float MAX_BossHP);
-	void Render();
-
-	void Add(const wchar_t* path
-		, DirectX::SimpleMath::Vector2 position
-		, DirectX::SimpleMath::Vector2 scale
-		, UserInterface::ANCHOR anchor);
-
 };

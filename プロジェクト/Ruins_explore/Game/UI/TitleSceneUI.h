@@ -34,7 +34,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_titleSelect;
     // セレクトアイコン
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_selectIcon;
-    // i・oのぐるぐる
+    // i・oの文字
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_i_Rotate;
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_o_Rotate;
     // タイトル背景

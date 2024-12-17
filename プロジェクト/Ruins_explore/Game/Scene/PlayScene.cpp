@@ -20,9 +20,6 @@
 #include "wincodec.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -119,13 +116,13 @@ void PlayScene::Update(float elapsedTime)
 	// デバッグ機能
 	//------------------------------------------------------------------
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	if (kb->IsKeyPressed(Keyboard::Q))
+	if (kb->IsKeyPressed(DirectX::Keyboard::Q))
 	{
 		m_isChangeScene = true;
 		// プレイ結果をClearにする
 		Data::GetInstance()->SetPlaySceneResult(true);
 	}
-	if (kb->IsKeyPressed(Keyboard::E))
+	if (kb->IsKeyPressed(DirectX::Keyboard::E))
 	{
 		m_isChangeScene = true;
 		// プレイ結果をDeadにする
@@ -179,19 +176,4 @@ IScene::SceneID PlayScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
-}
-
-void PlayScene::SaveScreenshotOnExit(IDXGISwapChain* swapChain, ID3D11DeviceContext* deviceContext)
-{
-	// スワップチェインのバックバッファを取得
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> backBuffer;
-	HRESULT hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
-
-	// スクリーンショットを PNG ファイルに保存
-	hr = DirectX::SaveWICTextureToFile(
-		deviceContext,
-		backBuffer.Get(),
-		GUID_ContainerFormatPng,  // PNG形式で保存
-		L"PlayScreen.png"  // ファイル名
-	);
 }
