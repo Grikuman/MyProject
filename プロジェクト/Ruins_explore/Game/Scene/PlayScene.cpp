@@ -2,7 +2,6 @@
 	@file	PlayScene.cpp
 	@brief	プレイシーンクラス
 */
-#pragma once
 #include "pch.h"
 #include "PlayScene.h"
 #include "WorkTool/Data.h"
@@ -47,6 +46,12 @@ void PlayScene::Update(float elapsedTime)
 {
 	m_currentStage->Update(elapsedTime);
 
+	// ステージをクリアしたら次のステージへ進む
+	if (m_currentStage->IsClearStage()) 
+	{
+		TransitionToNextStage();
+	}
+
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -65,6 +70,29 @@ void PlayScene::Render()
 void PlayScene::Finalize()
 {
 	m_currentStage->Finalize();
+}
+
+//---------------------------------------------------------
+// 次のステージへの移行を処理する
+//---------------------------------------------------------
+void PlayScene::TransitionToNextStage()
+{
+	// 現在のステージの終了処理
+	m_currentStage->Finalize();
+
+	// 次のステージIDを取得
+	StageID nextStageID = m_currentStage->GetNextStageID();
+
+	// 次のステージを生成
+	if (nextStageID != StageID::NONE)
+	{
+		m_currentStage = StageFactory::CreateStage(nextStageID);
+		m_currentStage->Initialize();
+	}
+	else {
+		// 全ステージ終了後、シーン変更フラグを設定
+		m_isChangeScene = true;
+	}
 }
 
 //---------------------------------------------------------

@@ -1,9 +1,9 @@
 /*
-	@file	Stage1_1.cpp
+	@file	Stage1_2.cpp
 	@brief	プレイシーンクラス
 */
 #include "pch.h"
-#include "Stage1_1.h"
+#include "Stage1_2.h"
 #include "WorkTool/DeviceResources.h"
 #include "Libraries/MyLib/DebugCamera.h"
 #include "Libraries/MyLib/DebugString.h"
@@ -23,7 +23,7 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Stage1_1::Stage1_1()
+Stage1_2::Stage1_2()
 	:
 	m_isClearStage{},
 	m_player{},
@@ -38,14 +38,14 @@ Stage1_1::Stage1_1()
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-Stage1_1::~Stage1_1()
+Stage1_2::~Stage1_2()
 {
 }
 
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Stage1_1::Initialize()
+void Stage1_2::Initialize()
 {
 	// ステージクリアフラグを初期化する
 	m_isClearStage = false;
@@ -78,7 +78,7 @@ void Stage1_1::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void Stage1_1::Update(float elapsedTime)
+void Stage1_2::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 	
@@ -133,7 +133,7 @@ void Stage1_1::Update(float elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void Stage1_1::Render()
+void Stage1_2::Render()
 {
 	// 天球を描画
 	m_sky->Render();
@@ -150,7 +150,7 @@ void Stage1_1::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void Stage1_1::Finalize()
+void Stage1_2::Finalize()
 {
 	m_player->Finalize();
 	m_sky->Finalize();

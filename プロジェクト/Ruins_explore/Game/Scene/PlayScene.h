@@ -34,6 +34,10 @@ public:
 	void Finalize() override;
 
 private:
+	// 次のステージへの移行を処理する
+	void TransitionToNextStage();
+
+private:
 	// 現在のステージ
 	std::unique_ptr<IStage> m_currentStage;
 	// シーンチェンジフラグ

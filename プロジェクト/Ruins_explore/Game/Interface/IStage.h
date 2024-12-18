@@ -4,8 +4,22 @@
 */
 #pragma once
 
+// ステージID
+enum class StageID
+{
+	NONE,
+	Stage1_1,
+	Stage1_2,
+};
+
 class IStage
 {
+public:
+	// 次のステージIDを取得する
+	virtual StageID GetNextStageID() const = 0;
+	// ステージをクリアしたかどうか
+	virtual bool IsClearStage() const = 0;
+
 public:
 	virtual ~IStage() = default;
 	// 初期化する
