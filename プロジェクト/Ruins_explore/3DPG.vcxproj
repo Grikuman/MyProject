@@ -198,6 +198,7 @@
     <ClInclude Include="Game\Interface\IEnemyState.h" />
     <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
+    <ClInclude Include="Game\Interface\IStageBase.h" />
     <ClInclude Include="Game\Interface\IState.h" />
     <ClInclude Include="Game\Player\Parts\PlayerBody.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftFoot.h" />
