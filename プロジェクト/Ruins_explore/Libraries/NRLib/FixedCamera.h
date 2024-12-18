@@ -1,6 +1,6 @@
 /*
-	@file	FixedCamera.h
-	@brief	固定カメラクラス
+	ファイル名：FixedCamera.h
+	　　　概要：固定カメラを制御するクラス
 */
 #pragma once
 

@@ -1,6 +1,6 @@
 /*
-    @file    MapSelectUI.h
-    @brief   プレイヤーのUIを管理するクラス
+    ファイル名：MapSelectUI.h
+    　　　概要：マップセレクトのUIを管理するクラス
 */
 #pragma once
 

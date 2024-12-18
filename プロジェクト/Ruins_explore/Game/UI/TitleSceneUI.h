@@ -1,6 +1,6 @@
 /*
-    @file    TitleSceneUI.h
-    @brief   プレイヤーのUIを管理するクラス
+    ファイル名：TitleSceneUI.h
+    　　　概要：タイトルシーンのUIを管理するクラス
 */
 #pragma once
 

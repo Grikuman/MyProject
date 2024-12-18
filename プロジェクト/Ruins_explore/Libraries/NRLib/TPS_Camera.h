@@ -1,6 +1,6 @@
 /*
-	@file	TPS_Camera.h
-	@brief	TPSカメラクラス、ばね付き
+	ファイル名：TPS_Camera.h
+	　　　概要：三人称カメラを制御するクラス
 */
 #pragma once
 

@@ -1,6 +1,6 @@
 /*
-	@file	TitleScene.h
-	@brief	プレイシーンクラス
+	ファイル名：TitleScene.h
+	　　　概要：タイトルシーンを管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"
@@ -25,7 +25,7 @@ public:
 	// 初期化する
 	void Initialize() override;
 	// 更新する
-	void Update(float elapsedTime)override;
+	void Update(float elapsedTime) override;
 	// 描画する
 	void Render() override;
 	// 終了処理

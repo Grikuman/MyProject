@@ -1,6 +1,6 @@
 /*
-    @file    MapSelectUI.cpp
-    @brief   プレイヤーのUIを管理するクラス
+    ファイル名：MapSelectUI.cpp
+    　　　概要：マップセレクトのUIを管理するクラス
 */
 #include "pch.h"
 #include "MapSelectUI.h"

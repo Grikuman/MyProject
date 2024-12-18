@@ -1,3 +1,7 @@
+/*
+	ファイル名：Resources.cpp
+	　　　概要：リソースを管理するクラス
+*/
 #include "pch.h"
 #include "Resources.h"
 #include "Graphics.h"

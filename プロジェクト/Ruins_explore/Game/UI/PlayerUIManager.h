@@ -1,6 +1,6 @@
 /*
-	@file	PlayerUIManager.h
-	@brief	プレイヤーのUIを管理するクラス
+	ファイル名：PlayerUIManager.h
+	　　　概要：プレイヤーのUIを管理するクラス
 */
 #pragma once
 #include "PlayerStatusUI.h"

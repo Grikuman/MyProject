@@ -1,6 +1,6 @@
 /*
-    @file    TitleSceneUI.cpp
-    @brief   プレイヤーのUIを管理するクラス
+    ファイル名：ResultSceneUI.cpp
+    　　　概要：リザルトシーンのUIを管理するクラス
 */
 #include "pch.h"
 #include "ResultSceneUI.h"

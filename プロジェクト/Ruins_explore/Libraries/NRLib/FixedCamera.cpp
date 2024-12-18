@@ -1,6 +1,6 @@
 /*
-	@file	FixedCamera.cpp
-	@brief	固定カメラクラス
+	ファイル名：FixedCamera.cpp
+	　　　概要：固定カメラを制御するクラス
 */
 #include "pch.h"
 #include "FixedCamera.h"

@@ -1,3 +1,8 @@
+/*
+	ファイル名：Resources.h
+	　　　概要：リソースを読み込むクラス
+*/
+
 #pragma once
 #ifndef Resources_DEFINED
 #define Resources_DEFINED

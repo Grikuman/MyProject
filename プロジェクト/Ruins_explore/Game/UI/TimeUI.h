@@ -1,5 +1,8 @@
+/*
+    ファイル名：TimeUI.h
+    　　　概要：時間のUIを管理するクラス
+*/
 #pragma once
-
 #include <memory>
 #include <SpriteBatch.h>
 #include <SpriteFont.h>

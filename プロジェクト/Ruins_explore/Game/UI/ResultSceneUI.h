@@ -1,6 +1,6 @@
 /*
-    @file    ResultSceneUI.h
-    @brief   プレイヤーのUIを管理するクラス
+    ファイル名：ResultSceneUI.h
+    　　　概要：リザルトシーンのUIを管理するクラス
 */
 #pragma once
 

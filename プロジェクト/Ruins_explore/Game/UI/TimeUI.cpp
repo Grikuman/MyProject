@@ -1,3 +1,7 @@
+/*
+    ファイル名：TimeUI.cpp
+    　　　概要：時間のUIを管理するクラス
+*/
 #include "pch.h"
 #include "TimeUI.h"
 #include "WorkTool/Graphics.h"

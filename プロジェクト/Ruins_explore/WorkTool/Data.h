@@ -1,7 +1,7 @@
-//*=======================================================*
-// Data.h
-// 処理：当たり判定を行う
-//*=======================================================*
+/*
+	ファイル名：Data.h
+	　　　概要：共通データを管理するクラス
+*/
 #pragma once
 
 class Data
@@ -37,7 +37,7 @@ public:
 	bool GetPlaySceneResult() const { return m_playSceneResult; }
 
 private:
-	// コリジョンクラス
+	// シングルトン
 	static std::unique_ptr<Data> m_Data;
 	// プレイシーンの結果
 	bool m_playSceneResult;

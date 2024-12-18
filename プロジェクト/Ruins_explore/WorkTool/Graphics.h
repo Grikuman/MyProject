@@ -1,3 +1,7 @@
+/*
+	ファイル名：Graphics.h
+	　　　概要：グラフィック類を管理するクラス
+*/
 #pragma once
 #ifndef GRAPHICS_DEFINED
 #define GRAPHICS_DEFINED

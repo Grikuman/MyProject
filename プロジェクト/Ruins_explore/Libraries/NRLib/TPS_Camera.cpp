@@ -1,6 +1,6 @@
 /*
-	@file	TPS_Camera.cpp
-	@brief	TPSカメラクラス、ばね付き
+	ファイル名：TPS_Camera.cpp
+	　　　概要：三人称カメラを制御するクラス
 */
 #include "pch.h"
 #include "TPS_Camera.h"

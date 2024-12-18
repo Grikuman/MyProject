@@ -1,3 +1,7 @@
+/*
+	ファイル名：Graphics,cpp
+	　　　概要：グラフィッ類を管理するクラス
+*/
 #include "pch.h"
 #include "WorkTool/Graphics.h"
 

@@ -1,3 +1,7 @@
+/*
+	ファイル名：InputDevice.h
+	　　　概要：入力を管理するクラス
+*/
 #pragma once
 #ifndef InputDevice_DEFINED
 #define InputDevice_DEFINED

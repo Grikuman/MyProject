@@ -1,3 +1,7 @@
+/*
+	ファイル名：InputDevice.cpp
+	　　　概要：入力を管理するクラス
+*/
 #include "pch.h"
 #include "WorkTool/InputDevice.h"
 

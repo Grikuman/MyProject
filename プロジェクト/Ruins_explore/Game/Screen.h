@@ -1,6 +1,6 @@
 /*
-	@file	Screen.h
-	@brief	画面にまつわる定数をまとめたクラス
+	ファイル名：Screen.h
+	　　　概要：画面用の定数クラス
 */
 #pragma once
 
