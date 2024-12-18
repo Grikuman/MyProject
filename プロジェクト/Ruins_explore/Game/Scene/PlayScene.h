@@ -4,12 +4,8 @@
 */
 #pragma once
 #include "Game/Interface/IScene.h"
-#include "Game/Player/Player.h"
-
-#include "Game/Stage/Sky.h"
-#include "Game/Stage/Field.h"
-#include "Game/Enemy/EnemySpawner.h"
-#include "Game/UI/TimeUI.h"
+#include "Game/Interface/IStage.h"
+#include "Game/Stage/StageFactory.h"
 
 
 namespace NRLib
@@ -38,24 +34,9 @@ public:
 	void Finalize() override;
 
 private:
-	// ゲームの制限時間
-	static const int MAX_GAMETIME = 60;
-
-private:
-	// プレイヤー
-	std::unique_ptr<Player> m_player;
-	// 天球
-	std::unique_ptr<Sky> m_sky;
-	// フィールド
-	std::unique_ptr<Field> m_field;
-	// エネミースポナー
-	std::unique_ptr<EnemySpawner> m_enemySpawner;
-	//TextUI
-	std::unique_ptr<TimeUI> m_timeUI;
-	// プレイシーンUI
-
+	// 現在のステージ
+	std::unique_ptr<IStage> m_currentStage;
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
-	// ゲーム時間
-	float m_gameTime;
+	
 };

@@ -4,14 +4,14 @@
 */
 #pragma once
 
-class IStageBase
+class IStage
 {
 public:
-	virtual ~IStageBase() = default;
+	virtual ~IStage() = default;
 	// ‰Šú‰»‚·‚é
 	virtual void Initialize() = 0;
 	// XV‚·‚é
-	virtual void Update() = 0;
+	virtual void Update(float elapsedTime) = 0;
 	// •`‰æ‚·‚é
 	virtual void Render() = 0;
 	// Œãˆ—‚ğs‚¤

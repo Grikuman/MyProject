@@ -198,7 +198,7 @@
     <ClInclude Include="Game\Interface\IEnemyState.h" />
     <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
-    <ClInclude Include="Game\Interface\IStageBase.h" />
+    <ClInclude Include="Game\Interface\IStage.h" />
     <ClInclude Include="Game\Interface\IState.h" />
     <ClInclude Include="Game\Player\Parts\PlayerBody.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftFoot.h" />
@@ -215,11 +215,10 @@
     <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\Screen.h" />
-    <ClInclude Include="Game\Stage\Field.h" />
-    <ClInclude Include="Game\Stage\Sky.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Game\StageObject\Field.h" />
+    <ClInclude Include="Game\StageObject\Sky.h" />
+    <ClInclude Include="Game\Stage\Stage1_1.h" />
+    <ClInclude Include="Game\Stage\StageFactory.h" />
     <ClInclude Include="Game\UI\BinaryFile.h" />
     <ClInclude Include="Game\UI\EnemyUIManager.h" />
     <ClInclude Include="Game\UI\Gauge.h" />
@@ -277,11 +276,9 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
-    <ClCompile Include="Game\Stage\Field.cpp" />
-    <ClCompile Include="Game\Stage\Sky.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Game\StageObject\Field.cpp" />
+    <ClCompile Include="Game\StageObject\Sky.cpp" />
+    <ClCompile Include="Game\Stage\Stage1_1.cpp" />
     <ClCompile Include="Game\UI\BinaryFile.cpp" />
     <ClCompile Include="Game\UI\EnemyUIManager.cpp" />
     <ClCompile Include="Game\UI\Gauge.cpp" />
