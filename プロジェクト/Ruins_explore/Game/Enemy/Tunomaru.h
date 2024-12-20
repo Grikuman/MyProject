@@ -9,7 +9,7 @@
 #include "Game/UI/HPUI.h"
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
-
+#include "Game/Interface/IEnemy.h"
 
 #include "TunomaruSearch.h"
 #include "TunomaruAttack.h"
@@ -17,7 +17,7 @@
 
 class Player;
 
-class Tunomaru : public ICollisionObject
+class Tunomaru : public IEnemy
 {
 public:
     // プレイヤーを取得する
@@ -64,13 +64,13 @@ public:
     // デストラクタ
     ~Tunomaru();
     // 初期化する
-    void Initialize(DirectX::SimpleMath::Vector3 position);
+    void Initialize(DirectX::SimpleMath::Vector3 position) override;
     // 更新する
-    void Update();
+    void Update() override;
     // 描画する
-    void Render();
+    void Render() override;
     // 後処理をする
-    void Finalize();
+    void Finalize() override;
 public:
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;

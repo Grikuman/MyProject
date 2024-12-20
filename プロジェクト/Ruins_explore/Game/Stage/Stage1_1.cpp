@@ -23,8 +23,10 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Stage1_1::Stage1_1()
+Stage1_1::Stage1_1(std::string stageName)
 	:
+	m_stageEnemy{},
+	m_stageName{ "Stage1_1" },
 	m_isClearStage{},
 	m_player{},
 	m_sky{},
@@ -53,6 +55,9 @@ void Stage1_1::Initialize()
 	// プレイヤーを作成
 	m_player = std::make_unique<Player>();
 	m_player->Initialize();
+	// 敵を作成する
+	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
+	m_stageEnemy->Initialize("Stage1_1");
 	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize();
@@ -87,12 +92,14 @@ void Stage1_1::Update(float elapsedTime)
 
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
+	// 敵を更新
+	m_stageEnemy->Update();
 	// 天球を更新
 	//m_sky->Update();
 	// フィールドを更新
 	m_field->Update();
 	// エネミースポナーを更新
-	m_enemySpawner->Update();
+	//m_enemySpawner->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
 
@@ -140,7 +147,9 @@ void Stage1_1::Render()
 	// フィールドを描画
 	m_field->Render();
 	// エネミースポナーを描画
-	m_enemySpawner->Render();
+	//m_enemySpawner->Render();
+	// 敵を描画する
+	m_stageEnemy->Render();
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画
@@ -156,5 +165,6 @@ void Stage1_1::Finalize()
 	m_sky->Finalize();
 	m_field->Finalize();
 	m_enemySpawner->Finalize();
+	m_stageEnemy->Finalize();
 	m_timeUI->Finalize();
 }

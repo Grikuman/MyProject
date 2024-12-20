@@ -5,7 +5,7 @@
 #pragma once
 #include "Game/Interface/IScene.h"
 #include "Game/Interface/IStage.h"
-#include "Game/Stage/StageFactory.h"
+#include "Game/Factory/StageFactory.h"
 
 
 namespace NRLib

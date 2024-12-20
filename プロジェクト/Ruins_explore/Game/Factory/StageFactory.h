@@ -2,6 +2,7 @@
 #include <functional>
 #include <memory>
 #include "Game/Interface/IStage.h"
+#include <string>
 
 #include "Game/Stage/Stage1_1.h"
 #include "game/Stage/Stage1_2.h"
@@ -16,8 +17,8 @@ public:
             StageID, 
             std::function<std::unique_ptr<IStage>()>> stageMap = 
         {
-            { StageID::Stage1_1, []() { return std::make_unique<Stage1_1>(); } },
-            { StageID::Stage1_2, []() { return std::make_unique<Stage1_2>(); } },
+            { StageID::Stage1_1, []() { return std::make_unique<Stage1_1>("Stage1_1"); }},
+            { StageID::Stage1_2, []() { return std::make_unique<Stage1_2>("Stage1_2"); }},
         };
 
         // IDからステージを検索

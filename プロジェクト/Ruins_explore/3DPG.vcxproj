@@ -108,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);C:\Users\rikum\Documents\MyProject\プロジェクト\Ruins_explore\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -194,7 +194,10 @@
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
     <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
+    <ClInclude Include="Game\Factory\EnemyFactory.h" />
+    <ClInclude Include="Game\Factory\StageFactory.h" />
     <ClInclude Include="Game\Interface\ICollisionObject.h" />
+    <ClInclude Include="Game\Interface\IEnemy.h" />
     <ClInclude Include="Game\Interface\IEnemyState.h" />
     <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
@@ -219,7 +222,7 @@
     <ClInclude Include="Game\StageObject\Sky.h" />
     <ClInclude Include="Game\Stage\Stage1_1.h" />
     <ClInclude Include="Game\Stage\Stage1_2.h" />
-    <ClInclude Include="Game\Stage\StageFactory.h" />
+    <ClInclude Include="Game\Stage\StageEnemy.h" />
     <ClInclude Include="Game\UI\BinaryFile.h" />
     <ClInclude Include="Game\UI\EnemyUIManager.h" />
     <ClInclude Include="Game\UI\Gauge.h" />
@@ -281,6 +284,7 @@
     <ClCompile Include="Game\StageObject\Sky.cpp" />
     <ClCompile Include="Game\Stage\Stage1_1.cpp" />
     <ClCompile Include="Game\Stage\Stage1_2.cpp" />
+    <ClCompile Include="Game\Stage\StageEnemy.cpp" />
     <ClCompile Include="Game\UI\BinaryFile.cpp" />
     <ClCompile Include="Game\UI\EnemyUIManager.cpp" />
     <ClCompile Include="Game\UI\Gauge.cpp" />
@@ -324,6 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\EnemyData\EnemyData1.json" />
     <None Include="Resources\Shaders\UI.hlsli" />
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +361,7 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\Microsoft.XAudio2.Redist.1.2.11\build\native\Microsoft.XAudio2.Redist.targets" Condition="Exists('packages\Microsoft.XAudio2.Redist.1.2.11\build\native\Microsoft.XAudio2.Redist.targets')" />
     <Import Project="packages\directxtk_desktop_2019.2024.2.22.1\build\native\directxtk_desktop_2019.targets" Condition="Exists('packages\directxtk_desktop_2019.2024.2.22.1\build\native\directxtk_desktop_2019.targets')" />
+    <Import Project="packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets" Condition="Exists('packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -363,5 +369,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.XAudio2.Redist.1.2.11\build\native\Microsoft.XAudio2.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.XAudio2.Redist.1.2.11\build\native\Microsoft.XAudio2.Redist.targets'))" />
     <Error Condition="!Exists('packages\directxtk_desktop_2019.2024.2.22.1\build\native\directxtk_desktop_2019.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\directxtk_desktop_2019.2024.2.22.1\build\native\directxtk_desktop_2019.targets'))" />
+    <Error Condition="!Exists('packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets'))" />
   </Target>
 </Project>

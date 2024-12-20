@@ -80,6 +80,12 @@
     <Filter Include="Game\StageObject">
       <UniqueIdentifier>{10485ce9-ff2e-42f6-8fad-86d8f9ac0d59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\EnemyData">
+      <UniqueIdentifier>{1bfaeb87-47ad-441c-af8f-4356592c19d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Factory">
+      <UniqueIdentifier>{56c16771-9f85-45ee-9635-7c4eb2c112be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -273,11 +279,20 @@
     <ClInclude Include="Game\Stage\Stage1_1.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Stage\StageFactory.h">
-      <Filter>Game\Stage</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Stage\Stage1_2.h">
       <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Interface\IEnemy.h">
+      <Filter>Game\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage\StageEnemy.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Factory\EnemyFactory.h">
+      <Filter>Game\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Factory\StageFactory.h">
+      <Filter>Game\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +461,9 @@
     <ClCompile Include="Game\Stage\Stage1_2.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Stage\StageEnemy.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -464,6 +482,9 @@
     <None Include="packages.config" />
     <None Include="Resources\Shaders\UI.hlsli">
       <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="Resources\EnemyData\EnemyData1.json">
+      <Filter>Resources\EnemyData</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

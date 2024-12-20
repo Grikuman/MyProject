@@ -26,7 +26,7 @@ public:
 	bool IsClearStage() const override { return m_isClearStage; }
 public:
 	// コンストラクタ
-	Stage1_2();
+	Stage1_2(std::string stageName);
 	// コンストラクタ
 	~Stage1_2() override;
 	// 初期化する

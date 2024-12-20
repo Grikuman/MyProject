@@ -8,6 +8,7 @@
 #include <SimpleMath.h>
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
+#include "Game/Interface/IEnemy.h"
 
 #include "RockBossSearch.h"
 #include "RockBossAttack.h"
@@ -15,7 +16,7 @@
 
 class Player;
 
-class RockBoss : public ICollisionObject
+class RockBoss : public IEnemy
 {
 public:
     // ƒvƒŒƒCƒ„[‚ğæ“¾‚·‚é

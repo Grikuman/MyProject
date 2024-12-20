@@ -10,7 +10,7 @@
 #include "Game/StageObject/Field.h"
 #include "Game/Enemy/EnemySpawner.h"
 #include "Game/UI/TimeUI.h"
-
+#include "Game/Stage/StageEnemy.h"
 
 namespace NRLib
 {
@@ -26,7 +26,7 @@ public:
 	bool IsClearStage() const override { return m_isClearStage; }
 public:
 	// コンストラクタ
-	Stage1_1();
+	Stage1_1(std::string stageName);
 	// コンストラクタ
 	~Stage1_1() override;
 	// 初期化する
@@ -43,6 +43,10 @@ private:
 	static const int MAX_GAMETIME = 60;
 
 private:
+	// エネミー
+	std::unique_ptr<StageEnemy> m_stageEnemy;
+	// ステージの名前
+	std::string m_stageName;
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// 天球
