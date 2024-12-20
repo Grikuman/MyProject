@@ -26,7 +26,7 @@
 Stage1_1::Stage1_1(std::string stageName)
 	:
 	m_stageEnemy{},
-	m_stageName{ "Stage1_1" },
+	m_stageName{"Stage1_1"},
 	m_isClearStage{},
 	m_player{},
 	m_sky{},
@@ -55,9 +55,11 @@ void Stage1_1::Initialize()
 	// プレイヤーを作成
 	m_player = std::make_unique<Player>();
 	m_player->Initialize();
+
+	std::string stageName = "stage1_1";
 	// 敵を作成する
 	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
-	m_stageEnemy->Initialize("Stage1_1");
+	m_stageEnemy->Initialize(stageName);
 	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize();

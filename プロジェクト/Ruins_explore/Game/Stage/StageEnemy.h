@@ -17,6 +17,8 @@ public:
     // コンストラクタ
     StageEnemy(Player* player);
 
+    ~StageEnemy();
+
     // 初期化処理
     void Initialize(const std::string& stageName);
 
@@ -32,8 +34,10 @@ public:
 private:
     // プレイヤー
     Player* m_player;
-    std::vector<std::unique_ptr<IEnemy>> m_enemies;  // 敵のリスト
-    bool m_isChangeScene;  // シーン遷移フラグ
+    // 敵のリスト
+    std::vector<std::unique_ptr<IEnemy>> m_enemies;
+    // シーン遷移フラグ
+    bool m_isChangeScene;
 };
 
 #endif // ENEMY_SPAWNER_H

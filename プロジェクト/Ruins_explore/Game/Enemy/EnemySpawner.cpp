@@ -17,6 +17,7 @@
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
 #include "Game/UI/EnemyUIManager.h"
+#include "Game/Factory/EnemyFactory.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

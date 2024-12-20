@@ -6,11 +6,21 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 StageEnemy::StageEnemy(Player* player)
     : m_player(player)
     , m_isChangeScene(false) 
 {
 
+}
+
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+StageEnemy::~StageEnemy()
+{
 }
 
 //---------------------------------------------------------
@@ -21,12 +31,12 @@ void StageEnemy::Initialize(const std::string& stageName)
     m_enemies.clear();  // 既存の敵を削除
 
     // JSONデータの読み込み
-    std::ifstream file("Resources/EnemyData1.json");
-    /*if (!file.is_open()) 
+    std::ifstream file("Resources/EnemyData2.json");
+    if (!file.is_open()) 
     {
         std::cerr << "Failed to open stage data file!" << std::endl;
         return;
-    }*/
+    }
 
     json stageData;
     file >> stageData;  // JSONデータを読み込む
@@ -36,14 +46,18 @@ void StageEnemy::Initialize(const std::string& stageName)
     {
         for (const auto& enemyData : stageData[stageName])
         {
+            // 敵の種類を取得する
             std::string type = enemyData["type"];
-            DirectX::SimpleMath::Vector3 position(
+
+            // 敵の位置を取得する
+            DirectX::SimpleMath::Vector3 position
+            (
                 enemyData["position"][0].get<float>(),
                 enemyData["position"][1].get<float>(),
                 enemyData["position"][2].get<float>()
             );
 
-            // ファクトリーを使って敵を生成
+            // ファクトリーで敵を生成
             auto enemy = EnemyFactory::CreateEnemy(type, m_player);
             if (enemy)
             {
@@ -60,7 +74,8 @@ void StageEnemy::Initialize(const std::string& stageName)
 //---------------------------------------------------------
 // 
 //---------------------------------------------------------
-void StageEnemy::Update() {
+void StageEnemy::Update()
+{
     m_isChangeScene = false;  // シーン遷移フラグをON
 
     for (auto& enemy : m_enemies) 
@@ -73,7 +88,7 @@ void StageEnemy::Update() {
 }
 
 //---------------------------------------------------------
-// 
+// 描画する
 //---------------------------------------------------------
 void StageEnemy::Render() 
 {
@@ -84,7 +99,7 @@ void StageEnemy::Render()
 }
 
 //---------------------------------------------------------
-// 
+// 終了処理
 //---------------------------------------------------------
 void StageEnemy::Finalize() 
 {

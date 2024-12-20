@@ -27,7 +27,7 @@ public:
 public:
 	// コンストラクタ
 	Stage1_2(std::string stageName);
-	// コンストラクタ
+	// デストラクタ
 	~Stage1_2() override;
 	// 初期化する
 	void Initialize() override;
