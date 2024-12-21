@@ -63,11 +63,15 @@ void PlayerBody::Render()
 	view = Graphics::GetInstance()->GetViewMatrix();
 	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
+	// プレイヤーの回転をクォータニオンで作成
+	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
+
+	// 回転行列を作成
+	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
+	world *= Matrix::CreateTranslation(m_player->GetPosition()); 
+
 	// プレイヤーの描画
-	Matrix world = Matrix::CreateScale(1.f);
-	world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
-	world *= Matrix::CreateTranslation(m_player->GetPosition());
-	m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+	m_model->Draw(context, *states, world, view, proj);
 }
 
 //---------------------------------------------------------

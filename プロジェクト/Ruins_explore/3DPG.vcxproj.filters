@@ -237,13 +237,7 @@
     <ClInclude Include="Game\Player\Parts\PlayerBody.h">
       <Filter>Game\Player\Parts</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\Parts\PlayerLeftFoot.h">
-      <Filter>Game\Player\Parts</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Player\Parts\PlayerLeftHand.h">
-      <Filter>Game\Player\Parts</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Parts\PlayerRightFoot.h">
       <Filter>Game\Player\Parts</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\Parts\PlayerRightHand.h">
@@ -431,13 +425,7 @@
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp">
       <Filter>Game\Player\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\Parts\PlayerLeftFoot.cpp">
-      <Filter>Game\Player\Parts</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Player\Parts\PlayerLeftHand.cpp">
-      <Filter>Game\Player\Parts</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\Parts\PlayerRightFoot.cpp">
       <Filter>Game\Player\Parts</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp">

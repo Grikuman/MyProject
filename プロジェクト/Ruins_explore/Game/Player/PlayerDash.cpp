@@ -51,10 +51,6 @@ void PlayerDash::Update(const float& elapsedTime)
     UNREFERENCED_PARAMETER(elapsedTime);
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
-    
-    // プレイヤー入力
-    PlayerInput();
-
     // ダッシュする
     Dash();
 }
@@ -78,30 +74,25 @@ void PlayerDash::Finalize()
 }
 
 //---------------------------------------------------------
-// プレイヤー入力
-//---------------------------------------------------------
-void PlayerDash::PlayerInput()
-{
-    auto kb = InputDevice::GetInstance()->GetKeyboardState();
-
-    // プレイヤー入力
-    if (kb->A)
-    {
-        m_player->SetAngle(m_player->GetAngle() + 3.0f); // 回転
-    }
-    if (kb->D)
-    {
-        m_player->SetAngle(m_player->GetAngle() - 3.0f); // 回転
-    }
-}
-
-//---------------------------------------------------------
 // ダッシュ処理
 //---------------------------------------------------------
 void PlayerDash::Dash()
 {
+
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    // プレイヤー入力
+    if (kb->A || kb->Left)
+    {
+        m_player->AddRotation(3.0f); // 回転
+    }
+    if (kb->D || kb->Right)
+    {
+        m_player->AddRotation(3.0f); // 回転
+    }
+    
     // 真っ直ぐ進む
-    m_player->SetVelocity(Vector3::Forward * 4.f);
+    m_player->AddVelocity(Vector3::Forward * 4.f);
     // ダッシュ時間を減少させる
     m_dashTime--;
 
@@ -113,4 +104,11 @@ void PlayerDash::Dash()
         // アイドリング状態へ移行する
         m_player->ChangeState(m_player->GetPlayerWalk());
     }
+
+    // 移動速度を補正
+    m_player->ApplyVelocity(0.05f); 
+
+    // クォータニオンを用いて移動
+    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
+    m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), rotation)); 
 }

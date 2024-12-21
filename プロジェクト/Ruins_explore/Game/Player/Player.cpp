@@ -41,8 +41,6 @@ Player::Player()
 	m_parts.push_back(std::make_unique<PlayerBody>(this));
 	m_parts.push_back(std::make_unique<PlayerRightHand>(this));
 	m_parts.push_back(std::make_unique<PlayerLeftHand>(this));
-	m_parts.push_back(std::make_unique<PlayerRightFoot>(this));
-	m_parts.push_back(std::make_unique<PlayerLeftFoot>(this));
 
 	// プレイヤーのステートを作成
 	m_playerWalk    = std::make_unique<PlayerWalk>(this);
@@ -92,8 +90,6 @@ void Player::Initialize()
 void Player::Update(float elapsedTime)
 {	
 	UNREFERENCED_PARAMETER(elapsedTime);
-    // キーボードを取得する
-	auto kb = InputDevice::GetInstance()->GetKeyboardState();
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
 
@@ -105,15 +101,10 @@ void Player::Update(float elapsedTime)
 	//現在のステートを更新する
 	m_currentState->Update(elapsedTime);
 
-	// 回転行列を作成する
-	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_playerAngle));
-	// 移動量を補正する
-	m_velocity *= 0.05f;
-	// 回転を加味して実際に移動する
-	m_position += Vector3::Transform(m_velocity, matrix);
+	// Y軸を中心にカメラも回転させる
+	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_playerAngle)); 
+	m_camera->Update(m_position, Matrix::CreateFromQuaternion(rotation)); 
 
-	// カメラを更新する
-	m_camera->Update(m_position, matrix);
 	// UI管理クラスを更新する
 	m_playerUIManager->Update();
 	// エフェクト管理クラスを更新する
@@ -122,11 +113,6 @@ void Player::Update(float elapsedTime)
 	for(auto& parts : m_parts)
 	{
 		parts->Update();
-	}
-
-	if (kb->F)
-	{
-		ChangeState(m_playerAttack.get());
 	}
 
 	// ビューとプロジェクションを設定する

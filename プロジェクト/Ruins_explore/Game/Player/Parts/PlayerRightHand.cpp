@@ -54,20 +54,22 @@ void PlayerRightHand::Update()
 //---------------------------------------------------------
 void PlayerRightHand::Render()
 {
+	using namespace DirectX::SimpleMath;
 	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext(); 
+	auto states = Graphics::GetInstance()->GetCommonStates(); 
 	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj;
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
+	DirectX::SimpleMath::Matrix view, proj; 
+	view = Graphics::GetInstance()->GetViewMatrix(); 
+	proj = Graphics::GetInstance()->GetProjectionMatrix(); 
 
-	// ワールド計算
-	Matrix world = Matrix::CreateScale(1.f);
-	world *= Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle()));
+	// プレイヤーの回転をクォータニオンで作成
+	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
+	// 回転行列に変換
+	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
 	// 中央からずらす座標
-	Vector3 shiftPosition = Vector3::Transform(Vector3(1.4f,0.8f,0.f), Matrix::CreateRotationY(XMConvertToRadians(m_player->GetAngle())));
+	Vector3 shiftPosition = Vector3::Transform(Vector3(1.4f, 0.8f, 0.f), Matrix::CreateFromQuaternion(rotation));
+
 	// 最終計算
 	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
 

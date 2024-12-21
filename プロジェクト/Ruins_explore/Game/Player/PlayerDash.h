@@ -29,10 +29,9 @@ public:
 	void Finalize();
 
 private:
-	// プレイヤー入力
-	void PlayerInput();
 	// ダッシュ処理
 	void Dash();
+
 private:
 	// ダッシュを行う時間
 	const float DASHTIME = 15;

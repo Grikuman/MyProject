@@ -12,8 +12,6 @@
 #include "Parts/PlayerBody.h"
 #include "Parts/PlayerRightHand.h"
 #include "Parts/PlayerLeftHand.h"
-#include "Parts/PlayerRightFoot.h"
-#include "Parts/PlayerLeftFoot.h"
 
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
@@ -77,10 +75,12 @@ public:
 public:
 	// 位置を設定する
 	void SetPosition(const DirectX::SimpleMath::Vector3& position) { m_position = position; }
-	// 速度を設定する
-	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
-	// 角度を設定する
-	void SetAngle(const float angle)                               { m_playerAngle = angle; }
+	// 速度を加算する
+	void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
+	// 速度に係数をかける
+	void ApplyVelocity(float scale)                                { m_velocity *= scale; }
+	// 回転速度を加算する
+	void AddRotation(const float angle)                            { m_playerAngle += angle; }
 	// 体力を設定する
 	void SetHP(const int hp)                                       { m_hp = hp; }
 	// スタミナを設定する
@@ -119,8 +119,9 @@ private:
 	DirectX::SimpleMath::Vector3 m_position;
 	// 速度
 	DirectX::SimpleMath::Vector3 m_velocity;
-	// 角度
+	// 回転
 	float m_playerAngle;
+
 	// 体力
 	int m_hp;
 	// 最大体力
