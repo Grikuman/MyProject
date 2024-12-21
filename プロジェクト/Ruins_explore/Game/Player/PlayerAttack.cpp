@@ -67,7 +67,7 @@ void PlayerAttack::Update(const float& elapsedTime)
     if (m_cnt >= 30)
     {
         m_cnt = 0;
-        m_player->ChangeState(m_player->GetPlayerIdling());
+        m_player->ChangeState(m_player->GetPlayerWalk());
     }
 }
 

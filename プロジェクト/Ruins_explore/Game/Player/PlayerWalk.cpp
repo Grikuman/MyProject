@@ -1,10 +1,10 @@
 /*
-    ファイル名：PlayerIdling.cpp
-    　　　概要：プレイヤーのアイドリング状態を管理するクラス
+    ファイル名：PlayerWalk.cpp
+    　　　概要：プレイヤーの歩行状態を管理するクラス
 */
 #include "pch.h"
 #include "Player.h"
-#include "PlayerIdling.h"
+#include "PlayerWalk.h"
 #include "WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
@@ -16,7 +16,7 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerIdling::PlayerIdling(Player* player)
+PlayerWalk::PlayerWalk(Player* player)
 	:
     m_player(player),
 	m_model{}
@@ -26,7 +26,7 @@ PlayerIdling::PlayerIdling(Player* player)
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerIdling::~PlayerIdling()
+PlayerWalk::~PlayerWalk()
 {
 
 }
@@ -34,7 +34,7 @@ PlayerIdling::~PlayerIdling()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerIdling::Initialize()
+void PlayerWalk::Initialize()
 {
     // モデルを取得する
     m_model = Resources::GetInstance()->GetModel(L"Player");
@@ -43,12 +43,12 @@ void PlayerIdling::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerIdling::Update(const float& elapsedTime)
+void PlayerWalk::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
     
     // プレイヤー入力
-    PlayerInput();
+    PlayerMove();
 
     // キーボードを取得する
     auto dashkb = InputDevice::GetInstance()->GetKeyboardStateTracker();
@@ -70,7 +70,7 @@ void PlayerIdling::Update(const float& elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerIdling::Render()
+void PlayerWalk::Render()
 {
     
 }
@@ -79,7 +79,7 @@ void PlayerIdling::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void PlayerIdling::Finalize()
+void PlayerWalk::Finalize()
 {
     
 }
@@ -87,7 +87,7 @@ void PlayerIdling::Finalize()
 //---------------------------------------------------------
 // プレイヤー入力
 //---------------------------------------------------------
-void PlayerIdling::PlayerInput()
+void PlayerWalk::PlayerMove()
 {
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
     if (kb->W)

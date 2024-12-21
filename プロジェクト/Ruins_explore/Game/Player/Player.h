@@ -4,7 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
-#include "PlayerIdling.h"
+#include "PlayerWalk.h"
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
 
@@ -42,7 +42,7 @@ public:
 	void Finalize();
 public:
 	// プレイヤーアイドリングを取得する
-	PlayerIdling* GetPlayerIdling()                  { return m_playerIdling.get(); }
+	PlayerWalk* GetPlayerWalk()                      { return m_playerWalk.get(); }
 	// プレイヤーアタックを取得する
 	PlayerAttack* GetPlayerAttack()                  { return m_playerAttack.get(); }
 	// プレイヤーダッシュを取得する
@@ -109,11 +109,11 @@ private:
 	std::vector<std::unique_ptr<IPlayerPart>> m_parts;
 
 	// アイドリング状態
-	std::unique_ptr<PlayerIdling> m_playerIdling;
+	std::unique_ptr<PlayerWalk>   m_playerWalk;
 	// アタック状態
 	std::unique_ptr<PlayerAttack> m_playerAttack;
 	// ダッシュ状態
-	std::unique_ptr<PlayerDash> m_playerDash;
+	std::unique_ptr<PlayerDash>   m_playerDash;
 
 	// 位置
 	DirectX::SimpleMath::Vector3 m_position;

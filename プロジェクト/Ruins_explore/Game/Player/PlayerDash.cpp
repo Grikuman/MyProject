@@ -111,6 +111,6 @@ void PlayerDash::Dash()
         // ダッシュ時間をリセットする
         m_dashTime = DASHTIME;
         // アイドリング状態へ移行する
-        m_player->ChangeState(m_player->GetPlayerIdling());
+        m_player->ChangeState(m_player->GetPlayerWalk());
     }
 }

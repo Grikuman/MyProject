@@ -1,6 +1,6 @@
 /*
-	ファイル名：PlayerIdling.h
-	　　　概要：プレイヤーのアイドリング状態を管理するクラス
+	ファイル名：PlayerWalk.h
+	　　　概要：プレイヤーの歩行状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
@@ -8,13 +8,13 @@
 // 前方宣言
 class Player;
 
-class PlayerIdling : public IPlayerState
+class PlayerWalk : public IPlayerState
 {
 public:
 	// コンストラクタ
-	PlayerIdling(Player* player);
+	PlayerWalk(Player* player);
 	// デストラクタ
-	~PlayerIdling();
+	~PlayerWalk();
 	// 初期化する
 	void Initialize();
 	// 更新する
@@ -24,8 +24,10 @@ public:
 	// 後処理する
 	void Finalize();
 private:
-	// プレイヤー入力
-	void PlayerInput();
+	// プレイヤー移動
+	void PlayerMove();
+	// 歩行からダッシュへ
+	void WalkToDash();
 
 private:
 	//プレイヤー

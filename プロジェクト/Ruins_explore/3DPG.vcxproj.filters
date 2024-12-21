@@ -150,7 +150,7 @@
     <ClInclude Include="Game\Scene\ResultScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\PlayerIdling.h">
+    <ClInclude Include="Game\Player\PlayerWalk.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\PlayerAttack.h">
@@ -344,7 +344,7 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\PlayerIdling.cpp">
+    <ClCompile Include="Game\Player\PlayerWalk.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\PlayerAttack.cpp">

@@ -21,7 +21,7 @@ Player::Player()
 	:
 	m_playerUIManager  {},
 	m_playerEffectManager{},
-	m_playerIdling     {},
+	m_playerWalk{},
 	m_playerAttack     {},
 	m_currentState     {},
 	m_camera           {},
@@ -45,7 +45,7 @@ Player::Player()
 	m_parts.push_back(std::make_unique<PlayerLeftFoot>(this));
 
 	// プレイヤーのステートを作成
-	m_playerIdling  = std::make_unique<PlayerIdling>(this);
+	m_playerWalk    = std::make_unique<PlayerWalk>(this);
 	m_playerAttack  = std::make_unique<PlayerAttack>(this);
 	m_playerDash    = std::make_unique<PlayerDash>(this);
 
@@ -74,7 +74,7 @@ void Player::Initialize()
 		parts->Initialize();
 	}
 	// ステートを初期化する
-	m_playerIdling->Initialize();
+	m_playerWalk->Initialize();
 	m_playerAttack->Initialize();
 	m_playerDash->Initialize();
 	// UI管理クラスを初期化する
@@ -83,7 +83,7 @@ void Player::Initialize()
 	m_playerEffectManager->Initialize();
 
 	// 初期ステートを設定
-	m_currentState = m_playerIdling.get();
+	m_currentState = m_playerWalk.get();
 }
 
 //---------------------------------------------------------
@@ -166,12 +166,12 @@ void Player::Finalize()
 	}
 	m_playerUIManager->Finalize();
 	m_playerEffectManager->Finalize();
-	m_playerIdling.reset();
+	m_playerWalk.reset();
 	m_playerAttack.reset();
 	m_playerDash.reset();
 }
 //---------------------------------------------------------
-// 更新する
+// カメラを取得する
 //---------------------------------------------------------
 NRLib::TPS_Camera* Player::GetCamera()
 {
