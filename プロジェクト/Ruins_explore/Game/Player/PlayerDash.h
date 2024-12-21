@@ -1,9 +1,9 @@
 /*
-	ファイル: PlayerDash.h
-	クラス  : プレイヤーダッシュクラス
+	ファイル名：PlayerDash.h
+	　　　概要：プレイヤーのダッシュ状態を管理するクラス
 */
 #pragma once
-#include "Game/Interface/IState.h"
+#include "Game/Interface/IPlayerState.h"
 
 // 前方宣言
 class Player;
@@ -12,7 +12,7 @@ namespace NRLib
 	class TPS_Camera;
 };
 
-class PlayerDash : public IState
+class PlayerDash : public IPlayerState
 {
 public:
 	// コンストラクタ

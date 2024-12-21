@@ -1,6 +1,6 @@
 /*
-	ファイル: RockBossSearch.h
-	クラス  : 岩ボスサーチクラス
+	ファイル名：RockBossSearch.h
+	　　　概要：岩ボスの探索状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

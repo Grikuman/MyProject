@@ -1,6 +1,6 @@
 /*
-	ファイル: TunomaruSearch.h
-	クラス  : つのまるサーチクラス
+	ファイル名：TunomaruSearch.h
+	　　　概要：つのまるの索敵状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

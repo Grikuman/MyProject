@@ -1,17 +1,20 @@
+/*
+    ファイル名：StageEnemy.cpp
+    　　　概要：ステージの敵を管理するクラス
+*/
 #include "pch.h"
 #include "StageEnemy.h"
 #include <fstream>
 #include <iostream>
 
 #include <nlohmann/json.hpp>
-using json = nlohmann::json;
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 StageEnemy::StageEnemy(Player* player)
     : m_player(player)
-    , m_isChangeScene(false) 
+    , m_isChangeStage(false) 
 {
 
 }
@@ -28,13 +31,17 @@ StageEnemy::~StageEnemy()
 //---------------------------------------------------------
 void StageEnemy::Initialize(const std::string& stageName)
 {
-    m_enemies.clear();  // 既存の敵を削除
+    using json = nlohmann::json;
+
+    // 既存の敵を削除
+    m_enemies.clear();
 
     // JSONデータの読み込み
-    std::ifstream file("Resources/EnemyData2.json");
+    std::ifstream file("Resources/EnemyData/EnemyData1.json");
+
+    // 読み込めない場合は処理をスキップ
     if (!file.is_open()) 
     {
-        std::cerr << "Failed to open stage data file!" << std::endl;
         return;
     }
 
@@ -42,8 +49,10 @@ void StageEnemy::Initialize(const std::string& stageName)
     file >> stageData;  // JSONデータを読み込む
 
     // ステージデータを取得
+    // ステージが存在したら
     if (stageData.contains(stageName))
     {
+        // 敵データを全て処理する
         for (const auto& enemyData : stageData[stageName])
         {
             // 敵の種類を取得する
@@ -66,24 +75,22 @@ void StageEnemy::Initialize(const std::string& stageName)
             }
         }
     }
-    else {
-        std::cerr << "Stage name not found in the data!" << std::endl;
-    }
 }
 
 //---------------------------------------------------------
-// 
+// 更新する
 //---------------------------------------------------------
 void StageEnemy::Update()
 {
-    m_isChangeScene = false;  // シーン遷移フラグをON
+    m_isChangeStage = true;  // ステージ遷移フラグをON
 
     for (auto& enemy : m_enemies) 
     {
         enemy->Update();
-        //if (!enemy->IsAlive()) {
-        //    m_isChangeScene = false;  // 敵が全滅したらフラグをOFF
-        //}
+        if (enemy->IsAlive())
+        {
+            m_isChangeStage = false;  // 敵が生きていたらフラグをOFF
+        }
     }
 }
 
@@ -107,11 +114,4 @@ void StageEnemy::Finalize()
     {
         enemy->Finalize();
     }
-}
-
-//---------------------------------------------------------
-// 
-//---------------------------------------------------------
-bool StageEnemy::IsChangeScene() const {
-    return m_isChangeScene;
 }

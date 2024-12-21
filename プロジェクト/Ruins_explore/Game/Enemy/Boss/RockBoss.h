@@ -1,6 +1,6 @@
 /*
-    ファイル: RockBoss.h
-    クラス  : 岩ボスクラス
+    ファイル名：RockBoss.h
+    　　　概要：岩ボスの情報を管理するクラス
 */
 #pragma once
 #include <memory>
@@ -19,17 +19,6 @@ class Player;
 class RockBoss : public IEnemy
 {
 public:
-    // プレイヤーを取得する
-    Player* GetPlayer()                                            { return m_player; }
-
-    // 岩ボスサーチを取得する
-    RockBossSearch* GetRockBossSearch()                            { return m_RockBossSearch.get(); }
-    // 岩ボスアタックを取得する
-    RockBossAttack* GetRockBossAttack()                            { return m_RockBossAttack.get(); }
-    // 岩ボスダウンを取得する
-    RockBossDown* GetRockBossDown()                                { return m_RockBossDown.get(); }
-
-public:
     // 位置を設定する
     void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
     // 速度を設定する
@@ -42,6 +31,8 @@ public:
     void SetHit(const bool isHit)                                  { m_isHit = isHit; }
     // 生存状況を設定する
     void SetAlive(const bool isAlive)                              { m_isAlive = isAlive; }
+    // ダメージを与える
+    void Damage(const float damage) override;
 
     // ステートを変更する
     void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
@@ -59,7 +50,20 @@ public:
     // ダメージを受けているか取得する
     bool GetHit() const                                            { return m_isHit; }
     // 生存状況を取得する
-    bool GetIsAlive() const                                        { return m_isAlive; }
+    bool IsAlive() const override                                  { return m_isAlive; }
+    // バウンディングスフィアを取得する
+    DirectX::BoundingSphere GetBoundingSphere() const override;
+
+public:
+    // プレイヤーを取得する
+    Player* GetPlayer()                                            { return m_player; }
+
+    // 岩ボスサーチを取得する
+    RockBossSearch* GetRockBossSearch()                            { return m_RockBossSearch.get(); }
+    // 岩ボスアタックを取得する
+    RockBossAttack* GetRockBossAttack()                            { return m_RockBossAttack.get(); }
+    // 岩ボスダウンを取得する
+    RockBossDown* GetRockBossDown()                                { return m_RockBossDown.get(); }
     
 public:
     // コンストラクタ
@@ -74,11 +78,6 @@ public:
     void Render();
     // 後処理をする
     void Finalize();
-public:
-    // バウンディングスフィアを取得する
-    DirectX::BoundingSphere GetBoundingSphere() const override;
-    // ダメージを与える
-    void Damage(const float damage) override;
 
 private:
     // 生存しているか判定する

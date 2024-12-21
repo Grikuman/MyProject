@@ -1,12 +1,16 @@
 /*
-	@file	
-	@brief	
+	ファイル名：IEnemy.h
+	　　　概要：敵のインターフェース
 */
 #pragma once
 #include "ICollisionObject.h"
 
 class IEnemy : public ICollisionObject
 {
+public:
+	// 生存しているか
+	virtual bool IsAlive() const = 0;
+
 public:
 	virtual ~IEnemy() = default;
 	// 初期化する

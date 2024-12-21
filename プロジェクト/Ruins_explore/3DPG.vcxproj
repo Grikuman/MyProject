@@ -189,7 +189,6 @@
     <ClInclude Include="Game\Enemy\Boss\RockBossAttack.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossDown.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h" />
-    <ClInclude Include="Game\Enemy\EnemySpawner.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
@@ -202,7 +201,7 @@
     <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
     <ClInclude Include="Game\Interface\IStage.h" />
-    <ClInclude Include="Game\Interface\IState.h" />
+    <ClInclude Include="Game\Interface\IPlayerState.h" />
     <ClInclude Include="Game\Player\Parts\PlayerBody.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftFoot.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftHand.h" />
@@ -261,7 +260,6 @@
     <ClCompile Include="Game\Enemy\Boss\RockBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\Boss\RockBossDown.cpp" />
     <ClCompile Include="Game\Enemy\Boss\RockBossSearch.cpp" />
-    <ClCompile Include="Game\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />

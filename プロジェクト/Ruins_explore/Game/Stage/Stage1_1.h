@@ -1,6 +1,6 @@
 /*
-	@file	Stage1-1.h
-	@brief	プレイシーンクラス
+	ファイル名：Stage1_1.h
+	　　　概要：ステージ1_1を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IStage.h"
@@ -8,7 +8,6 @@
 
 #include "Game/StageObject/Sky.h"
 #include "Game/StageObject/Field.h"
-#include "Game/Enemy/EnemySpawner.h"
 #include "Game/UI/TimeUI.h"
 #include "Game/Stage/StageEnemy.h"
 
@@ -24,6 +23,7 @@ public:
 	StageID GetNextStageID() const override { return StageID::Stage1_2; }
 	// ステージをクリアしたかどうか
 	bool IsClearStage() const override { return m_isClearStage; }
+
 public:
 	// コンストラクタ
 	Stage1_1(std::string stageName);
@@ -53,8 +53,6 @@ private:
 	std::unique_ptr<Sky> m_sky;
 	// フィールド
 	std::unique_ptr<Field> m_field;
-	// エネミースポナー
-	std::unique_ptr<EnemySpawner> m_enemySpawner;
 	//TextUI
 	std::unique_ptr<TimeUI> m_timeUI;
 	// プレイシーンUI

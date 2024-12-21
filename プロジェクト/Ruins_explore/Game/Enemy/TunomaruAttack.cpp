@@ -1,6 +1,6 @@
 /*
-	ファイル: TunomaruAttack.cpp
-	クラス  : つのまるアタッククラス
+	ファイル名：TunomaruAttack.cpp
+	　　　概要：つのまるの攻撃状態を管理するクラス
 */
 #include "pch.h"
 #include "Tunomaru.h"

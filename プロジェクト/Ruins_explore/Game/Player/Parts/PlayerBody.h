@@ -1,6 +1,6 @@
 /*
-	ファイル: PlayerBody.h
-	クラス  : プレイヤークラス
+	ファイル名：PlayerBody.h
+	　　　概要：プレイヤーの体を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerPart.h"

@@ -1,6 +1,6 @@
 /*
-    ファイル: PlayerDash.cpp
-    クラス  : プレイヤーダッシュクラス
+    ファイル名：PlayerDash.cpp
+    　　　概要：プレイヤーのダッシュ状態を管理するクラス
 */
 #include "pch.h"
 #include "Player.h"

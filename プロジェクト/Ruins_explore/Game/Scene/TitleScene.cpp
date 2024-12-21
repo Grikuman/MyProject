@@ -1,6 +1,6 @@
 /*
-	@file	TitleScene.cpp
-	@brief	プレイシーンクラス
+	ファイル名：TitleScene.cpp
+	　　　概要：タイトルシーンを管理するクラス
 */
 #include "pch.h"
 #include "TitleScene.h"

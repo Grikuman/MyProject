@@ -21,6 +21,7 @@ using namespace Microsoft::WRL;
 //---------------------------------------------------------
 TitleSceneUI::TitleSceneUI(TitleScene* titlescene)
     :
+    m_spriteBatch{},
     m_ruinsExplorer{},
     m_titleSelect{},
     m_selectIcon{},

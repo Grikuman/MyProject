@@ -1,6 +1,6 @@
 /*
-	@file	PlayScene.cpp
-	@brief	プレイシーンクラス
+	ファイル名：PlayScene.cpp
+	　　　概要：プレイシーンを管理するクラス
 */
 #include "pch.h"
 #include "PlayScene.h"
@@ -89,7 +89,9 @@ void PlayScene::TransitionToNextStage()
 		m_currentStage = StageFactory::CreateStage(nextStageID);
 		m_currentStage->Initialize();
 	}
-	else {
+
+	else
+	{
 		// 全ステージ終了後、シーン変更フラグを設定
 		m_isChangeScene = true;
 	}

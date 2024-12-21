@@ -1,6 +1,6 @@
 /*
-	ファイル: RockBossAttck.h
-	クラス  : 岩ボスアタッククラス
+	ファイル名：RockBossAttack.h
+	　　　概要：岩ボスの攻撃状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

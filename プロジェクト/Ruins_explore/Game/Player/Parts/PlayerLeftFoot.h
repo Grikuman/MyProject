@@ -1,6 +1,6 @@
 /*
-	ファイル: PlayerRightFoot.h
-	クラス  : プレイヤークラス
+	ファイル名：PlayerLeftFoot.h
+	　　　概要：プレイヤーの左足を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerPart.h"

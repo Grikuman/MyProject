@@ -1,3 +1,7 @@
+/*
+    ファイル名：PlayerEffectManager.h
+    　　　概要：プレイヤーのエフェクトクラスを管理するクラス
+*/
 #pragma once
 #include "InvincibleEffect.h"
 

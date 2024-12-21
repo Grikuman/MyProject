@@ -1,6 +1,6 @@
 /*
-	ファイル: PlayerRightFoot.cpp
-	クラス  : プレイヤークラス
+    ファイル名：PlayerRightFoot.h
+    　　　概要：プレイヤーの右足を管理するクラス
 */
 #include "pch.h"
 #include "PlayerRightFoot.h"

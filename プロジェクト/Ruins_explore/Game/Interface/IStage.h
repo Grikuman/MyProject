@@ -1,6 +1,6 @@
 /*
-	@file	IStageBase.h
-	@brief	ステージのインターフェース
+	ファイル名：IStage.h
+	　　　概要：ステージのインターフェース
 */
 #pragma once
 

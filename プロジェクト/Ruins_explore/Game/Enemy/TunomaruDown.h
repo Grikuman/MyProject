@@ -1,6 +1,6 @@
 /*
-	ファイル: TunomaruDown.h
-	クラス  : つのまるダウンクラス
+	ファイル名：TunomaruDown.h
+	　　　概要：つのまるのダウン状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

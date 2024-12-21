@@ -1,6 +1,6 @@
 /*
-	ファイル: Player.cpp
-	クラス  : プレイヤークラス
+	ファイル名：Player.cpp
+	　　　概要：プレイヤーの情報を管理するクラス
 */
 #include "pch.h"
 #include "Player.h"
@@ -200,7 +200,7 @@ bool Player::IsAttack()
 //---------------------------------------------------------
 // ステートを変更する
 //---------------------------------------------------------
-void Player::ChangeState(IState* newState)
+void Player::ChangeState(IPlayerState* newState)
 {
 	m_currentState = newState;
 }

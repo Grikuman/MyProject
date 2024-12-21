@@ -1,6 +1,6 @@
 /*
-	@file	Stage1-1.h
-	@brief	プレイシーンクラス
+	ファイル名：Stage1_2.h
+	　　　概要：ステージ1_2を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IStage.h"
@@ -8,9 +8,8 @@
 
 #include "Game/StageObject/Sky.h"
 #include "Game/StageObject/Field.h"
-#include "Game/Enemy/EnemySpawner.h"
 #include "Game/UI/TimeUI.h"
-
+#include "Game/Stage/StageEnemy.h"
 
 namespace NRLib
 {
@@ -27,7 +26,7 @@ public:
 public:
 	// コンストラクタ
 	Stage1_2(std::string stageName);
-	// デストラクタ
+	// コンストラクタ
 	~Stage1_2() override;
 	// 初期化する
 	void Initialize() override;
@@ -43,14 +42,16 @@ private:
 	static const int MAX_GAMETIME = 60;
 
 private:
+	// エネミー
+	std::unique_ptr<StageEnemy> m_stageEnemy;
+	// ステージの名前
+	std::string m_stageName;
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// 天球
 	std::unique_ptr<Sky> m_sky;
 	// フィールド
 	std::unique_ptr<Field> m_field;
-	// エネミースポナー
-	std::unique_ptr<EnemySpawner> m_enemySpawner;
 	//TextUI
 	std::unique_ptr<TimeUI> m_timeUI;
 	// プレイシーンUI

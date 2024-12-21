@@ -1,6 +1,6 @@
 /*
-	@file	MapSelectScene.h
-	@brief	マップセレクトシーンクラス
+	ファイル名：MapSelectScene.h
+	　　　概要：マップセレクトシーンを管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"

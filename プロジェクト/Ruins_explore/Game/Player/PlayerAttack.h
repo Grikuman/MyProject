@@ -1,9 +1,9 @@
 /*
-	ファイル: PlayerAttack.h
-	クラス  : プレイヤーアタッククラス
+	ファイル名：PlayerAttack.h
+	　　　概要：プレイヤーの攻撃状態を管理するクラス
 */
 #pragma once
-#include "Game/Interface/IState.h"
+#include "Game/Interface/IPlayerState.h"
 
 // 前方宣言
 class Player;
@@ -13,7 +13,7 @@ namespace NRLib
 	class TPS_Camera;
 };
 
-class PlayerAttack : public IState
+class PlayerAttack : public IPlayerState
 {
 public:
 	// 攻撃範囲を取得

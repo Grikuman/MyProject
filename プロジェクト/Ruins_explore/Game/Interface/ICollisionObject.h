@@ -1,6 +1,6 @@
 /*
-    ファイル:
-    クラス  :
+    ファイル名：ICollisionObject.h
+    　　　概要：当たり判定のある物体のインターフェース
 */
 
 #pragma once

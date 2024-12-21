@@ -1,6 +1,6 @@
 /*
-    ファイル: PlayerAttack.cpp
-    クラス  : プレイヤーアタッククラス
+    ファイル名：PlayerAttack.cpp
+    　　　概要：プレイヤーの攻撃状態を管理するクラス
 */
 #include "pch.h"
 #include "Player.h"

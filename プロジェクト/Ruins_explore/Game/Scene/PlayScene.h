@@ -1,6 +1,6 @@
 /*
-	@file	PlayScene.h
-	@brief	プレイシーンクラス
+	ファイル名：PlayScene.h
+	　　　概要：プレイシーンを管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"

@@ -23,7 +23,7 @@ public:
     // 後処理する
     void Finalize();
 private:
-    // Player
+    // プレイヤー
     Player* m_player;
 
     //スプライトバッチ

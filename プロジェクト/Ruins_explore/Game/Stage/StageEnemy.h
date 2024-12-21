@@ -1,34 +1,32 @@
-#ifndef ENEMY_SPAWNER_H
-#define ENEMY_SPAWNER_H
-
+/*
+    ファイル名：StageEnemy.h
+    　　　概要：ステージの敵を管理するクラス
+*/
+#pragma once
 #include <string>
 #include <vector>
 #include "Game/Player/Player.h"
 #include "Game/Interface/IEnemy.h"
 #include "Game/Factory/EnemyFactory.h"
 
-class StageEnemy 
+class StageEnemy
 {
 public:
-    // シーン遷移フラグの取得
-    bool IsChangeScene() const;
+    // ステージ遷移フラグの取得
+    bool IsChangeStage() const { return m_isChangeStage; };
 
 public:
     // コンストラクタ
     StageEnemy(Player* player);
-
+    // デストラクト
     ~StageEnemy();
-
     // 初期化処理
     void Initialize(const std::string& stageName);
-
     // 更新処理
     void Update();
-
     // 描画処理
     void Render();
-
-    // 後始末
+    // 終了処理
     void Finalize();
 
 private:
@@ -36,8 +34,6 @@ private:
     Player* m_player;
     // 敵のリスト
     std::vector<std::unique_ptr<IEnemy>> m_enemies;
-    // シーン遷移フラグ
-    bool m_isChangeScene;
+    // ステージ遷移フラグ
+    bool m_isChangeStage;
 };
-
-#endif // ENEMY_SPAWNER_H

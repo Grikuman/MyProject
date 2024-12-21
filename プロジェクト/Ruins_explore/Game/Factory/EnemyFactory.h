@@ -1,3 +1,7 @@
+/*
+    ファイル名：EnemyFactory.h
+    　　　概要：敵を生成するクラス
+*/
 #pragma once
 #include "Game/Interface/IEnemy.h"
 #include "Game/Enemy/Tunomaru.h"

@@ -1,6 +1,6 @@
 /*
-	ファイル: TunomaruDown.cpp
-	クラス  : つのまるダウンクラス
+	ファイル名：TunomaruDown.cpp
+	　　　概要：つのまるのダウン状態を管理するクラス
 */
 #pragma once
 #include "pch.h"

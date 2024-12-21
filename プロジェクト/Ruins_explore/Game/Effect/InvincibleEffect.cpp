@@ -1,3 +1,7 @@
+/*
+    ファイル名：InvincibleEffect.cpp
+    　　　概要：プレイヤーの無敵エフェクトを管理するクラス
+*/
 #pragma once
 #include "pch.h"
 #include "Game/Effect/InvincibleEffect.h"

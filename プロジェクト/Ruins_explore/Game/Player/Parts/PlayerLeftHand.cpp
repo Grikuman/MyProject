@@ -1,6 +1,6 @@
 /*
-	ファイル: PlayerLeftHand.cpp
-	クラス  : プレイヤークラス
+	ファイル名：PlayerLeftHand.cpp
+	　　　概要：プレイヤーの左手を管理するクラス
 */
 #include "pch.h"
 #include "PlayerLeftHand.h"

@@ -1,3 +1,7 @@
+/*
+    ファイル名：SwordEffect.h
+    　　　概要：プレイヤーの斬撃エフェクトを管理するクラス
+*/
 #pragma once
 #include <PrimitiveBatch.h>
 #include <VertexTypes.h>

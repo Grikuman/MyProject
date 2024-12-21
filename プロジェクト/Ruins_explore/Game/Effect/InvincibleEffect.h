@@ -1,3 +1,7 @@
+/*
+    ファイル名：InvincibleEffect.h
+    　　　概要：プレイヤーの無敵エフェクトを管理するクラス
+*/
 #pragma once
 class CommonResources;
 class Player;

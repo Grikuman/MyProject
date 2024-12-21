@@ -1,6 +1,6 @@
 /*
-    ファイル: RockBossSearch.cpp
-    クラス  : 岩ボスサーチクラス
+    ファイル名：RockBossSearch.cpp
+    　　　概要：岩ボスの探索状態を管理するクラス
 */
 #include "pch.h"
 #include "Game/Enemy/Boss/RockBoss.h"

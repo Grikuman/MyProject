@@ -1,6 +1,6 @@
 /*
-	@file	Stage1_2.cpp
-	@brief	プレイシーンクラス
+	ファイル名：Stage1_2.cpp
+	　　　概要：ステージ1_2を管理するクラス
 */
 #include "pch.h"
 #include "Stage1_2.h"
@@ -25,11 +25,12 @@
 //---------------------------------------------------------
 Stage1_2::Stage1_2(std::string stageName)
 	:
+	m_stageEnemy{},
+	m_stageName{"Stage1_2"},
 	m_isClearStage{},
 	m_player{},
 	m_sky{},
 	m_field{},
-	m_enemySpawner{},
 	m_timeUI{},
 	m_gameTime{}
 {
@@ -53,16 +54,16 @@ void Stage1_2::Initialize()
 	// プレイヤーを作成
 	m_player = std::make_unique<Player>();
 	m_player->Initialize();
+	// 敵を作成する
+	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
+	m_stageEnemy->Initialize(m_stageName);
 	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize();
 	// フィールドを作成
 	m_field = std::make_unique<Field>();
 	m_field->Initialize();
-	// エネミースポナーを作成
-	m_enemySpawner = std::make_unique<EnemySpawner>(m_player.get());
-	m_enemySpawner->Initialize();
-	//TextUIを作成
+	//TimeUIを作成
 	m_timeUI = std::make_unique<TimeUI>(
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
@@ -87,18 +88,18 @@ void Stage1_2::Update(float elapsedTime)
 
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
+	// 敵を更新
+	m_stageEnemy->Update();
 	// 天球を更新
 	//m_sky->Update();
 	// フィールドを更新
 	m_field->Update();
-	// エネミースポナーを更新
-	m_enemySpawner->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
 
 
 	// 敵が全員死んだらシーン遷移を行う
-	if (m_enemySpawner->IsChangeScene())
+	if (m_stageEnemy->IsChangeStage())
 	{
 		m_isClearStage = true;
 		// プレイ結果をClearにする
@@ -139,8 +140,8 @@ void Stage1_2::Render()
 	m_sky->Render();
 	// フィールドを描画
 	m_field->Render();
-	// エネミースポナーを描画
-	m_enemySpawner->Render();
+	// 敵を描画する
+	m_stageEnemy->Render();
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画
@@ -155,6 +156,6 @@ void Stage1_2::Finalize()
 	m_player->Finalize();
 	m_sky->Finalize();
 	m_field->Finalize();
-	m_enemySpawner->Finalize();
+	m_stageEnemy->Finalize();
 	m_timeUI->Finalize();
 }

@@ -1,6 +1,6 @@
 /*
-	ファイル: RockBossAttack.cpp
-	クラス  : 岩ボスアタッククラス
+	ファイル名：RockBossAttack.cpp
+	　　　概要：岩ボスの攻撃状態を管理するクラス
 */
 #include "pch.h"
 #include "RockBoss.h"

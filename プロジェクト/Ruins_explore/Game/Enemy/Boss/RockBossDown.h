@@ -1,6 +1,6 @@
 /*
-	ファイル: RockBossDown.h
-	クラス  : 岩ボスダウンクラス
+	ファイル名：RockBossDown.h
+	　　　概要：岩ボスのダウン状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

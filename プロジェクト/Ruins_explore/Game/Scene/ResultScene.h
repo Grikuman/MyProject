@@ -1,6 +1,6 @@
 /*
-	@file	ResultScene.h
-	@brief	プレイシーンクラス
+	ファイル名：ResultScene.h
+	　　　概要：リザルトシーンを管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"

@@ -1,3 +1,7 @@
+/*
+    ファイル名：PlayerEffectManager.cpp
+    　　　概要：プレイヤーのエフェクトクラスを管理するクラス
+*/
 #pragma once
 #include "pch.h"
 #include "Game/Effect/PlayerEffectManager.h"

@@ -1,6 +1,6 @@
 /*
-	ファイル: PlayerBody.cpp
-	クラス  : プレイヤークラス
+	ファイル名：PlayerBody.h
+	　　　概要：プレイヤーの体を管理するクラス
 */
 #include "pch.h"
 #include "PlayerBody.h"

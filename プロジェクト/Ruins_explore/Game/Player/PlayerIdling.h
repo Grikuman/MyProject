@@ -1,14 +1,14 @@
 /*
-	ファイル: PlayerIdling.h
-	クラス  : プレイヤーアイドリングクラス
+	ファイル名：PlayerIdling.h
+	　　　概要：プレイヤーのアイドリング状態を管理するクラス
 */
 #pragma once
-#include "Game/Interface/IState.h"
+#include "Game/Interface/IPlayerState.h"
 
 // 前方宣言
 class Player;
 
-class PlayerIdling : public IState
+class PlayerIdling : public IPlayerState
 {
 public:
 	// コンストラクタ

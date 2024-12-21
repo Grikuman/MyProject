@@ -1,6 +1,6 @@
 /*
-	@file	Field.cpp
-	@brief	一般的なシーンクラス
+	ファイル名：Field.cpp
+	　　　概要：フィールドを表示するクラス
 */
 #include "pch.h"
 #include "Game/StageObject/Field.h"

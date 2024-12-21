@@ -1,6 +1,6 @@
 /*
-	@file	Field.h
-	@brief	一般的なシーンクラス
+	ファイル名：Sky.h
+	　　　概要：空を表示するクラス
 */
 #pragma once
 

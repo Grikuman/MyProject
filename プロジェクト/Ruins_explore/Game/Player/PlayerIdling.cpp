@@ -1,6 +1,6 @@
 /*
-    ファイル: PlayerIdling.cpp
-    クラス  : プレイヤーアイドリングクラス
+    ファイル名：PlayerIdling.cpp
+    　　　概要：プレイヤーのアイドリング状態を管理するクラス
 */
 #include "pch.h"
 #include "Player.h"

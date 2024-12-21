@@ -1,6 +1,6 @@
 /*
-    ファイル: RockBoss.cpp
-    クラス  : 岩ボスクラス
+    ファイル名：RockBoss.cpp
+    　　　概要：岩ボスの情報を管理するクラス
 */
 #pragma once
 #include "pch.h"

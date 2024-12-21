@@ -1,6 +1,6 @@
 /*
-	@file	ResultScene.cpp
-	@brief	プレイシーンクラス
+	ファイル名：ResultScene.cpp
+	　　　概要：リザルトシーンを管理するクラス
 */
 #include "pch.h"
 #include "ResultScene.h"

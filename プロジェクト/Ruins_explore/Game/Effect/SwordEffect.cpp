@@ -1,3 +1,7 @@
+/*
+    ファイル名：SwordEffect.cpp
+    　　　概要：プレイヤーの斬撃エフェクトを管理するクラス
+*/
 #pragma once
 #include "pch.h"
 #include "Game/Effect/SwordEffect.h"

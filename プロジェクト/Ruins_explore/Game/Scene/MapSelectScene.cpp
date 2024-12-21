@@ -1,6 +1,6 @@
 /*
-	@file	MapSelectScene.cpp
-	@brief	マップセレクトシーンクラス
+	ファイル名：MapSelectScene.cpp
+	　　　概要：マップセレクトシーンを管理するクラス
 */
 #include "pch.h"
 #include "MapSelectScene.h"

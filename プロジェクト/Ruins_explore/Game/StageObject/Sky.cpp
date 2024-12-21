@@ -1,15 +1,10 @@
 /*
-	@file	Sky.cpp
-	@brief	一般的なシーンクラス
+	ファイル名：Sky.cpp
+	　　　概要：空を表示するクラス
 */
 #include "pch.h"
 #include "Sky.h"
 #include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
 #include "WorkTool/Graphics.h"
 
 using namespace DirectX;
@@ -39,8 +34,6 @@ Sky::~Sky()
 void Sky::Initialize()
 {
 	auto device  = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states  = Graphics::GetInstance()->GetCommonStates();
 
 	// 射影行列を作成する
 	m_projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(

@@ -1,12 +1,13 @@
 /*
-	@file	IState.h
-	@brief	ステートのインターフェース
+	ファイル名：IPlayerPart.h
+	　　　概要：プレイヤーのパーツのインターフェース
 */
 #pragma once
 
 class IPlayerPart
 {
 public:
+	// デストラクタ
 	virtual ~IPlayerPart() = default;
 	// 初期化する
 	virtual void Initialize() = 0;

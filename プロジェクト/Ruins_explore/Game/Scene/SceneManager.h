@@ -1,6 +1,6 @@
 /*
-	@file	SceneManager.h
-	@brief	シーンマネージャクラス
+	ファイル名：SceneManager.h
+	　　　概要：シーン全体を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"
@@ -30,5 +30,6 @@ private:
 	void DeleteScene();
 
 private:
+	// 現在のシーン
 	std::unique_ptr<IScene> m_currentScene;
 };

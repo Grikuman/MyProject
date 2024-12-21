@@ -1,6 +1,6 @@
 /*
-	@file	IScene.h
-	@brief	シーンのインターフェイスクラス
+	ファイル名：IScene.h
+	　　　概要：シーンのインターフェース
 */
 #pragma once
 
@@ -18,17 +18,18 @@ public:
 	};
 
 public:
-	virtual ~IScene() = default;
-
-	virtual void Initialize() = 0;
-
-	virtual void Update(float elapsedTime) = 0;
-
-	virtual void Render() = 0;
-
-	virtual void Finalize() = 0;
-
+	// 次のシーンIDを取得する
 	virtual SceneID GetNextSceneID() const = 0;
-private:
 
+public:
+	// デストラクタ
+	virtual ~IScene() = default;
+	// 初期化する
+	virtual void Initialize() = 0;
+	// 更新する
+	virtual void Update(float elapsedTime) = 0;
+	// 描画する
+	virtual void Render() = 0;
+	// 終了処理
+	virtual void Finalize() = 0;
 };

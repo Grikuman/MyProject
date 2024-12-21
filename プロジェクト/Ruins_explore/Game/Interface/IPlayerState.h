@@ -1,13 +1,14 @@
 /*
-	@file	IState.h
-	@brief	ステートのインターフェース
+	ファイル名：IPlayerState.h
+	　　　概要：プレイヤーの状態のインターフェース
 */
 #pragma once
 
-class IState
+class IPlayerState
 {
 public:
-	virtual ~IState() = default;
+	// デストラクタ
+	virtual ~IPlayerState() = default;
 	// 初期化する
 	virtual void Initialize() = 0;
 	// 更新する

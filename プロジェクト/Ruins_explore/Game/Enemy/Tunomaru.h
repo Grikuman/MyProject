@@ -1,6 +1,6 @@
 /*
-    ファイル: Tunomaru.h
-    クラス  : つのまるクラス
+    ファイル名：Tunomaru.h
+    　　　概要：つのまるの情報を管理するクラス
 */
 #pragma once
 #include <memory>
@@ -19,17 +19,6 @@ class Player;
 
 class Tunomaru : public IEnemy
 {
-public:
-    // プレイヤーを取得する
-    Player* GetPlayer() { return m_player; }
-
-    // つのまるサーチを取得する
-    TunomaruSearch* GetTunomaruSearch()                           { return m_tunomaruSearch.get(); }
-    // つのまるアタックを取得する
-    TunomaruAttack* GetTunomaruAttack()                           { return m_tunomaruAttack.get(); }
-    // つのまるダウンを取得する
-    TunomaruDown* GetTunomaruDown()                               { return m_tunomaruDown.get(); }
-
 public:
     // 位置を設定する
     void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
@@ -56,7 +45,25 @@ public:
     // ダメージを受けているか取得する
     bool GetHit() const                                           { return m_isHit; }
     // 生存状況を取得する
-    bool GetIsAlive() const                                       { return m_isAlive; }
+    bool IsAlive() const override                                 { return m_isAlive; }
+    // バウンディングスフィアを取得する
+    DirectX::BoundingSphere GetBoundingSphere() const override;
+
+public:
+    // プレイヤーを取得する
+    Player* GetPlayer()                                           { return m_player; }
+
+    // つのまるサーチを取得する
+    TunomaruSearch* GetTunomaruSearch()                           { return m_tunomaruSearch.get(); }
+    // つのまるアタックを取得する
+    TunomaruAttack* GetTunomaruAttack()                           { return m_tunomaruAttack.get(); }
+    // つのまるダウンを取得する
+    TunomaruDown* GetTunomaruDown()                               { return m_tunomaruDown.get(); }
+public:
+    // ステートを変更する
+    void ChangeState(IEnemyState* newState);
+    // ダメージを与える
+    void Damage(const float damage) override;
 
 public:
     // コンストラクタ
@@ -71,14 +78,6 @@ public:
     void Render() override;
     // 後処理をする
     void Finalize() override;
-public:
-    // バウンディングスフィアを取得する
-    DirectX::BoundingSphere GetBoundingSphere() const override;
-    // ダメージを与える
-    void Damage(const float damage) override;
-public:
-    // ステートを変更する
-    void ChangeState(IEnemyState* newState);
 
 private:
     // 生存しているか判定する

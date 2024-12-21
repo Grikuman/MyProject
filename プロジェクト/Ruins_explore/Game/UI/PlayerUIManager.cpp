@@ -1,6 +1,6 @@
 /*
-	@file	PlayerUIManagerUIManager.cpp
-	@brief	プレイヤーのUIを管理するクラス
+	ファイル名：PlayerUIManager.cpp
+	　　　概要：プレイヤーのUIを管理するクラス
 */
 #include "pch.h"
 #include "Game/UI/PlayerUIManager.h"

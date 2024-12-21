@@ -1,6 +1,6 @@
 /*
-	ファイル: TunomaruAttack.h
-	クラス  : つのまるアタッククラス
+	ファイル名：TunomaruAttack.h
+	　　　概要：つのまるの攻撃状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"

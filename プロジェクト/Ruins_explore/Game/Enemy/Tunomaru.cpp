@@ -1,6 +1,6 @@
 /*
-    ファイル: Tunomaru.cpp
-    クラス  : つのまるクラス
+    ファイル名：Tunomaru.cpp
+    　　　概要：つのまるの情報を管理するクラス
 */
 #pragma once
 #include "pch.h"

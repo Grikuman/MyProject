@@ -18,6 +18,12 @@ namespace NRLib
 class TitleScene final : public IScene
 {
 public:
+	// シーン遷移する
+	void ChangeScene();
+	// 次のシーンIDを取得する
+	SceneID GetNextSceneID() const;
+
+public:
 	// コンストラクタ
 	TitleScene();
 	// デストラクタ
@@ -30,11 +36,6 @@ public:
 	void Render() override;
 	// 終了処理
 	void Finalize() override;
-
-	// 次のシーンIDを取得する
-	SceneID GetNextSceneID() const;
-	// シーン遷移する
-	void ChangeScene();
 
 private:
 	// シーンチェンジフラグ

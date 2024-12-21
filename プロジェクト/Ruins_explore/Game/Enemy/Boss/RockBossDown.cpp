@@ -1,6 +1,6 @@
 /*
-	ファイル: RockBossDown.cpp
-	クラス  : 岩ボスダウンクラス
+	ファイル名：RockBossDown.cpp
+	　　　概要：岩ボスのダウン状態を管理するクラス
 */
 #include "pch.h"
 #include "Game/Enemy/Boss/RockBoss.h"

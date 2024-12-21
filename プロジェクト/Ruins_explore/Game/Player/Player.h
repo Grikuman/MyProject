@@ -1,9 +1,9 @@
 /*
-	ファイル: Player.h
-	クラス  : プレイヤークラス
+	ファイル名：Player.h
+	　　　概要：プレイヤーの情報を管理するクラス
 */
 #pragma once
-#include "Game/Interface/IState.h"
+#include "Game/Interface/IPlayerState.h"
 #include "PlayerIdling.h"
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
@@ -89,7 +89,7 @@ public:
 	void SetInvincible(const bool invincible)                      { m_invincible = invincible; }
 
 	// ステートを変更する
-	void ChangeState(IState* newState);
+	void ChangeState(IPlayerState* newState);
 private:
 	// 無敵処理
 	void Invincible();
@@ -101,7 +101,7 @@ private:
 	// エフェクト管理クラス
 	std::unique_ptr<PlayerEffectManager> m_playerEffectManager;
 	// 現在のステート
-	IState* m_currentState;
+	IPlayerState* m_currentState;
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
 

@@ -138,9 +138,6 @@
     <ClInclude Include="Libraries\MyLib\FollowCamera.h">
       <Filter>Libraries\MyLib</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\EnemySpawner.h">
-      <Filter>Game\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Enemy\Tunomaru.h">
       <Filter>Game\Enemy</Filter>
     </ClInclude>
@@ -261,7 +258,7 @@
     <ClInclude Include="Game\Interface\IScene.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Interface\IState.h">
+    <ClInclude Include="Game\Interface\IPlayerState.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Game\Interface\IPlayerPart.h">
@@ -334,9 +331,6 @@
     </ClCompile>
     <ClCompile Include="WorkTool\Collision.cpp">
       <Filter>WorkTool</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\EnemySpawner.cpp">
-      <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy\Tunomaru.cpp">
       <Filter>Game\Enemy</Filter>

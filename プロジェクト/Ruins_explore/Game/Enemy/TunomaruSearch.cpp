@@ -1,6 +1,6 @@
 /*
-    ファイル: TunomaruSearch.cpp
-    クラス  : つのまるサーチクラス
+    ファイル名：TunomaruSearch.cpp
+    　　　概要：つのまるの索敵状態を管理するクラス
 */
 #pragma once
 #include "pch.h"
