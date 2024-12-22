@@ -11,6 +11,9 @@ class ICollisionObject
 public:
     virtual ~ICollisionObject() = default;
 
+    // 位置を取得する
+    virtual DirectX::SimpleMath::Vector3 GetPosition() const = 0;
+
     // バウンディングスフィアを取得する
     virtual DirectX::BoundingSphere GetBoundingSphere() const = 0;
 

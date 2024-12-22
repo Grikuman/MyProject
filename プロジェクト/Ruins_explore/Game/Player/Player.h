@@ -63,6 +63,8 @@ public:
 	int GetMAXSTAMINA() const                        { return MAX_STAMINA; }
 	// –³“G‚ğæ“¾
 	bool GetInvincible() const                       { return m_invincible; }
+	// ƒvƒŒƒCƒ„[‚ÌŒü‚«‚ğæ“¾‚·‚é
+	DirectX::SimpleMath::Vector3 GetForwardDirection();
 
 	// UŒ‚‚µ‚Ä‚¢‚é‚©æ“¾‚·‚é
 	bool IsAttack();

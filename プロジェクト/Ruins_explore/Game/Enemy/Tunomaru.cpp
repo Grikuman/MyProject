@@ -90,6 +90,7 @@ void Tunomaru::Initialize(Vector3 position)
 void Tunomaru::Update()
 {
     m_isHit = false; 
+    m_velocity = DirectX::SimpleMath::Vector3::Zero;
 
     //生存しているか確認する
     CheckAlive(); 
@@ -116,9 +117,11 @@ void Tunomaru::Render()
     view = Graphics::GetInstance()->GetViewMatrix();
     proj = Graphics::GetInstance()->GetProjectionMatrix();
 
-    // ワールド行列
-    Matrix world = Matrix::CreateScale(1.f);
-    world *= Matrix::CreateRotationY(XMConvertToRadians(m_angle));
+    // プレイヤーの回転をクォータニオンで作成
+    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_angle));
+
+    // 回転行列を作成
+    Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation);
     world *= Matrix::CreateTranslation(m_position);
 
     // 生存していたら
@@ -127,10 +130,10 @@ void Tunomaru::Render()
         // モデル表示
         m_model->Draw(context, *states, world, view, proj); // モデルを描画する
     }
-    // 生存していたら
+
+    // HPUIを描画する
     if (m_isAlive == true)
     {
-        // HPUIを描画する
         m_hpUI->Render(context, view, proj);
     }
 }

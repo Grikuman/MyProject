@@ -38,7 +38,7 @@ public:
     void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
 public:
     // ˆÊ’u‚ðŽæ“¾‚·‚é
-    DirectX::SimpleMath::Vector3 GetPosition() const               { return m_position; }
+    DirectX::SimpleMath::Vector3 GetPosition() const override      { return m_position; }
     // ‘¬“x‚ðŽæ“¾‚·‚é
     DirectX::SimpleMath::Vector3 GetVelocity() const               { return m_velocity; }
     // Šp“x‚ðŽæ“¾‚·‚é

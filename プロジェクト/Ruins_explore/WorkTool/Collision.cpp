@@ -51,6 +51,28 @@ void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
 			enemy->Damage(0.5f);
         }
     }
+	//if (m_player->IsAttack())
+	//{
+	//	// プレイヤーの前方向を取得
+	//	DirectX::SimpleMath::Vector3 forward = m_player->GetForwardDirection();
+
+	//	// プレイヤーの位置
+	//	DirectX::SimpleMath::Vector3 playerPosition = m_player->GetPosition();
+
+	//	// プレイヤーの前方に攻撃範囲を持つBoundingSphereを配置
+	//	float attackRange = 1.0f; // 攻撃範囲の半径
+	//	float attackDistance = 3.0f; // 攻撃の長さ（前方にどれくらいの範囲で攻撃するか）
+	//	DirectX::SimpleMath::Vector3 attackPosition = playerPosition + forward * attackDistance;
+
+	//	DirectX::BoundingSphere attackSphere(attackPosition, attackRange);
+
+	//	// 攻撃範囲内に敵がいるか判定
+	//	if (attackSphere.Intersects(enemy->GetBoundingSphere()))
+	//	{
+	//		// ダメージを与える
+	//		enemy->Damage(0.5f);
+	//	}
+	//}
 }
 
 // 岩ボスとの当たり判定

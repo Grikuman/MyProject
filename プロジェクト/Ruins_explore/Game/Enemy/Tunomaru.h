@@ -22,6 +22,12 @@ class Tunomaru : public IEnemy
 public:
     // 位置を設定する
     void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
+    // 速度を加算する
+    void AddVelocity(const DirectX::SimpleMath::Vector3& velocity){ m_velocity += velocity; }
+    // 速度に係数をかける
+    void ApplyVelocity(float scale)                               { m_velocity *= scale; }
+    // 回転速度を加算する
+    void AddRotation(const float angle)                           { m_angle += angle; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity) { m_velocity = velocity; }
     // 角度を設定する
@@ -35,7 +41,7 @@ public:
 
 public:
     // 位置を取得する
-    DirectX::SimpleMath::Vector3 GetPosition() const              { return m_position; }
+    DirectX::SimpleMath::Vector3 GetPosition() const override     { return m_position; }
     // 速度を取得する
     DirectX::SimpleMath::Vector3 GetVelocity() const              { return m_velocity; }
     // 角度を取得する

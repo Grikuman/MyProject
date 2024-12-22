@@ -171,7 +171,22 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 	Vector3 center = m_position; // 当たり判定球の中心
 	float radius = 0.5f;         // サイズに応じて調整
 	return DirectX::BoundingSphere(center, radius);
+
 }
+
+//---------------------------------------------------------
+// プレイヤーの向きを取得する
+//---------------------------------------------------------
+DirectX::SimpleMath::Vector3 Player::GetForwardDirection()
+{
+	// 回転角度から方向ベクトルを計算
+	return DirectX::SimpleMath::Vector3(
+		std::cos(DirectX::XMConvertToRadians(m_playerAngle)), // X
+		0.0f,                    // Y（2D計算だから0で大丈夫）
+		std::sin(DirectX::XMConvertToRadians(m_playerAngle))  // Z
+	);
+}
+
 //---------------------------------------------------------
 // 攻撃しているか取得する
 //---------------------------------------------------------

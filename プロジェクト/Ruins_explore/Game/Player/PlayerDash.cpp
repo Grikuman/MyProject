@@ -88,7 +88,7 @@ void PlayerDash::Dash()
     }
     if (kb->D || kb->Right)
     {
-        m_player->AddRotation(3.0f); // ЙёУ]
+        m_player->AddRotation(-3.0f); // ЙёУ]
     }
     
     // Р^В┴Т╝ВоРiВ▐
