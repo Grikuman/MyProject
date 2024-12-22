@@ -8,7 +8,7 @@
 
 std::unique_ptr<Resources> Resources::m_resources = nullptr;
 
-using namespace Microsoft::WRL;
+//using namespace Microsoft::WRL;
 
 //グラフィックスのインスタンスを取得
 Resources* const Resources::GetInstance()

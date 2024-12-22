@@ -13,15 +13,24 @@ public:
 	static InputDevice* const GetInstance();
 
 	// キーボードのインスタンスを取得する
-	DirectX::Keyboard* GetKeyboard()                                                 { return m_keyboard.get(); }
+	DirectX::Keyboard* GetKeyboard()                                    { return m_keyboard.get(); }
 	// キーボードステートトラッカーのインスタンスを取得する
-	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker()               { return m_keyboardStateTracker.get(); }
+	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker()  { return m_keyboardStateTracker.get(); }
 	// キーボードステートのインスタンスを取得する
-	DirectX::Keyboard::State* GetKeyboardState()                                     { return m_keyboardState.get(); }
+	DirectX::Keyboard::State* GetKeyboardState()                        { return m_keyboardState.get(); }
 
 private:
 	// キーボードを更新する
 	void UpdateKeyboardState();
+
+public:
+	// 初期化する
+	void Initialize();
+	// 更新する
+	void Update();
+	// デストラクタ
+	~InputDevice() = default;
+
 private:
 	// コンストラクタ
 	InputDevice();
@@ -33,14 +42,6 @@ private:
 	InputDevice(const InputDevice&) = delete;
 	// ムーブコンストラクタは禁止する
 	InputDevice(InputDevice&&) = delete;
-
-public:
-	// 初期化する
-	void Initialize();
-	// 更新する
-	void Update();
-	// デストラクタ
-	~InputDevice() = default;
 
 private:
 	// インプットデバイス

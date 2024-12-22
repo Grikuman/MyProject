@@ -12,33 +12,6 @@ class ICollisionObject;
 class Collision
 {
 public:
-	// コリジョンのインスタンス取得
-	static Collision* const GetInstance();
-private:
-	// コンストラクタ
-	Collision();
-	// インスタンスをコピーすることを禁止する
-	void operator=(const Collision&) = delete;
-	// インスタンスをムーブすることを禁止する
-	Collision& operator= (Collision&&) = delete;
-	// コピーコンストラクタは禁止する
-	Collision(const Collision&) = delete;
-	// ムーブコンストラクタは禁止する
-	Collision(Collision&&) = delete;
-
-public:
-	//デストラクタ
-	~Collision() = default;
-	// 更新する
-	void Update();
-	// 終了処理
-	void Finalize();
-
-public:
-	// プレイヤーを設定する
-	void SetPlayer(Player* player) { m_player = player; };
-
-public:
 	//----------------------------------------------------------------------------
 	// 攻撃判定 
 	//----------------------------------------------------------------------------
@@ -52,6 +25,33 @@ public:
 
 	// プレイヤーと球オブジェクトの押し戻し判定
 	void CheckPushBack(ICollisionObject* object);
+public:
+	// コリジョンのインスタンス取得
+	static Collision* const GetInstance();
+
+public:
+	// プレイヤーを設定する
+	void SetPlayer(Player* player) { m_player = player; };
+
+public:
+	//デストラクタ
+	~Collision() = default;
+	// 更新する
+	void Update();
+	// 終了処理
+	void Finalize();
+
+private:
+	// コンストラクタ
+	Collision();
+	// インスタンスをコピーすることを禁止する
+	void operator=(const Collision&) = delete;
+	// インスタンスをムーブすることを禁止する
+	Collision& operator= (Collision&&) = delete;
+	// コピーコンストラクタは禁止する
+	Collision(const Collision&) = delete;
+	// ムーブコンストラクタは禁止する
+	Collision(Collision&&) = delete;
 
 private:
 	// コリジョンクラス

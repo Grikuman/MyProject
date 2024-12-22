@@ -14,8 +14,20 @@
 class Resources final
 {
 public:
+	// リソースを読み込む
+	void LoadResources();
+
+public:
 	//リソースクラスのインスタンス取得
 	static Resources* const GetInstance();
+	// モデルを取得する
+	DirectX::Model* GetModel(const wchar_t* name);
+	// テクスチャを取得する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetTexture(const wchar_t* name);
+
+public:
+	// デストラクタ
+	~Resources() = default;
 	
 private:
 	// コンストラクタ
@@ -28,17 +40,6 @@ private:
 	Resources(const Resources&) = delete;
 	// ムーブコンストラクタは禁止する
 	Resources(Resources&&) = delete;
-
-public:
-	// デストラクタ
-	~Resources() = default;
-	// リソースを読み込む
-	void LoadResources();
-
-	// モデルを取得する
-	DirectX::Model* GetModel(const wchar_t* name);
-	// テクスチャを取得する
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetTexture(const wchar_t* name);
 
 private:
 	static std::unique_ptr<Resources> m_resources;

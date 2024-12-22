@@ -79,8 +79,7 @@ void Graphics::Initialize()
 // 更新する
 void Graphics::Update()
 {
-	// キーボードを更新する
-	//UpdateKeyboardState();
+	
 }
 
 // 描画プリミティブを開始する

@@ -12,11 +12,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 
-
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-using namespace Microsoft::WRL;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -52,6 +47,9 @@ PlayerStatusUI::~PlayerStatusUI()
 //---------------------------------------------------------
 void PlayerStatusUI::Initialize()
 {
+    using namespace DirectX;
+    using namespace DirectX::SimpleMath;
+
     // スタミナの位置を設定する
     for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
@@ -96,6 +94,7 @@ void PlayerStatusUI::Update()
 //---------------------------------------------------------
 void PlayerStatusUI::Render()
 {
+
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
 

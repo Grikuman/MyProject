@@ -47,18 +47,6 @@ public:
 	// コンテキストを設定する
 	void SetContext(ID3D11DeviceContext* context)                                    { m_context = context; }
 
-private:
-	// コンストラクタ
-	Graphics();
-	// インスタンスをコピーすることを禁止する
-	void operator=(const Graphics&) = delete;
-	// インスタンスをムーブすることを禁止する
-	Graphics& operator= (Graphics&&) = delete;
-	// コピーコンストラクタは禁止する
-	Graphics(const Graphics&) = delete;
-	// ムーブコンストラクタは禁止する
-	Graphics(Graphics&&) = delete;
-
 public:
 	// 初期化する
 	void Initialize();
@@ -71,6 +59,18 @@ public:
 	void DrawPrimitiveBegin(const DirectX::SimpleMath::Matrix& view, const DirectX::SimpleMath::Matrix& projection);
 	// プリミティブ描画を終了する
 	void DrawPrimitiveEnd();
+
+private:
+	// コンストラクタ
+	Graphics();
+	// インスタンスをコピーすることを禁止する
+	void operator=(const Graphics&) = delete;
+	// インスタンスをムーブすることを禁止する
+	Graphics& operator= (Graphics&&) = delete;
+	// コピーコンストラクタは禁止する
+	Graphics(const Graphics&) = delete;
+	// ムーブコンストラクタは禁止する
+	Graphics(Graphics&&) = delete;
 
 private:
 	// グラフィックス

@@ -10,15 +10,15 @@ namespace NRLib
 	{
 	public:
 		// ビューを取得する
-		const DirectX::SimpleMath::Matrix& GetViewMatrix() const { return m_view; }
+		const DirectX::SimpleMath::Matrix& GetViewMatrix() const       { return m_view; }
 		// プロジェクションを取得する
 		const DirectX::SimpleMath::Matrix& GetProjectionMatrix() const { return m_projection; }
 		// アイポジションを取得する
-		const DirectX::SimpleMath::Vector3& GetEyePosition() const { return m_eye; }
+		const DirectX::SimpleMath::Vector3& GetEyePosition() const     { return m_eye; }
 		// ターゲットを取得する
-		const DirectX::SimpleMath::Vector3& GetTargetPosition() const { return m_target; }
+		const DirectX::SimpleMath::Vector3& GetTargetPosition() const  { return m_target; }
 		// アップを取得する
-		const DirectX::SimpleMath::Vector3& GetUpVector() const { return m_up; }
+		const DirectX::SimpleMath::Vector3& GetUpVector() const        { return m_up; }
 
 	public:
 		// コンストラクタ

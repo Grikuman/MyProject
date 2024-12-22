@@ -46,7 +46,11 @@ void PlayerLeftHand::Initialize()
 //---------------------------------------------------------
 void PlayerLeftHand::Update()
 {	
-
+	m_currentHandPosition = m_nonePosition;
+	if (m_player->IsAttack())
+	{
+		m_currentHandPosition = m_punchPosition;
+	}
 }
 
 //---------------------------------------------------------
@@ -68,7 +72,7 @@ void PlayerLeftHand::Render()
 	// ‰ñ“]s—ñ‚É•ÏŠ·
 	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
 	// ’†‰›‚©‚ç‚¸‚ç‚·À•W
-	Vector3 shiftPosition = Vector3::Transform(Vector3(-1.4f, 0.8f, 0.f), Matrix::CreateFromQuaternion(rotation));
+	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(rotation));
 
 	// ÅIŒvŽZ
 	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);

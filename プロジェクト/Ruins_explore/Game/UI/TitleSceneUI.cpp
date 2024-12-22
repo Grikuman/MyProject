@@ -11,11 +11,6 @@
 #include "WorkTool/InputDevice.h"
 #include "Game/Scene/TitleScene.h"
 
-
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-using namespace Microsoft::WRL;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -94,11 +89,11 @@ void TitleSceneUI::Update()
     // フラグごとにセレクトアイコンの位置を移動
     if (m_selectFlag)
     {
-        m_selectPos = Vector2(500, 390);
+        m_selectPos = DirectX::SimpleMath::Vector2(500, 390);
     }
     else
     {
-        m_selectPos = Vector2(500, 510);
+        m_selectPos = DirectX::SimpleMath::Vector2(500, 510);
     }
 
     // シーン遷移
@@ -128,6 +123,8 @@ void TitleSceneUI::Update()
 //---------------------------------------------------------
 void TitleSceneUI::Render()
 {
+    using namespace DirectX;
+    using namespace DirectX::SimpleMath;
     //Matrix matrix = Matrix::CreateTranslation(Vector3(640, 360, 0));
     Matrix matrix = Matrix::CreateScale(m_scale);
     matrix *= Matrix::CreateTranslation(Vector3(0, 0, 0));

@@ -9,9 +9,6 @@
 #include "Libraries/MyLib/InputManager.h"
 #include "Game/Player/Player.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------

@@ -20,7 +20,8 @@ using namespace DirectX::SimpleMath;
 PlayerRightHand::PlayerRightHand(Player* player)
 	:
 	m_player{player},
-	m_model{}
+	m_model{},
+	m_currentHandPosition{}
 {
 	
 }
@@ -46,7 +47,11 @@ void PlayerRightHand::Initialize()
 //---------------------------------------------------------
 void PlayerRightHand::Update()
 {	
-
+	m_currentHandPosition = m_nonePosition;
+	if (m_player->IsAttack())
+	{
+		m_currentHandPosition = m_punchPosition;
+	}
 }
 
 //---------------------------------------------------------
@@ -66,9 +71,9 @@ void PlayerRightHand::Render()
 	// プレイヤーの回転をクォータニオンで作成
 	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
 	// 回転行列に変換
-	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
+	Matrix world = Matrix::CreateScale(1.2f) * Matrix::CreateFromQuaternion(rotation); 
 	// 中央からずらす座標
-	Vector3 shiftPosition = Vector3::Transform(Vector3(1.4f, 0.8f, 0.f), Matrix::CreateFromQuaternion(rotation));
+	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(rotation));
 
 	// 最終計算
 	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
