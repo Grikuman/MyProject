@@ -3,8 +3,6 @@
 	　　　概要：入力を管理するクラス
 */
 #pragma once
-#ifndef InputDevice_DEFINED
-#define InputDevice_DEFINED
 
 class InputDevice final
 {
@@ -19,10 +17,6 @@ public:
 	// キーボードステートのインスタンスを取得する
 	DirectX::Keyboard::State* GetKeyboardState()                        { return m_keyboardState.get(); }
 
-private:
-	// キーボードを更新する
-	void UpdateKeyboardState();
-
 public:
 	// 初期化する
 	void Initialize();
@@ -30,6 +24,12 @@ public:
 	void Update();
 	// デストラクタ
 	~InputDevice() = default;
+
+private:
+	// キーボードを更新する
+	void UpdateKeyboardState();
+	// マウスを更新する
+	void UpdateMouseState();
 
 private:
 	// コンストラクタ
@@ -45,12 +45,15 @@ private:
 
 private:
 	// インプットデバイス
-	static std::unique_ptr<InputDevice>                                          m_InputDevice;
+	static std::unique_ptr<InputDevice>                      m_InputDevice;
 	
 	// キーボード
-	std::unique_ptr<DirectX::Keyboard>                                        m_keyboard;
-	std::unique_ptr<DirectX::Keyboard::KeyboardStateTracker>                  m_keyboardStateTracker;
-	std::unique_ptr<DirectX::Keyboard::State>                                 m_keyboardState;
+	std::unique_ptr<DirectX::Keyboard>                       m_keyboard;
+	std::unique_ptr<DirectX::Keyboard::State>                m_keyboardState;
+    std::unique_ptr<DirectX::Keyboard::KeyboardStateTracker> m_keyboardStateTracker;
+	// マウス
+	std::unique_ptr<DirectX::Mouse>                          m_mouse;
+	std::unique_ptr<DirectX::Mouse::State>                   m_mouseState;
+    std::unique_ptr<DirectX::Mouse::ButtonStateTracker>      m_mouseStateTracker;
 };
 
-#endif		// InputDevice_DEFINED

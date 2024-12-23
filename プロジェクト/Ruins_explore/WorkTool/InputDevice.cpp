@@ -20,9 +20,12 @@ InputDevice* const InputDevice::GetInstance()
 // コンストラクタ
 InputDevice::InputDevice()
 	:
-	m_keyboard{},                        // キーボード
-	m_keyboardStateTracker{},            // キーボードステートトラッカー
-	m_keyboardState{}                    // キーボードステート
+	m_keyboard{},             
+	m_keyboardState{},        
+	m_keyboardStateTracker{},
+	m_mouse{},
+	m_mouseState{},
+	m_mouseStateTracker{}
 {
 	
 }
@@ -31,9 +34,13 @@ InputDevice::InputDevice()
 void InputDevice::Initialize()
 {
 	// キーボードを生成する
-	m_keyboard = std::make_unique<DirectX::Keyboard>();
-	m_keyboardStateTracker = std::make_unique<DirectX::Keyboard::KeyboardStateTracker>();
-	m_keyboardState = std::make_unique<DirectX::Keyboard::State>();
+	m_keyboard             = std::make_unique<DirectX::Keyboard>();
+	m_keyboardState        = std::make_unique<DirectX::Keyboard::State>();
+    m_keyboardStateTracker = std::make_unique<DirectX::Keyboard::KeyboardStateTracker>();
+	// マウスを生成する
+	m_mouse                = std::make_unique<DirectX::Mouse>();
+	m_mouseState           = std::make_unique<DirectX::Mouse::State>();
+	m_mouseStateTracker    = std::make_unique<DirectX::Mouse::ButtonStateTracker>();
 }
 
 // 更新する
@@ -41,6 +48,8 @@ void InputDevice::Update()
 {
 	// キーボードを更新する
 	UpdateKeyboardState();
+	// マウスを更新する
+	UpdateMouseState();
 }
 
 // キーボードを更新する
@@ -48,5 +57,12 @@ void InputDevice::UpdateKeyboardState()
 {
 	*m_keyboardState = m_keyboard->GetState();
 	m_keyboardStateTracker->Update(*m_keyboardState);
+}
+
+// マウスを更新する
+void InputDevice::UpdateMouseState()
+{
+	*m_mouseState = m_mouse->GetState();
+	m_mouseStateTracker->Update(*m_mouseState);
 }
 

@@ -16,7 +16,7 @@
 //---------------------------------------------------------
 Player::Player()
 	:
-	m_playerUIManager  {},
+	m_playerUIManager{},
 	m_playerEffectManager{},
 	m_playerWalk{},
 	m_playerAttack{},

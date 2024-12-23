@@ -93,7 +93,7 @@ void PlayerWalk::PlayerMove()
     // ‰ñ“]ˆ—
     if (kb->A || kb->Left)
     {
-        m_player->AddRotation(2.0f); // ¶‰ñ“]
+        m_player->AddRotation(2.0f);  // ¶‰ñ“]
     }
     if (kb->D || kb->Right)
     {
