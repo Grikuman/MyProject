@@ -26,19 +26,6 @@ namespace NRLib
 class Player
 {
 public:
-	// コンストラクタ
-	Player();
-	// デストラクタ
-	~Player();
-	// 初期化する
-	void Initialize();
-	// 更新する
-	void Update(float elapsedTime);
-	// 描画する
-	void Render();
-	// 後処理する
-	void Finalize();
-public:
 	// プレイヤーアイドリングを取得する
 	PlayerWalk* GetPlayerWalk()                      { return m_playerWalk.get(); }
 	// プレイヤーアタックを取得する
@@ -65,14 +52,12 @@ public:
 	bool GetInvincible() const                       { return m_invincible; }
 	// プレイヤーの向きを取得する
 	DirectX::SimpleMath::Vector3 GetForwardDirection();
-
 	// 攻撃しているか取得する
 	bool IsAttack();
 	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
-
 	// カメラを取得する
-	NRLib::TPS_Camera* GetCamera();
+	NRLib::TPS_Camera* GetCamera()                   { return m_camera.get(); }
 
 public:
 	// 位置を設定する
@@ -92,6 +77,21 @@ public:
 
 	// ステートを変更する
 	void ChangeState(IPlayerState* newState);
+
+public:
+	// コンストラクタ
+	Player();
+	// デストラクタ
+	~Player();
+	// 初期化する
+	void Initialize();
+	// 更新する
+	void Update(float elapsedTime);
+	// 描画する
+	void Render();
+	// 後処理する
+	void Finalize();
+
 private:
 	// 無敵処理
 	void Invincible();

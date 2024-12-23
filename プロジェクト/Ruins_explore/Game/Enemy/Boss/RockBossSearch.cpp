@@ -11,9 +11,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -46,6 +43,10 @@ void RockBossSearch::Initialize()
 //---------------------------------------------------------
 void RockBossSearch::Update()
 {
+
+    using namespace DirectX;
+    using namespace DirectX::SimpleMath;
+
     // プレイヤーの位置を取得する
     Vector3 playerPos = m_rockBoss->GetPlayer()->GetPosition();
     // ボスの現在の位置を取得する

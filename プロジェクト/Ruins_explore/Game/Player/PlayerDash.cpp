@@ -10,9 +10,6 @@
 #include "WorkTool/Resources.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -78,7 +75,7 @@ void PlayerDash::Finalize()
 //---------------------------------------------------------
 void PlayerDash::Dash()
 {
-
+    using namespace DirectX::SimpleMath;
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
     // プレイヤー入力
@@ -109,6 +106,6 @@ void PlayerDash::Dash()
     m_player->ApplyVelocity(0.05f); 
 
     // クォータニオンを用いて移動
-    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
+    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_player->GetAngle())); 
     m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), rotation)); 
 }

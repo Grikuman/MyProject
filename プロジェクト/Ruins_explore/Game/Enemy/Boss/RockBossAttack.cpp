@@ -12,9 +12,6 @@
 #include "WorkTool/Resources.h"
 #include "WorkTool/Collision.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -49,6 +46,9 @@ void RockBossAttack::Initialize()
 //---------------------------------------------------------
 void RockBossAttack::Update()
 {
+	using namespace DirectX;
+	using namespace DirectX::SimpleMath;
+
 	// 攻撃までの猶予時間をカウントする
 	m_atackStartTime++;
 
@@ -100,14 +100,14 @@ void RockBossAttack::Finalize()
 
 DirectX::BoundingSphere RockBossAttack::GetAttackBoundingSphere() const
 {
-	Vector3 center = m_rockBoss->GetPosition();
+	DirectX::SimpleMath::Vector3 center = m_rockBoss->GetPosition();
 	float radius = 3.f;
 	return DirectX::BoundingSphere(center,radius);
 }
 
 DirectX::BoundingSphere RockBossAttack::GetNoDamageBoundingSphere() const
 {
-	Vector3 center = m_rockBoss->GetPosition();
+	DirectX::SimpleMath::Vector3 center = m_rockBoss->GetPosition();
 	float radius = 1.f;
 	return DirectX::BoundingSphere(center,radius);
 }

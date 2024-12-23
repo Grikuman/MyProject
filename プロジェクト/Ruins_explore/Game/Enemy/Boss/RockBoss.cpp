@@ -14,9 +14,6 @@
 #include "WorkTool/Collision.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 RockBoss::RockBoss(Player* player)
     :
     m_player{player},
@@ -36,7 +33,7 @@ RockBoss::RockBoss(Player* player)
 
 RockBoss::~RockBoss() {}
 
-void RockBoss::Initialize(Vector3 position)
+void RockBoss::Initialize(DirectX::SimpleMath::Vector3 position)
 {
     // コンテキストを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
@@ -104,6 +101,8 @@ void RockBoss::Update()
 
 void RockBoss::Render()
 {
+    using namespace DirectX::SimpleMath;
+
     DirectX::SimpleMath::Matrix view, proj;
     // リソースを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
@@ -116,7 +115,7 @@ void RockBoss::Render()
     {
         // ワールド行列
         Matrix world = Matrix::CreateScale(0.8f);
-        world *= Matrix::CreateRotationY(XMConvertToRadians(m_angle));
+        world *= Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_angle));
         world *= Matrix::CreateTranslation(m_position);
         // モデル表示
         m_model->Draw(context, *states, world, view, proj); // モデルを描画する
@@ -129,11 +128,11 @@ void RockBoss::Finalize()
 }
 
 // バウンディングスフィアを取得する
-BoundingSphere RockBoss::GetBoundingSphere() const
+DirectX::BoundingSphere RockBoss::GetBoundingSphere() const
 {
-    Vector3 center = m_position;
+    DirectX::SimpleMath::Vector3 center = m_position;
     float radius = 3.f;
-    return BoundingSphere(center, radius);
+    return DirectX::BoundingSphere(center, radius);
 }
 // ダメージを与える
 void RockBoss::Damage(const float damage)

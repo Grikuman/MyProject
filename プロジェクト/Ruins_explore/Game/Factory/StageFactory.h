@@ -12,7 +12,8 @@
 #include "game/Stage/Stage1_2.h"
 
 // ステージ生成ファクトリ
-class StageFactory {
+class StageFactory 
+{
 public:
     // ステージ作成する
     static std::unique_ptr<IStage> CreateStage(StageID id) 

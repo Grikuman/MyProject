@@ -11,9 +11,6 @@
 #include "WorkTool/Data.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -22,17 +19,17 @@ Player::Player()
 	m_playerUIManager  {},
 	m_playerEffectManager{},
 	m_playerWalk{},
-	m_playerAttack     {},
-	m_currentState     {},
-	m_camera           {},
-	m_position         { DirectX::SimpleMath::Vector3(0.f, 0.0f, 0.f) },
-	m_velocity         {},
-	m_playerAngle      {},
-	m_chargeCnt        {},
-	m_invincible       { false },
-	m_invincibleTime   { 120.0f },
-	m_stamina          { MAX_STAMINA },
-	m_hp               { MAX_HP }
+	m_playerAttack{},
+	m_currentState{},
+	m_camera{},
+	m_position{ DirectX::SimpleMath::Vector3(0.f, 0.0f, 0.f) },
+	m_velocity{},
+	m_playerAngle{},
+	m_chargeCnt{},
+	m_invincible{ false },
+	m_invincibleTime{ 120.0f },
+	m_stamina{ MAX_STAMINA },
+	m_hp{ MAX_HP }
 {
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
@@ -89,6 +86,7 @@ void Player::Initialize()
 //---------------------------------------------------------
 void Player::Update(float elapsedTime)
 {	
+	using namespace DirectX::SimpleMath;
 	UNREFERENCED_PARAMETER(elapsedTime);
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
@@ -102,7 +100,7 @@ void Player::Update(float elapsedTime)
 	m_currentState->Update(elapsedTime);
 
 	// Y軸を中心にカメラも回転させる
-	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_playerAngle)); 
+	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_playerAngle)); 
 	m_camera->Update(m_position, Matrix::CreateFromQuaternion(rotation)); 
 
 	// UI管理クラスを更新する
@@ -156,19 +154,14 @@ void Player::Finalize()
 	m_playerAttack.reset();
 	m_playerDash.reset();
 }
-//---------------------------------------------------------
-// カメラを取得する
-//---------------------------------------------------------
-NRLib::TPS_Camera* Player::GetCamera()
-{
-	return m_camera.get();
-}
+
+
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
 DirectX::BoundingSphere Player::GetBoundingSphere()
 {
-	Vector3 center = m_position; // 当たり判定球の中心
+	DirectX::SimpleMath::Vector3 center = m_position; // 当たり判定球の中心
 	float radius = 0.5f;         // サイズに応じて調整
 	return DirectX::BoundingSphere(center, radius);
 

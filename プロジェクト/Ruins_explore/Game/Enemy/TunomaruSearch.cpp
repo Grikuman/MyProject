@@ -12,9 +12,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -59,7 +56,7 @@ void TunomaruSearch::Update()
         direction.Normalize();  // 単位ベクトルに正規化
 
         // プレイヤーの方向に向かって回転角度を計算
-        float targetAngle = XMConvertToDegrees(atan2(direction.x, direction.z));
+        float targetAngle = DirectX::XMConvertToDegrees(atan2(direction.x, direction.z));
 
         // 現在の角度との差を計算して回転速度を加算
         float angleDiff = targetAngle - m_tunomaru->GetAngle();
@@ -67,19 +64,17 @@ void TunomaruSearch::Update()
         if (angleDiff < -180.0f) angleDiff += 360.0f;
 
         // 回転速度を加算して角度を更新
-        //m_angle += angleDiff * 0.1f;  // 0.1fで回転の速さを調整
-        m_tunomaru->AddRotation(angleDiff * -0.1f);
+        m_tunomaru->AddRotation(angleDiff * 0.1f);
 
         // プレイヤー方向に移動
-        //m_velocity += direction * 1.0f;  // プレイヤー方向へ速度を加算
         m_tunomaru->AddVelocity(direction * 1.0f);
 
         // 移動速度を補正
-        //m_velocity *= 0.05f;
         m_tunomaru->ApplyVelocity(0.03f);
 
         // 移動量を計算
-        DirectX::SimpleMath::Quaternion movementRotation = DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(DirectX::SimpleMath::Vector3::UnitY, XMConvertToRadians(m_tunomaru->GetAngle()));
+        DirectX::SimpleMath::Quaternion movementRotation = DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(
+            DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(m_tunomaru->GetAngle()));
         DirectX::SimpleMath::Vector3 movement = DirectX::SimpleMath::Vector3::Transform(m_tunomaru->GetVelocity(), movementRotation);  // 回転後の移動量
 
         // 位置更新

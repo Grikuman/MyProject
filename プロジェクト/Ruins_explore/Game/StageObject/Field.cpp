@@ -12,9 +12,6 @@
 #include "Libraries/NRLib/TPS_Camera.h"
 #include "WorkTool/Graphics.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -41,10 +38,11 @@ void Field::Initialize()
 	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
 
 	// オブジェクトを作成
-	m_box = DirectX::GeometricPrimitive::CreateBox(context, Vector3(50.f, 2.f, 50.f));
+	m_box = DirectX::GeometricPrimitive::CreateBox(
+		context, DirectX::SimpleMath::Vector3(50.f, 2.f, 50.f));
 
 	// 各フィールドオブジェクトの位置を設定
-	m_boxPos = Vector3(0.f, -1.f, 0.f);
+	m_boxPos = DirectX::SimpleMath::Vector3(0.f, -1.f, 0.f);
 
 	// モデルを読み込む準備
 	std::unique_ptr<DirectX::EffectFactory> fx = std::make_unique<DirectX::EffectFactory>(device);
@@ -66,6 +64,8 @@ void Field::Update()
 //---------------------------------------------------------
 void Field::Render()
 {
+	using namespace DirectX::SimpleMath;
+
 	// world行列は上書きして使い回す
 	DirectX::SimpleMath::Matrix world = Matrix::Identity;
 	DirectX::SimpleMath::Matrix view = Graphics::GetInstance()->GetViewMatrix();
@@ -73,7 +73,7 @@ void Field::Render()
 
 	// オブジェクトの描画
 	world *= Matrix::CreateTranslation(m_boxPos);
-	m_box->Draw(world, view, proj, Colors::DarkGray);
+	m_box->Draw(world, view, proj, DirectX::Colors::DarkGray);
 
 	world = Matrix::CreateScale(0.1f);
 	world *= Matrix::CreateTranslation(Vector3(0.f, 0.f, 0.f));

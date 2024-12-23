@@ -11,9 +11,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -49,6 +46,9 @@ void TunomaruAttack::Initialize()
 //---------------------------------------------------------
 void TunomaruAttack::Update()
 {
+	using namespace DirectX;
+	using namespace DirectX::SimpleMath;
+
 	// 突進する
 	m_tunomaru->SetVelocity(Vector3::Forward * 2.f);
 	// 突進時間を減らす

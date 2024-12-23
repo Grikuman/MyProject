@@ -10,9 +10,6 @@
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -97,7 +94,7 @@ void PlayerAttack::Finalize()
 
 DirectX::BoundingSphere PlayerAttack::GetAttackRange()
 {
-    Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
-    float radius = 2.f;                       // 範囲に応じて調整
+    DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
+    float radius = 2.f; // 範囲に応じて調整
     return DirectX::BoundingSphere(center, radius);
 }

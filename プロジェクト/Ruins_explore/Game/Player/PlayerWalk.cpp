@@ -10,9 +10,6 @@
 #include "WorkTool/Resources.h"
 #include "WorkTool/InputDevice.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -79,6 +76,7 @@ void PlayerWalk::Finalize()
 //---------------------------------------------------------
 void PlayerWalk::PlayerMove()
 {
+    using namespace DirectX::SimpleMath;
     // キーボード入力を取得
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
@@ -106,7 +104,7 @@ void PlayerWalk::PlayerMove()
     m_player->ApplyVelocity(0.05f);
 
     // クォータニオンを用いて移動
-    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle()));
+    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_player->GetAngle()));
     m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), rotation));
 }
 

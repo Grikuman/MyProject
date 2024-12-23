@@ -12,9 +12,6 @@
 #include "WorkTool/Collision.h"
 #include "WorkTool/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 Tunomaru::Tunomaru(Player* player)
     : 
     m_player{player},
@@ -33,7 +30,7 @@ Tunomaru::Tunomaru(Player* player)
 
 Tunomaru::~Tunomaru() {}
 
-void Tunomaru::Initialize(Vector3 position)
+void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
 {
     // コンテキストを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
@@ -110,6 +107,9 @@ void Tunomaru::Update()
 
 void Tunomaru::Render()
 {
+    using namespace DirectX;
+    using namespace DirectX::SimpleMath;
+
     DirectX::SimpleMath::Matrix view, proj;
     // リソースを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
@@ -144,11 +144,11 @@ void Tunomaru::Finalize()
 }
 
 // バウンディングスフィアを取得する
-BoundingSphere Tunomaru::GetBoundingSphere() const
+DirectX::BoundingSphere Tunomaru::GetBoundingSphere() const
 {
-    Vector3 center = m_position;
+    DirectX::SimpleMath::Vector3 center = m_position;
     float radius = 1.f;
-    return BoundingSphere(center, radius);
+    return DirectX::BoundingSphere(center, radius);
 }
 // ダメージを与える
 void Tunomaru::Damage(const float damage)
