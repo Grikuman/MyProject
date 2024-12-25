@@ -136,12 +136,15 @@ void PlayerWalk::WalkToDash()
 void PlayerWalk::WalkToAttack()
 {
     // キーボードを取得する
-    auto dashkb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+    auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+    // マウスを取得する
+    auto mouse = InputDevice::GetInstance()
 
     // Fキーを押したら
-    if (dashkb->IsKeyPressed(DirectX::Keyboard::F))
+    if (kb->IsKeyPressed(DirectX::Keyboard::F))
     {
         // ステートを攻撃に変更する
         m_player->ChangeState(m_player->GetPlayerAttack());
     }
+    if()
 }

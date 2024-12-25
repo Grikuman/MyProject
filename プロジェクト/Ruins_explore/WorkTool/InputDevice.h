@@ -1,6 +1,6 @@
 /*
 	ファイル名：InputDevice.h
-	　　　概要：入力を管理するクラス
+	　　　概要：入力デバイスを管理するクラス
 */
 #pragma once
 
@@ -16,6 +16,11 @@ public:
 	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker()  { return m_keyboardStateTracker.get(); }
 	// キーボードステートのインスタンスを取得する
 	DirectX::Keyboard::State* GetKeyboardState()                        { return m_keyboardState.get(); }
+
+	// マウスのインスタンスを取得する
+	DirectX::Mouse* GetMouse() { return m_mouse.get(); }
+	// マウスステートのインスタンスを取得する
+	DirectX::Mouse::State* GetMouseState()
 
 public:
 	// 初期化する
