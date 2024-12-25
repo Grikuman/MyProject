@@ -91,21 +91,24 @@ void PlayerWalk::PlayerMove()
     }
 
     // 回転処理
-    if (kb->A || kb->Left)
+    if(kb->A || kb->Left)
     {
-        m_player->AddRotation(2.0f);  // 左回転
+        // Y軸を中心に左回転を加算
+        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(3.0f));
+        m_player->AddAngle(rotation);
     }
     if (kb->D || kb->Right)
     {
-        m_player->AddRotation(-2.0f); // 右回転
+        // Y軸を中心に右回転を加算
+        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(-3.0f));
+        m_player->AddAngle(rotation);
     }
 
     // 移動速度を補正
     m_player->ApplyVelocity(0.05f);
 
     // クォータニオンを用いて移動
-    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_player->GetAngle()));
-    m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), rotation));
+    m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
 }
 
 //---------------------------------------------------------
@@ -138,7 +141,7 @@ void PlayerWalk::WalkToAttack()
     // キーボードを取得する
     auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
     // マウスを取得する
-    auto mouse = InputDevice::GetInstance()
+    //auto mouse = InputDevice::GetInstance()
 
     // Fキーを押したら
     if (kb->IsKeyPressed(DirectX::Keyboard::F))
@@ -146,5 +149,5 @@ void PlayerWalk::WalkToAttack()
         // ステートを攻撃に変更する
         m_player->ChangeState(m_player->GetPlayerAttack());
     }
-    if()
+    //if()
 }

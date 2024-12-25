@@ -24,7 +24,7 @@ Player::Player()
 	m_camera{},
 	m_position{ DirectX::SimpleMath::Vector3(0.f, 0.0f, 0.f) },
 	m_velocity{},
-	m_playerAngle{},
+	m_angle{},
 	m_chargeCnt{},
 	m_invincible{ false },
 	m_invincibleTime{ 120.0f },
@@ -100,8 +100,7 @@ void Player::Update(float elapsedTime)
 	m_currentState->Update(elapsedTime);
 
 	// Y軸を中心にカメラも回転させる
-	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_playerAngle)); 
-	m_camera->Update(m_position, Matrix::CreateFromQuaternion(rotation)); 
+	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle)); 
 
 	// UI管理クラスを更新する
 	m_playerUIManager->Update();
@@ -173,11 +172,12 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 DirectX::SimpleMath::Vector3 Player::GetForwardDirection()
 {
 	// 回転角度から方向ベクトルを計算
-	return DirectX::SimpleMath::Vector3(
-		std::cos(DirectX::XMConvertToRadians(m_playerAngle)), // X
-		0.0f,                    // Y（2D計算だから0で大丈夫）
-		std::sin(DirectX::XMConvertToRadians(m_playerAngle))  // Z
-	);
+	//return DirectX::SimpleMath::Vector3(
+	//	std::cos(DirectX::XMConvertToRadians(m_playerAngle)), // X
+	//	0.0f,                    // Y（2D計算だから0で大丈夫）
+	//	std::sin(DirectX::XMConvertToRadians(m_playerAngle))  // Z
+	//);
+	return DirectX::SimpleMath::Vector3(0,0,0);
 }
 
 //---------------------------------------------------------

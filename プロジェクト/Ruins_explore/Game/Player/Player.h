@@ -39,7 +39,7 @@ public:
 	// ‘¬“x‚ğæ“¾‚·‚é
 	DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
 	// Šp“x‚ğæ“¾‚·‚é
-	float GetAngle() const                           { return m_playerAngle; }
+	DirectX::SimpleMath::Quaternion GetAngle() const { return m_angle; }
 	// ‘Ì—Í‚ğæ“¾‚·‚é
 	int GetHP() const                                { return m_hp; }
 	// Å‘å‘Ì—Í‚ğæ“¾‚·‚é
@@ -66,8 +66,10 @@ public:
 	void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
 	// ‘¬“x‚ÉŒW”‚ğ‚©‚¯‚é
 	void ApplyVelocity(float scale)                                { m_velocity *= scale; }
-	// ‰ñ“]‘¬“x‚ğ‰ÁZ‚·‚é
-	void AddRotation(const float angle)                            { m_playerAngle += angle; }
+	// ‰ñ“]‚ğİ’è‚·‚é
+	void SetAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle = angle; }
+	// ‰ñ“]‚ğ‰ÁZ‚·‚é
+	void AddAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle *= angle; }
 	// ‘Ì—Í‚ğİ’è‚·‚é
 	void SetHP(const int hp)                                       { m_hp = hp; }
 	// ƒXƒ^ƒ~ƒi‚ğİ’è‚·‚é
@@ -122,7 +124,7 @@ private:
 	// ‘¬“x
 	DirectX::SimpleMath::Vector3 m_velocity;
 	// ‰ñ“]
-	float m_playerAngle;
+	DirectX::SimpleMath::Quaternion m_angle;
 
 	// ‘Ì—Í
 	int m_hp;

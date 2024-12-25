@@ -18,9 +18,11 @@ public:
 	DirectX::Keyboard::State* GetKeyboardState()                        { return m_keyboardState.get(); }
 
 	// マウスのインスタンスを取得する
-	DirectX::Mouse* GetMouse() { return m_mouse.get(); }
+	DirectX::Mouse* GetMouse()                                          { return m_mouse.get(); }
 	// マウスステートのインスタンスを取得する
-	DirectX::Mouse::State* GetMouseState()
+	DirectX::Mouse::State* GetMouseState()                              { return m_mouseState.get(); }
+	// マウスボタンステートトラッカーのインスタンスを取得する
+	DirectX::Mouse::ButtonStateTracker* GetMouseButtonStateTracker()    { return m_mouseButtonStateTracker.get(); }
 
 public:
 	// 初期化する
@@ -59,6 +61,6 @@ private:
 	// マウス
 	std::unique_ptr<DirectX::Mouse>                          m_mouse;
 	std::unique_ptr<DirectX::Mouse::State>                   m_mouseState;
-    std::unique_ptr<DirectX::Mouse::ButtonStateTracker>      m_mouseStateTracker;
+    std::unique_ptr<DirectX::Mouse::ButtonStateTracker>      m_mouseButtonStateTracker;
 };
 

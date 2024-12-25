@@ -31,6 +31,10 @@ public:
 private:
 	// ダッシュ処理
 	void Dash();
+	// ダッシュから歩行へ
+	void DashToWalk();
+	// ダッシュから攻撃へ
+	void DashToAttack();
 
 private:
 	// ダッシュを行う時間

@@ -69,7 +69,7 @@ void PlayerRightHand::Render()
 	proj = Graphics::GetInstance()->GetProjectionMatrix(); 
 
 	// プレイヤーの回転をクォータニオンで作成
-	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_player->GetAngle())); 
+	Quaternion rotation = m_player->GetAngle();
 	// 回転行列に変換
 	Matrix world = Matrix::CreateScale(1.2f) * Matrix::CreateFromQuaternion(rotation); 
 	// 中央からずらす座標

@@ -63,7 +63,7 @@ void PlayerBody::Render()
 	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
 	// プレイヤーの回転をクォータニオンで作成
-	Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(m_player->GetAngle())); 
+	Quaternion rotation = m_player->GetAngle();
 
 	// 回転行列を作成
 	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
