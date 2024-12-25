@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <RootNamespace>Direct3D_Game</RootNamespace>
+    <ProjectGuid>{1c62edfc-13e3-45a2-b30d-6b959359e82c}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Direct3D11AppGroupMove1 Impl</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>arm64</PreferredToolArchitecture>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>arm64</PreferredToolArchitecture>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <LinkIncremental>true</LinkIncremental>
+    <BuildAsX>false</BuildAsX>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(VC_SourcePath);</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(VC_SourcePath);</SourcePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>DirectXTK\Inc;Framework;Game;Interface;Resources;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework/pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>DirectXTK.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>DirectXTK\Bin\Desktop_2022\x64\Debug;</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>DirectXTK\Inc;Framework;Game;Interface;Resources;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework/pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>DirectXTK.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>DirectXTK\Bin\Desktop_2022\ARM64\Debug;</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>DirectXTK\Inc;Interface;Framework;Game;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework/pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>DirectXTK.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>DirectXTK\Bin\Desktop_2022\x64\Release;</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>DirectXTK\Inc;Interface;Framework;Game;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Framework/pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>DirectXTK.lib;d3d11.lib;dxgi.lib;dxguid.lib;uuid.lib;kernel32.lib;user32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>DirectXTK\Bin\Desktop_2022\ARM64\Release;</AdditionalLibraryDirectories>
+    </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="DirectXTK\Inc\Audio.h" />
+    <ClInclude Include="DirectXTK\Inc\BufferHelpers.h" />
+    <ClInclude Include="DirectXTK\Inc\CommonStates.h" />
+    <ClInclude Include="DirectXTK\Inc\DDSTextureLoader.h" />
+    <ClInclude Include="DirectXTK\Inc\DirectXHelpers.h" />
+    <ClInclude Include="DirectXTK\Inc\Effects.h" />
+    <ClInclude Include="DirectXTK\Inc\GamePad.h" />
+    <ClInclude Include="DirectXTK\Inc\GeometricPrimitive.h" />
+    <ClInclude Include="DirectXTK\Inc\GraphicsMemory.h" />
+    <ClInclude Include="DirectXTK\Inc\Keyboard.h" />
+    <ClInclude Include="DirectXTK\Inc\Model.h" />
+    <ClInclude Include="DirectXTK\Inc\Mouse.h" />
+    <ClInclude Include="DirectXTK\Inc\PostProcess.h" />
+    <ClInclude Include="DirectXTK\Inc\PrimitiveBatch.h" />
+    <ClInclude Include="DirectXTK\Inc\ScreenGrab.h" />
+    <ClInclude Include="DirectXTK\Inc\SimpleMath.h" />
+    <ClInclude Include="DirectXTK\Inc\SpriteBatch.h" />
+    <ClInclude Include="DirectXTK\Inc\SpriteFont.h" />
+    <ClInclude Include="DirectXTK\Inc\VertexTypes.h" />
+    <ClInclude Include="DirectXTK\Inc\WICTextureLoader.h" />
+    <ClInclude Include="DirectXTK\Inc\XboxDDSTextureLoader.h" />
+    <ClInclude Include="Framework\ArcBall.h" />
+    <ClInclude Include="Framework\Camera.h" />
+    <ClInclude Include="Framework\Common.h" />
+    <ClInclude Include="Framework\Cursor.h" />
+    <ClInclude Include="Framework\DeviceResources.h" />
+    <ClInclude Include="Framework\Geometry.h" />
+    <ClInclude Include="Framework\Graphics.h" />
+    <ClInclude Include="Framework\Resources.h" />
+    <ClInclude Include="Framework\SpriteString2D.h" />
+    <ClInclude Include="Game\Bullet\Bullet.h" />
+    <ClInclude Include="Game\Bullet\BulletFactory.h" />
+    <ClInclude Include="Game\Command\Header\Commander.h" />
+    <ClInclude Include="Game\Command\Header\FloatCommand.h" />
+    <ClInclude Include="Game\Command\Header\MoveCommand.h" />
+    <ClInclude Include="Game\Command\Header\Parameter.h" />
+    <ClInclude Include="Game\Command\Header\PlateCommand.h" />
+    <ClInclude Include="Game\Command\Header\RotateCommand.h" />
+    <ClInclude Include="Game\Factory\TurretFactory.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Framework\pch.h" />
+    <ClInclude Include="Framework\StepTimer.h" />
+    <ClInclude Include="Game\Node\NodeBase.h" />
+    <ClInclude Include="Game\Node\NodeFactory.h" />
+    <ClInclude Include="Game\Node\Obstacle.h" />
+    <ClInclude Include="Game\Observer\Messenger.h" />
+    <ClInclude Include="Game\PlayScene.h" />
+    <ClInclude Include="Game\Steering\SteeringBehavior.h" />
+    <ClInclude Include="Game\Steering\SteeringBehaviorParameter.h" />
+    <ClInclude Include="Game\Team\Team.h" />
+    <ClInclude Include="Game\Node\Root.h" />
+    <ClInclude Include="Game\Turret\Header\TurretFoot.h" />
+    <ClInclude Include="Game\Turret\Header\TurretPlate.h" />
+    <ClInclude Include="Game\Visitor\CollisionVisitor.h" />
+    <ClInclude Include="Interface\IBehavior.h" />
+    <ClInclude Include="Interface\IBullet.h" />
+    <ClInclude Include="Interface\IBulletFactory.h" />
+    <ClInclude Include="Interface\ICollision.h" />
+    <ClInclude Include="Interface\ICollisionVisitor.h" />
+    <ClInclude Include="Interface\ICommand.h" />
+    <ClInclude Include="Interface\IComponent.h" />
+    <ClInclude Include="Game\Turret\Header\Turret.h" />
+    <ClInclude Include="Game\Turret\Header\TurretBottom.h" />
+    <ClInclude Include="Game\Turret\Header\TurretFort.h" />
+    <ClInclude Include="Game\Turret\Header\TurretGun.h" />
+    <ClInclude Include="Game\Turret\Header\TurretMiddle.h" />
+    <ClInclude Include="Game\Turret\Header\TurretTop.h" />
+    <ClInclude Include="Interface\IObserver.h" />
+    <ClInclude Include="Interface\ISubject.h" />
+    <ClInclude Include="Interface\ITurretFactory.h" />
+    <ClInclude Include="Utilities\DebugDraw.h" />
+    <ClInclude Include="Interface\IComposite.h" />
+    <ClInclude Include="Interface\ILeaf.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Framework\Camera.cpp" />
+    <ClCompile Include="Framework\Cursor.cpp" />
+    <ClCompile Include="Framework\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Graphics.cpp" />
+    <ClCompile Include="Framework\Resources.cpp" />
+    <ClCompile Include="Framework\SpriteString2D.cpp" />
+    <ClCompile Include="Game\Bullet\Bullet.cpp" />
+    <ClCompile Include="Game\Bullet\BulletFactory.cpp" />
+    <ClCompile Include="Game\Command\Source\Commander.cpp" />
+    <ClCompile Include="Game\Command\Source\FloatCommand.cpp" />
+    <ClCompile Include="Game\Command\Source\MoveCommand.cpp" />
+    <ClCompile Include="Game\Command\Source\Parameter.cpp" />
+    <ClCompile Include="Game\Command\Source\PlateCommand.cpp" />
+    <ClCompile Include="Game\Command\Source\RotateCommand.cpp" />
+    <ClCompile Include="Game\Factory\TurretFactory.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\Main.cpp" />
+    <ClCompile Include="Framework\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Game\Node\NodeBase.cpp" />
+    <ClCompile Include="Game\Node\NodeFactory.cpp" />
+    <ClCompile Include="Game\Node\Obstacle.cpp" />
+    <ClCompile Include="Game\Observer\Messenger.cpp" />
+    <ClCompile Include="Game\PlayScene.cpp" />
+    <ClCompile Include="Game\Steering\SteeringBehavior.cpp" />
+    <ClCompile Include="Game\Steering\SteeringBehaviorParameter.cpp" />
+    <ClCompile Include="Game\Team\Team.cpp" />
+    <ClCompile Include="Game\Node\Root.cpp" />
+    <ClCompile Include="Game\Turret\Source\Turret.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretBottom.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretFoot.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretFort.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretGun.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretMiddle.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretPlate.cpp" />
+    <ClCompile Include="Game\Turret\Source\TurretTop.cpp" />
+    <ClCompile Include="Game\Visitor\CollisionVisitor.cpp" />
+    <ClCompile Include="Utilities\DebugDraw.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Game\directx.ico" />
+    <Image Include="Resources\cmo\Skydome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Game\settings.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DirectXTK\Inc\SimpleMath.inl" />
+    <None Include="Game\resource.aps" />
+    <None Include="Resources\cmo\bullet.cmo" />
+    <None Include="Resources\cmo\concrete.cmo" />
+    <None Include="Resources\cmo\cylinder.cmo" />
+    <None Include="Resources\cmo\shield.cmo" />
+    <None Include="Resources\cmo\Skydome.cmo" />
+    <None Include="Resources\cmo\Turret.cmo" />
+    <None Include="Resources\cmo\turret_bottom.cmo" />
+    <None Include="Resources\cmo\turret_bottom1.cmo" />
+    <None Include="Resources\cmo\turret_bottom2.cmo" />
+    <None Include="Resources\cmo\turret_bottom3.cmo" />
+    <None Include="Resources\cmo\turret_bottomA.cmo" />
+    <None Include="Resources\cmo\turret_bottom_foot.cmo" />
+    <None Include="Resources\cmo\turret_fort.cmo" />
+    <None Include="Resources\cmo\turret_fort1.cmo" />
+    <None Include="Resources\cmo\turret_gun.cmo" />
+    <None Include="Resources\cmo\turret_middle.cmo" />
+    <None Include="Resources\cmo\turret_plate.cmo" />
+    <None Include="Resources\cmo\turret_top.cmo" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="DirectXTK\Bin\Desktop_2022\ARM64\Debug\DirectXTK.lib" />
+    <Library Include="DirectXTK\Bin\Desktop_2022\ARM64\Release\DirectXTK.lib" />
+    <Library Include="DirectXTK\Bin\Desktop_2022\x64\Debug\DirectXTK.lib" />
+    <Library Include="DirectXTK\Bin\Desktop_2022\x64\Release\DirectXTK.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
