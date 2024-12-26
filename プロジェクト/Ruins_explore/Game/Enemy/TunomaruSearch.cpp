@@ -44,43 +44,10 @@ void TunomaruSearch::Initialize()
 //---------------------------------------------------------
 void TunomaruSearch::Update()
 {
-    // プレイヤーとの距離を計算
-    DirectX::SimpleMath::Vector3 playerPosition = m_tunomaru->GetPlayer()->GetPosition();
-    DirectX::SimpleMath::Vector3 direction = playerPosition - m_tunomaru->GetPosition();
-    float distance = direction.Length();  // プレイヤーとの距離
-
-    // 距離が15以内なら追いかける
-    if (distance <= 20.0f)
-    {
-        // 追いかける方向に向かう
-        direction.Normalize();  // 単位ベクトルに正規化
-
-        // プレイヤーの方向に向かって回転角度を計算
-        float targetAngle = DirectX::XMConvertToDegrees(atan2(direction.x, direction.z));
-
-        // 現在の角度との差を計算して回転速度を加算
-        float angleDiff = targetAngle - m_tunomaru->GetAngle();
-        if (angleDiff > 180.0f) angleDiff -= 360.0f;  // 角度差が180度以上なら補正
-        if (angleDiff < -180.0f) angleDiff += 360.0f;
-
-        // 回転速度を加算して角度を更新
-        m_tunomaru->AddRotation(angleDiff * 0.1f);
-
-        // プレイヤー方向に移動
-        m_tunomaru->AddVelocity(direction * 1.0f);
-
-        // 移動速度を補正
-        m_tunomaru->ApplyVelocity(0.03f);
-
-        // 移動量を計算
-        DirectX::SimpleMath::Quaternion movementRotation = DirectX::SimpleMath::Quaternion::CreateFromAxisAngle(
-            DirectX::SimpleMath::Vector3::UnitY, DirectX::XMConvertToRadians(m_tunomaru->GetAngle()));
-        DirectX::SimpleMath::Vector3 movement = DirectX::SimpleMath::Vector3::Transform(m_tunomaru->GetVelocity(), movementRotation);  // 回転後の移動量
-
-        // 位置更新
-        //m_position += movement;
-        m_tunomaru->SetPotision(m_tunomaru->GetPosition() + movement);
-    }
+    // プレイヤーを追いかける
+    ChasePlayer();
+    // 探索から攻撃へ
+    SearchToAttack();
 }
 
 //---------------------------------------------------------
@@ -89,6 +56,64 @@ void TunomaruSearch::Update()
 void TunomaruSearch::Finalize()
 {
     
+}
+
+//---------------------------------------------------------
+// プレイヤーを追いかける
+//---------------------------------------------------------
+void TunomaruSearch::ChasePlayer()
+{
+    using namespace DirectX::SimpleMath;
+
+    // プレイヤーの位置を取得
+    Vector3 playerPosition = m_tunomaru->GetPlayer()->GetPosition();
+
+    // つのまるの現在位置を取得
+    Vector3 tunomaruPosition = m_tunomaru->GetPosition();
+
+    // プレイヤーとの距離を計算
+    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+
+    // 距離が20.0f以内の場合、プレイヤーを追いかける
+    if (distanceToPlayer <= 20.0f)
+    {
+        // プレイヤーへの方向を計算
+        Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+        directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+
+        // つのまるの回転をプレイヤーに向ける
+        float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+        m_tunomaru->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+
+        // 速度を設定
+        m_tunomaru->AddVelocity(directionToPlayer);
+        m_tunomaru->ApplyVelocity(0.05f);// つのまるを移動させる
+
+        m_tunomaru->SetPotision(tunomaruPosition + m_tunomaru->GetVelocity());
+    }
+}
+
+//---------------------------------------------------------
+// 探索から攻撃へ
+//---------------------------------------------------------
+void TunomaruSearch::SearchToAttack()
+{
+    using namespace DirectX::SimpleMath;
+
+    // プレイヤーの位置を取得
+    Vector3 playerPosition = m_tunomaru->GetPlayer()->GetPosition();
+
+    // つのまるの現在位置を取得
+    Vector3 tunomaruPosition = m_tunomaru->GetPosition();
+
+    // プレイヤーとの距離を計算
+    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+
+    // 距離が20.0f以内の場合、攻撃に移行する
+    if (distanceToPlayer <= 5.0f)
+    {
+        m_tunomaru->ChangeState(m_tunomaru->GetTunomaruAttack());
+    }
 }
 
 //

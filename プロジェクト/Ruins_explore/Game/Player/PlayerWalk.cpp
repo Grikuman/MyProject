@@ -107,7 +107,7 @@ void PlayerWalk::PlayerMove()
     // 移動速度を補正
     m_player->ApplyVelocity(0.05f);
 
-    // クォータニオンを用いて移動
+    // 移動させる
     m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
 }
 

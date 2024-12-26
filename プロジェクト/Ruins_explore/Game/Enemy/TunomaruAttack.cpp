@@ -72,14 +72,13 @@ void TunomaruAttack::Update()
 		m_tunomaru->ChangeState(m_tunomaru->GetTunomaruDown());
 	}
 
-	// ‰ñ“]s—ñ‚ðì¬‚·‚é
-	Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_tunomaru->GetAngle()));
-
 	// ˆÚ“®—Ê‚ð•â³‚·‚é
 	m_tunomaru->SetVelocity(m_tunomaru->GetVelocity() * 0.05f);
 
 	// ‰ñ“]‚ð‰Á–¡‚µ‚ÄŽÀÛ‚ÉˆÚ“®‚·‚é
-	m_tunomaru->SetPotision(m_tunomaru->GetPosition() + Vector3::Transform(m_tunomaru->GetVelocity(), matrix));
+	m_tunomaru->SetPotision(
+		m_tunomaru->GetPosition() + 
+		Vector3::Transform(m_tunomaru->GetVelocity(), Matrix::CreateFromQuaternion(m_tunomaru->GetAngle())));
 }
 
 //---------------------------------------------------------

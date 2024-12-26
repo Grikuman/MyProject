@@ -65,18 +65,19 @@ void PlayerLeftHand::Render()
 	view = Graphics::GetInstance()->GetViewMatrix(); 
 	proj = Graphics::GetInstance()->GetProjectionMatrix(); 
 
-	// プレイヤーの回転をクォータニオンで作成
-	Quaternion rotation = m_player->GetAngle();
-	// 回転行列に変換
-	Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation); 
 	// 中央からずらす座標
-	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(rotation));
+	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(m_player->GetAngle()));
 
-	// 最終計算
-	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
+	Matrix worldMatrix = 
+		// スケール行列を作成
+		Matrix::CreateScale(1.f) * 
+		// 回転行列を作成
+		Matrix::CreateFromQuaternion(m_player->GetAngle()) *
+		// 移動行列を作成
+	    Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
 
 	// モデルを描画する
-	m_model->Draw(context, *states, world, view, proj); 
+	m_model->Draw(context, *states, worldMatrix, view, proj); 
 }
 
 //---------------------------------------------------------

@@ -26,12 +26,24 @@ namespace NRLib
 class Player
 {
 public:
-	// プレイヤーアイドリングを取得する
-	PlayerWalk* GetPlayerWalk()                      { return m_playerWalk.get(); }
-	// プレイヤーアタックを取得する
-	PlayerAttack* GetPlayerAttack()                  { return m_playerAttack.get(); }
-	// プレイヤーダッシュを取得する
-	PlayerDash* GetPlayerDash()                      { return m_playerDash.get(); }
+	// 位置を設定する
+	void SetPosition(const DirectX::SimpleMath::Vector3& position) { m_position = position; }
+	// 速度を加算する
+	void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
+	// 速度に係数をかける
+	void ApplyVelocity(float scale) { m_velocity *= scale; }
+	// 回転を設定する
+	void SetAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle = angle; }
+	// 回転を加算する
+	void AddAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle *= angle; }
+	// 体力を設定する
+	void SetHP(const int hp) { m_hp = hp; }
+	// スタミナを設定する
+	void SetStamina(const int stamina) { m_stamina = stamina; }
+	//無敵を設定する
+	void SetInvincible(const bool invincible) { m_invincible = invincible; }
+	// ステートを変更する
+	void ChangeState(IPlayerState* newState);
 
 public:
 	// 位置を取得する
@@ -60,25 +72,13 @@ public:
 	NRLib::TPS_Camera* GetCamera()                   { return m_camera.get(); }
 
 public:
-	// 位置を設定する
-	void SetPosition(const DirectX::SimpleMath::Vector3& position) { m_position = position; }
-	// 速度を加算する
-	void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
-	// 速度に係数をかける
-	void ApplyVelocity(float scale)                                { m_velocity *= scale; }
-	// 回転を設定する
-	void SetAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle = angle; }
-	// 回転を加算する
-	void AddAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle *= angle; }
-	// 体力を設定する
-	void SetHP(const int hp)                                       { m_hp = hp; }
-	// スタミナを設定する
-	void SetStamina(const int stamina)                             { m_stamina = stamina; }
-	//無敵を設定する
-	void SetInvincible(const bool invincible)                      { m_invincible = invincible; }
+	// プレイヤーアイドリングを取得する
+	PlayerWalk* GetPlayerWalk() { return m_playerWalk.get(); }
+	// プレイヤーアタックを取得する
+	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
+	// プレイヤーダッシュを取得する
+	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
 
-	// ステートを変更する
-	void ChangeState(IPlayerState* newState);
 
 public:
 	// コンストラクタ

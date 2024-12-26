@@ -110,25 +110,30 @@ void Tunomaru::Render()
     using namespace DirectX;
     using namespace DirectX::SimpleMath;
 
+    // コンテキスト・ステートを取得する
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext(); 
+    auto states = Graphics::GetInstance()->GetCommonStates(); 
+
+    // ビュー・プロジェクションを取得する
     DirectX::SimpleMath::Matrix view, proj;
-    // リソースを取得する
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-    view = Graphics::GetInstance()->GetViewMatrix();
-    proj = Graphics::GetInstance()->GetProjectionMatrix();
+    view = Graphics::GetInstance()->GetViewMatrix(); 
+    proj = Graphics::GetInstance()->GetProjectionMatrix(); 
 
-    // プレイヤーの回転をクォータニオンで作成
-    Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, XMConvertToRadians(m_angle));
-
-    // 回転行列を作成
-    Matrix world = Matrix::CreateScale(1.f) * Matrix::CreateFromQuaternion(rotation);
-    world *= Matrix::CreateTranslation(m_position);
+    Matrix worldMatrix = 
+        // スケール行列を作成
+        Matrix::CreateScale(1.f) * 
+        // 180度回転させる(モデルが逆を向いていたので)
+        Matrix::CreateRotationY(DirectX::XM_PI) *
+        // 回転行列を作成
+        Matrix::CreateFromQuaternion(m_angle) *
+        // 移動行列を作成
+        Matrix::CreateTranslation(m_position);
 
     // 生存していたら
     if (m_isAlive == true)
     {
         // モデル表示
-        m_model->Draw(context, *states, world, view, proj); // モデルを描画する
+        m_model->Draw(context, *states, worldMatrix, view, proj); // モデルを描画する
     }
 
     // HPUIを描画する

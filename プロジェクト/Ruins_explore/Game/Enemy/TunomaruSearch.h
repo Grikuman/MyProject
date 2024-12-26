@@ -23,6 +23,12 @@ public:
 	void Finalize();
 
 private:
+	// プレイヤーを追いかける
+	void ChasePlayer();
+	// 探索から攻撃へ
+	void SearchToAttack();
+
+private:
 	// つのまる
 	Tunomaru* m_tunomaru;
 	// モデル

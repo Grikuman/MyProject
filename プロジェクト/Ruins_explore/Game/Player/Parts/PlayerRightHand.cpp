@@ -60,26 +60,28 @@ void PlayerRightHand::Update()
 void PlayerRightHand::Render()
 {
 	using namespace DirectX::SimpleMath;
+
 	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext(); 
-	auto states = Graphics::GetInstance()->GetCommonStates(); 
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	auto states = Graphics::GetInstance()->GetCommonStates();
 	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj; 
-	view = Graphics::GetInstance()->GetViewMatrix(); 
-	proj = Graphics::GetInstance()->GetProjectionMatrix(); 
+	DirectX::SimpleMath::Matrix view, proj;
+	view = Graphics::GetInstance()->GetViewMatrix();
+	proj = Graphics::GetInstance()->GetProjectionMatrix();
 
-	// プレイヤーの回転をクォータニオンで作成
-	Quaternion rotation = m_player->GetAngle();
-	// 回転行列に変換
-	Matrix world = Matrix::CreateScale(1.2f) * Matrix::CreateFromQuaternion(rotation); 
 	// 中央からずらす座標
-	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(rotation));
+	Vector3 shiftPosition = Vector3::Transform(m_currentHandPosition, Matrix::CreateFromQuaternion(m_player->GetAngle()));
 
-	// 最終計算
-	world *= Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
+	Matrix worldMatrix =
+		// スケール行列を作成
+		Matrix::CreateScale(1.f) *
+		// 回転行列を作成
+		Matrix::CreateFromQuaternion(m_player->GetAngle()) *
+		// 移動行列を作成
+		Matrix::CreateTranslation(m_player->GetPosition() + shiftPosition);
 
 	// モデルを描画する
-	m_model->Draw(context, *states, world, view, proj);
+	m_model->Draw(context, *states, worldMatrix, view, proj);
 }
 
 //---------------------------------------------------------
