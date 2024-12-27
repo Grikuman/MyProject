@@ -103,23 +103,25 @@ void RockBoss::Render()
 {
     using namespace DirectX::SimpleMath;
 
-    DirectX::SimpleMath::Matrix view, proj;
-    // リソースを取得する
+    // コンテキスト・ステートを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states  = Graphics::GetInstance()->GetCommonStates();
-    view         = Graphics::GetInstance()->GetViewMatrix();
-    proj         = Graphics::GetInstance()->GetProjectionMatrix();
+    auto states = Graphics::GetInstance()->GetCommonStates();
 
-    // 生存している場合
-    if (m_isAlive == true)
-    {
-        // ワールド行列
-        Matrix world = Matrix::CreateScale(0.8f);
-        world *= Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_angle));
-        world *= Matrix::CreateTranslation(m_position);
-        // モデル表示
-        m_model->Draw(context, *states, world, view, proj); // モデルを描画する
-    }
+    // ビュー・プロジェクションを取得する
+    DirectX::SimpleMath::Matrix view, proj;
+    view = Graphics::GetInstance()->GetViewMatrix();
+    proj = Graphics::GetInstance()->GetProjectionMatrix();
+
+    Matrix worldMatrix =
+        // スケール行列を作成
+        Matrix::CreateScale(0.8f) *
+        // 回転行列を作成
+        Matrix::CreateFromQuaternion(m_angle) *
+        // 移動行列を作成
+        Matrix::CreateTranslation(m_position);
+
+    // モデル表示
+    m_model->Draw(context, *states, worldMatrix, view, proj);
 }
 
 void RockBoss::Finalize()

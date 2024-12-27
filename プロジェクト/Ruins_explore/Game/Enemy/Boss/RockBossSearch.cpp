@@ -43,38 +43,33 @@ void RockBossSearch::Initialize()
 //---------------------------------------------------------
 void RockBossSearch::Update()
 {
-
-    using namespace DirectX;
     using namespace DirectX::SimpleMath;
 
-    // プレイヤーの位置を取得する
-    Vector3 playerPos = m_rockBoss->GetPlayer()->GetPosition();
-    // ボスの現在の位置を取得する
-    Vector3 RockBossPos = m_rockBoss->GetPosition();
-    // プレイヤーとの距離を計算する
-    float distance = Vector3::Distance(playerPos, RockBossPos);
+    // プレイヤーの位置を取得
+    Vector3 playerPosition = m_rockBoss->GetPlayer()->GetPosition();
 
-    // 距離が5.f以内ならアタック状態へ移行する
-    if (distance < 3.0f)
-    {
-        // プレイヤーへの向きを計算する
-        Vector3 direction = playerPos - RockBossPos;
-        direction.Normalize();
-        float newAngle = atan2f(-direction.x, -direction.z);
-        m_rockBoss->SetAngle(XMConvertToDegrees(newAngle));
-        // アタック状態へ移行する
-        m_rockBoss->ChangeState(m_rockBoss->GetRockBossAttack());
-        return;
-    }
+    // 岩ボスの現在位置を取得
+    Vector3 tunomaruPosition = m_rockBoss->GetPosition();
 
-    // 距離が20.f以内ならプレイヤーを追いかける
-    if (distance < 20.0f)
+    // プレイヤーとの距離を計算
+    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+
+    // 距離が20.0f以内の場合、プレイヤーを追いかける
+    if (distanceToPlayer <= 20.0f)
     {
-        Vector3 direction = playerPos - RockBossPos;
-        direction.Normalize();
-        float newAngle = atan2f(-direction.x, -direction.z);
-        m_rockBoss->SetAngle(XMConvertToDegrees(newAngle));
-        m_rockBoss->SetPotision(RockBossPos + direction * 0.04f);
+        // プレイヤーへの方向を計算
+        Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+        directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+
+        // 岩ボスの回転をプレイヤーに向ける
+        float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+        m_rockBoss->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+
+        // 速度を設定
+        m_rockBoss->AddVelocity(directionToPlayer);
+        m_rockBoss->ApplyVelocity(0.05f);
+
+        m_rockBoss->SetPotision(tunomaruPosition + m_rockBoss->GetVelocity());
     }
 }
 

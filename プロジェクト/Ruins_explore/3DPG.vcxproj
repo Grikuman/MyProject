@@ -198,10 +198,13 @@
     <ClInclude Include="Game\Interface\ICollisionObject.h" />
     <ClInclude Include="Game\Interface\IEnemy.h" />
     <ClInclude Include="Game\Interface\IEnemyState.h" />
+    <ClInclude Include="Game\Interface\IPlayerAction.h" />
     <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
     <ClInclude Include="Game\Interface\IStage.h" />
     <ClInclude Include="Game\Interface\IPlayerState.h" />
+    <ClInclude Include="Game\Player\Action\PlayerChargePunch.h" />
+    <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h" />
     <ClInclude Include="Game\Player\Parts\PlayerBody.h" />
     <ClInclude Include="Game\Player\Parts\PlayerLeftHand.h" />
     <ClInclude Include="Game\Player\Parts\PlayerRightHand.h" />
@@ -262,6 +265,8 @@
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
+    <ClCompile Include="Game\Player\Action\PlayerChargePunch.cpp" />
+    <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp" />
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp" />
     <ClCompile Include="Game\Player\Parts\PlayerLeftHand.cpp" />
     <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp" />

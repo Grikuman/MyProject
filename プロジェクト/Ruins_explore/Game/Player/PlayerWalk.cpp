@@ -16,7 +16,8 @@
 PlayerWalk::PlayerWalk(Player* player)
 	:
     m_player(player),
-	m_model{}
+	m_model{},
+    m_keyHoldTime{}
 {
 }
 
@@ -138,16 +139,37 @@ void PlayerWalk::WalkToDash()
 //---------------------------------------------------------
 void PlayerWalk::WalkToAttack()
 {
-    // キーボードを取得する
-    auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-    // マウスを取得する
-    //auto mouse = InputDevice::GetInstance()
+    // キーボードの状態を取得
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
-    // Fキーを押したら
-    if (kb->IsKeyPressed(DirectX::Keyboard::F))
+    // Fキーが押されているかを確認
+    if (kb->IsKeyDown(DirectX::Keyboard::F))
     {
-        // ステートを攻撃に変更する
+        // Fキーが押された瞬間に通常パンチ
+        m_player->GetPlayerAttack()->ChangeAttackAction(
+            m_player->GetPlayerAttack()->GetPlayerNormalPunch());
         m_player->ChangeState(m_player->GetPlayerAttack());
     }
-    //if()
+
+    // Cキーが押されているかを確認
+    if (kb->IsKeyDown(DirectX::Keyboard::C))
+    {
+        // 長押しカウントを増加
+        m_keyHoldTime++;
+
+        // 長押しが特定の時間（フレーム数）を超えた場合
+        if (m_keyHoldTime > 30) // 30フレーム以上
+        {
+            // チャージパンチに変更
+            m_player->GetPlayerAttack()->ChangeAttackAction(
+                m_player->GetPlayerAttack()->GetPlayerChargePunch());
+            m_player->ChangeState(m_player->GetPlayerAttack());
+        }
+    }
+    else
+    {
+        // Cキーが離されたら長押しカウントをリセット
+        m_keyHoldTime = 0;
+    }
+
 }

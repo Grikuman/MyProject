@@ -73,7 +73,7 @@ void TunomaruAttack::Update()
 	}
 
 	// ˆÚ“®—Ê‚ð•â³‚·‚é
-	m_tunomaru->SetVelocity(m_tunomaru->GetVelocity() * 0.05f);
+	m_tunomaru->SetVelocity(m_tunomaru->GetVelocity() * -0.05f);
 
 	// ‰ñ“]‚ð‰Á–¡‚µ‚ÄŽÀÛ‚ÉˆÚ“®‚·‚é
 	m_tunomaru->SetPotision(

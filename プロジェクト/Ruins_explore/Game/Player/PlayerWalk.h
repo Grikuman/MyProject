@@ -36,4 +36,6 @@ private:
 	Player* m_player;
 	// ƒ‚ƒfƒ‹
 	DirectX::Model* m_model;
+	// ƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚éŠÔ
+	float m_keyHoldTime;
 };

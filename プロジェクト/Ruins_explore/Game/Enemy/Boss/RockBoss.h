@@ -23,8 +23,14 @@ public:
     void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity)  { m_velocity = velocity; }
+    // 速度を加算する
+    void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
+    // 速度に係数をかける
+    void ApplyVelocity(float scale) { m_velocity *= scale; }
+    // 回転速度を加算する
+    void AddAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle *= angle; }
     // 角度を設定する
-    void SetAngle(const float angle)                               { m_angle = angle; }
+    void SetAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle = angle; }
     // 体力を設定する
     void SetHP(const float hp)                                     { m_hp = hp; }
     // ダメージを受けているか設定する
@@ -33,7 +39,6 @@ public:
     void SetAlive(const bool isAlive)                              { m_isAlive = isAlive; }
     // ダメージを与える
     void Damage(const float damage) override;
-
     // ステートを変更する
     void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
 public:
@@ -42,7 +47,7 @@ public:
     // 速度を取得する
     DirectX::SimpleMath::Vector3 GetVelocity() const               { return m_velocity; }
     // 角度を取得する
-    float GetAngle() const                                         { return m_angle; }
+    DirectX::SimpleMath::Quaternion GetAngle() const               { return m_angle; }
     // 体力を取得する
     float GetHP() const                                            { return m_hp; }
     // 最大体力を取得する
@@ -109,7 +114,7 @@ private:
     // 速度
     DirectX::SimpleMath::Vector3 m_velocity;
     // 角度
-    float m_angle;
+    DirectX::SimpleMath::Quaternion m_angle;
     // 体力
     float m_hp;
     // ダメージを受けているか
