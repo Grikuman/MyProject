@@ -161,9 +161,12 @@ void PlayerWalk::WalkToAttack()
         // 長押しが特定の時間（フレーム数）を超えた場合
         if (m_keyHoldTime > 30) // 30フレーム以上
         {
-            // チャージパンチに変更
-            m_player->GetPlayerAttack()->ChangeAttackAction(
-                m_player->GetPlayerAttack()->GetPlayerChargePunch());
+            // チャージパンチになっていなければ
+            if (m_player->GetPlayerAttack()->GetCurrentAttackAction() != m_player->GetPlayerAttack()->GetPlayerChargePunch())
+            {
+                // チャージパンチに変更
+                m_player->GetPlayerAttack()->ChangeAttackAction(m_player->GetPlayerAttack()->GetPlayerChargePunch());
+            }
             // 攻撃へ移行する
             m_player->ChangeState(m_player->GetPlayerAttack());
             // 長押し時間を0に

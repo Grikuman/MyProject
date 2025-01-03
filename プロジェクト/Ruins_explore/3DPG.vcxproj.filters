@@ -297,6 +297,9 @@
     <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h">
       <Filter>Game\Player\Action</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\TunomaruKnockback.h">
+      <Filter>Game\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -463,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp">
       <Filter>Game\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\TunomaruKnockback.cpp">
+      <Filter>Game\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

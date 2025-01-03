@@ -192,6 +192,7 @@
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
+    <ClInclude Include="Game\Enemy\TunomaruKnockback.h" />
     <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
     <ClInclude Include="Game\Factory\EnemyFactory.h" />
     <ClInclude Include="Game\Factory\StageFactory.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />
+    <ClCompile Include="Game\Enemy\TunomaruKnockback.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
     <ClCompile Include="Game\Player\Action\PlayerChargePunch.cpp" />
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp" />

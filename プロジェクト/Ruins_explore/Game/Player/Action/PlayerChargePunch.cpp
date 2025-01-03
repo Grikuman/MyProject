@@ -47,7 +47,7 @@ void PlayerChargePunch::Update()
 	// 行動時間をカウントする
 	CountActionTime();
 	// 移動させる
-	Move();
+	//Move();
 }
 
 //---------------------------------------------------------

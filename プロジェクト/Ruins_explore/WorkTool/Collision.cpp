@@ -9,6 +9,7 @@
 #include "Game/Enemy/Tunomaru.h"
 #include "Game/Enemy/Boss/RockBoss.h"
 #include "Game/Interface/ICollisionObject.h"
+#include "Game/Interface/IEnemy.h"
 
 std::unique_ptr<Collision> Collision::m_collision = nullptr;
 
@@ -42,7 +43,7 @@ void Collision::Finalize()
 }
 
 // プレイヤーと通常敵の当たり判定をまとめたもの
-void Collision::PlayerToNormalEnemy(ICollisionObject* enemy)
+void Collision::PlayerToNormalEnemy(IEnemy* enemy)
 {
 	// 攻撃判定
 	CheckHitPlayerToEnemy(enemy);
@@ -51,7 +52,7 @@ void Collision::PlayerToNormalEnemy(ICollisionObject* enemy)
 }
 
 // プレイヤーから敵への攻撃判定
-void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
+void Collision::CheckHitPlayerToEnemy(IEnemy* enemy)
 {
 	// プレイヤーが攻撃していない場合終了
 	if (!m_player->IsAttack())
@@ -71,24 +72,14 @@ void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
 		// 攻撃範囲内に入っていたら
 		if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
 		{
-			// 敵にダメージを与える
-			enemy->Damage(20.0f);
-			// 敵を飛ばす処理
-			DirectX::SimpleMath::Vector3 playerPosition = m_player->GetPosition(); 
-			DirectX::SimpleMath::Vector3 enemyPosition = enemy->GetPosition(); 
-
-			// プレイヤーから敵へのベクトルを計算
-			DirectX::SimpleMath::Vector3 knockbackDirection = enemyPosition - playerPosition; 
-			knockbackDirection.Normalize(); // 正規化 
-
-			// ノックバックの強さを指定
-			float knockbackStrength = 5.0f; // 適宜調整 
-			knockbackDirection *= knockbackStrength; 
-
-			// 敵の位置を更新（ノックバックを適用）
-			enemy->SetPotision(enemyPosition + knockbackDirection); 
-			// チャージパンチを止める
-			m_player->GetPlayerAttack()->GetPlayerChargePunch()->EndAction();
+			// ノックバックしていなければ
+			if (!enemy->IsKnockback())
+			{
+				// 敵にダメージを与える
+				enemy->Damage(20.0f);
+				// 敵を飛ばす処理
+				enemy->Knockback();
+			}
 		}
 	}
 }

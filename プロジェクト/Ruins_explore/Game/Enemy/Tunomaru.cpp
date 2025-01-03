@@ -19,6 +19,8 @@ Tunomaru::Tunomaru(Player* player)
     m_ball{},
     m_tunomaruSearch{},
     m_tunomaruAttack{},
+    m_tunomaruDown{},
+    m_tunomaruKnockback{},
     m_position{},
     m_velocity{},
     m_angle{},
@@ -79,6 +81,9 @@ void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
     // ダウン状態
     m_tunomaruDown = std::make_unique<TunomaruDown>(this);
     m_tunomaruDown->Initialize();
+    // ノックバック状態
+    m_tunomaruKnockback = std::make_unique<TunomaruKnockback>(this);
+    m_tunomaruKnockback->Initialize();
 
     // ステートを設定する
     m_currentState = m_tunomaruSearch.get();
@@ -145,6 +150,17 @@ void Tunomaru::Render()
 void Tunomaru::Finalize()
 {
     
+}
+
+bool Tunomaru::IsKnockback() const
+{
+    // ノックバック状態ならば
+    if (m_currentState == m_tunomaruKnockback.get())
+    {
+        return true;
+    }
+
+    return false;
 }
 
 // バウンディングスフィアを取得する

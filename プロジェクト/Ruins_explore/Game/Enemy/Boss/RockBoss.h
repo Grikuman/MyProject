@@ -20,7 +20,7 @@ class RockBoss : public IEnemy
 {
 public:
     // 位置を設定する
-    void SetPotision(const DirectX::SimpleMath::Vector3 position) override { m_position = position; }
+    void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity)  { m_velocity = velocity; }
     // 速度を加算する
@@ -41,6 +41,8 @@ public:
     void Damage(const float damage) override;
     // ステートを変更する
     void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
+    // ノックバックさせる
+    void Knockback() override {  }
 public:
     // 位置を取得する
     DirectX::SimpleMath::Vector3 GetPosition() const override      { return m_position; }
@@ -56,6 +58,8 @@ public:
     bool GetHit() const                                            { return m_isHit; }
     // 生存状況を取得する
     bool IsAlive() const override                                  { return m_isAlive; }
+    // ノックバックしているか
+    bool IsKnockback() const override { return true; }
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
 

@@ -14,6 +14,7 @@
 #include "TunomaruSearch.h"
 #include "TunomaruAttack.h"
 #include "TunomaruDown.h"
+#include "TunomaruKnockback.h"
 
 class Player;
 
@@ -21,7 +22,7 @@ class Tunomaru : public IEnemy
 {
 public:
     // 位置を設定する
-    void SetPotision(const DirectX::SimpleMath::Vector3 position) override { m_position = position; }
+    void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
     // 速度を加算する
     void AddVelocity(const DirectX::SimpleMath::Vector3& velocity){ m_velocity += velocity; }
     // 速度に係数をかける
@@ -38,6 +39,8 @@ public:
     void SetHit(const bool isHit)                                 { m_isHit = isHit; }
     // 生存状況を設定する
     void SetAlive(const bool isAlive)                             { m_isAlive = isAlive; }
+    // ノックバックさせる
+    void Knockback() override                                     { m_currentState = m_tunomaruKnockback.get(); }
 
 public:
     // 位置を取得する
@@ -52,6 +55,8 @@ public:
     bool GetHit() const                                           { return m_isHit; }
     // 生存状況を取得する
     bool IsAlive() const override                                 { return m_isAlive; }
+    // ノックバックしているか
+    bool IsKnockback() const override;
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
 
@@ -65,6 +70,8 @@ public:
     TunomaruAttack* GetTunomaruAttack()                           { return m_tunomaruAttack.get(); }
     // つのまるダウンを取得する
     TunomaruDown* GetTunomaruDown()                               { return m_tunomaruDown.get(); }
+    // つのまるノックバックを取得する
+    TunomaruKnockback* GetTunomaruKnockBack()                     { return m_tunomaruKnockback.get(); }
 public:
     // ステートを変更する
     void ChangeState(IEnemyState* newState);
@@ -111,6 +118,8 @@ private:
     std::unique_ptr<TunomaruAttack> m_tunomaruAttack;
     // ダウン状態
     std::unique_ptr<TunomaruDown> m_tunomaruDown;
+    // ノックバック状態
+    std::unique_ptr<TunomaruKnockback> m_tunomaruKnockback;
 
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
