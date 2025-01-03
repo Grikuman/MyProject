@@ -21,14 +21,16 @@ class PlayerAttack : public IPlayerState
 public:
 	// 攻撃行動を変更する
 	void ChangeAttackAction(IPlayerAction* playerAction) { m_currentAttackAction = playerAction;  }
-	// 攻撃範囲を取得
-	DirectX::BoundingSphere GetAttackRange();
 
 public:
+	// 現在の攻撃行動を取得する
+	IPlayerAction* GetCurrentAttackAction() const   { return m_currentAttackAction; }
 	// プレイヤー通常パンチを取得する
 	PlayerNormalPunch* GetPlayerNormalPunch() const { return m_normalPunch.get(); }
 	// プレイヤー通常パンチを取得する
 	PlayerChargePunch* GetPlayerChargePunch() const { return m_chargePunch.get(); }
+	// 攻撃範囲を取得
+	DirectX::BoundingSphere GetAttackRange();
 
 public:
 	// コンストラクタ

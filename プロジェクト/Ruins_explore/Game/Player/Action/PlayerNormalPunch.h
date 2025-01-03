@@ -12,6 +12,8 @@ class PlayerNormalPunch : public IPlayerAction
 public:
 	// 行動を終了するかどうか
 	bool IsEndAction() const override { return m_isEndAction; }
+	// 攻撃範囲を取得する
+	DirectX::BoundingSphere GetAttackRange() const override;
 
 public:
 	// コンストラクタ

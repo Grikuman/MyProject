@@ -101,8 +101,7 @@ void Tunomaru::Update()
     m_hpUI->SetHP(m_hp, MAXHP);
 
     // ƒvƒŒƒCƒ„[‚Æ‚Ì“–‚½‚è”»’è
-    Collision::GetInstance()->CheckHitPlayerToEnemy(this);
-    Collision::GetInstance()->CheckPushBack(this);
+    Collision::GetInstance()->PlayerToNormalEnemy(this); 
 }
 
 void Tunomaru::Render()

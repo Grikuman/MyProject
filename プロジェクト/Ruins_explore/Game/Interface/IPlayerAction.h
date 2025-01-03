@@ -10,6 +10,9 @@ class IPlayerAction
 public:
 	// s“®‚ğI—¹‚·‚é‚©‚Ç‚¤‚©
 	virtual bool IsEndAction() const = 0;
+	// UŒ‚”ÍˆÍ‚ğæ“¾‚·‚é
+	virtual DirectX::BoundingSphere GetAttackRange() const = 0;
+
 public:
 	virtual ~IPlayerAction() = default;
 	// ‰Šú‰»‚·‚é

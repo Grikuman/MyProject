@@ -96,7 +96,7 @@ void RockBoss::Update()
     }
 
     // ƒvƒŒƒCƒ„[‚Æ‚Ì“–‚½‚è”»’è
-    Collision::GetInstance()->CheckHitPlayerToEnemy(this);
+    //Collision::GetInstance()->CheckHitPlayerToEnemy(this);
 }
 
 void RockBoss::Render()

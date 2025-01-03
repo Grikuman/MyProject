@@ -65,6 +65,16 @@ void PlayerNormalPunch::Finalize()
 }
 
 //---------------------------------------------------------
+// 攻撃範囲を取得する
+//---------------------------------------------------------
+DirectX::BoundingSphere PlayerNormalPunch::GetAttackRange() const
+{
+	DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
+	float radius = 2.f; // 範囲に応じて調整
+	return DirectX::BoundingSphere(center, radius);
+}
+
+//---------------------------------------------------------
 // 行動時間をカウントする
 //---------------------------------------------------------
 void PlayerNormalPunch::CountActionTime()

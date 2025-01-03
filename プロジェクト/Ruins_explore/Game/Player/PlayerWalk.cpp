@@ -148,6 +148,7 @@ void PlayerWalk::WalkToAttack()
         // Fキーが押された瞬間に通常パンチ
         m_player->GetPlayerAttack()->ChangeAttackAction(
             m_player->GetPlayerAttack()->GetPlayerNormalPunch());
+        // 攻撃へ移行する
         m_player->ChangeState(m_player->GetPlayerAttack());
     }
 
@@ -163,7 +164,10 @@ void PlayerWalk::WalkToAttack()
             // チャージパンチに変更
             m_player->GetPlayerAttack()->ChangeAttackAction(
                 m_player->GetPlayerAttack()->GetPlayerChargePunch());
+            // 攻撃へ移行する
             m_player->ChangeState(m_player->GetPlayerAttack());
+            // 長押し時間を0に
+            m_keyHoldTime = 0;
         }
     }
     else
@@ -171,5 +175,4 @@ void PlayerWalk::WalkToAttack()
         // Cキーが離されたら長押しカウントをリセット
         m_keyHoldTime = 0;
     }
-
 }

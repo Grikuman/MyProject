@@ -20,7 +20,7 @@ class RockBoss : public IEnemy
 {
 public:
     // ˆÊ’u‚ğİ’è‚·‚é
-    void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
+    void SetPotision(const DirectX::SimpleMath::Vector3 position) override { m_position = position; }
     // ‘¬“x‚ğİ’è‚·‚é
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity)  { m_velocity = velocity; }
     // ‘¬“x‚ğ‰ÁZ‚·‚é

@@ -46,10 +46,12 @@ void PlayerDash::Initialize()
 void PlayerDash::Update(const float& elapsedTime)
 {
     UNREFERENCED_PARAMETER(elapsedTime);
-    auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
     // ダッシュする
     Dash();
+
+    // ダッシュから歩行へ
+    DashToWalk(); 
 }
 
 
@@ -105,9 +107,6 @@ void PlayerDash::Dash()
 
     // クォータニオンを用いて移動
     m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
-
-    // ダッシュから歩行へ
-    DashToWalk();
 }
 
 //---------------------------------------------------------

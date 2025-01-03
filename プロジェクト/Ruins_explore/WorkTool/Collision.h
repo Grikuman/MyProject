@@ -12,10 +12,10 @@ class ICollisionObject;
 class Collision
 {
 public:
-
+	// プレイヤーと通常敵の当たり判定をまとめたもの
+	void PlayerToNormalEnemy(ICollisionObject* enemy);
 	// プレイヤーから敵への攻撃判定
 	void CheckHitPlayerToEnemy(ICollisionObject* enemy);
-
 	// プレイヤーと球オブジェクトの押し戻し判定
 	void CheckPushBack(ICollisionObject* object);
 public:

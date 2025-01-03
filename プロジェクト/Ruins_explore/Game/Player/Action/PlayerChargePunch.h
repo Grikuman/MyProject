@@ -12,6 +12,13 @@ class PlayerChargePunch : public IPlayerAction
 public:
 	// 行動を終了するかどうか
 	bool IsEndAction() const override { return m_isEndAction; }
+	// 攻撃範囲を取得
+	DirectX::BoundingSphere GetAttackRange() const override; 
+
+public:
+	// 行動を強制終了させる
+	void EndAction() { m_actionTime = 0; }
+
 public:
 	// コンストラクタ
 	PlayerChargePunch(Player* player);
@@ -29,10 +36,12 @@ public:
 private:
 	// 行動時間をカウントする
 	void CountActionTime();
+	// 移動させる
+	void Move();
 
 private:
 	// 行動時間
-	const float ACTION_TIME = 90;
+	const float ACTION_TIME = 60;
 
 private:
 	// プレイヤー

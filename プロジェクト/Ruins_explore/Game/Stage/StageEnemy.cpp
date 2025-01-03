@@ -86,9 +86,9 @@ void StageEnemy::Update()
 
     for (auto& enemy : m_enemies) 
     {
-        enemy->Update();
         if (enemy->IsAlive())
         {
+            enemy->Update();
             m_isChangeStage = false;  // “G‚ª¶‚«‚Ä‚¢‚½‚çƒtƒ‰ƒO‚ğOFF
         }
     }
@@ -101,7 +101,10 @@ void StageEnemy::Render()
 {
     for (auto& enemy : m_enemies)
     {
-        enemy->Render();
+        if (enemy->IsAlive())
+        {
+            enemy->Render();
+        }
     }
 }
 

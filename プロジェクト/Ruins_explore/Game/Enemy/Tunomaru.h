@@ -21,7 +21,7 @@ class Tunomaru : public IEnemy
 {
 public:
     // ˆÊ’u‚ğİ’è‚·‚é
-    void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
+    void SetPotision(const DirectX::SimpleMath::Vector3 position) override { m_position = position; }
     // ‘¬“x‚ğ‰ÁZ‚·‚é
     void AddVelocity(const DirectX::SimpleMath::Vector3& velocity){ m_velocity += velocity; }
     // ‘¬“x‚ÉŒW”‚ğ‚©‚¯‚é

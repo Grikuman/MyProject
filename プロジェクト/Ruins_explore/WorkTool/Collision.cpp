@@ -23,6 +23,8 @@ Collision* const Collision::GetInstance()
 
 // コンストラクタ
 Collision::Collision()
+	:
+	m_player{}
 {
 
 }
@@ -39,22 +41,60 @@ void Collision::Finalize()
 
 }
 
+// プレイヤーと通常敵の当たり判定をまとめたもの
+void Collision::PlayerToNormalEnemy(ICollisionObject* enemy)
+{
+	// 攻撃判定
+	CheckHitPlayerToEnemy(enemy);
+	// 押し戻し判定
+	CheckPushBack(enemy);
+}
+
 // プレイヤーから敵への攻撃判定
 void Collision::CheckHitPlayerToEnemy(ICollisionObject* enemy)
 {
-    // プレイヤーが攻撃
-    if (m_player->IsAttack())
+	// プレイヤーが攻撃していない場合終了
+	if (!m_player->IsAttack())
+	{
+		return;
+	}
+    
+    // 通常パンチの判定処理
+    if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
     {
-        // 攻撃範囲内にいるならダメージを受ける
-        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
-        {
-			enemy->Damage(0.5f);
-        }
+		enemy->Damage(0.5f);
     }
+
+	// チャージパンチの判定処理
+	if (m_player->GetPlayerAttack()->GetCurrentAttackAction() == m_player->GetPlayerAttack()->GetPlayerChargePunch())
+	{
+		// 攻撃範囲内に入っていたら
+		if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
+		{
+			// 敵にダメージを与える
+			enemy->Damage(20.0f);
+			// 敵を飛ばす処理
+			DirectX::SimpleMath::Vector3 playerPosition = m_player->GetPosition(); 
+			DirectX::SimpleMath::Vector3 enemyPosition = enemy->GetPosition(); 
+
+			// プレイヤーから敵へのベクトルを計算
+			DirectX::SimpleMath::Vector3 knockbackDirection = enemyPosition - playerPosition; 
+			knockbackDirection.Normalize(); // 正規化 
+
+			// ノックバックの強さを指定
+			float knockbackStrength = 5.0f; // 適宜調整 
+			knockbackDirection *= knockbackStrength; 
+
+			// 敵の位置を更新（ノックバックを適用）
+			enemy->SetPotision(enemyPosition + knockbackDirection); 
+			// チャージパンチを止める
+			m_player->GetPlayerAttack()->GetPlayerChargePunch()->EndAction();
+		}
+	}
 }
 
 //---------------------------------------------------------
-// プレイヤーと敵の押し戻し判定
+// オブジェクトとオブジェクトの押し戻し判定
 //---------------------------------------------------------
 void Collision::CheckPushBack(ICollisionObject* object)
 {
@@ -69,7 +109,6 @@ void Collision::CheckPushBack(ICollisionObject* object)
 	{ 
 		return;
 	}
-
 
 	// 衝突時、ＢがＡを押し戻す処理========================
 
