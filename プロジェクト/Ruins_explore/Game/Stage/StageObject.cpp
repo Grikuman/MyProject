@@ -48,6 +48,27 @@ void StageObject::Initialize(const std::string& stageName)
             // モデルリソースの読み込み
             model.m_model = Resources::GetInstance()->GetModel(model.name);
 
+            // ライトを切る設定
+            model.m_model->UpdateEffects([](DirectX::IEffect* effect)
+                {
+                    // ライトをきる
+                    auto lights = dynamic_cast<DirectX::IEffectLights*>(effect);
+                    if (lights)
+                    {
+                        lights->SetLightEnabled(0, false);
+                        lights->SetLightEnabled(1, false);
+                        lights->SetLightEnabled(2, false);
+                        // 環境光を黒に
+                        lights->SetAmbientLightColor(DirectX::Colors::Black);
+                    }
+                    // 自己発光させる
+                    auto basicEffect = dynamic_cast<DirectX::BasicEffect*>(effect);
+                    if (basicEffect)
+                    {
+                        basicEffect->SetEmissiveColor(DirectX::Colors::White);
+                    }
+                });
+
             model.position = DirectX::SimpleMath::Vector3( 
                 modelData["position"][0].get<float>(),
                 modelData["position"][1].get<float>(),
@@ -63,7 +84,7 @@ void StageObject::Initialize(const std::string& stageName)
 
             // バウンディングボックスの作成（1x1x1の中心を基準）
             DirectX::SimpleMath::Vector3 center = model.position;
-            DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(0.5f, 0.5f, 0.5f) * model.scale; 
+            DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(1.f, 1.f, 1.f) * model.scale; 
             model.m_boundingBox = DirectX::BoundingBox(center, extents);
 
 
@@ -77,10 +98,10 @@ void StageObject::Update()
     for (const auto& model : m_models)
     {
         // バウンディングボックスの作成（1x1x1の中心を基準）
-        DirectX::SimpleMath::Vector3 center(0.f, 0.0f, 0.f);
-        DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(0.5f, 0.5f, 0.5f) * model.scale;
-        Collision::GetInstance()->CheckPushBack(DirectX::BoundingBox(center,extents));
-        //Collision::GetInstance()->CheckPushBack(model.m_boundingBox);
+       // DirectX::SimpleMath::Vector3 center(0.f, 0.0f, 0.f);
+       // DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(0.5f, 0.5f, 0.5f) * model.scale;
+       // Collision::GetInstance()->CheckPushBack(DirectX::BoundingBox(center,extents));
+        Collision::GetInstance()->CheckPushBack(model.m_boundingBox);
     }
 }
 
