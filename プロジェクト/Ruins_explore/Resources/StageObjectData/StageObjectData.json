@@ -1,0 +1,25 @@
+{
+  "Stage1_1": [
+    {
+      "name": "RockBlock",
+      "position": [ 0.0, 0.0, 0.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 1.0 ]
+    }
+  ],
+
+  "Stage1_2": [
+    {
+      "name": "RockBlock",
+      "position": [ 10.0, 0.0, 0.0 ],
+      "rotation": [ 0.0, 45.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 1.0 ]
+    },
+    {
+      "name": "RockBlock",
+      "position": [ -10.0, 0.0, 10.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 1.0 ]
+    }
+  ] 
+}

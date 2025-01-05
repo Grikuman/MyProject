@@ -52,34 +52,7 @@ void RockBossAttack::Update()
 	// 攻撃までの猶予時間をカウントする
 	m_atackStartTime++;
 
-	//// 回転させる
-	//if (m_atackStartTime >= ATACKSTART_TIME)
-	//{
-	//	m_rotateCnt += 20.f;
-	//	m_rockBoss->SetAngle(m_rockBoss->GetAngle() + 20.f);
-	//	// プレイヤーが攻撃範囲内にいる　かつ　プレイヤーがダメージを受けない部分にいない
-	//	if (GetAttackBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()) &&
-	//		!GetNoDamageBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()))
-	//	{
-	//		// プレイヤーが無敵でなければ
-	//		if (!m_rockBoss->GetPlayer()->GetInvincible())
-	//		{
-	//			// プレイヤーへダメージ処理
-	//			m_rockBoss->GetPlayer()->SetHP(m_rockBoss->GetPlayer()->GetHP() - 1);
-	//			// プレイヤーを無敵に
-	//			m_rockBoss->GetPlayer()->SetInvincible(true);
-	//		}
-	//	}
-	//}
-
-	//// 回転行列を作成する
-	//Matrix matrix = Matrix::CreateRotationY(XMConvertToRadians(m_rockBoss->GetAngle()));
-
-	//// 移動量を補正する
-	//m_rockBoss->SetVelocity(m_rockBoss->GetVelocity() * 0.05f);
-
-	//// 回転を加味して実際に移動する
-	//m_rockBoss->SetPotision(m_rockBoss->GetPosition() + Vector3::Transform(m_rockBoss->GetVelocity(), matrix));
+	SpinningAttack();
 
 	// 
 	if (m_rotateCnt >= 360.f)
@@ -96,6 +69,36 @@ void RockBossAttack::Update()
 void RockBossAttack::Finalize()
 {
     
+}
+
+//---------------------------------------------------------
+// 回転攻撃
+//---------------------------------------------------------
+void RockBossAttack::SpinningAttack()
+{
+	using namespace DirectX::SimpleMath;
+
+	// 回転させる
+	if (m_atackStartTime >= ATACKSTART_TIME)
+	{
+		m_rotateCnt += 10.f;
+		Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(20.0f));
+		m_rockBoss->AddAngle(rotation);
+
+		// プレイヤーが攻撃範囲内にいる　かつ　プレイヤーがダメージを受けない部分にいない
+		if (GetAttackBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()) &&
+			!GetNoDamageBoundingSphere().Intersects(m_rockBoss->GetPlayer()->GetBoundingSphere()))
+		{
+			// プレイヤーが無敵でなければ
+			if (!m_rockBoss->GetPlayer()->GetInvincible())
+			{
+				// プレイヤーへダメージ処理
+				m_rockBoss->GetPlayer()->SetHP(m_rockBoss->GetPlayer()->GetHP() - 1);
+				// プレイヤーを無敵に
+				m_rockBoss->GetPlayer()->SetInvincible(true);
+			}
+		}
+	}
 }
 
 DirectX::BoundingSphere RockBossAttack::GetAttackBoundingSphere() const

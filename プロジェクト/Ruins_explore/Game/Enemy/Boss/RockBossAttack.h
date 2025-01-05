@@ -36,6 +36,9 @@ private:
 	// 攻撃開始までの時間
 	const float ATACKSTART_TIME = 60.f;
 
+	// 回転攻撃
+	void SpinningAttack();
+
 private:
 	// 岩ボス
 	RockBoss* m_rockBoss;

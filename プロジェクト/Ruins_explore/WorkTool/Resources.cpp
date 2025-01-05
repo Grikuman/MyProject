@@ -54,6 +54,8 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// 岩ボス
 	std::unique_ptr<DirectX::Model> RockBoss   = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
+	// 岩のブロック
+	std::unique_ptr<DirectX::Model> RockBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/StageObject/RockBlock.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
@@ -61,6 +63,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"PlayerFoot", std::move(PlayerFoot));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"RockBoss", std::move(RockBoss));
+	m_models.emplace(L"RockBlock", std::move(RockBlock));
 
 	//================
 	// * テクスチャ *
@@ -131,6 +134,16 @@ DirectX::Model* Resources::GetModel(const wchar_t* name)
 	auto it = m_models.find(name);
 	//　モデルのポインタを返す
 	return it->second.get();
+}
+
+// モデルを取得する
+DirectX::Model* Resources::GetModel(const std::string& name)
+{
+	if (name == "RockBlock")
+	{
+		return GetModel(L"RockBlock");
+	}
+	return 0;
 }
 
 // テクスチャを取得する

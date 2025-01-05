@@ -71,6 +71,9 @@ void RockBossSearch::Update()
 
         m_rockBoss->SetPotision(tunomaruPosition + m_rockBoss->GetVelocity());
     }
+
+    // 探索から攻撃へ
+    SearchToAttack();
 }
 
 //---------------------------------------------------------
@@ -79,4 +82,24 @@ void RockBossSearch::Update()
 void RockBossSearch::Finalize()
 {
     
+}
+
+//---------------------------------------------------------
+// 探索から攻撃へ
+//---------------------------------------------------------
+void RockBossSearch::SearchToAttack()
+{
+    using namespace DirectX::SimpleMath;
+
+    // プレイヤーの位置を取得
+    Vector3 playerPosition = m_rockBoss->GetPlayer()->GetPosition();
+    // 岩ボスの現在位置を取得
+    Vector3 tunomaruPosition = m_rockBoss->GetPosition();
+    // プレイヤーとの距離を計算
+    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+
+    if (distanceToPlayer <= 5)
+    {
+        m_rockBoss->ChangeState(m_rockBoss->GetRockBossAttack());
+    }
 }

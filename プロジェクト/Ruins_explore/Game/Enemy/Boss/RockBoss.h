@@ -26,7 +26,7 @@ public:
     // ‘¬“x‚ğ‰ÁZ‚·‚é
     void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
     // ‘¬“x‚ÉŒW”‚ğ‚©‚¯‚é
-    void ApplyVelocity(float scale) { m_velocity *= scale; }
+    void ApplyVelocity(float scale)                                { m_velocity *= scale; }
     // ‰ñ“]‘¬“x‚ğ‰ÁZ‚·‚é
     void AddAngle(const DirectX::SimpleMath::Quaternion angle)     { m_angle *= angle; }
     // Šp“x‚ğİ’è‚·‚é

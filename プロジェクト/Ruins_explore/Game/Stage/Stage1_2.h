@@ -7,9 +7,9 @@
 #include "Game/Player/Player.h"
 
 #include "Game/StageObject/Sky.h"
-#include "Game/StageObject/Field.h"
 #include "Game/UI/TimeUI.h"
 #include "Game/Stage/StageEnemy.h"
+#include "Game/Stage/StageObject.h"
 
 namespace NRLib
 {
@@ -44,14 +44,14 @@ private:
 private:
 	// エネミー
 	std::unique_ptr<StageEnemy> m_stageEnemy;
+	// ステージのオブジェクト
+	std::unique_ptr<StageObject> m_stageObject;
 	// ステージの名前
 	std::string m_stageName;
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// 天球
 	std::unique_ptr<Sky> m_sky;
-	// フィールド
-	std::unique_ptr<Field> m_field;
 	//TextUI
 	std::unique_ptr<TimeUI> m_timeUI;
 	// プレイシーンUI

@@ -89,6 +89,9 @@
     <Filter Include="Game\Player\Action">
       <UniqueIdentifier>{8e384628-ffdd-4721-a196-be9119db3e73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\StageObjectData">
+      <UniqueIdentifier>{54ec019a-69e5-4827-97ba-aa79fec04724}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -264,9 +267,6 @@
     <ClInclude Include="Game\Interface\IStage.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Game\StageObject\Field.h">
-      <Filter>Game\StageObject</Filter>
-    </ClInclude>
     <ClInclude Include="Game\StageObject\Sky.h">
       <Filter>Game\StageObject</Filter>
     </ClInclude>
@@ -299,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\TunomaruKnockback.h">
       <Filter>Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage\StageObject.h">
+      <Filter>Game\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,9 +449,6 @@
     <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp">
       <Filter>Game\Player\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\StageObject\Field.cpp">
-      <Filter>Game\StageObject</Filter>
-    </ClCompile>
     <ClCompile Include="Game\StageObject\Sky.cpp">
       <Filter>Game\StageObject</Filter>
     </ClCompile>
@@ -469,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\TunomaruKnockback.cpp">
       <Filter>Game\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\StageObject.cpp">
+      <Filter>Game\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -491,6 +494,9 @@
     </None>
     <None Include="Resources\EnemyData\EnemyData1.json">
       <Filter>Resources\EnemyData</Filter>
+    </None>
+    <None Include="Resources\StageObjectData\StageObjectData.json">
+      <Filter>Resources\StageObjectData</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

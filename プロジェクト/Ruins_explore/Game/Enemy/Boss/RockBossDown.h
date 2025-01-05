@@ -23,7 +23,7 @@ public:
 	void Finalize();
 private:
 	// ŽžŠÔ
-	const float MAX_DOWNTIME = 90.f;
+	const float MAX_DOWNTIME = 180.f;
 
 private:
 	// Šâƒ{ƒX

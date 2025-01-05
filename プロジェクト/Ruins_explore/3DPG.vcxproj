@@ -219,11 +219,11 @@
     <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\Screen.h" />
-    <ClInclude Include="Game\StageObject\Field.h" />
     <ClInclude Include="Game\StageObject\Sky.h" />
     <ClInclude Include="Game\Stage\Stage1_1.h" />
     <ClInclude Include="Game\Stage\Stage1_2.h" />
     <ClInclude Include="Game\Stage\StageEnemy.h" />
+    <ClInclude Include="Game\Stage\StageObject.h" />
     <ClInclude Include="Game\UI\BinaryFile.h" />
     <ClInclude Include="Game\UI\EnemyUIManager.h" />
     <ClInclude Include="Game\UI\Gauge.h" />
@@ -281,11 +281,11 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
-    <ClCompile Include="Game\StageObject\Field.cpp" />
     <ClCompile Include="Game\StageObject\Sky.cpp" />
     <ClCompile Include="Game\Stage\Stage1_1.cpp" />
     <ClCompile Include="Game\Stage\Stage1_2.cpp" />
     <ClCompile Include="Game\Stage\StageEnemy.cpp" />
+    <ClCompile Include="Game\Stage\StageObject.cpp" />
     <ClCompile Include="Game\UI\BinaryFile.cpp" />
     <ClCompile Include="Game\UI\EnemyUIManager.cpp" />
     <ClCompile Include="Game\UI\Gauge.cpp" />
@@ -331,6 +331,7 @@
     <None Include="packages.config" />
     <None Include="Resources\EnemyData\EnemyData1.json" />
     <None Include="Resources\Shaders\UI.hlsli" />
+    <None Include="Resources\StageObjectData\StageObjectData.json" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\UIGS.hlsl">

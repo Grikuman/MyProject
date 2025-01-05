@@ -27,10 +27,10 @@ Stage1_2::Stage1_2(std::string stageName)
 	:
 	m_stageEnemy{},
 	m_stageName{"Stage1_2"},
+	m_stageObject{},
 	m_isClearStage{},
 	m_player{},
 	m_sky{},
-	m_field{},
 	m_timeUI{},
 	m_gameTime{}
 {
@@ -57,12 +57,12 @@ void Stage1_2::Initialize()
 	// 敵を作成する
 	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
 	m_stageEnemy->Initialize(m_stageName);
+	// ステージのオブジェクトを作成する
+	m_stageObject = std::make_unique<StageObject>(m_player.get());
+	m_stageObject->Initialize(m_stageName);
 	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	m_sky->Initialize();
-	// フィールドを作成
-	m_field = std::make_unique<Field>();
-	m_field->Initialize();
 	//TimeUIを作成
 	m_timeUI = std::make_unique<TimeUI>(
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
@@ -92,10 +92,10 @@ void Stage1_2::Update(float elapsedTime)
 	m_stageEnemy->Update();
 	// 天球を更新
 	//m_sky->Update();
-	// フィールドを更新
-	m_field->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
+	// ステージのオブジェクトを更新する
+	m_stageObject->Update();
 
 
 	// 敵が全員死んだらシーン遷移を行う
@@ -138,14 +138,14 @@ void Stage1_2::Render()
 {
 	// 天球を描画
 	m_sky->Render();
-	// フィールドを描画
-	m_field->Render();
 	// 敵を描画する
 	m_stageEnemy->Render();
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画
 	m_timeUI->Render();
+	// ステージのオブジェクトを描画する
+	m_stageObject->Render();
 }
 
 //---------------------------------------------------------
@@ -155,7 +155,6 @@ void Stage1_2::Finalize()
 {
 	m_player->Finalize();
 	m_sky->Finalize();
-	m_field->Finalize();
 	m_stageEnemy->Finalize();
 	m_timeUI->Finalize();
 }

@@ -89,14 +89,9 @@ void RockBoss::Update()
 
     //生存しているか確認する
     CheckAlive(); 
-    if (m_isAlive)
-    {
-        //現在のステートを更新する
-        m_currentState->Update();
-    }
 
-    // プレイヤーとの当たり判定
-    //Collision::GetInstance()->CheckHitPlayerToEnemy(this);
+    //現在のステートを更新する
+    m_currentState->Update();
 }
 
 void RockBoss::Render()
@@ -115,6 +110,8 @@ void RockBoss::Render()
     Matrix worldMatrix =
         // スケール行列を作成
         Matrix::CreateScale(0.8f) *
+        // 180度回転させる(モデルが逆を向いていたので)
+        Matrix::CreateRotationY(DirectX::XM_PI) *
         // 回転行列を作成
         Matrix::CreateFromQuaternion(m_angle) *
         // 移動行列を作成

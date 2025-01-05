@@ -29,6 +29,9 @@ public:
 	void Finalize();
 
 private:
+	void SearchToAttack();
+
+private:
 	// Šâƒ{ƒX
 	RockBoss* m_rockBoss;
 	// ƒ‚ƒfƒ‹
