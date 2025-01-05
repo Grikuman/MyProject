@@ -19,6 +19,8 @@ public:
 	void CheckHitPlayerToEnemy(IEnemy* enemy);
 	// プレイヤーと球オブジェクトの押し戻し判定
 	void CheckPushBack(ICollisionObject* object);
+	// プレイヤーとステージのオブジェクトで押し戻し判定
+	void CheckPushBack(DirectX::BoundingBox object);
 public:
 	// コリジョンのインスタンス取得
 	static Collision* const GetInstance();

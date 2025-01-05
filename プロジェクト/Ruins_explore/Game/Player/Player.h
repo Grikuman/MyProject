@@ -68,6 +68,8 @@ public:
 	bool IsAttack();
 	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
+	// バウンディングボックスを取得する
+	DirectX::BoundingBox GetBoundingBox();
 	// カメラを取得する
 	NRLib::TPS_Camera* GetCamera()                   { return m_camera.get(); }
 

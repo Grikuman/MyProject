@@ -136,5 +136,70 @@ void Collision::CheckPushBack(ICollisionObject* object)
 	m_boundingSphereA.Center = m_boundingSphereA.Center + diffVec;
 }
 
+//---------------------------------------------------------
+// プレイヤーをステージのオブジェクトで押し戻す
+//---------------------------------------------------------
+void Collision::CheckPushBack(DirectX::BoundingBox stageObject)
+{
+	using namespace DirectX::SimpleMath;
+	// プレイヤーのバウンディングボックスを取得
+	DirectX::BoundingBox boundingBoxA = m_player->GetBoundingBox();
+
+	// ステージオブジェクトのバウンディングボックス
+	DirectX::BoundingBox boundingBoxB = stageObject;
+
+	// バウンディングボックス同士の衝突判定を行う
+	bool isHit = boundingBoxA.Intersects(boundingBoxB);
+
+	// ヒットしていなければ処理を終了
+	if (!isHit) { return; }
+
+	// 衝突時、BがAを押し戻す処理=======================================
+
+	// AABB用のmin/maxを計算する
+	DirectX::SimpleMath::Vector3 aMin = boundingBoxA.Center - boundingBoxA.Extents;
+	DirectX::SimpleMath::Vector3 aMax = boundingBoxA.Center + boundingBoxA.Extents;
+	DirectX::SimpleMath::Vector3 bMin = boundingBoxB.Center - boundingBoxB.Extents;
+	DirectX::SimpleMath::Vector3 bMax = boundingBoxB.Center + boundingBoxB.Extents;
+
+	// 各軸の差分を計算する
+	float dx1 = bMax.x - aMin.x;
+	float dx2 = bMin.x - aMax.x;
+	float dy1 = bMax.y - aMin.y;
+	float dy2 = bMin.y - aMax.y;
+	float dz1 = bMax.z - aMin.z;
+	float dz2 = bMin.z - aMax.z;
+
+	// 各軸について、絶対値の小さい方を軸のめり込み量とする：AABBの重なった部分を特定する
+	float dx = abs(dx1) < abs(dx2) ? dx1 : dx2;
+	float dy = abs(dy1) < abs(dy2) ? dy1 : dy2;
+	float dz = abs(dz1) < abs(dz2) ? dz1 : dz2;
+
+	// 押し戻しベクトル
+	DirectX::SimpleMath::Vector3 pushBackVec = DirectX::SimpleMath::Vector3::Zero;
+
+	// めり込みが一番小さい軸を押し戻す
+	if (abs(dx) <= abs(dy) && abs(dx) <= abs(dz))
+	{
+		pushBackVec.x += dx;
+	}
+	else if (abs(dz) <= abs(dx) && abs(dz) <= abs(dy))
+	{
+		pushBackVec.z += dz;
+	}
+	else
+	{
+		pushBackVec.y += dy;
+	}
+
+	// 押し戻す
+	m_player->SetPosition(m_player->GetPosition() + pushBackVec);
+	boundingBoxA.Center = boundingBoxA.Center + pushBackVec;
+}
+
+
+
+
+
 
 

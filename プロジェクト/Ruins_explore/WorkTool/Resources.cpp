@@ -55,7 +55,7 @@ void Resources::LoadResources()
 	// 岩ボス
 	std::unique_ptr<DirectX::Model> RockBoss   = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
 	// 岩のブロック
-	std::unique_ptr<DirectX::Model> RockBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/StageObject/RockBlock.cmo", *fx);
+	std::unique_ptr<DirectX::Model> RockBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBlock.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"PlayerBody", std::move(PlayerBody));

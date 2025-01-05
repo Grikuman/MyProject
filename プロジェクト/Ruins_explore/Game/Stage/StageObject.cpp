@@ -2,6 +2,7 @@
 #include "StageObject.h"
 #include "WorkTool/Graphics.h"
 #include "WorkTool/Resources.h"
+#include "WorkTool/Collision.h"
 #include "Game/Player/Player.h"
 #include <fstream>
 #include <iostream>
@@ -44,9 +45,6 @@ void StageObject::Initialize(const std::string& stageName)
             ModelData model;
             model.name = modelData["name"];
 
-            // 名前からモデルを取得する
-
-
             // モデルリソースの読み込み
             model.m_model = Resources::GetInstance()->GetModel(model.name);
 
@@ -63,6 +61,12 @@ void StageObject::Initialize(const std::string& stageName)
                 modelData["scale"][1].get<float>(),
                 modelData["scale"][2].get<float>());
 
+            // バウンディングボックスの作成（1x1x1の中心を基準）
+            DirectX::SimpleMath::Vector3 center = model.position;
+            DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(0.5f, 0.5f, 0.5f) * model.scale; 
+            model.m_boundingBox = DirectX::BoundingBox(center, extents);
+
+
             m_models.push_back(std::move(model));
         }
     }
@@ -70,7 +74,14 @@ void StageObject::Initialize(const std::string& stageName)
 
 void StageObject::Update()
 {
-
+    for (const auto& model : m_models)
+    {
+        // バウンディングボックスの作成（1x1x1の中心を基準）
+        DirectX::SimpleMath::Vector3 center(0.f, 0.0f, 0.f);
+        DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(0.5f, 0.5f, 0.5f) * model.scale;
+        Collision::GetInstance()->CheckPushBack(DirectX::BoundingBox(center,extents));
+        //Collision::GetInstance()->CheckPushBack(model.m_boundingBox);
+    }
 }
 
 
@@ -112,5 +123,6 @@ void StageObject::Finalize()
     // モデルリソースの解放処理
     m_models.clear();
 }
+
 
 

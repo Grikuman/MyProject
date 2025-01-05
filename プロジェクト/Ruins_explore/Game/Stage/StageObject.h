@@ -28,6 +28,7 @@ private:
         DirectX::SimpleMath::Vector3 position; // 配置位置
         DirectX::SimpleMath::Vector3 rotation; // 回転角度
         DirectX::SimpleMath::Vector3 scale;    // スケール倍率
+        DirectX::BoundingBox m_boundingBox;    // バウンディングボックス
         DirectX::Model* m_model;               // モデルデータ
     };
 

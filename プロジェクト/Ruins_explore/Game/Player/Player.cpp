@@ -166,6 +166,17 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 
 }
 
+DirectX::BoundingBox Player::GetBoundingBox()
+{
+	// 当たり判定ボックスの中心を設定
+	DirectX::SimpleMath::Vector3 center = m_position;
+
+	// ボックスの大きさ（半径）を設定
+	DirectX::SimpleMath::Vector3 extents(0.5f, 0.5f, 0.5f); // サイズに応じて調整
+
+	return DirectX::BoundingBox(center, extents);
+}
+
 //---------------------------------------------------------
 // プレイヤーの向きを取得する
 //---------------------------------------------------------
