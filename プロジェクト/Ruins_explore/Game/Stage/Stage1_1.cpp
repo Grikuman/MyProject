@@ -140,12 +140,12 @@ void Stage1_1::Render()
 	m_sky->Render();
 	// 敵を描画する
 	m_stageEnemy->Render();
+	// ステージのオブジェクトを描画する
+	m_stageObject->Render();
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画
 	m_timeUI->Render();
-	// ステージのオブジェクトを描画する
-	m_stageObject->Render();
 }
 
 //---------------------------------------------------------
