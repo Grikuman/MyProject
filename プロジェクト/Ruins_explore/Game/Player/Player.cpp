@@ -1,5 +1,5 @@
-/*
-	ファイル名：Player.cpp
+[
+	ayer.cpp
 	　　　概要：プレイヤーの情報を管理するクラス
 */
 #include "pch.h"
@@ -22,7 +22,7 @@ Player::Player()
 	m_playerAttack{},
 	m_currentState{},
 	m_camera{},
-	m_position{ DirectX::SimpleMath::Vector3(0.f, 0.0f, 0.f) },
+	m_position{ DirectX::SimpleMath::Vector3(0.0f, 5.0f, 0.0f) },
 	m_velocity{},
 	m_angle{},
 	m_chargeCnt{},
@@ -43,6 +43,7 @@ Player::Player()
 	m_playerWalk    = std::make_unique<PlayerWalk>(this);
 	m_playerAttack  = std::make_unique<PlayerAttack>(this);
 	m_playerDash    = std::make_unique<PlayerDash>(this);
+	m_playerJump    = std::make_unique<PlayerJump>(this);
 
 	// UI管理クラスを作成
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
@@ -72,6 +73,7 @@ void Player::Initialize()
 	m_playerWalk->Initialize();
 	m_playerAttack->Initialize();
 	m_playerDash->Initialize();
+	m_playerJump->Initialize();
 	// UI管理クラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクト初期化する
@@ -91,6 +93,8 @@ void Player::Update(float elapsedTime)
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
 
+	m_velocity.y -= GRAVITY * 0.5f;
+
 	// 無敵処理
 	Invincible();
 	// スタミナ回復処理
@@ -98,6 +102,8 @@ void Player::Update(float elapsedTime)
 
 	//現在のステートを更新する
 	m_currentState->Update(elapsedTime);
+
+	//m_velocity.y -= GRAVITY;
 
 	// Y軸を中心にカメラも回転させる
 	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle)); 
@@ -172,7 +178,7 @@ DirectX::BoundingBox Player::GetBoundingBox()
 	DirectX::SimpleMath::Vector3 center = m_position;
 
 	// ボックスの大きさ（半径）を設定
-	DirectX::SimpleMath::Vector3 extents(0.5f, 0.5f, 0.5f); // サイズに応じて調整
+	DirectX::SimpleMath::Vector3 extents(1.0f, 1.0f, 1.0f); // サイズに応じて調整
 
 	return DirectX::BoundingBox(center, extents);
 }

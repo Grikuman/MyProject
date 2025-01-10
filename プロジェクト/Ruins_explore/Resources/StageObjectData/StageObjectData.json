@@ -1,36 +1,36 @@
 {
-  "Stage1_1": [
-    {
-      "name": "RockBlock",
-      "position": [ 0.0, 1.0, -10.0 ],
-      "rotation": [ 0.0, 0.0, 0.0 ],
-      "scale": [ 20.0, 2.0, 1.0 ]
-    },
-    {
-      "name": "RockBlock",
-      "position": [ 0.0, 1.0, 20.0 ],
-      "rotation": [ 0.0, 0.0, 0.0 ],
-      "scale": [ 20.0, 2.0, 1.0 ]
-    },
-    {
-      "name": "RockBlock",
-      "position": [ 20.0, 1.0, 5.0 ],
-      "rotation": [ 0.0, 0.0, 0.0 ],
-      "scale": [ 1.0, 2.0, 16.0 ]
-    },
-    {
-      "name": "RockBlock",
-      "position": [ -20.0, 1.0, 5.0 ],
-      "rotation": [ 0.0, 0.0, 0.0 ],
-      "scale": [ 1.0, 2.0, 16.0 ]
-    },
-    {
-      "name": "RockBlock",
-      "position": [ 0.0, -2.0, 8.0 ],
-      "rotation": [ 0.0, 0.0, 0.0 ],
-      "scale": [ 30.0, 1.0, 30.0 ]
-    }
-  ],
+    "Stage1_1": [
+        {
+            "name": "RockBlock",
+            "position": [ 0.0, 1.0, -10.0 ],
+            "rotation": [ 0.0, 0.0, 0.0 ],
+            "scale": [ 20.0, 2.0, 1.0 ]
+        },
+        {
+            "name": "RockBlock",
+            "position": [ 0.0, 1.0, 20.0 ],
+            "rotation": [ 0.0, 0.0, 0.0 ],
+            "scale": [ 20.0, 2.0, 1.0 ]
+        },
+        {
+            "name": "RockBlock",
+            "position": [ 20.0, 1.0, 5.0 ],
+            "rotation": [ 0.0, 0.0, 0.0 ],
+            "scale": [ 1.0, 2.0, 16.0 ]
+        },
+        {
+            "name": "RockBlock",
+            "position": [ -20.0, 1.0, 5.0 ],
+            "rotation": [ 0.0, 0.0, 0.0 ],
+            "scale": [ 1.0, 2.0, 16.0 ]
+        },
+        {
+            "name": "RockBlock",
+            "position": [ 0.0, 0.0, 8.0 ],
+            "rotation": [ 0.0, 0.0, 0.0 ],
+            "scale": [ 30.0, 1.0, 30.0 ]
+        }
+    ],
   "Stage1_2": [
     {
       "name": "RockBlock",

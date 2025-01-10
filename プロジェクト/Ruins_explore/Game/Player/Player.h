@@ -7,6 +7,7 @@
 #include "PlayerWalk.h"
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
+#include "PlayerJump.h"
 
 #include "Game/Interface/IPlayerPart.h"
 #include "Parts/PlayerBody.h"
@@ -80,6 +81,8 @@ public:
 	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
 	// プレイヤーダッシュを取得する
 	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
+	// プレイヤージャンプを取得する
+	PlayerJump* GetPlayerJump() { return m_playerJump.get(); }
 
 
 public:
@@ -101,6 +104,11 @@ private:
 	void Invincible();
 	// スタミナ回復処理
 	void ChargeStamina();
+
+private:
+	// 重力加速度
+	const float GRAVITY = 9.8f;
+
 private:
 	// UI管理クラス
 	std::unique_ptr<PlayerUIManager> m_playerUIManager;
@@ -120,6 +128,8 @@ private:
 	std::unique_ptr<PlayerAttack> m_playerAttack;
 	// ダッシュ状態
 	std::unique_ptr<PlayerDash>   m_playerDash;
+	// ジャンプ状態
+	std::unique_ptr<PlayerJump> m_playerJump;
 
 	// 位置
 	DirectX::SimpleMath::Vector3 m_position;

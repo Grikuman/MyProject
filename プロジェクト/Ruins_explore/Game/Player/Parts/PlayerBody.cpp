@@ -36,6 +36,7 @@ PlayerBody::~PlayerBody()
 void PlayerBody::Initialize()
 {
 	m_model = Resources::GetInstance()->GetModel(L"PlayerBody");
+
 }
 
 //---------------------------------------------------------

@@ -57,7 +57,7 @@ void Sky::Initialize()
 	fx->SetDirectory(L"Resources/Models");
 
 	// ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
-	m_model = Model::CreateFromCMO(device, L"Resources/Models/skydome_night.cmo", *fx);
+	m_model = Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
 }
 
 //---------------------------------------------------------

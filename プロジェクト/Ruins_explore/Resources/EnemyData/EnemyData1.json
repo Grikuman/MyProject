@@ -12,8 +12,8 @@
 
   "Stage1_2": [
     {
-      "type": "RockBoss",
-      "position": [ 1, 0, -6 ]
+        "type": "RockBoss",
+        "position": [ 1, 0, -6 ]
     }
   ]
 }

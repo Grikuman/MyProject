@@ -30,6 +30,8 @@ private:
 	void WalkToDash();
 	// 歩行から攻撃へ
 	void WalkToAttack();
+	// 歩行からジャンプへ
+	void WalkToJump();
 
 private:
 	//プレイヤー

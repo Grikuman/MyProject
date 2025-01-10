@@ -212,7 +212,8 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\RockBlock.fbx" />
+    <MeshContentTask Include="Assets\FBX\PlayerBody.fbx" />
+    <MeshContentTask Include="Assets\FBX\PlayerHand.fbx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -143,6 +143,10 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	{
 		return GetModel(L"RockBlock");
 	}
+	if (name == "Tunomaru")
+	{
+		return GetModel(L"Tunomaru");
+	}
 	return 0;
 }
 

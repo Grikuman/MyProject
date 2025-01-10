@@ -84,7 +84,7 @@ void StageObject::Initialize(const std::string& stageName)
 
             // バウンディングボックスの作成（1x1x1の中心を基準）
             DirectX::SimpleMath::Vector3 center = model.position;
-            DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(1.f, 1.f, 1.f) * model.scale; 
+            DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f) * model.scale; 
             model.m_boundingBox = DirectX::BoundingBox(center, extents);
 
 

@@ -26,8 +26,8 @@ public:
 	void Finalize() override;
 private:
 	// è‚ÌˆÊ’u‚Ì’è”
-	const DirectX::SimpleMath::Vector3 m_nonePosition  = DirectX::SimpleMath::Vector3(-1.4f, 0.8f, 0.0f);
-	const DirectX::SimpleMath::Vector3 m_punchPosition = DirectX::SimpleMath::Vector3(-1.4f, 0.8f, 1.0f);
+	const DirectX::SimpleMath::Vector3 m_nonePosition  = DirectX::SimpleMath::Vector3(-1.4f, 0.0f, 0.0f);
+	const DirectX::SimpleMath::Vector3 m_punchPosition = DirectX::SimpleMath::Vector3(-1.4f, 0.0f, 1.0f);
 
 private:
 	// ƒ‚ƒfƒ‹

@@ -303,6 +303,9 @@
     <ClInclude Include="Game\Stage\StageObject.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Player\PlayerJump.h">
+      <Filter>Game\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -472,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Game\Stage\StageObject.cpp">
       <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\PlayerJump.cpp">
+      <Filter>Game\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
