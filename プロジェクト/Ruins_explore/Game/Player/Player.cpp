@@ -22,7 +22,7 @@ Player::Player()
 	m_playerAttack{},
 	m_currentState{},
 	m_camera{},
-	m_position{ DirectX::SimpleMath::Vector3(0.0f, 5.0f, 0.0f) },
+	m_position{ DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f) },
 	m_velocity{},
 	m_angle{},
 	m_chargeCnt{},

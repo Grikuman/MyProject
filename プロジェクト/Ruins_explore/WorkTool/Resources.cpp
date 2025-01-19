@@ -53,9 +53,11 @@ void Resources::LoadResources()
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// 岩ボス
-	std::unique_ptr<DirectX::Model> RockBoss   = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
+	std::unique_ptr<DirectX::Model> RockBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
 	// 岩のブロック
 	std::unique_ptr<DirectX::Model> RockBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBlock.cmo", *fx);
+	// 木
+	std::unique_ptr<DirectX::Model> Tree = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tree.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
@@ -64,6 +66,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"RockBoss", std::move(RockBoss));
 	m_models.emplace(L"RockBlock", std::move(RockBlock));
+	m_models.emplace(L"Tree", std::move(Tree));
 
 	//================
 	// * テクスチャ *
@@ -146,6 +149,10 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	if (name == "Tunomaru")
 	{
 		return GetModel(L"Tunomaru");
+	}
+	if (name == "Tree")
+	{
+		return GetModel(L"Tree");
 	}
 	return 0;
 }

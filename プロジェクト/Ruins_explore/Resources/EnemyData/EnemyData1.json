@@ -2,18 +2,18 @@
   "Stage1_1": [
     {
       "type": "Tunomaru",
-      "position": [ 10, 0, -5 ]
+      "position": [ 10, 1.0, -5 ]
     },
     {
       "type": "Tunomaru",
-      "position": [ -10, 0, -5 ]
+      "position": [ -10, 1.0, -5 ]
     }
   ],
 
   "Stage1_2": [
     {
         "type": "RockBoss",
-        "position": [ 1, 0, -6 ]
+        "position": [ 1, 1.0, -6 ]
     }
   ]
 }

@@ -41,10 +41,7 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\PlayerBody.fbx">
-      <Filter>Assets</Filter>
-    </MeshContentTask>
-    <MeshContentTask Include="Assets\FBX\PlayerHand.fbx">
+    <MeshContentTask Include="Assets\FBX\Tree.fbx">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>
