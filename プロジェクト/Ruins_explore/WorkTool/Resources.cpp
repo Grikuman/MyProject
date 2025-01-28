@@ -55,7 +55,7 @@ void Resources::LoadResources()
 	// 岩ボス
 	std::unique_ptr<DirectX::Model> RockBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
 	// 岩のブロック
-	std::unique_ptr<DirectX::Model> RockBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBlock.cmo", *fx);
+	std::unique_ptr<DirectX::Model> SoilBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Soil_Block.cmo", *fx);
 	// 木
 	std::unique_ptr<DirectX::Model> Tree = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tree.cmo", *fx);
 	// モデルを登録する
@@ -65,7 +65,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"PlayerFoot", std::move(PlayerFoot));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"RockBoss", std::move(RockBoss));
-	m_models.emplace(L"RockBlock", std::move(RockBlock));
+	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
 	m_models.emplace(L"Tree", std::move(Tree));
 
 	//================
@@ -89,6 +89,7 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultclear;      // クリア画面
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> resultdead;       // 死亡画面
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pushspacekey;     // スペースキー
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> time;             // 時間
 
 
 	// 読み込む
@@ -109,6 +110,7 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Alive.png", nullptr, resultclear.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Dead.png", nullptr, resultdead.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/PushSpaceKey.png", nullptr, pushspacekey.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Time_text.png", nullptr, time.GetAddressOf());
 
 	// テクスチャを登録する
 	m_textures.emplace(L"Health_Red", health_red);
@@ -128,6 +130,7 @@ void Resources::LoadResources()
 	m_textures.emplace(L"ResultClear", resultclear);
 	m_textures.emplace(L"ResultDead", resultdead);
 	m_textures.emplace(L"PushSpaceKey", pushspacekey);
+	m_textures.emplace(L"Time_Text", time);
 }
 
 // モデルを取得する
@@ -142,10 +145,6 @@ DirectX::Model* Resources::GetModel(const wchar_t* name)
 // モデルを取得する
 DirectX::Model* Resources::GetModel(const std::string& name)
 {
-	if (name == "RockBlock")
-	{
-		return GetModel(L"RockBlock");
-	}
 	if (name == "Tunomaru")
 	{
 		return GetModel(L"Tunomaru");
@@ -153,6 +152,10 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	if (name == "Tree")
 	{
 		return GetModel(L"Tree");
+	}
+	if (name == "SoilBlock")
+	{
+		return GetModel(L"SoilBlock");
 	}
 	return 0;
 }
@@ -165,4 +168,6 @@ Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTexture(const wch
 	// テクスチャを返す
 	return it->second;
 }
+
+
 

@@ -5,17 +5,39 @@
 #include "pch.h"
 #include "TimeUI.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/InputDevice.h"
+#include "WorkTool/Resources.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     :
-    m_time{}
+    m_time{},
+    m_renderVal{},
+    m_timeText{}
 {
-    // スプライトバッチとスプライトフォントを初期化
-    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-    m_spriteFont = Graphics::GetInstance()->GetFont();
+    m_number = std::make_unique<RenderNumber>();
+    m_number->Initialize(Graphics::GetInstance()->GetDeviceResources());
+
+    m_number->SetUVSize(0.05f * 1.0f, 0.125f * 1.0f);
+
+    m_number->SetPosition(950.0f, 600.0f);
+
+    m_number->SetRenderColumn(1);
+
+    m_number->SetRenderOverColumn(true);
+
+    m_number->SetDirection(RenderNumber::RenderDirection::LeftAlignment);
+
+    m_number->SetNumberColor(
+    //  メインの色　例：白
+    DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f),
+    //  アウトラインモドキの色　例：黒
+    DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f)
+    );
+
+    m_number->SetBackColor(DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
 }
 
 //---------------------------------------------------------
@@ -26,12 +48,33 @@ TimeUI::~TimeUI()
     Finalize();
 }
 
+void TimeUI::Initialize()
+{
+    // スプライトバッチとスプライトフォントを初期化
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+    m_spriteFont = Graphics::GetInstance()->GetFont();
+
+    m_timeText = Resources::GetInstance()->GetTexture(L"Time_Text");
+}
+
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void TimeUI::Update(float elapedTime)
+void TimeUI::Update(float elapsedTime)
 {
-    m_time = elapedTime;
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    m_time++;
+
+    m_number->Update(elapsedTime);
+
+    if (m_time >= 60)
+    {
+        m_renderVal++;
+        m_time = 0;
+    }
+
+    m_number->SetRenderValue(m_renderVal, false);
 }
 
 //---------------------------------------------------------
@@ -39,20 +82,18 @@ void TimeUI::Update(float elapedTime)
 //---------------------------------------------------------
 void TimeUI::Render()
 {
+    using namespace DirectX;
+
+    // カウントを表示する
+    m_number->Render();
+
+    // テキストの開始
     m_spriteBatch->Begin();
 
-    // 数値を文字列に変換
-    std::wstring timeString = L"TimeLimit : " + std::to_wstring(m_time);
+    // テキスト表示
+    m_spriteBatch->Draw(m_timeText.Get(), DirectX::SimpleMath::Vector2(880, 0));
 
-    // 表示するテキスト、位置、色を指定して描画
-    m_spriteFont->DrawString(m_spriteBatch, timeString.c_str(), 
-        DirectX::SimpleMath::Vector2(width - 400, 20), // position
-        DirectX::Colors::White,                        // color
-        0.f,                                  // rotate
-        DirectX::SimpleMath::Vector2::Zero,
-        1.4f                                  // scale
-    );
-
+    // スプライトバッチの終了
     m_spriteBatch->End();
 }
 

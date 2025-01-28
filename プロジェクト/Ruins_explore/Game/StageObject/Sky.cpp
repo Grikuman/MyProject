@@ -16,7 +16,8 @@ using namespace DirectX::SimpleMath;
 Sky::Sky()
 	:
 	m_projection{},
-	m_model{}
+	m_model{},
+	m_rotateCnt{}
 {
 }
 
@@ -65,7 +66,8 @@ void Sky::Initialize()
 //---------------------------------------------------------
 void Sky::Update()
 {
-	
+	// 回転させる
+	m_rotateCnt += 0.05f;
 }
 
 //---------------------------------------------------------
@@ -106,8 +108,9 @@ void Sky::Render()
 	);
 
 	// ワールド行列を更新する
-	Matrix world = Matrix::Identity;
-	world *= Matrix::CreateRotationX(XMConvertToRadians(180));
+	Matrix world = 
+		Matrix::CreateRotationX(XMConvertToRadians(180))
+     *= Matrix::CreateRotationY(XMConvertToRadians(m_rotateCnt));
 
 	// モデルを描画する
 	m_model->Draw(context, *states, world, view, m_projection);

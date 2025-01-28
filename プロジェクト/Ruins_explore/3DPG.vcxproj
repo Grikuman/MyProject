@@ -230,8 +230,10 @@
     <ClInclude Include="Game\UI\Gauge.h" />
     <ClInclude Include="Game\UI\HPUI.h" />
     <ClInclude Include="Game\UI\MapSelectUI.h" />
+    <ClInclude Include="Game\UI\Particle.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
     <ClInclude Include="Game\UI\PlayerUIManager.h" />
+    <ClInclude Include="Game\UI\RenderNumber.h" />
     <ClInclude Include="Game\UI\ResultSceneUI.h" />
     <ClInclude Include="Game\UI\TitleSceneUI.h" />
     <ClInclude Include="Game\UI\TimeUI.h" />
@@ -293,8 +295,10 @@
     <ClCompile Include="Game\UI\Gauge.cpp" />
     <ClCompile Include="Game\UI\HPUI.cpp" />
     <ClCompile Include="Game\UI\MapSelectUI.cpp" />
+    <ClCompile Include="Game\UI\Particle.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
     <ClCompile Include="Game\UI\PlayerUIManager.cpp" />
+    <ClCompile Include="Game\UI\RenderNumber.cpp" />
     <ClCompile Include="Game\UI\ResultSceneUI.cpp" />
     <ClCompile Include="Game\UI\TitleSceneUI.cpp" />
     <ClCompile Include="Game\UI\TimeUI.cpp" />
@@ -332,10 +336,35 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\EnemyData\EnemyData1.json" />
+    <None Include="Resources\Shaders\Particle.hlsli" />
     <None Include="Resources\Shaders\UI.hlsli" />
     <None Include="Resources\StageObjectData\StageObjectData.json" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Resources\Shaders\ParticleGS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ParticlePS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ParticleVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
     <FxCompile Include="Resources\Shaders\UIGS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>

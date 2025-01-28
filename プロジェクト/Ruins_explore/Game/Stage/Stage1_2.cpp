@@ -68,6 +68,8 @@ void Stage1_2::Initialize()
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
 		);
+	// TimeUIを初期化する
+	m_timeUI->Initialize();
 
 	// ゲーム時間を設定
 	m_gameTime = MAX_GAMETIME;
@@ -91,7 +93,7 @@ void Stage1_2::Update(float elapsedTime)
 	// 敵を更新
 	m_stageEnemy->Update();
 	// 天球を更新
-	//m_sky->Update();
+	m_sky->Update();
 	// TextUIを更新
 	m_timeUI->Update(m_gameTime);
 	// ステージのオブジェクトを更新する

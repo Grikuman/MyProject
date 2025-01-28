@@ -26,4 +26,7 @@ private:
 
 	// モデルの描画で使用する
 	std::unique_ptr<DirectX::Model> m_model;
+
+	// 回転カウント
+	float m_rotateCnt;
 };

@@ -92,6 +92,9 @@
     <Filter Include="Resources\StageObjectData">
       <UniqueIdentifier>{54ec019a-69e5-4827-97ba-aa79fec04724}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\UI\TimeUI">
+      <UniqueIdentifier>{a5d53d67-040f-40d9-8cc8-5e59712e28a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -146,9 +149,6 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\Tunomaru.h">
       <Filter>Game\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\TimeUI.h">
-      <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>Game\Scene</Filter>
@@ -306,6 +306,15 @@
     <ClInclude Include="Game\Player\PlayerJump.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\TimeUI.h">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\Particle.h">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\RenderNumber.h">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -349,9 +358,6 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\Tunomaru.cpp">
       <Filter>Game\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\TimeUI.cpp">
-      <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scene\TitleScene.cpp">
       <Filter>Game\Scene</Filter>
@@ -479,6 +485,15 @@
     <ClCompile Include="Game\Player\PlayerJump.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Game\UI\TimeUI.cpp">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\Particle.cpp">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\RenderNumber.cpp">
+      <Filter>Game\UI\TimeUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -504,6 +519,9 @@
     <None Include="Resources\StageObjectData\StageObjectData.json">
       <Filter>Resources\StageObjectData</Filter>
     </None>
+    <None Include="Resources\Shaders\Particle.hlsli">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\UIGS.hlsl">
@@ -513,6 +531,15 @@
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\UIVS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ParticlePS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ParticleGS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ParticleVS.hlsl">
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
   </ItemGroup>

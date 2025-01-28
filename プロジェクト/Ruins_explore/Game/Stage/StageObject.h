@@ -38,5 +38,4 @@ private:
 
     // ƒvƒŒƒCƒ„[
     Player* m_player;
-
 };
