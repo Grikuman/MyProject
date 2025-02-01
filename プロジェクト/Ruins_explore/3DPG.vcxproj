@@ -189,6 +189,10 @@
     <ClInclude Include="Game\Enemy\Boss\RockBossAttack.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossDown.h" />
     <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h" />
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBoss.h" />
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h" />
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h" />
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h" />
     <ClInclude Include="Game\Enemy\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\TunomaruDown.h" />
@@ -265,6 +269,10 @@
     <ClCompile Include="Game\Enemy\Boss\RockBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\Boss\RockBossDown.cpp" />
     <ClCompile Include="Game\Enemy\Boss\RockBossSearch.cpp" />
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBoss.cpp" />
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp" />
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp" />
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossSearch.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />

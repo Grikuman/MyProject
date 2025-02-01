@@ -95,6 +95,9 @@
     <Filter Include="Game\UI\TimeUI">
       <UniqueIdentifier>{a5d53d67-040f-40d9-8cc8-5e59712e28a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Enemy\NeedleBoss">
+      <UniqueIdentifier>{a8049e41-75f9-4f15-8f54-628547eefcce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -315,6 +318,18 @@
     <ClInclude Include="Game\UI\RenderNumber.h">
       <Filter>Game\UI\TimeUI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBoss.h">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -493,6 +508,18 @@
     </ClCompile>
     <ClCompile Include="Game\UI\RenderNumber.cpp">
       <Filter>Game\UI\TimeUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBoss.cpp">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossSearch.cpp">
+      <Filter>Game\Enemy\NeedleBoss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
