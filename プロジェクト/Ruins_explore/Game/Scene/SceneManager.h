@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IScene.h"
+#include "Game/Transition/Fade.h"
 
 class SceneManager
 {
@@ -32,4 +33,6 @@ private:
 private:
 	// 現在のシーン
 	std::unique_ptr<IScene> m_currentScene;
+	// フェード
+	std::unique_ptr<Fade> m_fade;
 };

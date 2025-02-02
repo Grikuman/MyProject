@@ -9,7 +9,7 @@
 #include "Gauge.h"
 #include "UserInterface.h"
 
-#include "BinaryFile.h"
+#include "WorkTool/BinaryFile.h"
 #include "WorkTool/DeviceResources.h"
 #include <SimpleMath.h>
 #include <Effects.h>

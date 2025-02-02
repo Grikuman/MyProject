@@ -12,6 +12,7 @@
 //---------------------------
 #include "Game/Screen.h"
 #include"WorkTool/DeviceResources.h"
+#include "WorkTool/Graphics.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include "Libraries/MyLib/InputManager.h"
 #include <cassert>
@@ -23,8 +24,10 @@
 //---------------------------------------------------------
 SceneManager::SceneManager()
 	:
-	m_currentScene{}
+	m_currentScene{},
+	m_fade{}
 {
+	m_fade = std::make_unique<Fade>();
 }
 
 //---------------------------------------------------------
@@ -40,7 +43,11 @@ SceneManager::~SceneManager()
 //---------------------------------------------------------
 void SceneManager::Initialize()
 {
+	// 初期シーンを設定
 	ChangeScene(IScene::SceneID::TITLE);
+
+	// フェードを作成
+	m_fade->Create(Graphics::GetInstance()->GetDeviceResources());
 }
 
 //---------------------------------------------------------
@@ -65,7 +72,12 @@ void SceneManager::Update(float elapsedTime)
 //---------------------------------------------------------
 void SceneManager::Render()
 {
+	DirectX::SimpleMath::Matrix view = DirectX::SimpleMath::Matrix::Identity;
+	DirectX::SimpleMath::Matrix proj = DirectX::SimpleMath::Matrix::Identity;
+
 	m_currentScene->Render();
+
+	m_fade->Render(view, proj);
 }
 
 //---------------------------------------------------------

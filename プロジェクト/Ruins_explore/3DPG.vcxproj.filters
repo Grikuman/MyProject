@@ -98,6 +98,9 @@
     <Filter Include="Game\Enemy\NeedleBoss">
       <UniqueIdentifier>{a8049e41-75f9-4f15-8f54-628547eefcce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Transition">
+      <UniqueIdentifier>{5cf27844-e20a-4aaf-b271-5ba1522d8559}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -206,9 +209,6 @@
     </ClInclude>
     <ClInclude Include="WorkTool\Resources.h">
       <Filter>WorkTool</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\BinaryFile.h">
-      <Filter>Game\UI\EnemyUI</Filter>
     </ClInclude>
     <ClInclude Include="Game\UI\EnemyUIManager.h">
       <Filter>Game\UI\EnemyUI</Filter>
@@ -330,6 +330,12 @@
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h">
       <Filter>Game\Enemy\NeedleBoss</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Transition\Fade.h">
+      <Filter>Game\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkTool\BinaryFile.h">
+      <Filter>WorkTool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -428,9 +434,6 @@
     <ClCompile Include="WorkTool\Graphics.cpp">
       <Filter>WorkTool</Filter>
     </ClCompile>
-    <ClCompile Include="Game\UI\BinaryFile.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
     <ClCompile Include="Game\UI\EnemyUIManager.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
@@ -521,6 +524,12 @@
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossSearch.cpp">
       <Filter>Game\Enemy\NeedleBoss</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Transition\Fade.cpp">
+      <Filter>Game\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkTool\BinaryFile.cpp">
+      <Filter>WorkTool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -549,6 +558,9 @@
     <None Include="Resources\Shaders\Particle.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
+    <None Include="Resources\Shaders\Fade.hlsli">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\UIGS.hlsl">
@@ -567,6 +579,15 @@
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\ParticleVS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\FadeGS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\FadePS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\FadeVS.hlsl">
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
   </ItemGroup>
