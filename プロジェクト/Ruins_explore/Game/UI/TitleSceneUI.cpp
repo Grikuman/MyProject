@@ -99,22 +99,7 @@ void TitleSceneUI::Update()
     // シーン遷移
     if (kb->IsKeyPressed(DirectX::Keyboard::Space) && m_selectFlag)
     {
-        // フェードフラグをtrue
-        m_fadeFlag = true;
-    }
-    // フェード処理
-    if (m_fadeFlag)
-    {
-        m_alpha += 0.008f;
-        m_scale += 0.001f;
-        if (m_alpha >= 1.f)
-        {
-            // アルファ値とスケール値をリセットしておく
-            m_alpha = 0.f;
-            m_scale = 1.f;
-            // シーン遷移
-            m_titleScene->ChangeScene();
-        }
+        m_titleScene->ChangeScene();
     }
 }
 

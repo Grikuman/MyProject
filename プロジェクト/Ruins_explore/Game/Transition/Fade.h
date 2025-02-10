@@ -20,6 +20,13 @@
 class Fade
 {
 public:
+	// フェードモードクラス
+	enum class FADE_MODE
+	{
+		FADE_IN,
+		FADE_OUT,
+		CAN_TRANSITION
+	};
 	//	データ受け渡し用コンスタントバッファ(送信側)
 	struct ConstBuffer
 	{
@@ -29,6 +36,34 @@ public:
 		DirectX::SimpleMath::Vector4	Diffuse;
 		DirectX::SimpleMath::Vector4	time;
 	};
+
+public:
+	// 遷移できるかどうか
+	bool IsTransition();
+	// フェードイン
+	void FadeIn();
+	// フェードアウト
+	void FadeOut();
+public:
+	//	関数
+	static const std::vector<D3D11_INPUT_ELEMENT_DESC> INPUT_LAYOUT;
+
+	// コンストラクタ
+	Fade();
+	// デストラクタ
+	~Fade();
+	// テクスチャを読み込む
+	void LoadTexture(const wchar_t* path);
+	// 作成する
+	void Create(DX::DeviceResources* pDR);
+	// 更新する
+	void Update();
+	// 描画する
+	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+
+private:
+	// シェーダーを作成する
+	void CreateShader();
 
 private:
 	//	変数
@@ -61,19 +96,6 @@ private:
 
 	float m_time;
 
-public:
-	//	関数
-	static const std::vector<D3D11_INPUT_ELEMENT_DESC> INPUT_LAYOUT;
-
-	Fade();
-	~Fade();
-
-	void LoadTexture(const wchar_t* path);
-		
-	void Create(DX::DeviceResources* pDR);
-
-	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
-private:
-
-	void CreateShader();
+	// フェードモード
+	FADE_MODE m_fadeMode;
 };

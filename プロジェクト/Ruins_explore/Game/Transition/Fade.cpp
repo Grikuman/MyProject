@@ -12,9 +12,7 @@
 #include <CommonStates.h>
 #include <vector>
 
-///	<summary>
-///	インプットレイアウト
-///	</summary>
+// インプットレイアウト
 const std::vector<D3D11_INPUT_ELEMENT_DESC> Fade::INPUT_LAYOUT =
 {
 	{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -22,26 +20,46 @@ const std::vector<D3D11_INPUT_ELEMENT_DESC> Fade::INPUT_LAYOUT =
 	{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(DirectX::SimpleMath::Vector3)+ sizeof(DirectX::SimpleMath::Vector4), D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-///	<summary>
-///	コンストラクタ
-///	</summary>
+bool Fade::IsTransition()
+{
+	// 遷移可能状態ならば
+	if (m_fadeMode == FADE_MODE::CAN_TRANSITION)
+	{
+		return true;
+	}
+	// 遷移できなければ
+	return false;
+}
+
+// フェードイン
+void Fade::FadeIn()
+{
+	m_time = 1.2f;
+	m_fadeMode = FADE_MODE::FADE_IN;
+}
+
+// フェードアウト
+void Fade::FadeOut()
+{
+	m_time = 0.0f;
+	m_fadeMode = FADE_MODE::FADE_OUT;
+}
+
+// コンストラクタ
 Fade::Fade()
 	: m_pDR(nullptr)
-	,m_time(0.f)
+	,m_time(1.2f)
+	,m_fadeMode(FADE_MODE::FADE_OUT)
 {
 }
 
-///	<summary>
-///	デストラクタ
-///	</summary>
+
+// デストラクタ
 Fade::~Fade()
 {
 }
 
-///	<summary>
-///	テクスチャリソース読み込み関数
-///	</summary>
-///	<param name="path">相対パス(Resources/Textures/・・・.pngなど）</param>
+// テクスチャを読み込む
 void Fade::LoadTexture(const wchar_t* path)
 {
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture;
@@ -50,10 +68,7 @@ void Fade::LoadTexture(const wchar_t* path)
 	m_texture.push_back(texture);
 }
 
-///	<summary>
-///	生成関数
-///	</summary>
-///	<param name="pDR">ユーザーリソース等から持ってくる</param>
+// 作成する
 void Fade::Create(DX::DeviceResources* pDR)
 {	
 	m_pDR = pDR;
@@ -64,7 +79,7 @@ void Fade::Create(DX::DeviceResources* pDR)
 
 	//	画像の読み込み
 	LoadTexture(L"Resources/Textures/Fade01.png");
-	LoadTexture(L"Resources/Textures/Fade01.png");
+	//LoadTexture(L"Resources/Textures/Fade02.png");
 
 	//	プリミティブバッチの作成
 	m_batch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionColorTexture>>(pDR->GetD3DDeviceContext());
@@ -73,9 +88,34 @@ void Fade::Create(DX::DeviceResources* pDR)
 
 }
 
-///	<summary>
-///	Shader作成部分だけ分離した関数
-///	</summary>
+// 更新する
+void Fade::Update()
+{
+	// フェード イン・アウトの処理
+	switch (m_fadeMode)
+	{
+		case Fade::FADE_MODE::FADE_IN: // フェードイン
+			m_time -= 0.025f;
+			if (m_time <= 0.0f)
+			{
+				m_time = 0.0f;
+				m_fadeMode = FADE_MODE::CAN_TRANSITION;
+			}
+			break;
+		case Fade::FADE_MODE::FADE_OUT: // フェードアウト
+			m_time += 0.025f;
+			if (m_time >= 1.2f)
+			{
+				m_time = 1.2f;
+				m_fadeMode = FADE_MODE::CAN_TRANSITION;
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+// シェーダーを作成する
 void Fade::CreateShader()
 {
 	ID3D11Device1* device = m_pDR->GetD3DDevice();
@@ -121,17 +161,10 @@ void Fade::CreateShader()
 	device->CreateBuffer(&bd, nullptr, &m_CBuffer);
 }
 
-///	<summary>
-///	描画関数
-///	</summary>
-///	<param name="view">ビュー行列</param>
-///	<param name="proj">射影行列</param>
+// 描画する
 void Fade::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
 {
 	ID3D11DeviceContext1* context = m_pDR->GetD3DDeviceContext();
-
-	// タイマー加算
-	m_time += 0.025f;
 
 	//	頂点情報(板ポリゴンの４頂点の座標情報）
 	DirectX::VertexPositionColorTexture vertex[4] =

@@ -13,6 +13,7 @@
 #include "Game/Screen.h"
 #include"WorkTool/DeviceResources.h"
 #include "WorkTool/Graphics.h"
+#include "WorkTool/InputDevice.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include "Libraries/MyLib/InputManager.h"
 #include <cassert>
@@ -57,6 +58,8 @@ void SceneManager::Update(float elapsedTime)
 {
 	m_currentScene->Update(elapsedTime);
 
+	m_fade->Update();
+
 	// 説明用変数：次のシーン
 	const IScene::SceneID nextSceneID = m_currentScene->GetNextSceneID();
 
@@ -93,7 +96,9 @@ void SceneManager::Finalize()
 //---------------------------------------------------------
 void SceneManager::ChangeScene(IScene::SceneID sceneID)
 {
+	m_fade->FadeIn();
 	DeleteScene();
+	m_fade->FadeOut();
 	CreateScene(sceneID);
 }
 
