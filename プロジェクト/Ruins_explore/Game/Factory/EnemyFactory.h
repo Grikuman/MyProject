@@ -5,7 +5,7 @@
 #pragma once
 #include "Game/Interface/IEnemy.h"
 #include "Game/Enemy/Tunomaru.h"
-#include "Game/Enemy/Boss/RockBoss.h"
+#include "Game/Enemy/NeedleBoss/NeedleBoss.h"
 
 class EnemyFactory 
 {
@@ -18,9 +18,9 @@ public:
         {
             return std::make_unique<Tunomaru>(player);
         }
-        else if (type == "RockBoss") 
+        else if (type == "NeedleBoss")
         {
-            return std::make_unique<RockBoss>(player);
+            return std::make_unique<NeedleBoss>(player);
         }
         
         return nullptr;  // ìGÉ^ÉCÉvÇ™Ç¢Ç»Ç¢èÍçá

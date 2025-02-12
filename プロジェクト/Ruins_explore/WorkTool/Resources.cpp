@@ -52,8 +52,8 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> PlayerFoot = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerFoot.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
-	// 岩ボス
-	std::unique_ptr<DirectX::Model> RockBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/RockBoss.cmo", *fx);
+	// トゲボス
+	std::unique_ptr<DirectX::Model> NeedleBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NeedleBoss.cmo", *fx);
 	// 岩のブロック
 	std::unique_ptr<DirectX::Model> SoilBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Soil_Block.cmo", *fx);
 	// 木
@@ -64,7 +64,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"PlayerHand", std::move(PlayerHand));
 	m_models.emplace(L"PlayerFoot", std::move(PlayerFoot));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
-	m_models.emplace(L"RockBoss", std::move(RockBoss));
+	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
 	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
 	m_models.emplace(L"Tree", std::move(Tree));
 
@@ -156,6 +156,10 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	if (name == "SoilBlock")
 	{
 		return GetModel(L"SoilBlock");
+	}
+	if (name == "NeedleBoss")
+	{
+		return GetModel(L"NeedleBoss");
 	}
 	return 0;
 }

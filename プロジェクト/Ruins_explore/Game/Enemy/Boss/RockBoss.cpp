@@ -45,7 +45,7 @@ void RockBoss::Initialize(DirectX::SimpleMath::Vector3 position)
     m_position = position;
 
     // ƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Þ
-    m_model = Resources::GetInstance()->GetModel(L"RockBoss");
+    m_model = Resources::GetInstance()->GetModel(L"NeedleBoss");
 
     // ƒ‰ƒCƒg‚ðØ‚éÝ’è
     //m_model->UpdateEffects([](DirectX::IEffect* effect)

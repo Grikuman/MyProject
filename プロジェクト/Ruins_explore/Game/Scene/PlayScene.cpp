@@ -32,7 +32,7 @@ void PlayScene::Initialize()
 	m_isChangeScene = false;
 
 	// 選択したステージ
-	StageID selectStage = StageID::Stage1_1;
+	StageID selectStage = StageID::Stage1_2;
 
 	// 選択したステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);

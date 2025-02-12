@@ -7,7 +7,6 @@
 
 #include "Game/Player/Player.h"
 #include "Game/Enemy/Tunomaru.h"
-#include "Game/Enemy/Boss/RockBoss.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
 

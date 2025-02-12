@@ -62,9 +62,6 @@
     <Filter Include="Game\Effect">
       <UniqueIdentifier>{988c5e3a-520a-4def-9a9b-2efc8cfed130}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Enemy\Boss">
-      <UniqueIdentifier>{f3da1f08-459f-47af-b909-933112dd463d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\EnemyUI">
       <UniqueIdentifier>{4f03f122-fbd9-4223-91e8-35569031bd4d}</UniqueIdentifier>
     </Filter>
@@ -191,18 +188,6 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\TunomaruDown.h">
       <Filter>Game\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\Boss\RockBoss.h">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\Boss\RockBossAttack.h">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\Boss\RockBossDown.h">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\Boss\RockBossSearch.h">
-      <Filter>Game\Enemy\Boss</Filter>
     </ClInclude>
     <ClInclude Include="WorkTool\Graphics.h">
       <Filter>WorkTool</Filter>
@@ -415,18 +400,6 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\TunomaruDown.cpp">
       <Filter>Game\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\Boss\RockBoss.cpp">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\Boss\RockBossAttack.cpp">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\Boss\RockBossDown.cpp">
-      <Filter>Game\Enemy\Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\Boss\RockBossSearch.cpp">
-      <Filter>Game\Enemy\Boss</Filter>
     </ClCompile>
     <ClCompile Include="WorkTool\Resources.cpp">
       <Filter>WorkTool</Filter>

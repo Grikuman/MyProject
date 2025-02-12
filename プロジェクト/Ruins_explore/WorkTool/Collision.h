@@ -6,7 +6,6 @@
 
 class Player;
 class Tunomaru;
-class RockBoss;
 class ICollisionObject;
 class IEnemy;
 

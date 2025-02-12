@@ -36,7 +36,7 @@ NeedleBossSearch::~NeedleBossSearch()
 //---------------------------------------------------------
 void NeedleBossSearch::Initialize()
 {
-    m_model = Resources::GetInstance()->GetModel(L"RockBoss");
+    
 }
 
 //---------------------------------------------------------

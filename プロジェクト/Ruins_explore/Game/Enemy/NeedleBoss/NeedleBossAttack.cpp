@@ -39,7 +39,7 @@ NeedleBossAttack::~NeedleBossAttack()
 //---------------------------------------------------------
 void NeedleBossAttack::Initialize()
 {
-	m_model = Resources::GetInstance()->GetModel(L"RockBoss");
+	
 }
 
 //---------------------------------------------------------
