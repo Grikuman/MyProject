@@ -11,22 +11,22 @@ public:
 	static InputDevice* const GetInstance();
 
 	// キーボードのインスタンスを取得する
-	DirectX::Keyboard* GetKeyboard()                                    { return m_keyboard.get(); }
+	DirectX::Keyboard* GetKeyboard() { return m_keyboard.get(); }
 	// キーボードステートトラッカーのインスタンスを取得する
-	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker()  { return m_keyboardStateTracker.get(); }
+	DirectX::Keyboard::KeyboardStateTracker* GetKeyboardStateTracker() { return m_keyboardStateTracker.get(); }
 	// キーボードステートのインスタンスを取得する
-	DirectX::Keyboard::State* GetKeyboardState()                        { return m_keyboardState.get(); }
+	DirectX::Keyboard::State* GetKeyboardState() { return m_keyboardState.get(); }
 
 	// マウスのインスタンスを取得する
-	DirectX::Mouse* GetMouse()                                          { return m_mouse.get(); }
+	DirectX::Mouse* GetMouse() { return m_mouse.get(); }
 	// マウスステートのインスタンスを取得する
-	DirectX::Mouse::State* GetMouseState()                              { return m_mouseState.get(); }
+	DirectX::Mouse::State* GetMouseState() { return m_mouseState.get(); }
 	// マウスボタンステートトラッカーのインスタンスを取得する
-	DirectX::Mouse::ButtonStateTracker* GetMouseButtonStateTracker()    { return m_mouseButtonStateTracker.get(); }
+	DirectX::Mouse::ButtonStateTracker* GetMouseButtonStateTracker() { return m_mouseButtonStateTracker.get(); }
 
 public:
-	// 初期化する
-	void Initialize();
+	// デバイスを作成する
+	void CreateDevice();
 	// 更新する
 	void Update();
 	// デストラクタ
@@ -51,7 +51,7 @@ private:
 	InputDevice(InputDevice&&) = delete;
 
 private:
-	// インプットデバイス
+	// インプットデバイスクラス
 	static std::unique_ptr<InputDevice>                      m_InputDevice;
 	
 	// キーボード

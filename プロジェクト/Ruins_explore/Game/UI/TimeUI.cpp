@@ -4,9 +4,9 @@
 */
 #include "pch.h"
 #include "TimeUI.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/InputDevice.h"
-#include "WorkTool/Resources.h"
+#include "Framework/Graphics.h"
+#include "Framework/InputDevice.h"
+#include "Framework/Resources.h"
 
 //---------------------------------------------------------
 // コンストラクタ

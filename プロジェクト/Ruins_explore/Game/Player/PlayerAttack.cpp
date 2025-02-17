@@ -5,10 +5,10 @@
 #include "pch.h"
 #include "Player.h"
 #include "PlayerAttack.h"
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 #include "Game/Effect/SwordEffect.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
 
 //---------------------------------------------------------
 // コンストラクタ

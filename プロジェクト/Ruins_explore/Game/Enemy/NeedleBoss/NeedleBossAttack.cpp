@@ -7,11 +7,11 @@
 #include "NeedleBossAttack.h"
 #include "Game/Player/Player.h"
 
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/NRLib/TPS_Camera.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Collision.h"
+#include "Framework/DeviceResources.h"
+#include "Game/Camera/TPS_Camera.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/Collision.h"
 
 //---------------------------------------------------------
 // コンストラクタ

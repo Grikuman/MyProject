@@ -3,15 +3,18 @@
 	　　　概要：当たり判定を処理を行うクラス
 */
 #include "pch.h"
-#include "WorkTool/Collision.h"
+#include "Framework/Collision.h"
 
 #include "Game/Player/Player.h"
-#include "Game/Enemy/Tunomaru.h"
+#include "Game/Enemy/Tunomaru/Tunomaru.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
 
+// シングルトンパターンを実装するための静的メンバ変数
+// 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Collision> Collision::m_collision = nullptr;
 
+// コリジョンクラスのインスタンスを取得
 Collision* const Collision::GetInstance()
 {
 	if (m_collision == nullptr)

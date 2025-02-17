@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "Game/UI/EnemyUIManager.h"
 #include "Gauge.h"
-#include "WorkTool/Graphics.h"
+#include "Framework/Graphics.h"
 
 //---------------------------------------------------------
 // コンストラクタ

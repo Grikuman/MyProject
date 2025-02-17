@@ -6,12 +6,11 @@
 #ifndef GRAPHICS_DEFINED
 #define GRAPHICS_DEFINED
 
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 
 class Graphics final
 {
 public:
-	//追加
 	//グラフィッククラスのインスタンス取得
 	static Graphics* const GetInstance();
 
@@ -74,33 +73,33 @@ private:
 
 private:
 	// グラフィックス
-	static std::unique_ptr<Graphics>                                          m_graphics;
+	static std::unique_ptr<Graphics> m_graphics;
 	// デバイスリソース
-	std::unique_ptr<DX::DeviceResources>                                      m_deviceResources;
+	std::unique_ptr<DX::DeviceResources> m_deviceResources;
 	// コモンステート
-	std::unique_ptr<DirectX::CommonStates>                                    m_commonStates;
+	std::unique_ptr<DirectX::CommonStates> m_commonStates;
 	// スプライトバッチ
-	std::unique_ptr<DirectX::SpriteBatch>                                     m_spriteBatch;
+	std::unique_ptr<DirectX::SpriteBatch> m_spriteBatch;
 	// スプライトフォント
-	std::unique_ptr<DirectX::SpriteFont>                                      m_spriteFont;
+	std::unique_ptr<DirectX::SpriteFont> m_spriteFont;
 	// ベーシックエフェクト
-	std::unique_ptr<DirectX::BasicEffect>                                     m_basicEffect;
+	std::unique_ptr<DirectX::BasicEffect> m_basicEffect;
 	// プリミティブバッチ
 	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColor>>    m_primitiveBatch;
 	// エフェクトファクトリー
-	std::unique_ptr<DirectX::EffectFactory>                                   m_effectFactory;
+	std::unique_ptr<DirectX::EffectFactory> m_effectFactory;
 	// 入力レイアウト
-	Microsoft::WRL::ComPtr<ID3D11InputLayout>                                 m_inputLayout;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
 	// スクリーンサイズ
-	int                                                                       m_screenW, m_screenH;
+	int m_screenW, m_screenH;
 	// ビュー行列
-	DirectX::SimpleMath::Matrix                                               m_view;
+	DirectX::SimpleMath::Matrix m_view;
 	// 射影行列
-	DirectX::SimpleMath::Matrix                                               m_projection;
+	DirectX::SimpleMath::Matrix m_projection;
 	// デバイス
-	ID3D11Device*                                                             m_device;
+	ID3D11Device* m_device;
 	// デバイスコンテキスト
-	ID3D11DeviceContext*                                                      m_context;
+	ID3D11DeviceContext* m_context;
 };
 
 #endif		// GRAPHICS_DEFINED

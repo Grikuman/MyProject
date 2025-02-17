@@ -6,11 +6,10 @@
 #include "PlayerStatusUI.h"
 #include "Game/Player/Player.h"
 
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
+#include "Framework/DeviceResources.h"
 #include "PlayerUIManager.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -19,17 +18,13 @@ PlayerStatusUI::PlayerStatusUI(Player* player)
     :
     m_player{player},
     m_healthPosition{},
-    m_backPosition{},
-    m_framePosition{},
     m_staminaPosition{},
     m_scale{1.f},
-    m_matrix{},
-    m_tex_HealthRed{},
-    m_tex_HealthGray{},
-    m_tex_StaminaYellow{},
-    m_tex_StaminaGray{},
-    m_tex_StatusIcon{},
-    m_tex_HelthGaugeFrame{}
+    m_hearthRed_Tex{},
+    m_hearthGray_Tex{},
+    m_staminaYellow_Tex{},
+    m_staminaGray_Tex{},
+    m_statusIcon_Tex{}
 {
 
 }
@@ -49,35 +44,26 @@ void PlayerStatusUI::Initialize()
 {
     using namespace DirectX;
     using namespace DirectX::SimpleMath;
-
-    // スタミナの位置を設定する
-    for (int i = 0; i < m_player->GetMAXHP(); i++)
-    {
-        m_healthPosition[i] = Vector2(53.f * i + 108.f, 600.f);
-    }
-    // スタミナの位置を設定する
-    for (int i = 0; i < m_player->GetMAXSTAMINA(); i++)
-    {
-        m_staminaPosition[i] = Vector2(50.f * i + 130.f, 660.f);
-    }
-    // ステータスアイコンの位置を設定する
-    m_backPosition = Vector2(10.f,600.f);
-    // ゲージの枠の位置を設定する
-    m_framePosition = Vector2(120.f, 610.f);
+    // スプライトバッチを取得する
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
 
     // 画像を読み込む
-    m_tex_StatusIcon            = Resources::GetInstance()->GetTexture(L"Status_Icon");
+    m_statusIcon_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Status_icon.png");
+    m_hearthRed_Tex     = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Health_Red.png");
+    m_hearthGray_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Health_Gray.png");
+    m_staminaYellow_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Stamina_Yellow.png");
+    m_staminaGray_Tex   = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Stamina_Gray.png");
 
-    for (int i = 0; i < 6; i++)
+    // 体力表示の位置を設定する
+    for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
-        m_tex_HealthRed[i]      = Resources::GetInstance()->GetTexture(L"Health_Red");
-        m_tex_HealthGray[i]     = Resources::GetInstance()->GetTexture(L"Health_Gray");
-        m_tex_StaminaYellow[i]  = Resources::GetInstance()->GetTexture(L"Stamina_Yellow");
-        m_tex_StaminaGray[i]    = Resources::GetInstance()->GetTexture(L"Stamina_Gray");
+        m_healthPosition[i] = Vector2(HEALTH_SHIFT_LENGTH * i + HEALTH_POS_ORIGIN.x, HEALTH_POS_ORIGIN.y);
     }
-
-    // スプライトバッチを設定する
-    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+    // スタミナ表示の位置を設定する
+    for (int i = 0; i < m_player->GetMAXSTAMINA(); i++)
+    {
+        m_staminaPosition[i] = Vector2(STAMINA_SHIFT_LENGTH * i + STAMINA_POS_ORIGIN.x, STAMINA_POS_ORIGIN.y);
+    }
 }
 
 //---------------------------------------------------------
@@ -98,29 +84,29 @@ void PlayerStatusUI::Render()
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
 
-    // ステータスアイコンを描画する
-    m_spriteBatch->Draw(m_tex_StatusIcon.Get(), m_backPosition);
+    // ステータスアイコン
+    m_spriteBatch->Draw(m_statusIcon_Tex.Get(), STATUS_ICON_POS);
 
     // 体力(灰色)
     for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
-        m_spriteBatch->Draw(m_tex_HealthGray[i].Get(), m_healthPosition[i]);
+        m_spriteBatch->Draw(m_hearthGray_Tex.Get(), m_healthPosition[i]);
     }
     // スタミナ(灰色)
     for (int i = 0; i < m_player->GetMAXSTAMINA(); i++)
     {
-        m_spriteBatch->Draw(m_tex_StaminaGray[i].Get(), m_staminaPosition[i]);
+        m_spriteBatch->Draw(m_staminaGray_Tex.Get(), m_staminaPosition[i]);
     }
 
     // 体力(赤色)
     for (int i = 0; i < m_player->GetHP(); i++)
     {
-        m_spriteBatch->Draw(m_tex_HealthRed[i].Get(), m_healthPosition[i]);
+        m_spriteBatch->Draw(m_hearthRed_Tex.Get(), m_healthPosition[i]);
     }
     // スタミナ(黄色)
     for (int i = 0; i < m_player->GetStamina(); i++)
     {
-        m_spriteBatch->Draw(m_tex_StaminaYellow[i].Get(), m_staminaPosition[i]);
+        m_spriteBatch->Draw(m_staminaYellow_Tex.Get(), m_staminaPosition[i]);
     }
 
     // 通常のスプライトバッチを終了

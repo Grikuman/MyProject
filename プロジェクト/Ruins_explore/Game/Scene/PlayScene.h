@@ -7,12 +7,6 @@
 #include "Game/Interface/IStage.h"
 #include "Game/Factory/StageFactory.h"
 
-
-namespace NRLib
-{
-	class FixedCamera;
-};
-
 class PlayScene final : public IScene
 {
 public:

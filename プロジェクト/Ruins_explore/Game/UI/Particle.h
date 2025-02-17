@@ -9,7 +9,7 @@
 #pragma once
 
 #include "StepTimer.h"
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 #include <SimpleMath.h>
 #include <Effects.h>
 #include <PrimitiveBatch.h>

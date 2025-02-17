@@ -5,10 +5,10 @@
 #include "pch.h"
 #include "TitleSceneUI.h"
 #include "Game/Player/Player.h"
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/InputDevice.h"
 #include "Game/Scene/TitleScene.h"
 
 //---------------------------------------------------------
@@ -17,20 +17,16 @@
 TitleSceneUI::TitleSceneUI(TitleScene* titlescene)
     :
     m_spriteBatch{},
-    m_ruinsExplorer{},
-    m_titleSelect{},
-    m_selectIcon{},
-    m_i_Rotate{},
-    m_o_Rotate{},
-    m_titleBackGround{},
-    m_black{},
-    m_selectPos{},
+    m_gameTitle_Tex{},
+    m_select_Tex{},
+    m_selectArrow_Tex{},
+    m_i_Tex{},
+    m_o_Tex{},
+    m_backGround_Tex{},
     m_selectFlag{true},
     m_titleScene{titlescene},
     m_rotate{},
-    m_alpha{},
-    m_fadeFlag{false},
-    m_scale{1.f}
+    m_selectArrowPos{}
 {
     
 }
@@ -48,16 +44,15 @@ TitleSceneUI::~TitleSceneUI()
 //---------------------------------------------------------
 void TitleSceneUI::Initialize()
 {
-    // スプライトバッチを設定する
+    // スプライトバッチを取得する
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
     // 画像読み込み
-    m_ruinsExplorer   = Resources::GetInstance()->GetTexture(L"Ruins_Explorer");
-    m_titleSelect     = Resources::GetInstance()->GetTexture(L"TitleSelect");
-    m_selectIcon      = Resources::GetInstance()->GetTexture(L"SelectIcon");
-    m_i_Rotate        = Resources::GetInstance()->GetTexture(L"i_Rotate");
-    m_o_Rotate        = Resources::GetInstance()->GetTexture(L"o_Rotate");
-    m_titleBackGround = Resources::GetInstance()->GetTexture(L"TitleBackGround");
-    m_black           = Resources::GetInstance()->GetTexture(L"Black");
+    m_gameTitle_Tex   = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Ruins_Explorer.png");
+    m_select_Tex      = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/TitleSelect.png");
+    m_selectArrow_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/SelectArrow.png");
+    m_i_Tex           = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/i.png");
+    m_o_Tex           = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/o.png");
+    m_backGround_Tex  = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/TitleBackGround.png");
 }
 
 //---------------------------------------------------------
@@ -71,29 +66,25 @@ void TitleSceneUI::Update()
     // 文字回転
     m_rotate += 1.f;
 
-    //フェードに移行していなければ
-    if (!m_fadeFlag)
+    // 上キーを押したら
+    if (kb->IsKeyPressed(DirectX::Keyboard::Up))
     {
-        // 上キーを押したら
-        if (kb->IsKeyPressed(DirectX::Keyboard::Up))
-        {
-            m_selectFlag = true;
-        }
-        // 下キーを押したら
-        if (kb->IsKeyPressed(DirectX::Keyboard::Down))
-        {
-            m_selectFlag = false;
-        }
+        m_selectFlag = true;
+    }
+    // 下キーを押したら
+    if (kb->IsKeyPressed(DirectX::Keyboard::Down))
+    {
+        m_selectFlag = false;
     }
     
     // フラグごとにセレクトアイコンの位置を移動
     if (m_selectFlag)
     {
-        m_selectPos = DirectX::SimpleMath::Vector2(500, 390);
+        m_selectArrowPos = SELECTARROW_POS_1;
     }
     else
     {
-        m_selectPos = DirectX::SimpleMath::Vector2(500, 510);
+        m_selectArrowPos = SELECTARROW_POS_2;
     }
 
     // シーン遷移
@@ -110,35 +101,24 @@ void TitleSceneUI::Render()
 {
     using namespace DirectX;
     using namespace DirectX::SimpleMath;
-    //Matrix matrix = Matrix::CreateTranslation(Vector3(640, 360, 0));
-    Matrix matrix = Matrix::CreateScale(m_scale);
-    matrix *= Matrix::CreateTranslation(Vector3(0, 0, 0));
-    m_spriteBatch->Begin(DirectX::DX11::SpriteSortMode_Deferred,nullptr,nullptr,nullptr,nullptr,nullptr,matrix);
-    // 背景
-    m_spriteBatch->Draw(m_titleBackGround.Get(), Vector2(0,0));
-    m_spriteBatch->End();
 
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
+    // 背景
+    m_spriteBatch->Draw(m_backGround_Tex.Get(), BACKGROUND_POS);
+    // ゲームタイトル
+    m_spriteBatch->Draw(m_gameTitle_Tex.Get(), GAMETITLE_POS);
+    // 選択文字
+    m_spriteBatch->Draw(m_select_Tex.Get(),SELECT_POS);
+    // 選択矢印
+    m_spriteBatch->Draw(m_selectArrow_Tex.Get(), m_selectArrowPos);
+    // iの文字
+    m_spriteBatch->Draw(m_i_Tex.Get(), I_POS, nullptr, 
+        Colors::White, XMConvertToRadians(m_rotate),I_CENTER_POS);
+    // oの文字
+    m_spriteBatch->Draw(m_o_Tex.Get(),O_POS, nullptr, 
+        Colors::White, XMConvertToRadians(m_rotate), O_CENTER_POS);
 
-    // ステータスアイコン
-    m_spriteBatch->Draw(m_ruinsExplorer.Get(), DirectX::SimpleMath::Vector2(350,150));
-    // セレクト
-    m_spriteBatch->Draw(m_titleSelect.Get(), DirectX::SimpleMath::Vector2(450, 400));
-    // セレクトアイコン
-    m_spriteBatch->Draw(m_selectIcon.Get(), m_selectPos);
-    // i
-    m_spriteBatch->Draw(m_i_Rotate.Get(), Vector2(485, 210), nullptr, 
-        Colors::White, XMConvertToRadians(m_rotate), Vector2(25, 25));
-    // o
-    m_spriteBatch->Draw(m_o_Rotate.Get(), Vector2(810, 255), nullptr, 
-        Colors::White, XMConvertToRadians(m_rotate), Vector2(25, 25));
-    // フェードの色
-    Color color = Color(0.0f, 0.0f, 0.0f, m_alpha);
-    // 黒のフェード
-    m_spriteBatch->Draw(m_black.Get(), Vector2(0,0), color);
-
-    // 通常のスプライトバッチを終了
     m_spriteBatch->End();
 }
 

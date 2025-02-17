@@ -23,37 +23,39 @@ public:
     // 後処理する
     void Finalize();
 private:
+    // ステータスアイコンの位置
+    const DirectX::SimpleMath::Vector2 STATUS_ICON_POS = DirectX::SimpleMath::Vector2(10.f, 600.f);
+    // 体力表示位置の原点
+    const DirectX::SimpleMath::Vector2 HEALTH_POS_ORIGIN = DirectX::SimpleMath::Vector2(108.f, 600.f);
+    // 体力表示一つずつの距離
+    const float HEALTH_SHIFT_LENGTH = 53.f;
+    // スタミナ表示位置の原点
+    const DirectX::SimpleMath::Vector2 STAMINA_POS_ORIGIN = DirectX::SimpleMath::Vector2(130.f, 660.f);
+    // 体力表示一つずつの距離
+    const float STAMINA_SHIFT_LENGTH = 50.f;
+
+private:
     // プレイヤー
     Player* m_player;
 
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
     // 体力(赤色)
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_tex_HealthRed[6];
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_hearthRed_Tex;
     // 体力(灰色)
-    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_tex_HealthGray[6];
+    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_hearthGray_Tex;
     // スタミナ(黄色)
-    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_tex_StaminaYellow[6];
+    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_staminaYellow_Tex;
     // スタミナ(灰色)
-    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_tex_StaminaGray[6];
+    Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_staminaGray_Tex;
     // ステータスアイコン
-    Microsoft::WRL::ComPtr < ID3D11ShaderResourceView> m_tex_StatusIcon;
-    // 体力ゲージの枠
-    Microsoft::WRL::ComPtr < ID3D11ShaderResourceView> m_tex_HelthGaugeFrame;
-    // スタミナゲージの枠
-    Microsoft::WRL::ComPtr < ID3D11ShaderResourceView> m_tex_StaminaGaugeFrame;
+    Microsoft::WRL::ComPtr < ID3D11ShaderResourceView> m_statusIcon_Tex;
 
     // スケール
     float m_scale;
-    // HPの表示割合(matrix)
-    DirectX::SimpleMath::Matrix m_matrix;
 
     // 体力の位置
     DirectX::SimpleMath::Vector2 m_healthPosition[6];
     // スタミナの位置
     DirectX::SimpleMath::Vector2 m_staminaPosition[6];
-    // ステータスアイコンの位置
-    DirectX::SimpleMath::Vector2 m_backPosition;
-    // ゲージの枠の位置
-    DirectX::SimpleMath::Vector2 m_framePosition;
 };

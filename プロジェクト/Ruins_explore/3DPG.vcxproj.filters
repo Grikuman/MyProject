@@ -35,14 +35,8 @@
     <Filter Include="Libraries\Microsoft">
       <UniqueIdentifier>{3ad90921-3d35-490e-837c-bc326a24aeed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\NRLib">
-      <UniqueIdentifier>{47eb5675-5e09-4068-a3f5-51fcbc882287}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{8c7815ab-76fe-42ec-80a6-a3715af3b9a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WorkTool">
-      <UniqueIdentifier>{be901740-3492-4a92-a807-c0f90315e489}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Player">
       <UniqueIdentifier>{336f4383-79bd-4214-ba84-aceaa70a3128}</UniqueIdentifier>
@@ -98,6 +92,15 @@
     <Filter Include="Game\Transition">
       <UniqueIdentifier>{5cf27844-e20a-4aaf-b271-5ba1522d8559}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{be901740-3492-4a92-a807-c0f90315e489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera">
+      <UniqueIdentifier>{92924816-e0d9-451b-9ae4-7641377ea148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Tunomaru">
+      <UniqueIdentifier>{95a11cc2-dba0-4287-b3b2-db47197fbdaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -111,15 +114,6 @@
     <ClInclude Include="Game\Screen.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Libraries\MyLib\DebugCamera.h">
-      <Filter>Libraries\MyLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\MyLib\DebugString.h">
-      <Filter>Libraries\MyLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\MyLib\InputManager.h">
-      <Filter>Libraries\MyLib</Filter>
-    </ClInclude>
     <ClInclude Include="Libraries\MyLib\MemoryLeakDetector.h">
       <Filter>Libraries\MyLib</Filter>
     </ClInclude>
@@ -129,29 +123,8 @@
     <ClInclude Include="Game\Scene\SceneManager.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Libraries\NRLib\FixedCamera.h">
-      <Filter>Libraries\NRLib</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Player\Player.h">
       <Filter>Game\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkTool\DeviceResources.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\NRLib\TPS_Camera.h">
-      <Filter>Libraries\NRLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\MyLib\GridFloor.h">
-      <Filter>Libraries\MyLib</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkTool\Collision.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\MyLib\FollowCamera.h">
-      <Filter>Libraries\MyLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\Tunomaru.h">
-      <Filter>Game\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>Game\Scene</Filter>
@@ -168,12 +141,6 @@
     <ClInclude Include="Game\Player\PlayerDash.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\TunomaruAttack.h">
-      <Filter>Game\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\TunomaruSearch.h">
-      <Filter>Game\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Effect\SwordEffect.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
@@ -185,15 +152,6 @@
     </ClInclude>
     <ClInclude Include="Game\UI\TitleSceneUI.h">
       <Filter>Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\TunomaruDown.h">
-      <Filter>Game\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkTool\Graphics.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkTool\Resources.h">
-      <Filter>WorkTool</Filter>
     </ClInclude>
     <ClInclude Include="Game\UI\EnemyUIManager.h">
       <Filter>Game\UI\EnemyUI</Filter>
@@ -213,9 +171,6 @@
     <ClInclude Include="Game\UI\PlayerUIManager.h">
       <Filter>Game\UI\PlayerUI</Filter>
     </ClInclude>
-    <ClInclude Include="WorkTool\Data.h">
-      <Filter>WorkTool</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UI\ResultSceneUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
@@ -224,9 +179,6 @@
     </ClInclude>
     <ClInclude Include="Game\UI\MapSelectUI.h">
       <Filter>Game\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkTool\InputDevice.h">
-      <Filter>WorkTool</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\Parts\PlayerBody.h">
       <Filter>Game\Player\Parts</Filter>
@@ -285,9 +237,6 @@
     <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h">
       <Filter>Game\Player\Action</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy\TunomaruKnockback.h">
-      <Filter>Game\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Stage\StageObject.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
@@ -318,8 +267,50 @@
     <ClInclude Include="Game\Transition\Fade.h">
       <Filter>Game\Transition</Filter>
     </ClInclude>
-    <ClInclude Include="WorkTool\BinaryFile.h">
-      <Filter>WorkTool</Filter>
+    <ClInclude Include="Framework\BinaryFile.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Data.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\DeviceResources.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Graphics.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\InputDevice.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Resources.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\FixedCamera.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\FollowCamera.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Camera\TPS_Camera.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Tunomaru\Tunomaru.h">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruAttack.h">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruDown.h">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruKnockback.h">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruSearch.h">
+      <Filter>Game\Enemy\Tunomaru</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -328,43 +319,16 @@
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp">
       <Filter>Libraries\Microsoft</Filter>
     </ClCompile>
-    <ClCompile Include="Libraries\MyLib\DebugCamera.cpp">
-      <Filter>Libraries\MyLib</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\MyLib\DebugString.cpp">
-      <Filter>Libraries\MyLib</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\MyLib\InputManager.cpp">
-      <Filter>Libraries\MyLib</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Scene\PlayScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scene\SceneManager.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Libraries\NRLib\FixedCamera.cpp">
-      <Filter>Libraries\NRLib</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Player\Player.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
-    <ClCompile Include="WorkTool\DeviceResources.cpp">
-      <Filter>WorkTool</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Libraries\NRLib\TPS_Camera.cpp">
-      <Filter>Libraries\NRLib</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\MyLib\GridFloor.cpp">
-      <Filter>Libraries\MyLib</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkTool\Collision.cpp">
-      <Filter>WorkTool</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\Tunomaru.cpp">
-      <Filter>Game\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Scene\TitleScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
@@ -380,12 +344,6 @@
     <ClCompile Include="Game\Player\PlayerDash.cpp">
       <Filter>Game\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Enemy\TunomaruAttack.cpp">
-      <Filter>Game\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\TunomaruSearch.cpp">
-      <Filter>Game\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Effect\SwordEffect.cpp">
       <Filter>Game\Effect</Filter>
     </ClCompile>
@@ -397,15 +355,6 @@
     </ClCompile>
     <ClCompile Include="Game\UI\TitleSceneUI.cpp">
       <Filter>Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\TunomaruDown.cpp">
-      <Filter>Game\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkTool\Resources.cpp">
-      <Filter>WorkTool</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkTool\Graphics.cpp">
-      <Filter>WorkTool</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\EnemyUIManager.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
@@ -425,9 +374,6 @@
     <ClCompile Include="Game\UI\PlayerUIManager.cpp">
       <Filter>Game\UI\PlayerUI</Filter>
     </ClCompile>
-    <ClCompile Include="WorkTool\Data.cpp">
-      <Filter>WorkTool</Filter>
-    </ClCompile>
     <ClCompile Include="Game\UI\ResultSceneUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
@@ -436,9 +382,6 @@
     </ClCompile>
     <ClCompile Include="Game\UI\MapSelectUI.cpp">
       <Filter>Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="WorkTool\InputDevice.cpp">
-      <Filter>WorkTool</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp">
       <Filter>Game\Player\Parts</Filter>
@@ -466,9 +409,6 @@
     </ClCompile>
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp">
       <Filter>Game\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Enemy\TunomaruKnockback.cpp">
-      <Filter>Game\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\StageObject.cpp">
       <Filter>Game\Stage</Filter>
@@ -500,8 +440,50 @@
     <ClCompile Include="Game\Transition\Fade.cpp">
       <Filter>Game\Transition</Filter>
     </ClCompile>
-    <ClCompile Include="WorkTool\BinaryFile.cpp">
-      <Filter>WorkTool</Filter>
+    <ClCompile Include="Framework\BinaryFile.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Collision.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Data.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\DeviceResources.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Graphics.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\InputDevice.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Resources.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\FixedCamera.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\FollowCamera.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Camera\TPS_Camera.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tunomaru\Tunomaru.cpp">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruAttack.cpp">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruDown.cpp">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruKnockback.cpp">
+      <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruSearch.cpp">
+      <Filter>Game\Enemy\Tunomaru</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

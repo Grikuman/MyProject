@@ -6,10 +6,10 @@
 #include "PlayerRightHand.h"
 #include "Game/Player/Player.h"
 
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "Libraries/NRLib/TPS_Camera.h"
-#include "WorkTool/Resources.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Game/Camera/TPS_Camera.h"
+#include "Framework/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

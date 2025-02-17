@@ -9,8 +9,8 @@
 #include "Gauge.h"
 #include "UserInterface.h"
 
-#include "WorkTool/BinaryFile.h"
-#include "WorkTool/DeviceResources.h"
+#include "Framework/BinaryFile.h"
+#include "Framework/DeviceResources.h"
 #include <SimpleMath.h>
 #include <Effects.h>
 #include <PrimitiveBatch.h>
@@ -20,7 +20,7 @@
 #include <vector>
 
 #include <string>
-#include "WorkTool/Graphics.h"
+#include "Framework/Graphics.h"
 
 using namespace DirectX;
 

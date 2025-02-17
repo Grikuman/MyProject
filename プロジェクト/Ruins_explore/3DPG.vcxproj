@@ -181,7 +181,17 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Framework\BinaryFile.h" />
+    <ClInclude Include="Framework\Collision.h" />
+    <ClInclude Include="Framework\Data.h" />
+    <ClInclude Include="Framework\DeviceResources.h" />
+    <ClInclude Include="Framework\Graphics.h" />
+    <ClInclude Include="Framework\InputDevice.h" />
+    <ClInclude Include="Framework\Resources.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Game\Camera\FixedCamera.h" />
+    <ClInclude Include="Game\Camera\FollowCamera.h" />
+    <ClInclude Include="Game\Camera\TPS_Camera.h" />
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Effect\SwordEffect.h" />
@@ -189,11 +199,11 @@
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h" />
-    <ClInclude Include="Game\Enemy\Tunomaru.h" />
-    <ClInclude Include="Game\Enemy\TunomaruAttack.h" />
-    <ClInclude Include="Game\Enemy\TunomaruDown.h" />
-    <ClInclude Include="Game\Enemy\TunomaruKnockback.h" />
-    <ClInclude Include="Game\Enemy\TunomaruSearch.h" />
+    <ClInclude Include="Game\Enemy\Tunomaru\Tunomaru.h" />
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruAttack.h" />
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruDown.h" />
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruKnockback.h" />
+    <ClInclude Include="Game\Enemy\Tunomaru\TunomaruSearch.h" />
     <ClInclude Include="Game\Factory\EnemyFactory.h" />
     <ClInclude Include="Game\Factory\StageFactory.h" />
     <ClInclude Include="Game\Interface\ICollisionObject.h" />
@@ -239,26 +249,22 @@
     <ClInclude Include="Game\UI\TimeUI.h" />
     <ClInclude Include="Game\UI\UserInterface.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
-    <ClInclude Include="Libraries\MyLib\DebugCamera.h" />
-    <ClInclude Include="Libraries\MyLib\DebugString.h" />
-    <ClInclude Include="Libraries\MyLib\FollowCamera.h" />
-    <ClInclude Include="Libraries\MyLib\GridFloor.h" />
-    <ClInclude Include="Libraries\MyLib\InputManager.h" />
     <ClInclude Include="Libraries\MyLib\MemoryLeakDetector.h" />
-    <ClInclude Include="Libraries\NRLib\FixedCamera.h" />
-    <ClInclude Include="Libraries\NRLib\TPS_Camera.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StepTimer.h" />
-    <ClInclude Include="WorkTool\BinaryFile.h" />
-    <ClInclude Include="WorkTool\Collision.h" />
-    <ClInclude Include="WorkTool\Data.h" />
-    <ClInclude Include="WorkTool\DeviceResources.h" />
-    <ClInclude Include="WorkTool\Graphics.h" />
-    <ClInclude Include="WorkTool\InputDevice.h" />
-    <ClInclude Include="WorkTool\Resources.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Framework\BinaryFile.cpp" />
+    <ClCompile Include="Framework\Collision.cpp" />
+    <ClCompile Include="Framework\Data.cpp" />
+    <ClCompile Include="Framework\DeviceResources.cpp" />
+    <ClCompile Include="Framework\Graphics.cpp" />
+    <ClCompile Include="Framework\InputDevice.cpp" />
+    <ClCompile Include="Framework\Resources.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game\Camera\FixedCamera.cpp" />
+    <ClCompile Include="Game\Camera\FollowCamera.cpp" />
+    <ClCompile Include="Game\Camera\TPS_Camera.cpp" />
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Effect\SwordEffect.cpp" />
@@ -266,11 +272,11 @@
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossSearch.cpp" />
-    <ClCompile Include="Game\Enemy\Tunomaru.cpp" />
-    <ClCompile Include="Game\Enemy\TunomaruAttack.cpp" />
-    <ClCompile Include="Game\Enemy\TunomaruDown.cpp" />
-    <ClCompile Include="Game\Enemy\TunomaruKnockback.cpp" />
-    <ClCompile Include="Game\Enemy\TunomaruSearch.cpp" />
+    <ClCompile Include="Game\Enemy\Tunomaru\Tunomaru.cpp" />
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruAttack.cpp" />
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruDown.cpp" />
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruKnockback.cpp" />
+    <ClCompile Include="Game\Enemy\Tunomaru\TunomaruSearch.cpp" />
     <ClCompile Include="Game\Player\Action\PlayerChargePunch.cpp" />
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp" />
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp" />
@@ -305,12 +311,6 @@
     <ClCompile Include="Game\UI\TimeUI.cpp" />
     <ClCompile Include="Game\UI\UserInterface.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
-    <ClCompile Include="Libraries\MyLib\DebugCamera.cpp" />
-    <ClCompile Include="Libraries\MyLib\DebugString.cpp" />
-    <ClCompile Include="Libraries\MyLib\GridFloor.cpp" />
-    <ClCompile Include="Libraries\MyLib\InputManager.cpp" />
-    <ClCompile Include="Libraries\NRLib\FixedCamera.cpp" />
-    <ClCompile Include="Libraries\NRLib\TPS_Camera.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -318,13 +318,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="WorkTool\BinaryFile.cpp" />
-    <ClCompile Include="WorkTool\Collision.cpp" />
-    <ClCompile Include="WorkTool\Data.cpp" />
-    <ClCompile Include="WorkTool\DeviceResources.cpp" />
-    <ClCompile Include="WorkTool\Graphics.cpp" />
-    <ClCompile Include="WorkTool\InputDevice.cpp" />
-    <ClCompile Include="WorkTool\Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

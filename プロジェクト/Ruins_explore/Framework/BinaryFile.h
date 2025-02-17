@@ -1,6 +1,7 @@
-﻿/// <summary>
-/// バイナリファイルを扱うクラス
-/// </summary>
+﻿/*
+	ファイル名：BinaryFile.h
+	　　　概要： バイナリファイルを読み込んで管理するクラス
+*/
 #pragma once
 
 #include <memory>
@@ -20,6 +21,7 @@ public:
 	// ファイル名を指定してロード
 	static BinaryFile LoadFile(const wchar_t* fileName);
 
+	//コンストラクタ
 	BinaryFile();
 
 	// ムーブコンストラクタ

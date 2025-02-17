@@ -4,8 +4,7 @@
 #include <PrimitiveBatch.h> 
 #include <VertexTypes.h> 
 #include <CommonStates.h>
-#include "WorkTool/Graphics.h"
-//#include <WICTextureLoader.h> 
+#include "Framework/Graphics.h"
 
 using namespace DirectX;
 
@@ -25,50 +24,58 @@ const DirectX::VertexPositionColor HPUI::VERTICES_RED[4] =
     VertexPositionColor(SimpleMath::Vector3(-1.0f, 0.5f, 0.0f), Colors::Red),  //左下
 };
 
-
-/// <summary>
-/// Constractor
-/// </summary>
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 HPUI::HPUI(ID3D11Device1* device)
+    :
+    m_scale{1.0f},
+    m_currentHP{},
+    m_maxHP{}
 {
     // エフェクトの作成 
-    m_BatchEffect = std::make_unique<BasicEffect>(device);
-    m_BatchEffect->SetVertexColorEnabled(true);
+    m_batchEffect = std::make_unique<BasicEffect>(device);
+    m_batchEffect->SetVertexColorEnabled(true);
 
     // 入力レイアウト生成 
     void const* shaderByteCode;
     size_t byteCodeLength;
-    m_BatchEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
+    m_batchEffect->GetVertexShaderBytecode(&shaderByteCode, &byteCodeLength);
     device->CreateInputLayout(
         VertexPositionColor::InputElements,
         VertexPositionColor::InputElementCount,
-        shaderByteCode, byteCodeLength, m_InputLayout.GetAddressOf()
+        shaderByteCode, byteCodeLength, m_inputLayout.GetAddressOf()
     );
 
     //共通ステートの作成
-    m_States = std::make_unique<CommonStates>(device);
-
-    m_scale = 1.f;
+    m_states = std::make_unique<CommonStates>(device);
 }
 
 
-/// <summary>
-/// Destractor
-/// </summary>
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 HPUI::~HPUI()
 {
 
 }
 
-/// <summary>
-/// Render 
-/// </summary>
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void HPUI::Update()
+{
+}
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void HPUI::Render(ID3D11DeviceContext1* context, SimpleMath::Matrix view, SimpleMath::Matrix proj)
 {
     // プリミティブバッチの作成 
-    m_Batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(context);
+    m_batch = std::make_unique<PrimitiveBatch<VertexPositionColor>>(context);
 
-    //m_Batch = Graphics::GetInstance()->GetPrimitiveBatch();
+    //m_batch = Graphics::GetInstance()->GetPrimitiveBatch();
 
     // カメラの位置を取得
     SimpleMath::Matrix invView = view.Invert();
@@ -141,23 +148,23 @@ void HPUI::Render(ID3D11DeviceContext1* context, SimpleMath::Matrix view, Simple
     }
 
     // 深度バッファに書き込み参照する 
-    context->OMSetDepthStencilState(m_States->DepthDefault(), 0);
+    context->OMSetDepthStencilState(m_states->DepthDefault(), 0);
 
     // 裏面は描画しない(背面カリング)
-    context->RSSetState(m_States->CullCounterClockwise());
+    context->RSSetState(m_states->CullCounterClockwise());
 
     // エフェクトの設定
-    m_BatchEffect->SetWorld(SimpleMath::Matrix::Identity);
-    m_BatchEffect->SetView(view);
-    m_BatchEffect->SetProjection(proj);
-    m_BatchEffect->Apply(context);
-    context->IASetInputLayout(m_InputLayout.Get());
+    m_batchEffect->SetWorld(SimpleMath::Matrix::Identity);
+    m_batchEffect->SetView(view);
+    m_batchEffect->SetProjection(proj);
+    m_batchEffect->Apply(context);
+    context->IASetInputLayout(m_inputLayout.Get());
 
     // ポリゴンを描画 
-    m_Batch->Begin();
-    m_Batch->DrawQuad(vertex_g[0], vertex_g[1], vertex_g[2], vertex_g[3]);
-    m_Batch->DrawQuad(vertex_r[0], vertex_r[1], vertex_r[2], vertex_r[3]);
-    m_Batch->End();
+    m_batch->Begin();
+    m_batch->DrawQuad(vertex_g[0], vertex_g[1], vertex_g[2], vertex_g[3]);
+    m_batch->DrawQuad(vertex_r[0], vertex_r[1], vertex_r[2], vertex_r[3]);
+    m_batch->End();
 }
 
 

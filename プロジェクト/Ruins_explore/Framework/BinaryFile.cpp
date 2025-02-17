@@ -1,9 +1,14 @@
-﻿#include "pch.h"
+﻿/*
+	ファイル名：BinaryFile.cpp
+	　　　概要： バイナリファイルを読み込んで管理するクラス
+*/
+#include "pch.h"
 #include "BinaryFile.h"
 
 #include <fstream>
 #include <assert.h>
 
+// ファイル名を指定してロード
 BinaryFile BinaryFile::LoadFile(const wchar_t* fileName)
 {
 	BinaryFile bin;
@@ -36,11 +41,15 @@ BinaryFile BinaryFile::LoadFile(const wchar_t* fileName)
 	return std::move(bin);
 }
 
+// コンストラクタ
+// 初期状態ではデータサイズを0に設定
 BinaryFile::BinaryFile()
 {
 	m_size = 0;
 }
 
+// ムーブコンストラクタ
+// 他のBinaryFileオブジェクトからリソースをムーブして、新しいインスタンスを作成
 BinaryFile::BinaryFile(BinaryFile&& in)
 {
 	m_data = std::move(in.m_data);

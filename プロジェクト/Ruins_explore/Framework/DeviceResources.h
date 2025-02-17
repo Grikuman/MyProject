@@ -1,6 +1,8 @@
-//
-// DeviceResources.h - A wrapper for the Direct3D 11 device and swapchain
-//
+/*
+    ファイル名：DeviceResources.h
+    　　　概要：デバイスを管理するクラス
+    ※Microsoft提供
+*/
 
 #pragma once
 

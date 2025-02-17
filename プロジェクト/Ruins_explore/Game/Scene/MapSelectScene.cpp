@@ -5,11 +5,11 @@
 #include "pch.h"
 #include "MapSelectScene.h"
 #include "Game/UI/MapSelectUI.h"
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 
 #include <cassert>
-#include "WorkTool/Graphics.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/Graphics.h"
+#include "Framework/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ

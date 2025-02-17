@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "StageObject.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Collision.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/Collision.h"
 #include "Game/Player/Player.h"
 #include <fstream>
 #include <iostream>

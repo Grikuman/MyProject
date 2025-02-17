@@ -1,6 +1,6 @@
 /*
-	ファイル名：IEnemy.h
-	　　　概要：敵のインターフェース
+	ファイル名：IPlayerAction.h
+	　　　概要：プレイヤーアクションのインターフェース
 */
 #pragma once
 #include "ICollisionObject.h"

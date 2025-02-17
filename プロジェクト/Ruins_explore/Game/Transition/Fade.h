@@ -1,22 +1,13 @@
-//--------------------------------------------------------------------------------------
-//	File: Particle.h
-//
-//	パーティクルクラス
-//	未拡張の場合はPosition情報のみ
-//
-//-------------------------------------------------------------------------------------
+/*
+	ファイル名：Fade.h
+	　　　概要：フェードを行うクラス
+*/
 
 #pragma once
 
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 #include "StepTimer.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
-#include <vector>
+
 class Fade
 {
 public:
@@ -38,7 +29,7 @@ public:
 	};
 
 public:
-	// 遷移できるかどうか
+	// 遷移できるかどうか返す
 	bool IsTransition();
 	// フェードイン
 	void FadeIn();
@@ -64,6 +55,12 @@ public:
 private:
 	// シェーダーを作成する
 	void CreateShader();
+
+private:
+	// フェードの速さ
+	const float FADE_SPEED = 0.025f;
+	// フェードが一往復かかる時間
+	const float FADE_TIME = 1.2f;
 
 private:
 	//	変数

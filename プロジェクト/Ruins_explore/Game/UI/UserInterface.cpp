@@ -8,8 +8,8 @@
 #include "pch.h"
 #include "UserInterface.h"
 
-#include "WorkTool/BinaryFile.h"
-#include "WorkTool/DeviceResources.h"
+#include "Framework/BinaryFile.h"
+#include "Framework/DeviceResources.h"
 #include <SimpleMath.h>
 #include <Effects.h>
 #include <PrimitiveBatch.h>

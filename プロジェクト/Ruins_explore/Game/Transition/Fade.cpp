@@ -1,16 +1,13 @@
-
+/*
+	ファイル名：Fade.cpp
+	　　　概要：フェードを行うクラス
+*/
 #include "pch.h"
 #include "Fade.h"
 
-#include "WorkTool/BinaryFile.h"
-#include "WorkTool/DeviceResources.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
-#include <vector>
+#include "Framework/BinaryFile.h"
+#include "Framework/DeviceResources.h"
+
 
 // インプットレイアウト
 const std::vector<D3D11_INPUT_ELEMENT_DESC> Fade::INPUT_LAYOUT =
@@ -20,6 +17,7 @@ const std::vector<D3D11_INPUT_ELEMENT_DESC> Fade::INPUT_LAYOUT =
 	{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(DirectX::SimpleMath::Vector3)+ sizeof(DirectX::SimpleMath::Vector4), D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
+// 遷移できるかどうか返す
 bool Fade::IsTransition()
 {
 	// 遷移可能状態ならば
@@ -34,7 +32,7 @@ bool Fade::IsTransition()
 // フェードイン
 void Fade::FadeIn()
 {
-	m_time = 1.2f;
+	m_time = FADE_TIME;
 	m_fadeMode = FADE_MODE::FADE_IN;
 }
 
@@ -48,7 +46,7 @@ void Fade::FadeOut()
 // コンストラクタ
 Fade::Fade()
 	: m_pDR(nullptr)
-	,m_time(1.2f)
+	,m_time(FADE_TIME)
 	,m_fadeMode(FADE_MODE::FADE_OUT)
 {
 }
@@ -95,7 +93,7 @@ void Fade::Update()
 	switch (m_fadeMode)
 	{
 		case Fade::FADE_MODE::FADE_IN: // フェードイン
-			m_time -= 0.025f;
+			m_time -= FADE_SPEED;
 			if (m_time <= 0.0f)
 			{
 				m_time = 0.0f;
@@ -103,10 +101,10 @@ void Fade::Update()
 			}
 			break;
 		case Fade::FADE_MODE::FADE_OUT: // フェードアウト
-			m_time += 0.025f;
-			if (m_time >= 1.2f)
+			m_time += FADE_SPEED;
+			if (m_time >= FADE_TIME)
 			{
-				m_time = 1.2f;
+				m_time = FADE_TIME;
 				m_fadeMode = FADE_MODE::CAN_TRANSITION;
 			}
 			break;

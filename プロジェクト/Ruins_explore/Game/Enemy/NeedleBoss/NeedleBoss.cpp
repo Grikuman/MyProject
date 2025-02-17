@@ -6,13 +6,11 @@
 #include "pch.h"
 #include "NeedleBoss.h"
 #include "Game/Player/Player.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "Libraries/MyLib/DebugString.h"
+#include "Framework/DeviceResources.h"
 #include <cassert>
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Collision.h"
-#include "WorkTool/Resources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Collision.h"
+#include "Framework/Resources.h"
 
 NeedleBoss::NeedleBoss(Player* player)
     :

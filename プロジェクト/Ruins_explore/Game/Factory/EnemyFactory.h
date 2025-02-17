@@ -4,7 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IEnemy.h"
-#include "Game/Enemy/Tunomaru.h"
+#include "Game/Enemy/Tunomaru/Tunomaru.h"
 #include "Game/Enemy/NeedleBoss/NeedleBoss.h"
 
 class EnemyFactory 

@@ -6,9 +6,9 @@
 #include "pch.h"
 #include "Game/Effect/InvincibleEffect.h"
 #include "Game/Player/Player.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/NRLib/TPS_Camera.h"
-#include "WorkTool/Graphics.h"
+#include "Framework/DeviceResources.h"
+#include "Game/Camera/TPS_Camera.h"
+#include "Framework/Graphics.h"
 
 InvincibleEffect::InvincibleEffect(Player* player)
     :

@@ -6,11 +6,10 @@
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/InputManager.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Collision.h"
-#include "WorkTool/Resources.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Collision.h"
+#include "Framework/Resources.h"
 
 Tunomaru::Tunomaru(Player* player)
     : 

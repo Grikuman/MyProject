@@ -19,8 +19,6 @@ public:
 public:
 	//デストラクタ
 	~Data() = default;
-	// 更新する
-	void Update();
 	// 終了処理
 	void Finalize();
 private:

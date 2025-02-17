@@ -4,7 +4,7 @@
 */
 #include "pch.h"
 #include "PlayScene.h"
-#include "WorkTool/Data.h"
+#include "Framework/Data.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -32,7 +32,7 @@ void PlayScene::Initialize()
 	m_isChangeScene = false;
 
 	// 選択したステージ
-	StageID selectStage = StageID::Stage1_2;
+	StageID selectStage = StageID::Stage1_1;
 
 	// 選択したステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);

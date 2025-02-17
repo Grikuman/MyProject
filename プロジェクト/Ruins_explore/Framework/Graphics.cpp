@@ -1,10 +1,12 @@
 /*
 	ファイル名：Graphics,cpp
-	　　　概要：グラフィッ類を管理するクラス
+	　　　概要：グラフィック類を管理するクラス
 */
 #include "pch.h"
-#include "WorkTool/Graphics.h"
+#include "Framework/Graphics.h"
 
+// シングルトンパターンを実装するための静的メンバ変数
+// 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Graphics> Graphics::m_graphics = nullptr;
 
 //グラフィックスのインスタンスを取得

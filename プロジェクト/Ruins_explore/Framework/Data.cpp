@@ -3,10 +3,13 @@
 	　　　概要：共通データを管理するクラス
 */
 #include "pch.h"
-#include "WorkTool/Data.h"
+#include "Framework/Data.h"
 
+// シングルトンパターンを実装するための静的メンバ変数
+// 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Data> Data::m_Data = nullptr;
 
+// データクラスのインスタンスを取得する
 Data* const Data::GetInstance()
 {
 	if (m_Data == nullptr)
@@ -20,12 +23,6 @@ Data* const Data::GetInstance()
 Data::Data()
 	:
 	m_playSceneResult{}
-{
-
-}
-
-// 更新する
-void Data::Update()
 {
 
 }

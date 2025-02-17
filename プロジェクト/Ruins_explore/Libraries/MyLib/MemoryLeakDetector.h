@@ -1,6 +1,7 @@
 /*
-	@file	MemoryLeakDetector.h
-	@brief	メモリリークの検出器
+	ファイル名：MemoryLeakDetector.h
+	　　　概要：メモリーリークの検出を行うクラス
+	※デバッグモードでのみ実行される
 */
 #pragma once
 

@@ -4,15 +4,12 @@
 */
 #include "pch.h"
 #include "ResultScene.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
+#include "Framework/DeviceResources.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "WorkTool/Graphics.h"
-#include "Libraries/NRLib/FixedCamera.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/Graphics.h"
+#include "Game/Camera/FixedCamera.h"
+#include "Framework/InputDevice.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

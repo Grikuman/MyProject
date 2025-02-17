@@ -4,8 +4,9 @@
 */
 #include "pch.h"
 #include "Sky.h"
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
 
 using namespace DirectX;
 using namespace DirectX::SimpleMath;
@@ -37,28 +38,20 @@ void Sky::Initialize()
 	auto device  = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
 
 	// 射影行列を作成する
-	m_projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView(
-		XMConvertToRadians(45.0f),
-		1280 / 720,
-		0.1f, 1000.0f
+	m_projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView
+	(
+		XMConvertToRadians(FIELD_OF_VIEW),
+		SCREEN_WIDTH / SCREEN_HEIGHT,
+		NEAR_PLANE, FAR_PLANE
 	);
 	/*
-		・射影行列のfarプレーンを遠くする
-		・カメラのfarプレーンを状況に応じてイイ感じに調整する
-		メモ:
-		45.fはカメラの画角
-		static_castを行っている部分は画面サイズ
-		0.1fはカメラが見える一番近い距離
-		1000.fの部分を100.fなどにすると映らなくなる場合がある
+		FIELD_OF_VIEW : カメラ画角
+		SCREEN_WIDTH・SCREEN_HEIGHT : 画面サイズ
+		NEAR_PLANE・FAR_PLANE : 描画する範囲
 	*/
 
-
-	// モデルを読み込む準備
-	std::unique_ptr<EffectFactory> fx = std::make_unique<EffectFactory>(device);
-	fx->SetDirectory(L"Resources/Models");
-
-	// モデルを読み込む
-	m_model = Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
+	// モデル読み込み
+	m_model = Resources::GetInstance()->GetModel(L"Skydome");
 }
 
 //---------------------------------------------------------
@@ -67,7 +60,7 @@ void Sky::Initialize()
 void Sky::Update()
 {
 	// 回転させる
-	m_rotateCnt += 0.05f;
+	m_rotateCnt += ROTATE_SPEED;
 }
 
 //---------------------------------------------------------
@@ -108,8 +101,8 @@ void Sky::Render()
 	);
 
 	// ワールド行列を更新する
-	Matrix world = 
-		Matrix::CreateRotationX(XMConvertToRadians(180))
+	Matrix world 
+      = Matrix::CreateRotationX(XMConvertToRadians(ROTATE_X))
      *= Matrix::CreateRotationY(XMConvertToRadians(m_rotateCnt));
 
 	// モデルを描画する

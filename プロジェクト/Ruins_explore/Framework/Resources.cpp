@@ -6,11 +6,11 @@
 #include "Resources.h"
 #include "Graphics.h"
 
+// シングルトンパターンを実装するための静的メンバ変数
+// 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Resources> Resources::m_resources = nullptr;
 
-//using namespace Microsoft::WRL;
-
-//グラフィックスのインスタンスを取得
+//リソースクラスのインスタンスを取得
 Resources* const Resources::GetInstance()
 {
 	if (m_resources == nullptr)
@@ -29,6 +29,10 @@ Resources::Resources()
 	
 }
 
+//---------------------------------------------------------
+// リソースを読み込む
+// シングルトンインスタンスの初回取得時のみ呼び出す
+//---------------------------------------------------------
 void Resources::LoadResources()
 {
 	// デバイスとコンテキストを取得する
@@ -58,6 +62,8 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> SoilBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Soil_Block.cmo", *fx);
 	// 木
 	std::unique_ptr<DirectX::Model> Tree = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tree.cmo", *fx);
+	// スカイドーム
+	std::unique_ptr<DirectX::Model> Skydome = DirectX::Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
@@ -67,6 +73,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
 	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
 	m_models.emplace(L"Tree", std::move(Tree));
+	m_models.emplace(L"Skydome", std::move(Skydome));
 
 	//================
 	// * テクスチャ *
@@ -79,7 +86,7 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> status_icon;      // ステータスアイコン
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ruins_explorer;   // タイトル文字
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titleselect;      // タイトルセレクト
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> selecticon;       // セレクトアイコン
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> selectarrow;       // セレクトアイコン
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> i_rotate;         // iのぐるぐる
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> o_rotate;         // oのぐるぐる
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titlebackground;  // タイトル背景
@@ -91,7 +98,6 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pushspacekey;     // スペースキー
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> time;             // 時間
 
-
 	// 読み込む
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Red.png", nullptr, health_red.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Gray.png", nullptr, health_gray.GetAddressOf());
@@ -100,7 +106,7 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Status_icon.png", nullptr, status_icon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Ruins_Explorer.png", nullptr, ruins_explorer.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleSelect.png", nullptr, titleselect.GetAddressOf());
-	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/SelectIcon.png", nullptr, selecticon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/SelectIcon.png", nullptr, selectarrow.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/i_rotate.png", nullptr, i_rotate.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/o_rotate.png", nullptr, o_rotate.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleScene.png", nullptr, titlebackground.GetAddressOf());
@@ -120,7 +126,7 @@ void Resources::LoadResources()
 	m_textures.emplace(L"Status_Icon", status_icon);
 	m_textures.emplace(L"Ruins_Explorer", ruins_explorer);
 	m_textures.emplace(L"TitleSelect", titleselect);
-	m_textures.emplace(L"SelectIcon", selecticon);
+	m_textures.emplace(L"SelectArrow", selectarrow);
 	m_textures.emplace(L"i_Rotate", i_rotate);
 	m_textures.emplace(L"o_Rotate", o_rotate);
 	m_textures.emplace(L"TitleBackGround", titlebackground);
@@ -171,6 +177,21 @@ Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTexture(const wch
 	auto it = m_textures.find(name);
 	// テクスチャを返す
 	return it->second;
+}
+
+// テクスチャを読み込む
+Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTextureFromFile(const wchar_t* path)
+{
+	// デバイスとコンテキストを取得する
+	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+
+	// 一時変数
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> tmp;
+	// 読み込む
+	DirectX::CreateWICTextureFromFile(device, context,path, nullptr, tmp.GetAddressOf());
+	// テクスチャを返す
+	return tmp;
 }
 
 

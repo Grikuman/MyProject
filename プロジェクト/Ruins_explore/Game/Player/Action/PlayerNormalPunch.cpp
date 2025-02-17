@@ -5,11 +5,11 @@
 #include "pch.h"
 #include "PlayerNormalPunch.h"
 #include "Game/Player/Player.h"
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Data.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/Data.h"
+#include "Framework/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ

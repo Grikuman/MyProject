@@ -7,9 +7,9 @@
 #include "Game/Player/Player.h"
 #include "TunomaruKnockback.h"
 
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
 
 //---------------------------------------------------------
 // コンストラクタ

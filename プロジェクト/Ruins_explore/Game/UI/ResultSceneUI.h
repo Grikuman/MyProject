@@ -23,36 +23,40 @@ public:
     void Finalize();
 
 private:
+    // クリア文字の位置
+    const DirectX::SimpleMath::Vector2 CLEAR_TEXT_POS = DirectX::SimpleMath::Vector2(200, 50);
+    // 死亡文字の位置
+    const DirectX::SimpleMath::Vector2 DEAD_TEXT_POS = DirectX::SimpleMath::Vector2(200, 50);
+    // クリア画像の位置
+    const DirectX::SimpleMath::Vector2 CLEAR_POS = DirectX::SimpleMath::Vector2(0,0);
+    // 死亡画像の位置
+    const DirectX::SimpleMath::Vector2 DEAD_POS = DirectX::SimpleMath::Vector2(0,0);
+    // スペースキー文字の位置
+    const DirectX::SimpleMath::Vector2 SPACEKEY_TEXT_POS = DirectX::SimpleMath::Vector2(400, 580);
+    // スペースキー文字の色調整
+    const float SPACEKEY_TEXT_COLOR_R = 0.9f;
+    const float SPACEKEY_TEXT_COLOR_G = 0.9f;
+    const float SPACEKEY_TEXT_COLOR_B = 0.9f;
+
+private:
     // タイトルシーン
     ResultScene* m_resultScene;
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
 
-    // セレクトアイコン
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_selectIcon;
     // クリア文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clear;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clearText_Tex;
     // 死亡文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_dead;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_deadText_Tex;
     // リザルトクリア画面
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_resultClear;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clear_Tex;
     // リザルト死亡画面
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_resultDead;
-    // 黒
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_black;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_dead_Tex;
     // スペースキー
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_pushSpaceKey;
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_spaceKeyText_Tex;
 
-    // セレクト位置
-    DirectX::SimpleMath::Vector2 m_selectPos;
-    // セレクトフラグ
-    bool m_selectFlag;
-    // アルファ値
-    float m_alpha;
     // スペースキーのアルファ値
     float m_spaceAlpha;
-    // フェードフラグ
-    bool m_fadeFlag;
     // 時間
     float m_time;
 };

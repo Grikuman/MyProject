@@ -5,10 +5,10 @@
 #include "pch.h"
 #include "Game.h"
 #include "Game/Screen.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Data.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/Data.h"
+#include "Framework/InputDevice.h"
 
 extern void ExitGame() noexcept;
 
@@ -54,8 +54,8 @@ void Game::Initialize(HWND window, int width, int height)
     // リソースを読み込む
     Resources::GetInstance()->LoadResources();
 
-    // インプットデバイスを初期化
-    InputDevice::GetInstance()->Initialize();
+    // インプットデバイスを作成
+    InputDevice::GetInstance()->CreateDevice();
 
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "WorkTool/DeviceResources.h"
+#include "Framework/DeviceResources.h"
 #include "StepTimer.h"
 
 // šinclude‚Ì’Ç‹Lš

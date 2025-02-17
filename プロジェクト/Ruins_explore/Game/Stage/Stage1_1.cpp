@@ -4,21 +4,17 @@
 */
 #include "pch.h"
 #include "Stage1_1.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
+#include "Framework/DeviceResources.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "WorkTool/Graphics.h"
-#include "Libraries/NRLib/FixedCamera.h"
+#include "Framework/Graphics.h"
 #include <iostream>
-#include "WorkTool/Collision.h"
-#include "WorkTool/Data.h"
+#include "Framework/Collision.h"
+#include "Framework/Data.h"
 #include <wrl/client.h>
 #include "ScreenGrab.h"
 #include "wincodec.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ

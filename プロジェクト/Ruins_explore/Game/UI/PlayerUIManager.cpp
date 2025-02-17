@@ -4,9 +4,6 @@
 */
 #include "pch.h"
 #include "Game/UI/PlayerUIManager.h"
-
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
 #include "Game/Player/Player.h"
 
 //---------------------------------------------------------

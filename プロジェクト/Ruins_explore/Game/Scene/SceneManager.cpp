@@ -11,11 +11,10 @@
 #include "ResultScene.h"
 //---------------------------
 #include "Game/Screen.h"
-#include"WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/InputDevice.h"
+#include"Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/InputDevice.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
-#include "Libraries/MyLib/InputManager.h"
 #include <cassert>
 #include <iostream>
 

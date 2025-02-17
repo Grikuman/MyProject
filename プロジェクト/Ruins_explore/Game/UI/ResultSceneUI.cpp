@@ -5,29 +5,23 @@
 #include "pch.h"
 #include "ResultSceneUI.h"
 #include "Game/Scene/ResultScene.h"
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Data.h"
-#include "WorkTool/InputDevice.h"
+#include "Framework/DeviceResources.h"
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/Data.h"
+#include "Framework/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 ResultSceneUI::ResultSceneUI(ResultScene* result)
     :
-    m_selectIcon{},
-    m_clear{},
-    m_dead{},
-    m_resultClear{},
-    m_resultDead{},
-    m_black{},
-    m_pushSpaceKey{},
-    m_selectPos{},
-    m_selectFlag{true},
-    m_alpha{1.0f},
+    m_clearText_Tex{},
+    m_deadText_Tex{},
+    m_clear_Tex{},
+    m_dead_Tex{},
+    m_spaceKeyText_Tex{},
     m_spaceAlpha{1.0f},
-    m_fadeFlag{false},
     m_time{}
 {
     
@@ -49,13 +43,11 @@ void ResultSceneUI::Initialize()
     // スプライトバッチを設定する
     m_spriteBatch     = Graphics::GetInstance()->GetSpriteBatch();
     // 画像を取得する
-    m_selectIcon      = Resources::GetInstance()->GetTexture(L"SelectIcon");
-    m_clear           = Resources::GetInstance()->GetTexture(L"Clear");
-    m_dead            = Resources::GetInstance()->GetTexture(L"Dead");;
-    m_resultClear     = Resources::GetInstance()->GetTexture(L"ResultClear");;
-    m_resultDead      = Resources::GetInstance()->GetTexture(L"ResultDead");
-    m_black           = Resources::GetInstance()->GetTexture(L"Black");
-    m_pushSpaceKey    = Resources::GetInstance()->GetTexture(L"PushSpaceKey");
+    m_clearText_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Clear_Text.png");
+    m_deadText_Tex     = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Dead_Text.png");;
+    m_clear_Tex        = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Clear.png");;
+    m_dead_Tex         = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Dead.png");
+    m_spaceKeyText_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/PushSpaceKey.png");
 }
 
 //---------------------------------------------------------
@@ -63,41 +55,12 @@ void ResultSceneUI::Initialize()
 //---------------------------------------------------------
 void ResultSceneUI::Update()
 {
-    // キーボードを取得する
-    auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-
-    // 上キーを押したら
-    if (kb->IsKeyPressed(DirectX::Keyboard::Up))
-    {
-        m_selectFlag = true;
-    }
-    // 下キーを押したら
-    if (kb->IsKeyPressed(DirectX::Keyboard::Down))
-    {
-        m_selectFlag = false;
-    }
-    
-    // フラグごとにセレクトアイコンの位置を移動
-    if (m_selectFlag)
-    {
-        m_selectPos = DirectX::SimpleMath::Vector2(500, 390);
-    }
-    else
-    {
-        m_selectPos = DirectX::SimpleMath::Vector2(500, 510);
-    }
-
-    // フェードイン処理
-    if (m_alpha >= 0)
-    {
-        m_alpha -= 0.008f;
-    }
     // 点滅の速度を設定
     float blinkSpeed = 5.0f; // 1秒間に1回点滅
     // 時間加算
     m_time += 0.016f;
-    // sin関数を使って、0から1の間で変化させる
-    m_spaceAlpha = (sin(m_time * blinkSpeed) + 1) / 2; // 0-1の範囲に収める
+    // 0から1の間で変化させる
+    m_spaceAlpha = (sin(m_time * blinkSpeed) + 1) / 2; 
 }
 
 //---------------------------------------------------------
@@ -113,20 +76,19 @@ void ResultSceneUI::Render()
     // ＜ リザルト結果で表示を変更する ＞
     if (Data::GetInstance()->GetPlaySceneResult()) // 生存
     {
-        m_spriteBatch->Draw(m_resultClear.Get(), Vector2(0, 0));
-        m_spriteBatch->Draw(m_clear.Get(), Vector2(200, 50));
+        m_spriteBatch->Draw(m_clear_Tex.Get(), CLEAR_POS);
+        m_spriteBatch->Draw(m_clearText_Tex.Get(), CLEAR_TEXT_POS);
     }
     else // 死亡
     {
-        m_spriteBatch->Draw(m_resultDead.Get(), Vector2(0, 0));
-        m_spriteBatch->Draw(m_dead.Get(), Vector2(200, 50));
+        m_spriteBatch->Draw(m_dead_Tex.Get(), DEAD_POS);
+        m_spriteBatch->Draw(m_deadText_Tex.Get(), DEAD_TEXT_POS);
     }
     
     // スペースキー
-    m_spriteBatch->Draw(m_pushSpaceKey.Get(), DirectX::SimpleMath::Vector2(400, 580), Color(0.9f, 0.9f, 0.9f, m_spaceAlpha));
-
-    // 黒のフェード
-    m_spriteBatch->Draw(m_black.Get(), Vector2(0, 0), Color(0.0f, 0.0f, 0.0f, m_alpha));
+    m_spriteBatch->Draw(
+        m_spaceKeyText_Tex.Get(), SPACEKEY_TEXT_POS, 
+        Color(SPACEKEY_TEXT_COLOR_R, SPACEKEY_TEXT_COLOR_G, SPACEKEY_TEXT_COLOR_B, m_spaceAlpha));
 
     // 通常のスプライトバッチを終了
     m_spriteBatch->End();

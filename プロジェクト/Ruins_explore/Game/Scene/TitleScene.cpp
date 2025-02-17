@@ -4,13 +4,10 @@
 */
 #include "pch.h"
 #include "TitleScene.h"
-#include "WorkTool/DeviceResources.h"
-#include "Libraries/MyLib/DebugCamera.h"
-#include "Libraries/MyLib/DebugString.h"
-#include "Libraries/MyLib/InputManager.h"
+#include "Framework/DeviceResources.h"
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
-#include "WorkTool/Graphics.h"
+#include "Framework/Graphics.h"
 
 //---------------------------------------------------------
 // コンストラクタ

@@ -10,11 +10,6 @@
 #include <SpriteFont.h>
 #include <wrl/client.h>
 
-namespace NRLib
-{
-	class FixedCamera;
-};
-
 class ResultScene final : public IScene
 {
 public:
