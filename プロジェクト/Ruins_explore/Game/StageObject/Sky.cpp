@@ -74,7 +74,6 @@ void Sky::Render()
 	// ビュー行列を取得する
 	Matrix view = Graphics::GetInstance()->GetViewMatrix();
 
-
 	// モデルのエフェクト情報を更新する
 	m_model->UpdateEffects([](DirectX::IEffect* effect)
 		{

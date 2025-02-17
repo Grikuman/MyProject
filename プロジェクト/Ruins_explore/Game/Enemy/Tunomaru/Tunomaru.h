@@ -6,7 +6,7 @@
 #include <memory>
 #include <GeometricPrimitive.h>
 #include <SimpleMath.h>
-#include "Game/UI/HPUI.h"
+#include "Game/UI/EnemyUI/EnemyHPUI.h"
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
@@ -101,8 +101,8 @@ private:
     const float MAXHP = 100;
 
 private:
-    //HPUI
-    std::unique_ptr<HPUI> m_hpUI;
+    //体力表示クラス
+    std::unique_ptr<EnemyHPUI> m_hpUI;
     // プレイヤー
     Player* m_player;
     // ステート

@@ -1,3 +1,7 @@
+/*
+    ファイル名：StageObject.cpp
+    　　　概要：ステージのオブジェクトを管理するクラス
+*/
 #include "pch.h"
 #include "StageObject.h"
 #include "Framework/Graphics.h"
@@ -8,6 +12,9 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 StageObject::StageObject(Player* player) 
     :
     m_player{player}
@@ -15,11 +22,17 @@ StageObject::StageObject(Player* player)
 
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 StageObject::~StageObject() 
 { 
 
 }
 
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void StageObject::Initialize(const std::string& stageName)
 {
     using json = nlohmann::json;
@@ -69,7 +82,8 @@ void StageObject::Initialize(const std::string& stageName)
                     }
                 });
 
-            model.position = DirectX::SimpleMath::Vector3( 
+            // オブジェクトの情報を登録する
+            model.position = DirectX::SimpleMath::Vector3(
                 modelData["position"][0].get<float>(),
                 modelData["position"][1].get<float>(),
                 modelData["position"][2].get<float>());
@@ -77,7 +91,7 @@ void StageObject::Initialize(const std::string& stageName)
                 modelData["rotation"][0].get<float>(),
                 modelData["rotation"][1].get<float>(),
                 modelData["rotation"][2].get<float>());
-            model.scale = DirectX::SimpleMath::Vector3( 
+            model.scale = DirectX::SimpleMath::Vector3(
                 modelData["scale"][0].get<float>(),
                 modelData["scale"][1].get<float>(),
                 modelData["scale"][2].get<float>());
@@ -87,12 +101,15 @@ void StageObject::Initialize(const std::string& stageName)
             DirectX::SimpleMath::Vector3 extents = DirectX::SimpleMath::Vector3(1.0f, 1.0f, 1.0f) * model.scale; 
             model.m_boundingBox = DirectX::BoundingBox(center, extents);
 
-
+            // 配列に登録する
             m_models.push_back(std::move(model));
         }
     }
 }
 
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void StageObject::Update()
 {
     for (const auto& model : m_models)
@@ -105,8 +122,9 @@ void StageObject::Update()
     }
 }
 
-
-
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void StageObject::Render()
 {
     using namespace DirectX;
@@ -139,6 +157,9 @@ void StageObject::Render()
     }
 }
 
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void StageObject::Finalize()
 {
     // モデルリソースの解放処理

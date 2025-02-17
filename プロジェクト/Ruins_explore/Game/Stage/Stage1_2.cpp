@@ -4,16 +4,11 @@
 */
 #include "pch.h"
 #include "Stage1_2.h"
+
 #include "Framework/DeviceResources.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
 #include "Framework/Graphics.h"
-#include <iostream>
 #include "Framework/Collision.h"
 #include "Framework/Data.h"
-#include <wrl/client.h>
-#include "ScreenGrab.h"
-#include "wincodec.h"
 #include "Framework/InputDevice.h"
 
 //---------------------------------------------------------

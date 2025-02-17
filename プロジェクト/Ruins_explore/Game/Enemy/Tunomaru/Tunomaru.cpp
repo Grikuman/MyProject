@@ -64,9 +64,8 @@ void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
         });
 
     //HPUIを作成する
-    m_hpUI = std::make_unique<HPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
-    m_hpUI->SetScale(1.f);
-    m_hpUI->SetPosition(m_position);
+    m_hpUI = std::make_unique<EnemyHPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
+    m_hpUI->Initialize(m_position, 1.0f);
 
     //* ステートを作成する *
     // サーチ状態
@@ -97,10 +96,11 @@ void Tunomaru::Update()
     //現在のステートを更新する
     m_currentState->Update();
 
-    // HPUIを動かす
-    m_hpUI->SetPosition(DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.6f, m_position.z));
-    // HPUIのHP情報を更新
-    m_hpUI->SetHP(m_hp, MAXHP);
+    // HPのUIを更新する
+    m_hpUI->Update(
+        DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.6f, m_position.z),
+        m_hp,MAXHP
+        );
 
     // プレイヤーとの当たり判定
     Collision::GetInstance()->PlayerToNormalEnemy(this); 
@@ -140,7 +140,7 @@ void Tunomaru::Render()
     // HPUIを描画する
     if (m_isAlive == true)
     {
-        m_hpUI->Render(context, view, proj);
+        m_hpUI->Render();
     }
 }
 

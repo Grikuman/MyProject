@@ -44,10 +44,6 @@ void Game::Initialize(HWND window, int width, int height)
 
     // ★追記ココから↓↓↓★
 
-    // デバイスとコンテキストを取得する
-    auto device  = m_deviceResources->GetD3DDevice();
-    auto context = m_deviceResources->GetD3DDeviceContext();
-
     // グラフィックスを初期化
     Graphics::GetInstance()->Initialize();
 

@@ -11,11 +11,6 @@
 #include "Game/Stage/StageEnemy.h"
 #include "Game/Stage/StageObject.h"
 
-namespace NRLib
-{
-	class FixedCamera;
-};
-
 class Stage1_1 final : public IStage
 {
 public:

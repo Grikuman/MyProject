@@ -11,6 +11,30 @@
 class Fade
 {
 public:
+	// 遷移できるかどうか返す
+	bool IsTransition();
+	// フェードイン
+	void FadeIn();
+	// フェードアウト
+	void FadeOut();
+
+public:
+
+	// コンストラクタ
+	Fade();
+	// デストラクタ
+	~Fade();
+	// 初期化する
+	void Initialize();
+	// 更新する
+	void Update();
+	// 描画する
+	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+	// 終了処理
+	void Finalize();
+
+public:
+	static const std::vector<D3D11_INPUT_ELEMENT_DESC> INPUT_LAYOUT;
 	// フェードモードクラス
 	enum class FADE_MODE
 	{
@@ -28,33 +52,11 @@ public:
 		DirectX::SimpleMath::Vector4	time;
 	};
 
-public:
-	// 遷移できるかどうか返す
-	bool IsTransition();
-	// フェードイン
-	void FadeIn();
-	// フェードアウト
-	void FadeOut();
-public:
-	//	関数
-	static const std::vector<D3D11_INPUT_ELEMENT_DESC> INPUT_LAYOUT;
-
-	// コンストラクタ
-	Fade();
-	// デストラクタ
-	~Fade();
-	// テクスチャを読み込む
-	void LoadTexture(const wchar_t* path);
-	// 作成する
-	void Create(DX::DeviceResources* pDR);
-	// 更新する
-	void Update();
-	// 描画する
-	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
-
 private:
 	// シェーダーを作成する
 	void CreateShader();
+	// テクスチャを読み込む
+	void LoadTexture(const wchar_t* path);
 
 private:
 	// フェードの速さ
@@ -63,33 +65,24 @@ private:
 	const float FADE_TIME = 1.2f;
 
 private:
-	//	変数
-	DX::DeviceResources* m_pDR;
-
-	Microsoft::WRL::ComPtr<ID3D11Buffer>	m_CBuffer;
-
-	DX::StepTimer                           m_timer;
+	// コンスタントバッファ
+	Microsoft::WRL::ComPtr<ID3D11Buffer> m_CBuffer;
+	// ステップタイマー
+	DX::StepTimer m_timer;
 	//	入力レイアウト
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
-
 	//	プリミティブバッチ
-	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColorTexture>> m_batch;
+	std::unique_ptr<DirectX::PrimitiveBatch<DirectX::VertexPositionColorTexture>> m_primitiveBatch;
 	//	コモンステート
-	std::unique_ptr<DirectX::CommonStates> m_states;
+	DirectX::CommonStates* m_states;
 	//	テクスチャハンドル
 	std::vector<Microsoft::WRL::ComPtr<ID3D11ShaderResourceView>> m_texture;
-	//	テクスチャハンドル
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_texture2;
 	//	頂点シェーダ
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_vertexShader;
 	//	ピクセルシェーダ
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_pixelShader;
 	//	ジオメトリシェーダ
 	Microsoft::WRL::ComPtr<ID3D11GeometryShader> m_geometryShader;
-
-	DirectX::SimpleMath::Matrix m_world;
-	DirectX::SimpleMath::Matrix m_view;
-	DirectX::SimpleMath::Matrix m_proj;
 
 	float m_time;
 

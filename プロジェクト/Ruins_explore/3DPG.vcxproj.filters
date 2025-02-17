@@ -153,18 +153,6 @@
     <ClInclude Include="Game\UI\TitleSceneUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\EnemyUIManager.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\Gauge.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\UserInterface.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\HPUI.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UI\PlayerStatusUI.h">
       <Filter>Game\UI\PlayerUI</Filter>
     </ClInclude>
@@ -264,9 +252,6 @@
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h">
       <Filter>Game\Enemy\NeedleBoss</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Transition\Fade.h">
-      <Filter>Game\Transition</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\BinaryFile.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -312,6 +297,12 @@
     <ClInclude Include="Game\Enemy\Tunomaru\TunomaruSearch.h">
       <Filter>Game\Enemy\Tunomaru</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\EnemyUI\EnemyHPUI.h">
+      <Filter>Game\UI\EnemyUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Transition\Fade.h">
+      <Filter>Game\Transition</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -355,18 +346,6 @@
     </ClCompile>
     <ClCompile Include="Game\UI\TitleSceneUI.cpp">
       <Filter>Game\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\EnemyUIManager.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\Gauge.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\UserInterface.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\HPUI.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp">
       <Filter>Game\UI\PlayerUI</Filter>
@@ -484,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\Tunomaru\TunomaruSearch.cpp">
       <Filter>Game\Enemy\Tunomaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp">
+      <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

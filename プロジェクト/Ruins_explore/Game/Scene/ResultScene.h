@@ -41,12 +41,6 @@ private:
 private:
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
-
-	// スプライトバッチ
-	DirectX::SpriteBatch* m_spriteBatch;
-	// スプライトフォント
-	DirectX::SpriteFont* m_spriteFont;
-
 	// リザルトUIクラス
 	std::unique_ptr<ResultSceneUI> m_resultSceneUI;
 };

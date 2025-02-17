@@ -22,6 +22,7 @@ public:
     void Render();
     // 後処理する
     void Finalize();
+
 private:
     // ステータスアイコンの位置
     const DirectX::SimpleMath::Vector2 STATUS_ICON_POS = DirectX::SimpleMath::Vector2(10.f, 600.f);

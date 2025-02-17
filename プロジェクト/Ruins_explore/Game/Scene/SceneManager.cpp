@@ -46,8 +46,8 @@ void SceneManager::Initialize()
 	// 初期シーンを設定
 	ChangeScene(IScene::SceneID::TITLE);
 
-	// フェードを作成
-	m_fade->Create(Graphics::GetInstance()->GetDeviceResources());
+	// フェードを初期化する
+	m_fade->Initialize();
 }
 
 //---------------------------------------------------------
@@ -57,6 +57,7 @@ void SceneManager::Update(float elapsedTime)
 {
 	m_currentScene->Update(elapsedTime);
 
+	// フェードを更新する
 	m_fade->Update();
 
 	// 説明用変数：次のシーン
@@ -88,6 +89,7 @@ void SceneManager::Render()
 void SceneManager::Finalize()
 {
 	DeleteScene();
+	m_fade->Finalize();
 }
 
 //---------------------------------------------------------

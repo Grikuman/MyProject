@@ -19,7 +19,8 @@ using namespace DirectX::SimpleMath;
 //---------------------------------------------------------
 ResultScene::ResultScene()
 	:
-	m_isChangeScene{}
+	m_isChangeScene{},
+	m_resultSceneUI{}
 {
 }
 
@@ -28,6 +29,7 @@ ResultScene::ResultScene()
 //---------------------------------------------------------
 ResultScene::~ResultScene()
 {
+
 }
 
 //---------------------------------------------------------
@@ -38,8 +40,9 @@ void ResultScene::Initialize()
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 
-	// リザルトシーンUI
+	// UIを作成する
 	m_resultSceneUI = std::make_unique<ResultSceneUI>(this);
+	// UIを初期化する
 	m_resultSceneUI->Initialize();
 }
 
@@ -49,12 +52,15 @@ void ResultScene::Initialize()
 void ResultScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
+	// キーボードを取得する
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+
+	// スペースキーを押したらシーン遷移
 	if (kb->IsKeyPressed(DirectX::Keyboard::Space))
 	{
 		m_isChangeScene = true;
 	}
-
+	// UIを更新する
 	m_resultSceneUI->Update();
 }
 
@@ -63,6 +69,7 @@ void ResultScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void ResultScene::Render()
 {
+	// UIを描画する
 	m_resultSceneUI->Render();
 }
 
