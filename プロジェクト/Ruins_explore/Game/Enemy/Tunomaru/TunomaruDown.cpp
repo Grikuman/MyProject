@@ -18,10 +18,11 @@
 TunomaruDown::TunomaruDown(Tunomaru* tunomaru)
 	:
     m_tunomaru(tunomaru),
-	m_model{}
+	m_downTime{},
+	m_effect{}
 {
-	// ダウン時間を設定する
-	m_downTime = MAX_DOWNTIME;
+	// エフェクトを作成する
+	m_effect = std::make_unique<DownEffect>();
 }
 
 //---------------------------------------------------------
@@ -37,13 +38,44 @@ TunomaruDown::~TunomaruDown()
 //---------------------------------------------------------
 void TunomaruDown::Initialize()
 {
-	m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
+	// エフェクトを初期化する
+	m_effect->Initialize(m_tunomaru->GetPosition());
+	// ダウン時間を設定する
+	m_downTime = MAX_DOWNTIME;
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
 void TunomaruDown::Update()
+{
+	// ダウン処理
+	Down();
+	// エフェクトを更新する
+	m_effect->Update();
+}
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void TunomaruDown::Render()
+{
+	// エフェクトを描画する
+	m_effect->Render(m_tunomaru->GetPosition());
+}
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void TunomaruDown::Finalize()
+{
+	m_effect->Finalize();
+}
+
+//---------------------------------------------------------
+// ダウン処理
+//---------------------------------------------------------
+void TunomaruDown::Down()
 {
 	// ダウン時間を減少させる
 	m_downTime--;
@@ -55,12 +87,4 @@ void TunomaruDown::Update()
 		// サーチ状態へ移行する
 		m_tunomaru->ChangeState(m_tunomaru->GetTunomaruSearch());
 	}
-}
-
-//---------------------------------------------------------
-// 後始末する
-//---------------------------------------------------------
-void TunomaruDown::Finalize()
-{
-    
 }

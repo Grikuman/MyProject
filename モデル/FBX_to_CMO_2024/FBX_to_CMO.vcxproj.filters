@@ -41,7 +41,7 @@
     </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\NeedleBoss.fbx">
+    <MeshContentTask Include="Assets\FBX\Star.fbx">
       <Filter>Assets</Filter>
     </MeshContentTask>
   </ItemGroup>

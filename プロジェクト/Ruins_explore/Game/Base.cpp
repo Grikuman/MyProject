@@ -3,17 +3,17 @@
 	　　　概要：を管理するクラス
 */
 #include "pch.h"
-#include "ChargePunch.h"
-#include "WorkTool/DeviceResources.h"
-#include "WorkTool/Graphics.h"
-#include "WorkTool/Resources.h"
-#include "WorkTool/Data.h"
-#include "WorkTool/InputDevice.h"
+#include "DownEffect.h"
+#include "FrameWork/DeviceResources.h"
+#include "FrameWork/Graphics.h"
+#include "FrameWork/Resources.h"
+#include "FrameWork/Data.h"
+#include "FrameWork/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-ChargePunch::ChargePunch()
+DownEffect::DownEffect()
 {
 	
 }
@@ -21,7 +21,7 @@ ChargePunch::ChargePunch()
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-ChargePunch::~ChargePunch()
+DownEffect::~DownEffect()
 {
 
 }
@@ -29,7 +29,7 @@ ChargePunch::~ChargePunch()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void ChargePunch::Initialize()
+void DownEffect::Initialize()
 {
 	
 }
@@ -37,7 +37,7 @@ void ChargePunch::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void ChargePunch::Update(float elapsedTime)
+void DownEffect::Update(float elapsedTime)
 {	
 	
 }
@@ -45,7 +45,7 @@ void ChargePunch::Update(float elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void ChargePunch::Render()
+void DownEffect::Render()
 {
 	
 }
@@ -53,7 +53,7 @@ void ChargePunch::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void ChargePunch::Finalize()
+void DownEffect::Finalize()
 {
 
 }

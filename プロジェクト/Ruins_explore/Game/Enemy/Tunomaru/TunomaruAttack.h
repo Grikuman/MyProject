@@ -19,17 +19,26 @@ public:
 	void Initialize();
 	// 更新する
 	void Update();
+	// 描画する
+	void Render();
 	// 後処理する
 	void Finalize();
 private:
+	void Rush();
+
+private:
+	// 待機時間
+	const float MAX_STAYTIME = 30.0f;
 	// 突進時間
-	const float MAX_RUSHTIME = 120.f;
+	const float MAX_RUSHTIME = 120.0f;
 
 private:
 	// つのまる
 	Tunomaru* m_tunomaru;
 	// モデル
 	DirectX::Model* m_model;
+	// 待機時間
+	float m_stayTime;
 	// 突進時間
 	float m_rushTime;
 };

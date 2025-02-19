@@ -17,6 +17,8 @@ public:
     virtual void Initialize() = 0;
     // XV‚·‚é
     virtual void Update() = 0;
+    // •`‰æ‚·‚é
+    virtual void Render() = 0;
     // I—¹ˆ—
     virtual void Finalize() = 0;
 };

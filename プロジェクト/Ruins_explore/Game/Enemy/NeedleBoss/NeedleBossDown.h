@@ -19,6 +19,8 @@ public:
 	void Initialize();
 	// XV‚·‚é
 	void Update();
+	// •`‰æ‚·‚é
+	void Render();
 	// Œãˆ—‚·‚é
 	void Finalize();
 private:

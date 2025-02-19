@@ -300,6 +300,9 @@
     <ClInclude Include="Game\Transition\Fade.h">
       <Filter>Game\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Effect\DownEffect.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -460,6 +463,9 @@
     </ClCompile>
     <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Effect\DownEffect.cpp">
+      <Filter>Game\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

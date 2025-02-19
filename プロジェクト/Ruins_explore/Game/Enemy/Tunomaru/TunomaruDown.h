@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
+#include "Game/Effect/DownEffect.h"
 
 // 前方宣言
 class Tunomaru;
@@ -24,17 +25,24 @@ public:
 	void Initialize();
 	// 更新する
 	void Update();
+	// 描画する
+	void Render();
 	// 後処理する
 	void Finalize();
+
 private:
-	// 時間
-	const float MAX_DOWNTIME = 90.f;
+	// ダウン処理
+	void Down();
+
+private:
+	// ダウンしている時間
+	const float MAX_DOWNTIME = 180.f;
 
 private:
 	// つのまる
 	Tunomaru* m_tunomaru;
-	// モデル
-	DirectX::Model* m_model;
+	// エフェクト
+	std::unique_ptr<DownEffect> m_effect;
 	// ダウンしている時間
 	float m_downTime;
 };

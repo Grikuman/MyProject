@@ -4,13 +4,13 @@
 */
 #pragma once
 
-class ChargePunch
+class DownEffect
 {
 public:
 	// コンストラクタ
-	ChargePunch();
+	DownEffect();
 	// デストラクタ
-	~ChargePunch();
+	~DownEffect();
 	// 初期化する
 	void Initialize();
 	// 更新する

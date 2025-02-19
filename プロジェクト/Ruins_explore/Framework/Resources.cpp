@@ -64,6 +64,8 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Tree = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tree.cmo", *fx);
 	// スカイドーム
 	std::unique_ptr<DirectX::Model> Skydome = DirectX::Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
+	// エフェクト【星】
+	std::unique_ptr<DirectX::Model> Star = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Star.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
@@ -74,6 +76,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
 	m_models.emplace(L"Tree", std::move(Tree));
 	m_models.emplace(L"Skydome", std::move(Skydome));
+	m_models.emplace(L"Star", std::move(Star));
 
 	//================
 	// * テクスチャ *

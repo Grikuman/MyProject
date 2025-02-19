@@ -192,6 +192,7 @@
     <ClInclude Include="Game\Camera\FixedCamera.h" />
     <ClInclude Include="Game\Camera\FollowCamera.h" />
     <ClInclude Include="Game\Camera\TPS_Camera.h" />
+    <ClInclude Include="Game\Effect\DownEffect.h" />
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBoss.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="Game\Camera\FixedCamera.cpp" />
     <ClCompile Include="Game\Camera\FollowCamera.cpp" />
     <ClCompile Include="Game\Camera\TPS_Camera.cpp" />
+    <ClCompile Include="Game\Effect\DownEffect.cpp" />
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBoss.cpp" />

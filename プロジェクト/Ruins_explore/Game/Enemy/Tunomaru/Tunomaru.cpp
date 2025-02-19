@@ -113,7 +113,7 @@ void Tunomaru::Update()
 
     // HPのUIを更新する
     m_hpUI->Update(
-        DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.6f, m_position.z),
+        DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.0f, m_position.z),
         m_hp,MAXHP
         );
 
@@ -141,24 +141,34 @@ void Tunomaru::Render()
     Matrix worldMatrix = 
         // スケール行列を作成
         Matrix::CreateScale(1.f) * 
-        // 180度回転させる(モデルが逆を向いていたので)
+        // 180度回転させる(モデルの向き調整)
         Matrix::CreateRotationY(DirectX::XM_PI) *
         // 回転行列を作成
         Matrix::CreateFromQuaternion(m_angle) *
         // 移動行列を作成
         Matrix::CreateTranslation(m_position);
 
-    // 生存していたら
-    if (m_isAlive == true)
+    if (m_currentState == m_tunomaruDown.get())
     {
-        // モデル表示
-        m_model->Draw(context, *states, worldMatrix, view, proj); // モデルを描画する
+        worldMatrix =
+            // スケール行列を作成
+            Matrix::CreateScale(1.f) * 
+            // 180度回転させる(モデルの向き調整)
+            Matrix::CreateRotationY(DirectX::XM_PI) * 
+            // 少し下を向かせる
+            Matrix::CreateRotationX(XMConvertToRadians(30.0f)) *
+            // 回転行列を作成
+            Matrix::CreateFromQuaternion(m_angle) * 
+            // 移動行列を作成
+            Matrix::CreateTranslation(m_position); 
     }
+
+    // モデル表示
+    m_model->Draw(context, *states, worldMatrix, view, proj); // モデルを描画する
+    // 各ステートの描画をする
+    m_currentState->Render();
     // HPUIを描画する
-    if (m_isAlive == true)
-    {
-        m_hpUI->Render();
-    }
+    m_hpUI->Render();
 }
 
 //---------------------------------------------------------
