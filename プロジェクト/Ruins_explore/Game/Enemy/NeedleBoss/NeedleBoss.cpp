@@ -1,6 +1,6 @@
 /*
     ファイル名：NeedleBoss.cpp
-    　　　概要：岩ボスの情報を管理するクラス
+    　　　概要：トゲボスの情報を管理するクラス
 */
 #pragma once
 #include "pch.h"
@@ -12,6 +12,9 @@
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 NeedleBoss::NeedleBoss(Player* player)
     :
     m_player{player},
@@ -28,11 +31,17 @@ NeedleBoss::NeedleBoss(Player* player)
     m_hp = MAXHP;
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 NeedleBoss::~NeedleBoss()
 {
 
 }
 
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
 {
     // コンテキストを取得する
@@ -61,6 +70,9 @@ void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
     m_currentState = m_needleBossSearch.get();
 }
 
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void NeedleBoss::Update()
 {
     m_isHit = false; 
@@ -72,6 +84,9 @@ void NeedleBoss::Update()
     m_currentState->Update();
 }
 
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void NeedleBoss::Render()
 {
     using namespace DirectX::SimpleMath;
@@ -79,7 +94,6 @@ void NeedleBoss::Render()
     // コンテキスト・ステートを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
     auto states = Graphics::GetInstance()->GetCommonStates();
-
     // ビュー・プロジェクションを取得する
     DirectX::SimpleMath::Matrix view, proj;
     view = Graphics::GetInstance()->GetViewMatrix();
@@ -99,24 +113,35 @@ void NeedleBoss::Render()
     m_model->Draw(context, *states, worldMatrix, view, proj);
 }
 
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void NeedleBoss::Finalize()
 {
     
 }
 
+//---------------------------------------------------------
 // バウンディングスフィアを取得する
+//---------------------------------------------------------
 DirectX::BoundingSphere NeedleBoss::GetBoundingSphere() const
 {
     DirectX::SimpleMath::Vector3 center = m_position;
     float radius = 3.f;
     return DirectX::BoundingSphere(center, radius);
 }
+
+//---------------------------------------------------------
 // ダメージを与える
+//---------------------------------------------------------
 void NeedleBoss::Damage(const float damage)
 {
     m_hp -= damage;
 }
+
+//---------------------------------------------------------
 // 生存しているか判定する
+//---------------------------------------------------------
 void NeedleBoss::CheckAlive()
 {
     if (m_hp <= 0)

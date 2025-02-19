@@ -92,7 +92,7 @@ void Player::Update(float elapsedTime)
 	UNREFERENCED_PARAMETER(elapsedTime);
 	// 速度を初期化
 	m_velocity = Vector3::Zero;
-
+	// 重力加算
 	m_velocity.y -= GRAVITY * 0.5f;
 
 	// 無敵処理
@@ -102,8 +102,6 @@ void Player::Update(float elapsedTime)
 
 	//現在のステートを更新する
 	m_currentState->Update(elapsedTime);
-
-	//m_velocity.y -= GRAVITY;
 
 	// Y軸を中心にカメラも回転させる
 	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle)); 
@@ -133,13 +131,10 @@ void Player::Render()
 	{
 		parts->Render();
 	}
-
 	// 現在のステートを描画をする
 	m_currentState->Render();
-
 	// UI管理クラスを描画する
 	m_playerUIManager->Render();
-
 	// エフェクト管理クラス描画する
 	m_playerEffectManager->Render();
 }

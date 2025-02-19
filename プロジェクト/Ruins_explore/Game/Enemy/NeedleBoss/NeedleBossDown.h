@@ -22,7 +22,7 @@ public:
 	// 後処理する
 	void Finalize();
 private:
-	// 時間
+	// 設定するダウン時間
 	const float MAX_DOWNTIME = 180.f;
 
 private:
@@ -30,7 +30,6 @@ private:
 	NeedleBoss* m_needleBoss;
 	// モデル
 	DirectX::Model* m_model;
-
 	// ダウン時間
 	float m_downTime;
 };

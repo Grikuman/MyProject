@@ -30,7 +30,6 @@ private:
 	Tunomaru* m_tunomaru;
 	// ƒ‚ƒfƒ‹
 	DirectX::Model* m_model;
-
 	// “ËiŠÔ
 	float m_rushTime;
 };

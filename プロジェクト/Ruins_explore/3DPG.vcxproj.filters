@@ -141,9 +141,6 @@
     <ClInclude Include="Game\Player\PlayerDash.h">
       <Filter>Game\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Effect\SwordEffect.h">
-      <Filter>Game\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Effect\InvincibleEffect.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
@@ -334,9 +331,6 @@
     </ClCompile>
     <ClCompile Include="Game\Player\PlayerDash.cpp">
       <Filter>Game\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Effect\SwordEffect.cpp">
-      <Filter>Game\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp">
       <Filter>Game\Effect</Filter>

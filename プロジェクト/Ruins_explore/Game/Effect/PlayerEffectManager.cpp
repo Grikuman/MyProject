@@ -7,7 +7,9 @@
 #include "Game/Effect/PlayerEffectManager.h"
 #include "Game/Player/Player.h"
 
+//---------------------------------------------------------
 // コンストラクタ
+//---------------------------------------------------------
 PlayerEffectManager::PlayerEffectManager(Player* player)
     :
     m_player{player},
@@ -15,13 +17,18 @@ PlayerEffectManager::PlayerEffectManager(Player* player)
 {
     
 }
+
+//---------------------------------------------------------
 // デストラクタ
+//---------------------------------------------------------
 PlayerEffectManager::~PlayerEffectManager()
 {
 
 }
 
-// 初期化
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void PlayerEffectManager::Initialize()
 {
     // 無敵エフェクトを作成する
@@ -30,19 +37,27 @@ void PlayerEffectManager::Initialize()
     m_invincibleEffect->Initialize();
 }
 
+//---------------------------------------------------------
 // 更新する
+//---------------------------------------------------------
 void PlayerEffectManager::Update()
 {
+    // 無敵エフェクトを更新する
     m_invincibleEffect->Update();
 }
 
+//---------------------------------------------------------
 // 描画する
+//---------------------------------------------------------
 void PlayerEffectManager::Render()
 {
+    // 無敵エフェクトを描画する
     m_invincibleEffect->Render();
 }
 
-// 後処理する
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void PlayerEffectManager::Finalize()
 {
     m_invincibleEffect->Finalize();

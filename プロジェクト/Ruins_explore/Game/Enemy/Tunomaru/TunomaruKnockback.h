@@ -30,7 +30,6 @@ private:
 private:
 	// ‚Â‚Ì‚Ü‚é
 	Tunomaru* m_tunomaru;
-
 	// “ËiŠÔ
 	float m_knockbackTime;
 };

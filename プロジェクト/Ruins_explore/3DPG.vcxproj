@@ -194,7 +194,6 @@
     <ClInclude Include="Game\Camera\TPS_Camera.h" />
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
-    <ClInclude Include="Game\Effect\SwordEffect.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBoss.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h" />
@@ -264,7 +263,6 @@
     <ClCompile Include="Game\Camera\TPS_Camera.cpp" />
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
-    <ClCompile Include="Game\Effect\SwordEffect.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBoss.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp" />

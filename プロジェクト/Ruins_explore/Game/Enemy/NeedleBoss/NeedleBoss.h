@@ -1,6 +1,6 @@
 /*
     ファイル名：NeedleBoss.h
-    　　　概要：岩ボスの情報を管理するクラス
+    　　　概要：トゲボスの情報を管理するクラス
 */
 #pragma once
 #include <memory>
@@ -66,12 +66,11 @@ public:
 public:
     // プレイヤーを取得する
     Player* GetPlayer()                                            { return m_player; }
-
-    // 岩ボスサーチを取得する
+    // トゲボスサーチを取得する
     NeedleBossSearch* GetNeedleBossSearch()                            { return m_needleBossSearch.get(); }
-    // 岩ボスアタックを取得する
+    // トゲボスアタックを取得する
     NeedleBossAttack* GetNeedleBossAttack()                            { return m_needleBossAttack.get(); }
-    // 岩ボスダウンを取得する
+    // トゲボスダウンを取得する
     NeedleBossDown* GetNeedleBossDown()                                { return m_needleBossDown.get(); }
     
 public:
@@ -103,14 +102,12 @@ private:
     IEnemyState* m_currentState;
     // モデル
     DirectX::Model* m_model;
-
     // サーチ状態
     std::unique_ptr<NeedleBossSearch> m_needleBossSearch;
     // アタック状態
     std::unique_ptr<NeedleBossAttack> m_needleBossAttack;
     // ダウン状態
     std::unique_ptr<NeedleBossDown> m_needleBossDown;
-
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
     // 速度

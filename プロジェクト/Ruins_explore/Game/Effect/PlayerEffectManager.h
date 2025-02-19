@@ -4,14 +4,14 @@
 */
 #pragma once
 #include "InvincibleEffect.h"
-
-class CommonResources;
 class Player;
 
 class PlayerEffectManager
 {
 public:
+    // コンストラクタ
     PlayerEffectManager(Player* player);
+    // デストラクタ
     ~PlayerEffectManager();
     // 初期化する
     void Initialize();

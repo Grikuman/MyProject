@@ -26,10 +26,7 @@ namespace NRLib
 		// デストラクタ
 		~TPS_Camera() = default;
 		// 更新処理
-		void Update(
-			const DirectX::SimpleMath::Vector3& newTarget,
-			const DirectX::SimpleMath::Matrix& rotate
-		);
+		void Update(const DirectX::SimpleMath::Vector3& newTarget,const DirectX::SimpleMath::Matrix& rotate);
 
 	private:
 		// ビュー行列を計算する

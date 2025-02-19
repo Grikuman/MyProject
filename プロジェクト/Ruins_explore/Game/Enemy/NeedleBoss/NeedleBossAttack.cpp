@@ -47,9 +47,6 @@ void NeedleBossAttack::Initialize()
 //---------------------------------------------------------
 void NeedleBossAttack::Update()
 {
-	using namespace DirectX;
-	using namespace DirectX::SimpleMath;
-
 	// UŒ‚‚Ü‚Å‚Ì—P—\ŠÔ‚ğƒJƒEƒ“ƒg‚·‚é
 	m_atackStartTime++;
 

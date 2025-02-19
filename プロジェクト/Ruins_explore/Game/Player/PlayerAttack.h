@@ -27,9 +27,9 @@ public:
 	IPlayerAction* GetCurrentAttackAction() const   { return m_currentAttackAction; }
 	// プレイヤー通常パンチを取得する
 	PlayerNormalPunch* GetPlayerNormalPunch() const { return m_normalPunch.get(); }
-	// プレイヤー通常パンチを取得する
+	// プレイヤーチャージパンチを取得する
 	PlayerChargePunch* GetPlayerChargePunch() const { return m_chargePunch.get(); }
-	// 攻撃範囲を取得
+	// 攻撃範囲を取得する
 	DirectX::BoundingSphere GetAttackRange();
 
 public:
@@ -61,9 +61,6 @@ private:
 	std::unique_ptr<PlayerChargePunch> m_chargePunch;
 	// モデル
 	DirectX::Model* m_model;
-	// 斬撃エフェクト
-	std::unique_ptr<SwordEffect> m_swordEffect;
-	
 	// カウント
 	int m_cnt;
 };

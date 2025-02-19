@@ -91,10 +91,3 @@ void PlayerRightHand::Finalize()
 {
 	
 }
-
-//DirectX::BoundingSphere PlayerRightHand::GetBoundingSphere()
-//{
-//	//Vector3 center = m_position; // 当たり判定球の中心
-//	//float radius = 0.5f;         // サイズに応じて調整
-//	//return DirectX::BoundingSphere(center, radius);
-//}

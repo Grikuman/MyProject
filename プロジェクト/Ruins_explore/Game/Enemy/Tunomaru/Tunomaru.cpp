@@ -11,6 +11,9 @@
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 Tunomaru::Tunomaru(Player* player)
     : 
     m_player{player},
@@ -29,8 +32,17 @@ Tunomaru::Tunomaru(Player* player)
     m_hp = MAXHP;
 }
 
-Tunomaru::~Tunomaru() {}
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+Tunomaru::~Tunomaru()
+{
 
+}
+
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
 {
     // コンテキストを取得する
@@ -85,6 +97,9 @@ void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
     m_currentState = m_tunomaruSearch.get();
 }
 
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void Tunomaru::Update()
 {
     m_isHit = false; 
@@ -106,6 +121,9 @@ void Tunomaru::Update()
     Collision::GetInstance()->PlayerToNormalEnemy(this); 
 }
 
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void Tunomaru::Render()
 {
     using namespace DirectX;
@@ -136,7 +154,6 @@ void Tunomaru::Render()
         // モデル表示
         m_model->Draw(context, *states, worldMatrix, view, proj); // モデルを描画する
     }
-
     // HPUIを描画する
     if (m_isAlive == true)
     {
@@ -144,11 +161,17 @@ void Tunomaru::Render()
     }
 }
 
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void Tunomaru::Finalize()
 {
     
 }
 
+//---------------------------------------------------------
+// ノックバックしているか
+//---------------------------------------------------------
 bool Tunomaru::IsKnockback() const
 {
     // ノックバック状態ならば
@@ -160,19 +183,27 @@ bool Tunomaru::IsKnockback() const
     return false;
 }
 
+//---------------------------------------------------------
 // バウンディングスフィアを取得する
+//---------------------------------------------------------
 DirectX::BoundingSphere Tunomaru::GetBoundingSphere() const
 {
     DirectX::SimpleMath::Vector3 center = m_position;
     float radius = 1.f;
     return DirectX::BoundingSphere(center, radius);
 }
+
+//---------------------------------------------------------
 // ダメージを与える
+//---------------------------------------------------------
 void Tunomaru::Damage(const float damage)
 {
     m_hp -= damage;
 }
+
+//---------------------------------------------------------
 // 生存しているか判定する
+//---------------------------------------------------------
 void Tunomaru::CheckAlive()
 {
     if (m_hp <= 0)
@@ -182,6 +213,9 @@ void Tunomaru::CheckAlive()
     }
 }
 
+//---------------------------------------------------------
+// ステートを変更する
+//---------------------------------------------------------
 void Tunomaru::ChangeState(IEnemyState* newState)
 {
     m_currentState = newState;

@@ -10,6 +10,9 @@
 #include "Game/Camera/TPS_Camera.h"
 #include "Framework/Graphics.h"
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 InvincibleEffect::InvincibleEffect(Player* player)
     :
     m_player{ player },
@@ -20,12 +23,17 @@ InvincibleEffect::InvincibleEffect(Player* player)
 
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 InvincibleEffect::~InvincibleEffect()
 {
     
 }
 
-// 初期化
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void InvincibleEffect::Initialize()
 {
     auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
@@ -48,7 +56,9 @@ void InvincibleEffect::Initialize()
     device->CreateBlendState(&blendDesc, &m_blendState);
 }
 
+//---------------------------------------------------------
 // 更新する
+//---------------------------------------------------------
 void InvincibleEffect::Update()
 {
     // 無敵時間の場合
@@ -69,7 +79,9 @@ void InvincibleEffect::Update()
     }
 }
 
+//---------------------------------------------------------
 // 描画する
+//---------------------------------------------------------
 void InvincibleEffect::Render()
 {
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
@@ -81,17 +93,18 @@ void InvincibleEffect::Render()
     // 球体の色と透明度を設定
     DirectX::SimpleMath::Color color(1.0f, 1.0f, 1.0f, m_alpha);
 
-    // 球体のワールド行列を計算して描画
-    DirectX::SimpleMath::Matrix world = 
-        DirectX::SimpleMath::Matrix::CreateTranslation(
-        m_player->GetPosition() + DirectX::SimpleMath::Vector3(0.f,0.6f,0.f));
-    m_sphere->Draw(world, m_player->GetCamera()->GetViewMatrix(), m_player->GetCamera()->GetProjectionMatrix(), color);
+    // 球体のワールド行列を計算する
+    DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::CreateTranslation(m_player->GetPosition());
+    // 球体を描画する
+    m_sphere->Draw(world, Graphics::GetInstance()->GetViewMatrix(), Graphics::GetInstance()->GetProjectionMatrix(), color);
 
     // ブレンドステートをリセットする
     context->OMSetBlendState(nullptr, blendFactor, 0xFFFFFFFF);
 }
 
-// 後処理する
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void InvincibleEffect::Finalize()
 {
     

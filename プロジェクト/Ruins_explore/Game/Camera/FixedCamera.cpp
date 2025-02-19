@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------
 // コンストラクタ
 //-------------------------------------------------------------------
-NRLib::FixedCamera::FixedCamera(
+FixedCamera::FixedCamera(
 	DirectX::SimpleMath::Vector3& eye,
 	DirectX::SimpleMath::Vector3& target,
 	const DirectX::SimpleMath::Vector3& up
@@ -28,7 +28,7 @@ NRLib::FixedCamera::FixedCamera(
 //-------------------------------------------------------------------
 // ビュー行列を計算する
 //-------------------------------------------------------------------
-void NRLib::FixedCamera::CalculateViewMatrix()
+void FixedCamera::CalculateViewMatrix()
 {
 	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(m_eye, m_target, m_up);
 }
@@ -36,7 +36,7 @@ void NRLib::FixedCamera::CalculateViewMatrix()
 //-------------------------------------------------------------------
 // プロジェクション行列を計算する
 //-------------------------------------------------------------------
-void NRLib::FixedCamera::CalculateProjectionMatrix()
+void FixedCamera::CalculateProjectionMatrix()
 {
 	// ウィンドウサイズ
 	const float width = static_cast<float>(Screen::WIDTH);

@@ -147,7 +147,7 @@ void PlayerWalk::WalkToAttack()
     // Fキーが押されているかを確認
     if (kb->IsKeyDown(DirectX::Keyboard::F))
     {
-        // Fキーが押された瞬間に通常パンチ
+        // 通常パンチに設定する
         m_player->GetPlayerAttack()->ChangeAttackAction(
             m_player->GetPlayerAttack()->GetPlayerNormalPunch());
         // 攻撃へ移行する

@@ -4,13 +4,11 @@
 */
 #include "pch.h"
 #include "FollowCamera.h"
-#include "Game/Screen.h"
-#include <cassert>
 
 //-------------------------------------------------------------------
 // コンストラクタ
 //-------------------------------------------------------------------
-mylib::FollowCamera::FollowCamera()
+FollowCamera::FollowCamera()
 	:
 	m_eye{},
 	m_target{},
@@ -22,14 +20,11 @@ mylib::FollowCamera::FollowCamera()
 //-------------------------------------------------------------------
 // 初期化する
 //-------------------------------------------------------------------
-void mylib::FollowCamera::Initialize(
+void FollowCamera::Initialize(
 	const DirectX::SimpleMath::Vector3* followUpTargetPosition,
 	const DirectX::SimpleMath::Quaternion* followUpTargetQuaternion
 )
 {
-	assert(followUpTargetPosition);
-	assert(followUpTargetQuaternion);
-
 	// ターゲットに関するポインタを保持する
 	m_followUpTargetPosition = followUpTargetPosition;
 	m_followUpTargetQuaternion = followUpTargetQuaternion;
@@ -38,10 +33,8 @@ void mylib::FollowCamera::Initialize(
 //-------------------------------------------------------------------
 // 更新する
 //-------------------------------------------------------------------
-void mylib::FollowCamera::Update(float elapsedTime)
+void FollowCamera::Update()
 {
-	UNREFERENCED_PARAMETER(elapsedTime);
-
 	// 基準になる「eye」を計算する
 	DirectX::SimpleMath::Vector3 eye{ 0.0f, HEIGHT, DISTANCE };
 	eye = DirectX::SimpleMath::Vector3::Transform(eye, *m_followUpTargetQuaternion);

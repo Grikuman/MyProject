@@ -108,6 +108,10 @@ private:
 private:
 	// 重力加速度
 	const float GRAVITY = 9.8f;
+	// 最大体力
+	static const int MAX_HP = 6;
+	// 最大スタミナ
+	static const int MAX_STAMINA = 6;
 
 private:
 	// UI管理クラス
@@ -140,12 +144,8 @@ private:
 
 	// 体力
 	int m_hp;
-	// 最大体力
-	static const int MAX_HP = 6;
 	// スタミナ
 	int m_stamina;
-	// 最大スタミナ
-	static const int MAX_STAMINA = 6;
 	// スタミナの回復カウント
 	float m_chargeCnt;
 	// 無敵

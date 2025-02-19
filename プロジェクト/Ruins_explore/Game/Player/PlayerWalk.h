@@ -23,6 +23,7 @@ public:
 	void Render();
 	// Œãˆ—‚·‚é
 	void Finalize();
+
 private:
 	// ƒvƒŒƒCƒ„[ˆÚ“®
 	void PlayerMove();

@@ -30,18 +30,12 @@ void NRLib::TPS_Camera::Update(
 	const DirectX::SimpleMath::Matrix& rotate
 )
 {
-	/*
-		ToDo::追従カメラなので、引数はelapsedTimeだけにしたい
-		→newTarget,rotateはカメラの内部的に計算したい
-	*/
-
 	// targetの位置を更新する
 	//m_target = newTarget;	// バネなし
 	m_target += (newTarget - m_target) * 0.05f;	// バネ付き
 
 	// カメラ座標を計算する
 	CalculateEyePosition(rotate);
-
 	// ビュー行列を更新する
 	CalculateViewMatrix();
 }

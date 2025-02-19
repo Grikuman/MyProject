@@ -3,30 +3,26 @@
     　　　概要：プレイヤーの斬撃エフェクトを管理するクラス
 */
 #pragma once
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <DirectXMath.h>
 
 class SwordEffect
 {
 public:
-    // プレイヤーの位置を設定する
-    void SetPosition(const DirectX::SimpleMath::Vector3& position);
-public:
     // コンストラクタ
-    SwordEffect(ID3D11Device* device);
+    SwordEffect();
     // デストラクタ
     ~SwordEffect();
+    // 初期化する
+    void Initialize(const DirectX::SimpleMath::Vector3& position);
     // 更新処理
-    void Update();
+    void Update(const DirectX::SimpleMath::Vector3& position);
     // 描画処理
-    void Render(ID3D11DeviceContext1* context,DirectX::SimpleMath::Matrix view,DirectX::SimpleMath::Matrix proj);
+    void Render();
     // 終了処理
     void Finalize();
 
 private:
     // 共通のステート
-    std::unique_ptr<DirectX::CommonStates> m_commonStates;
+    DirectX::CommonStates* m_commonStates;
     // 入力レイアウト
     Microsoft::WRL::ComPtr<ID3D11InputLayout> m_inputLayout;
     // テクスチャ用

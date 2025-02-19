@@ -6,7 +6,6 @@
 #include "Player.h"
 #include "PlayerAttack.h"
 #include "Framework/DeviceResources.h"
-#include "Game/Effect/SwordEffect.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 
@@ -20,10 +19,12 @@ PlayerAttack::PlayerAttack(Player* player)
     m_normalPunch{},
     m_chargePunch{},
 	m_model{},
-    m_swordEffect{},
     m_cnt{}
 {
-
+    // 通常パンチを作成する
+    m_normalPunch = std::make_unique<PlayerNormalPunch>(m_player); 
+    // 通常パンチを作成する
+    m_chargePunch = std::make_unique<PlayerChargePunch>(m_player); 
 }
 
 //---------------------------------------------------------
@@ -39,24 +40,12 @@ PlayerAttack::~PlayerAttack()
 //---------------------------------------------------------
 void PlayerAttack::Initialize()
 {
-    // デバイスを取得する
-    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
-
-    // 通常パンチを作成する
-    m_normalPunch = std::make_unique<PlayerNormalPunch>(m_player);
-    m_normalPunch->Initialize();
-    // 通常パンチを作成する
-    m_chargePunch = std::make_unique<PlayerChargePunch>(m_player);
-    m_chargePunch->Initialize();
-
     // モデルを取得する
     m_model = Resources::GetInstance()->GetModel(L"Player");
-
-    // 斬撃エフェクトを作成
-    m_swordEffect = std::make_unique<SwordEffect>(device);
-    // 位置を設定する
-    m_swordEffect->SetPosition(m_player->GetPosition());
-
+    // 通常パンチを作成する
+    m_normalPunch->Initialize();
+    // 通常パンチを作成する
+    m_chargePunch->Initialize();
     // 現在の攻撃行動を設定する
     m_currentAttackAction = m_normalPunch.get();
 }
@@ -74,10 +63,6 @@ void PlayerAttack::Update(const float& elapsedTime)
 
     // 現在の攻撃行動を更新する
     m_currentAttackAction->Update();
-
-    // エフェクトを更新する
-    m_swordEffect->SetPosition(m_player->GetPosition());
-    m_swordEffect->Update();
 }
 
 
@@ -87,16 +72,8 @@ void PlayerAttack::Update(const float& elapsedTime)
 //---------------------------------------------------------
 void PlayerAttack::Render()
 {
-    // コンテキスト：ビュー：プロジェクション
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto view = Graphics::GetInstance()->GetViewMatrix();
-    auto proj = Graphics::GetInstance()->GetProjectionMatrix();
-
     // 現在の攻撃行動を描画する
     m_currentAttackAction->Render();
-
-    // エフェクトを描画する
-    m_swordEffect->Render(context,view,proj);
 }
 
 
@@ -120,6 +97,9 @@ void PlayerAttack::AttackToWalk()
     }
 }
 
+//---------------------------------------------------------
+// 攻撃範囲を取得する
+//---------------------------------------------------------
 DirectX::BoundingSphere PlayerAttack::GetAttackRange()
 {
     DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // 当たり判定球の中心

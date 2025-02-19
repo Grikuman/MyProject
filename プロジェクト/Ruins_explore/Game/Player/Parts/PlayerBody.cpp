@@ -57,7 +57,6 @@ void PlayerBody::Render()
 	// コンテキスト・ステートを取得する
 	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 	auto states = Graphics::GetInstance()->GetCommonStates();
-
 	// ビュー・プロジェクションを取得する
 	DirectX::SimpleMath::Matrix view, proj;
 	view = Graphics::GetInstance()->GetViewMatrix();

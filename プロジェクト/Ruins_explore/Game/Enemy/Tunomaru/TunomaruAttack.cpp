@@ -64,7 +64,6 @@ void TunomaruAttack::Update()
 				m_tunomaru->GetPlayer()->SetInvincible(true);
 		}
 	}
-	
 	// “ËiŠÔ‚ªI—¹‚µ‚½ê‡
 	if (m_rushTime <= 0.f)
 	{
@@ -74,7 +73,6 @@ void TunomaruAttack::Update()
 
 	// ˆÚ“®—Ê‚ğ•â³‚·‚é
 	m_tunomaru->SetVelocity(m_tunomaru->GetVelocity() * -0.05f);
-
 	// ‰ñ“]‚ğ‰Á–¡‚µ‚ÄÀÛ‚ÉˆÚ“®‚·‚é
 	m_tunomaru->SetPotision(
 		m_tunomaru->GetPosition() + 

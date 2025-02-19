@@ -5,11 +5,20 @@
 #pragma once
 #include "pch.h"
 #include "Game/Effect/SwordEffect.h"
-#include <WICTextureLoader.h>
-#include "Mouse.h"
+#include "Framework/Graphics.h"
 
-SwordEffect::SwordEffect(ID3D11Device* device)
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
+SwordEffect::SwordEffect()
+    :
+    m_cnt{}
 {
+    // デバイスを取得する
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+    // コンテキストを取得する
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+
     // エフェクトの作成
     m_batchEffect = std::make_unique<DirectX::AlphaTestEffect>(device);
     m_batchEffect->SetAlphaFunction(D3D11_COMPARISON_EQUAL);
@@ -24,33 +33,46 @@ SwordEffect::SwordEffect(ID3D11Device* device)
         DirectX::VertexPositionTexture::InputElementCount,
         shaderByteCode, byteCodeLength, m_inputLayout.GetAddressOf()
     );
-
     // 共通ステートを作成する
-    m_commonStates = std::make_unique<DirectX::CommonStates>(device);
-
-    // テクスチャをロードする
-    for (int i = 0; i < 6; i++)
-    {
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_1.png", nullptr, m_texture[0].GetAddressOf());
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_2.png", nullptr, m_texture[1].GetAddressOf());
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_3.png", nullptr, m_texture[2].GetAddressOf());
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_4.png", nullptr, m_texture[3].GetAddressOf());
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_5.png", nullptr, m_texture[4].GetAddressOf());
-        DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_6.png", nullptr, m_texture[5].GetAddressOf());
-    }
-
-    m_position = DirectX::SimpleMath::Vector3::Zero; // デフォルト位置
-
-    m_cnt = 0;
+    m_commonStates = Graphics::GetInstance()->GetCommonStates();
+    // プリミティブバッチの作成
+    m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(context);
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 SwordEffect::~SwordEffect()
 {
 
 }
 
-void SwordEffect::Update()
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
+void SwordEffect::Initialize(const DirectX::SimpleMath::Vector3& position)
 {
+    // 位置を設定する
+    m_position = position;
+    // カウントをリセット
+    m_cnt = 0;
+    // デバイスを取得する
+    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+    // テクスチャをロードする
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_1.png", nullptr, m_texture[0].GetAddressOf());
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_2.png", nullptr, m_texture[1].GetAddressOf());
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_3.png", nullptr, m_texture[2].GetAddressOf());
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_4.png", nullptr, m_texture[3].GetAddressOf());
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_5.png", nullptr, m_texture[4].GetAddressOf());
+    DirectX::CreateWICTextureFromFile(device, L"Resources/Effect/SwordEffect_6.png", nullptr, m_texture[5].GetAddressOf());
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void SwordEffect::Update(const DirectX::SimpleMath::Vector3& position)
+{
+    m_position = position;
     m_cnt++;
     if (m_cnt >= 30)
     {
@@ -58,18 +80,13 @@ void SwordEffect::Update()
     }
 }
 
-void SwordEffect::SetPosition(const DirectX::SimpleMath::Vector3& position)
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void SwordEffect::Render()
 {
-    m_position = position;
-}
-
-void SwordEffect::Render(
-    ID3D11DeviceContext1* context,
-    DirectX::SimpleMath::Matrix view,
-    DirectX::SimpleMath::Matrix proj)
-{
-    // プリミティブバッチの作成
-    m_primitiveBatch = std::make_unique<DirectX::PrimitiveBatch<DirectX::VertexPositionTexture>>(context);
+    // コンテキストを取得する
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // 頂点情報（板ポリゴンの頂点）
     DirectX::VertexPositionTexture vertex[4] =
@@ -94,8 +111,8 @@ void SwordEffect::Render(
     m_batchEffect->SetAlphaFunction(D3D11_COMPARISON_NOT_EQUAL);
     m_batchEffect->SetReferenceAlpha(0);
     m_batchEffect->SetWorld(DirectX::SimpleMath::Matrix::Identity);
-    m_batchEffect->SetView(view);
-    m_batchEffect->SetProjection(proj);
+    m_batchEffect->SetView(Graphics::GetInstance()->GetViewMatrix());
+    m_batchEffect->SetProjection(Graphics::GetInstance()->GetProjectionMatrix());
     m_batchEffect->SetTexture(m_texture[(m_cnt / 5) % 6].Get());
     m_batchEffect->Apply(context);
     context->IASetInputLayout(m_inputLayout.Get());
@@ -106,6 +123,9 @@ void SwordEffect::Render(
     m_primitiveBatch->End();
 }
 
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
 void SwordEffect::Finalize()
 {
 

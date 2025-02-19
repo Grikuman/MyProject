@@ -35,7 +35,6 @@ private:
 	Tunomaru* m_tunomaru;
 	// ƒ‚ƒfƒ‹
 	DirectX::Model* m_model;
-
 	// ƒ_ƒEƒ“‚µ‚Ä‚¢‚éŽžŠÔ
 	float m_downTime;
 };

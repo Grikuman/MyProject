@@ -3,7 +3,6 @@
     　　　概要：プレイヤーの無敵エフェクトを管理するクラス
 */
 #pragma once
-class CommonResources;
 class Player;
 
 class InvincibleEffect
@@ -26,7 +25,6 @@ private:
     std::unique_ptr<DirectX::GeometricPrimitive> m_sphere;
     // ブレンドステート
     ID3D11BlendState* m_blendState;
-
     // アルファ値
     float m_alpha;
 };
