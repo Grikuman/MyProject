@@ -22,6 +22,8 @@ ResultScene::ResultScene()
 	m_isChangeScene{},
 	m_resultSceneUI{}
 {
+	// UIを作成する
+	m_resultSceneUI = std::make_unique<ResultSceneUI>(this);
 }
 
 //---------------------------------------------------------
@@ -39,9 +41,6 @@ void ResultScene::Initialize()
 {
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-
-	// UIを作成する
-	m_resultSceneUI = std::make_unique<ResultSceneUI>(this);
 	// UIを初期化する
 	m_resultSceneUI->Initialize();
 }

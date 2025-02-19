@@ -35,6 +35,5 @@ private:
 	// 現在のステージ
 	std::unique_ptr<IStage> m_currentStage;
 	// シーンチェンジフラグ
-	bool m_isChangeScene;
-	
+	bool m_isChangeScene;	
 };

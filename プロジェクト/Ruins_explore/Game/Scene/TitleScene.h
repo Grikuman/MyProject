@@ -40,7 +40,6 @@ public:
 private:
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
-
-	// タイトルUI管理クラス
+	// UIクラス
 	std::unique_ptr<TitleSceneUI> m_titleSceneUI;
 };

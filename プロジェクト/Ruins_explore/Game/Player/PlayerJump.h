@@ -43,7 +43,6 @@ private:
 private:
 	//プレイヤー
 	Player* m_player;
-	
 	// ジャンプ時間
 	float m_jumpTime; 
 };

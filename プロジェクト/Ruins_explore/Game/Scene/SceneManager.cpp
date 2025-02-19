@@ -27,6 +27,7 @@ SceneManager::SceneManager()
 	m_currentScene{},
 	m_fade{}
 {
+	// フェードを作成する
 	m_fade = std::make_unique<Fade>();
 }
 
@@ -45,7 +46,6 @@ void SceneManager::Initialize()
 {
 	// 初期シーンを設定
 	ChangeScene(IScene::SceneID::TITLE);
-
 	// フェードを初期化する
 	m_fade->Initialize();
 }
@@ -55,17 +55,14 @@ void SceneManager::Initialize()
 //---------------------------------------------------------
 void SceneManager::Update(float elapsedTime)
 {
+	// シーンを更新する
 	m_currentScene->Update(elapsedTime);
-
 	// フェードを更新する
 	m_fade->Update();
-
 	// 説明用変数：次のシーン
 	const IScene::SceneID nextSceneID = m_currentScene->GetNextSceneID();
-
 	// シーンを変更しないとき
 	if (nextSceneID == IScene::SceneID::NONE) return;
-
 	// シーンを変更するとき
 	ChangeScene(nextSceneID);
 }
@@ -78,8 +75,9 @@ void SceneManager::Render()
 	DirectX::SimpleMath::Matrix view = DirectX::SimpleMath::Matrix::Identity;
 	DirectX::SimpleMath::Matrix proj = DirectX::SimpleMath::Matrix::Identity;
 
+	// シーンを描画する
 	m_currentScene->Render();
-
+	// フェードを描画する
 	m_fade->Render(view, proj);
 }
 

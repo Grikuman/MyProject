@@ -25,6 +25,19 @@ Stage1_2::Stage1_2(std::string stageName)
 	m_timeUI{},
 	m_gameTime{}
 {
+	// プレイヤーを作成する
+	m_player = std::make_unique<Player>();
+	// 敵を作成する
+	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
+	// ステージのオブジェクトを作成する
+	m_stageObject = std::make_unique<StageObject>(m_player.get());
+	// 天球を作成
+	m_sky = std::make_unique <Sky>();
+	//TimeUIを作成
+	m_timeUI = std::make_unique<TimeUI>( 
+		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(), 
+		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext() 
+	); 
 }
 
 //---------------------------------------------------------
@@ -39,32 +52,21 @@ Stage1_2::~Stage1_2()
 //---------------------------------------------------------
 void Stage1_2::Initialize()
 {
-	// ステージクリアフラグを初期化する
-	m_isClearStage = false;
-
-	// プレイヤーを作成
-	m_player = std::make_unique<Player>();
+	// プレイヤーを初期化する
 	m_player->Initialize();
-	// 敵を作成する
-	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
+	// 敵を初期化する
 	m_stageEnemy->Initialize(m_stageName);
-	// ステージのオブジェクトを作成する
-	m_stageObject = std::make_unique<StageObject>(m_player.get());
+	// ステージのオブジェクトを初期化する
 	m_stageObject->Initialize(m_stageName);
-	// 天球を作成
-	m_sky = std::make_unique <Sky>();
+	// 天球を初期化する
 	m_sky->Initialize();
-	//TimeUIを作成
-	m_timeUI = std::make_unique<TimeUI>(
-		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
-		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
-		);
-	// TimeUIを初期化する
+	// 時間UIを初期化する
 	m_timeUI->Initialize();
 
+	// ステージクリアフラグを初期化する
+	m_isClearStage = false;
 	// ゲーム時間を設定
 	m_gameTime = MAX_GAMETIME;
-
 	// 当たり判定クラスにプレイヤーを設定する
 	Collision::GetInstance()->SetPlayer(m_player.get());
 }

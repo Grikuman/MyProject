@@ -19,6 +19,8 @@ MapSelectScene::MapSelectScene()
 	m_isChangeScene{},
 	m_mapSelectUI{}
 {
+	// UIを作成する
+	m_mapSelectUI = std::make_unique<MapSelectUI>(this);
 }
 
 //---------------------------------------------------------
@@ -35,10 +37,7 @@ void MapSelectScene::Initialize()
 {
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-
-	// タイトルUI管理クラスを作成する
-	m_mapSelectUI = std::make_unique<MapSelectUI>(this);
-	// 初期化する
+	// UIを初期化する
 	m_mapSelectUI->Initialize();
 }
 
@@ -49,7 +48,7 @@ void MapSelectScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 
-	// タイトルUI管理クラスを更新する
+	// UIを更新する
 	m_mapSelectUI->Update();
 }
 
@@ -58,6 +57,7 @@ void MapSelectScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void MapSelectScene::Render()
 {
+	// UIを描画する
 	m_mapSelectUI->Render();
 }
 
@@ -66,6 +66,7 @@ void MapSelectScene::Render()
 //---------------------------------------------------------
 void MapSelectScene::Finalize()
 {
+	// UIの終了処理
 	m_mapSelectUI->Finalize();
 }
 
@@ -79,7 +80,6 @@ IScene::SceneID MapSelectScene::GetNextSceneID() const
 	{
 		return IScene::SceneID::PLAY;
 	}
-
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
 }

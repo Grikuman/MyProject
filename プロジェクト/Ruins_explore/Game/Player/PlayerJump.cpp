@@ -46,7 +46,6 @@ void PlayerJump::Update(const float& elapsedTime)
 
     // ダッシュする
     Jump();
-
     // ダッシュから歩行へ
     JumpToWalk(); 
 }
@@ -70,14 +69,14 @@ void PlayerJump::Finalize()
 }
 
 //---------------------------------------------------------
-// ダッシュ処理
+// ジャンプ処理
 //---------------------------------------------------------
 void PlayerJump::Jump()
 {
     using namespace DirectX::SimpleMath;
-    
+    // プレイヤーの位置を取得する
     Vector3 playerPos = m_player->GetPosition();
-    
+    // ジャンプ
     m_player->SetPosition(Vector3(playerPos.x, playerPos.y + m_jumpTime * 0.1f, playerPos.z));
 }
 

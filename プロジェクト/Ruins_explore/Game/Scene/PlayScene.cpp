@@ -30,10 +30,8 @@ void PlayScene::Initialize()
 {
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-
 	// 選択したステージ
 	StageID selectStage = StageID::Stage1_1;
-
 	// 選択したステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);
 	m_currentStage->Initialize();
@@ -61,6 +59,7 @@ void PlayScene::Update(float elapsedTime)
 //---------------------------------------------------------
 void PlayScene::Render()
 {
+	// ステージを描画する
 	m_currentStage->Render();
 }
 
@@ -69,6 +68,7 @@ void PlayScene::Render()
 //---------------------------------------------------------
 void PlayScene::Finalize()
 {
+	// ステージの終了処理
 	m_currentStage->Finalize();
 }
 
@@ -79,7 +79,6 @@ void PlayScene::TransitionToNextStage()
 {
 	// 現在のステージの終了処理
 	m_currentStage->Finalize();
-
 	// 次のステージIDを取得
 	StageID nextStageID = m_currentStage->GetNextStageID();
 
@@ -89,7 +88,6 @@ void PlayScene::TransitionToNextStage()
 		m_currentStage = StageFactory::CreateStage(nextStageID);
 		m_currentStage->Initialize();
 	}
-
 	else
 	{
 		// 全ステージ終了後、シーン変更フラグを設定

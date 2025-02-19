@@ -36,9 +36,8 @@ StageObject::~StageObject()
 void StageObject::Initialize(const std::string& stageName)
 {
     using json = nlohmann::json;
-
+    // 既存データをクリアする
     m_models.clear();
-
     // JSONデータを読み込む
     std::ifstream file("Resources/StageObjectData/StageObjectData.json");
 
@@ -47,7 +46,6 @@ void StageObject::Initialize(const std::string& stageName)
     {
         return;
     }
-
     json stageData;
     file >> stageData;
 

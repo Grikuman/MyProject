@@ -17,6 +17,8 @@ TitleScene::TitleScene()
 	m_isChangeScene{},
 	m_titleSceneUI{}
 {
+	// タイトルUI管理クラスを作成する
+	m_titleSceneUI = std::make_unique<TitleSceneUI>(this);
 }
 
 //---------------------------------------------------------
@@ -33,9 +35,6 @@ void TitleScene::Initialize()
 {
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-
-	// タイトルUI管理クラスを作成する
-	m_titleSceneUI = std::make_unique<TitleSceneUI>(this);
 	// 初期化する
 	m_titleSceneUI->Initialize();
 }
