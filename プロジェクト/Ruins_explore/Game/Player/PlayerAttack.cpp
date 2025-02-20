@@ -18,7 +18,6 @@ PlayerAttack::PlayerAttack(Player* player)
     m_currentAttackAction{},
     m_normalPunch{},
     m_chargePunch{},
-	m_model{},
     m_cnt{}
 {
     // 通常パンチを作成する
@@ -40,8 +39,6 @@ PlayerAttack::~PlayerAttack()
 //---------------------------------------------------------
 void PlayerAttack::Initialize()
 {
-    // モデルを取得する
-    m_model = Resources::GetInstance()->GetModel(L"Player");
     // 通常パンチを作成する
     m_normalPunch->Initialize();
     // 通常パンチを作成する

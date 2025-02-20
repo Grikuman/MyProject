@@ -10,6 +10,9 @@
 #include "Game/UI/TimeUI.h"
 #include "Game/Stage/StageEnemy.h"
 #include "Game/Stage/StageObject.h"
+#include "Game/Stage/StageDecoration.h"
+
+#include "Game/Effect/SmokeEffect.h"
 
 class Stage1_1 final : public IStage
 {
@@ -42,6 +45,8 @@ private:
 	std::unique_ptr<StageEnemy> m_stageEnemy;
 	// ステージのオブジェクト
 	std::unique_ptr<StageObject> m_stageObject;
+	// ステージの装飾オブジェクト
+	std::unique_ptr<StageDecoration> m_stageDecoration;
 	// ステージの名前
 	std::string m_stageName;
 	// プレイヤー
@@ -50,8 +55,6 @@ private:
 	std::unique_ptr<Sky> m_sky;
 	//TextUI
 	std::unique_ptr<TimeUI> m_timeUI;
-	// プレイシーンUI
-
 	// ステージクリアフラグ
 	bool m_isClearStage;
 	// ゲーム時間

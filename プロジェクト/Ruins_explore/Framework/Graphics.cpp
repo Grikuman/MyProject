@@ -81,7 +81,7 @@ void Graphics::Initialize()
 // 更新する
 void Graphics::Update()
 {
-	
+
 }
 
 // 描画プリミティブを開始する

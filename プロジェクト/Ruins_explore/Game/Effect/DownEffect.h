@@ -28,7 +28,7 @@ private:
 
 private:
 	// 星のモデル
-	DirectX::Model* m_starModel;
+	std::unique_ptr<DirectX::Model> m_starModel;
 	// エフェクトの中心位置
 	DirectX::SimpleMath::Vector3 m_position;
 	// 回転

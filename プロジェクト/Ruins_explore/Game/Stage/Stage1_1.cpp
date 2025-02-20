@@ -31,6 +31,8 @@ Stage1_1::Stage1_1(std::string stageName)
 	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
 	// ステージのオブジェクトを作成する
 	m_stageObject = std::make_unique<StageObject>(m_player.get());
+	// ステージの装飾を作成する
+	m_stageDecoration = std::make_unique<StageDecoration>();
 	// 天球を作成
 	m_sky = std::make_unique <Sky>();
 	//TimeUIを作成
@@ -58,6 +60,8 @@ void Stage1_1::Initialize()
 	m_stageEnemy->Initialize(m_stageName);
 	// ステージのオブジェクトを初期化する
 	m_stageObject->Initialize(m_stageName);
+	// ステージの装飾を初期化する
+	m_stageDecoration->Initialize(m_stageName);
 	// 天球を初期化する
 	m_sky->Initialize();
 	// 時間UIを初期化する
@@ -91,6 +95,8 @@ void Stage1_1::Update(float elapsedTime)
 	m_timeUI->Update(m_gameTime);
 	// ステージのオブジェクトを更新する
 	m_stageObject->Update();
+	// ステージの装飾を更新する
+	m_stageDecoration->Update();
 
 
 	// 敵が全員死んだらシーン遷移を行う
@@ -133,10 +139,12 @@ void Stage1_1::Render()
 {
 	// 天球を描画
 	m_sky->Render();
-	// 敵を描画する
-	m_stageEnemy->Render();
 	// ステージのオブジェクトを描画する
 	m_stageObject->Render();
+	// ステージの装飾を描画する
+	m_stageDecoration->Render();
+	// 敵を描画する
+	m_stageEnemy->Render();
 	// プレイヤーを描画
 	m_player->Render();
 	//TextUIを描画

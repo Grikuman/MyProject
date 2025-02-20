@@ -34,7 +34,7 @@ private:
 
 private:
 	// モデル
-	DirectX::Model* m_model;
+	std::unique_ptr<DirectX::Model> m_model;
 	// プレイヤー
 	Player* m_player;
 	// 現在の手の位置

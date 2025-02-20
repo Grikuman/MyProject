@@ -16,7 +16,6 @@
 PlayerWalk::PlayerWalk(Player* player)
 	:
     m_player(player),
-	m_model{},
     m_keyHoldTime{}
 {
 }
@@ -34,8 +33,7 @@ PlayerWalk::~PlayerWalk()
 //---------------------------------------------------------
 void PlayerWalk::Initialize()
 {
-    // ƒ‚ƒfƒ‹‚ðŽæ“¾‚·‚é
-    m_model = Resources::GetInstance()->GetModel(L"Player");
+    
 }
 
 //---------------------------------------------------------

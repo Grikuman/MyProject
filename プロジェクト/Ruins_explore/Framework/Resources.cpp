@@ -46,14 +46,6 @@ void Resources::LoadResources()
 	//============
 	// * モデル *
 	//============
-	// プレイヤー
-	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Player.cmo", *fx);
-	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerBody = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerBody.cmo", *fx);
-	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerHand = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerHand.cmo", *fx);
-	// プレイヤー
-	std::unique_ptr<DirectX::Model> PlayerFoot = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PlayerFoot.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// トゲボス
@@ -66,17 +58,19 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Skydome = DirectX::Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
 	// エフェクト【星】
 	std::unique_ptr<DirectX::Model> Star = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Star.cmo", *fx);
+	// 壁【レンガ】
+	std::unique_ptr<DirectX::Model> Fence_Metal = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Fence_Metal.cmo", *fx);
+	// 壁【石】
+	std::unique_ptr<DirectX::Model> Wall_Stone = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Wall_Stone.cmo", *fx);
 	// モデルを登録する
-	m_models.emplace(L"Player", std::move(Player));
-	m_models.emplace(L"PlayerBody", std::move(PlayerBody));
-	m_models.emplace(L"PlayerHand", std::move(PlayerHand));
-	m_models.emplace(L"PlayerFoot", std::move(PlayerFoot));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
 	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
 	m_models.emplace(L"Tree", std::move(Tree));
 	m_models.emplace(L"Skydome", std::move(Skydome));
 	m_models.emplace(L"Star", std::move(Star));
+	m_models.emplace(L"Fence_Metal", std::move(Fence_Metal));
+	m_models.emplace(L"Wall_Stone", std::move(Wall_Stone));
 
 	//================
 	// * テクスチャ *
@@ -151,6 +145,16 @@ DirectX::Model* Resources::GetModel(const wchar_t* name)
 	return it->second.get();
 }
 
+// モデルをファイルから読み込む
+std::unique_ptr<DirectX::Model> Resources::GetModelFromFile(const wchar_t* path)
+{
+	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
+	DirectX::EffectFactory* fx = Graphics::GetInstance()->GetFX();
+	fx->SetDirectory(L"Resources/Models");
+
+	return DirectX::Model::CreateFromCMO(device, path, *fx);
+}
+
 // モデルを取得する
 DirectX::Model* Resources::GetModel(const std::string& name)
 {
@@ -169,6 +173,14 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	if (name == "NeedleBoss")
 	{
 		return GetModel(L"NeedleBoss");
+	}
+	if (name == "Fence_Metal")
+	{
+		return GetModel(L"Fence_Metal");
+	}
+	if (name == "Wall_Stone")
+	{
+		return GetModel(L"Wall_Stone");
 	}
 	return 0;
 }

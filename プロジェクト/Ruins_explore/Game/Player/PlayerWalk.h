@@ -37,8 +37,6 @@ private:
 private:
 	//プレイヤー
 	Player* m_player;
-	// モデル
-	DirectX::Model* m_model;
 	// キーを押している時間
 	float m_keyHoldTime;
 };

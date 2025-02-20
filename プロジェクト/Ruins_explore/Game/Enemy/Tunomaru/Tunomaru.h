@@ -10,6 +10,7 @@
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
+#include "Game/Effect/SmokeEffect.h"
 
 #include "TunomaruSearch.h"
 #include "TunomaruAttack.h"
@@ -103,6 +104,8 @@ private:
 private:
     //体力表示クラス
     std::unique_ptr<EnemyHPUI> m_hpUI;
+    // 煙エフェクト
+    std::unique_ptr<SmokeEffect> m_smokeEffect;
     // プレイヤー
     Player* m_player;
     // ステート
@@ -127,7 +130,6 @@ private:
     DirectX::SimpleMath::Vector3 m_velocity;
     // 角度
     DirectX::SimpleMath::Quaternion m_angle;
-
     // 体力
     float m_hp;
     // ダメージを受けているか

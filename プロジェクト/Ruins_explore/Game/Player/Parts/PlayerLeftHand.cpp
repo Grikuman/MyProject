@@ -35,7 +35,7 @@ PlayerLeftHand::~PlayerLeftHand()
 //---------------------------------------------------------
 void PlayerLeftHand::Initialize()
 {
-	m_model = Resources::GetInstance()->GetModel(L"PlayerHand");
+	m_model = Resources::GetInstance()->GetModelFromFile(L"Resources/Models/PlayerHand.cmo");
 }
 
 //---------------------------------------------------------

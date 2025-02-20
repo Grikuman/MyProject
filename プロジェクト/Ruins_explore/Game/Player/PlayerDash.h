@@ -43,9 +43,6 @@ private:
 private:
 	//プレイヤー
 	Player* m_player;
-	// モデル
-	DirectX::Model* m_model;
-	
 	// ダッシュ時間
 	float m_dashTime; 
 };

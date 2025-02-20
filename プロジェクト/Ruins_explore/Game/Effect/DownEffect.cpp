@@ -37,8 +37,8 @@ void DownEffect::Initialize(const DirectX::SimpleMath::Vector3& position)
 {
     // ˆÊ’u‚ðÝ’è‚·‚é
     m_position = position;
-    // ƒ‚ƒfƒ‹‚ðŽæ“¾‚·‚é
-	m_starModel = Resources::GetInstance()->GetModel(L"Star");
+    // ƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Þ
+	m_starModel = Resources::GetInstance()->GetModelFromFile(L"Resources/Models/Star.cmo");
 }
 
 //---------------------------------------------------------

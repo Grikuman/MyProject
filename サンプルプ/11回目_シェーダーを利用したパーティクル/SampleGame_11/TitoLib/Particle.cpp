@@ -73,10 +73,8 @@ void tito::Particle::Create(DX::DeviceResources* pDR)
 	CreateShader();
 
 	//	画像の読み込み（２枚ともデフォルトは読み込み失敗でnullptr)
-	LoadTexture(L"Resources/Textures/ヒカキン.jpg");
-	LoadTexture(L"Resources/Textures/ヒカキン.jpg");
-	//LoadTexture(L"Resources/Textures/image01.png");
-	//LoadTexture(L"Resources/Textures/grass.png");
+	LoadTexture(L"Resources/Textures/Smoke.png");
+	LoadTexture(L"Resources/Textures/Smoke.png");
 
 	//	プリミティブバッチの作成
 	m_batch = std::make_unique<PrimitiveBatch<VertexPositionColorTexture>>(pDR->GetD3DDeviceContext());
@@ -107,11 +105,12 @@ void tito::Particle::Update(DX::StepTimer timer)
 		float rand = static_cast<float>(dist(engine));
 		ParticleUtility pU(
 			3.0f,																			//	生存時間(s)
-			SimpleMath::Vector3(range * cosf(rand), 0.0f, range * sinf(rand)),				//	基準座標
+			//SimpleMath::Vector3(range * cosf(rand), 0.0f, range * sinf(rand)),				//	基準座標
+			SimpleMath::Vector3(0,0,0),
 			SimpleMath::Vector3(0.f, 0.f, 0.f),												//	速度
 			SimpleMath::Vector3::Zero,														//	加速度
 			SimpleMath::Vector3::One, SimpleMath::Vector3::Zero,							//	初期スケール、最終スケール
-			SimpleMath::Color(1.f, 1.f, 1.f, 1.f), SimpleMath::Color(0.f, 0.f, 1.f, 1.f)	//	初期カラー、最終カラー
+			SimpleMath::Color(1.f, 1.f, 1.f, 1.f), SimpleMath::Color(0.f, 0.f, 0.f, 0.f)	//	初期カラー、最終カラー
 		);
 
 		m_particleUtility.push_back(pU);

@@ -20,6 +20,7 @@ public:
 	static Resources* const GetInstance();
 	// モデルを取得する
 	DirectX::Model* GetModel(const wchar_t* name);
+	std::unique_ptr<DirectX::Model> GetModelFromFile(const wchar_t* name);
 	DirectX::Model* GetModel(const std::string& name);
 	// テクスチャを取得する
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> GetTexture(const wchar_t* name);

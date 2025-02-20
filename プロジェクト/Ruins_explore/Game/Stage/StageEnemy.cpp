@@ -36,7 +36,7 @@ void StageEnemy::Initialize(const std::string& stageName)
     // 既存の敵を削除
     m_enemies.clear();
     // JSONデータの読み込み
-    std::ifstream file("Resources/EnemyData/EnemyData1.json");
+    std::ifstream file("Resources/StageEnemyData/EnemyData1.json");
 
     // 読み込めない場合は処理をスキップ
     if (!file.is_open()) 

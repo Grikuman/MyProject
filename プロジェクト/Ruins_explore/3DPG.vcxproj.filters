@@ -71,9 +71,6 @@
     <Filter Include="Game\StageObject">
       <UniqueIdentifier>{10485ce9-ff2e-42f6-8fad-86d8f9ac0d59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources\EnemyData">
-      <UniqueIdentifier>{1bfaeb87-47ad-441c-af8f-4356592c19d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Factory">
       <UniqueIdentifier>{56c16771-9f85-45ee-9635-7c4eb2c112be}</UniqueIdentifier>
     </Filter>
@@ -100,6 +97,12 @@
     </Filter>
     <Filter Include="Game\Enemy\Tunomaru">
       <UniqueIdentifier>{95a11cc2-dba0-4287-b3b2-db47197fbdaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\StageEnemyData">
+      <UniqueIdentifier>{1bfaeb87-47ad-441c-af8f-4356592c19d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\StageDecorationData">
+      <UniqueIdentifier>{aa8ddf9d-c12d-4267-aeee-b542f66cd2ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +306,15 @@
     <ClInclude Include="Game\Effect\DownEffect.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Effect\SmokeEffect.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Effect\SmokeEffectUtility.h">
+      <Filter>Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage\StageDecoration.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -467,6 +479,15 @@
     <ClCompile Include="Game\Effect\DownEffect.cpp">
       <Filter>Game\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Effect\SmokeEffect.cpp">
+      <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Effect\SmokeEffectUtility.cpp">
+      <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\StageDecoration.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -486,9 +507,6 @@
     <None Include="Resources\Shaders\UI.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="Resources\EnemyData\EnemyData1.json">
-      <Filter>Resources\EnemyData</Filter>
-    </None>
     <None Include="Resources\StageObjectData\StageObjectData.json">
       <Filter>Resources\StageObjectData</Filter>
     </None>
@@ -497,6 +515,15 @@
     </None>
     <None Include="Resources\Shaders\Fade.hlsli">
       <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\SmokeEffect.hlsli">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="Resources\StageDecorationData\StageDecorationData.json">
+      <Filter>Resources\StageDecorationData</Filter>
+    </None>
+    <None Include="Resources\StageEnemyData\EnemyData1.json">
+      <Filter>Resources\StageEnemyData</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -525,6 +552,15 @@
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\FadeVS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SmokeEffectGS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SmokeEffectPS.hlsl">
+      <Filter>Resources\Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SmokeEffectVS.hlsl">
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
   </ItemGroup>

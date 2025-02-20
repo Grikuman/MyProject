@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
+#include "Game/Camera/TPS_Camera.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
@@ -30,6 +31,10 @@ Tunomaru::Tunomaru(Player* player)
     m_isAlive(true)
 {
     m_hp = MAXHP;
+
+    // 煙エフェクトを作成する
+    m_smokeEffect = std::make_unique<SmokeEffect>();
+    m_smokeEffect->Initialize();
 }
 
 //---------------------------------------------------------
@@ -107,10 +112,10 @@ void Tunomaru::Update()
 
     //生存しているか確認する
     CheckAlive(); 
-
+    // 煙エフェクトを更新する
+    m_smokeEffect->Update(m_position + DirectX::SimpleMath::Vector3(0.0f,-0.5f,0.0f));
     //現在のステートを更新する
     m_currentState->Update();
-
     // HPのUIを更新する
     m_hpUI->Update(
         DirectX::SimpleMath::Vector3(m_position.x, m_position.y + 1.0f, m_position.z),
@@ -118,7 +123,7 @@ void Tunomaru::Update()
         );
 
     // プレイヤーとの当たり判定
-    Collision::GetInstance()->PlayerToNormalEnemy(this); 
+    Collision::GetInstance()->PlayerToNormalEnemy(this);
 }
 
 //---------------------------------------------------------
@@ -163,6 +168,9 @@ void Tunomaru::Render()
             Matrix::CreateTranslation(m_position); 
     }
 
+    // 煙エフェクト
+    m_smokeEffect->CreateBillboard(m_player->GetPosition(), m_player->GetCamera()->GetEyePosition(), m_player->GetCamera()->GetUpVector());
+    m_smokeEffect->Render(view,proj);
     // モデル表示
     m_model->Draw(context, *states, worldMatrix, view, proj); // モデルを描画する
     // 各ステートの描画をする

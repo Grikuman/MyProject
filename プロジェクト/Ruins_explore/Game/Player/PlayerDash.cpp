@@ -16,7 +16,6 @@
 PlayerDash::PlayerDash(Player* player)
 	:
     m_player(player),
-	m_model{},
     m_dashTime{}
 {
 }
@@ -34,8 +33,6 @@ PlayerDash::~PlayerDash()
 //---------------------------------------------------------
 void PlayerDash::Initialize()
 {
-    // モデルを取得する
-    m_model = Resources::GetInstance()->GetModel(L"Player");
     // ダッシュ時間を設定
     m_dashTime = DASHTIME;
 }

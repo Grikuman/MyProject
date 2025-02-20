@@ -35,7 +35,7 @@ PlayerBody::~PlayerBody()
 //---------------------------------------------------------
 void PlayerBody::Initialize()
 {
-	m_model = Resources::GetInstance()->GetModel(L"PlayerBody");
+	m_model = Resources::GetInstance()->GetModelFromFile(L"Resources/Models/PlayerBody.cmo");
 
 }
 

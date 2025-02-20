@@ -59,8 +59,6 @@ private:
 	std::unique_ptr<PlayerNormalPunch> m_normalPunch;
 	// 溜めパンチ
 	std::unique_ptr<PlayerChargePunch> m_chargePunch;
-	// モデル
-	DirectX::Model* m_model;
 	// カウント
 	int m_cnt;
 };
