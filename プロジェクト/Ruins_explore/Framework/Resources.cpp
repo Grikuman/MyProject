@@ -46,31 +46,25 @@ void Resources::LoadResources()
 	//============
 	// * モデル *
 	//============
+	// // 岩のブロック
+	std::unique_ptr<DirectX::Model> CollisionBlock = DirectX::Model::CreateFromCMO(device, L"Resources/Models/CollisionBlock.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// トゲボス
 	std::unique_ptr<DirectX::Model> NeedleBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NeedleBoss.cmo", *fx);
-	// 岩のブロック
-	std::unique_ptr<DirectX::Model> SoilBlock  = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Soil_Block.cmo", *fx);
-	// 木
-	std::unique_ptr<DirectX::Model> Tree = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tree.cmo", *fx);
 	// スカイドーム
 	std::unique_ptr<DirectX::Model> Skydome = DirectX::Model::CreateFromCMO(device, L"Resources/Models/skydome_sky.cmo", *fx);
 	// エフェクト【星】
 	std::unique_ptr<DirectX::Model> Star = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Star.cmo", *fx);
-	// 壁【レンガ】
-	std::unique_ptr<DirectX::Model> Fence_Metal = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Fence_Metal.cmo", *fx);
-	// 壁【石】
-	std::unique_ptr<DirectX::Model> Wall_Stone = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Wall_Stone.cmo", *fx);
+	// ステージ1_1【装飾】
+	std::unique_ptr<DirectX::Model> Stage1_1 = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Stage1_1.cmo", *fx);
 	// モデルを登録する
+	m_models.emplace(L"CollisionBlock", std::move(CollisionBlock));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
-	m_models.emplace(L"SoilBlock", std::move(SoilBlock));
-	m_models.emplace(L"Tree", std::move(Tree));
 	m_models.emplace(L"Skydome", std::move(Skydome));
 	m_models.emplace(L"Star", std::move(Star));
-	m_models.emplace(L"Fence_Metal", std::move(Fence_Metal));
-	m_models.emplace(L"Wall_Stone", std::move(Wall_Stone));
+	m_models.emplace(L"Stage1_1", std::move(Stage1_1));
 
 	//================
 	// * テクスチャ *
@@ -158,29 +152,21 @@ std::unique_ptr<DirectX::Model> Resources::GetModelFromFile(const wchar_t* path)
 // モデルを取得する
 DirectX::Model* Resources::GetModel(const std::string& name)
 {
+	if (name == "CollisionBlock")
+	{
+		return GetModel(L"CollisionBlock");
+	}
 	if (name == "Tunomaru")
 	{
 		return GetModel(L"Tunomaru");
-	}
-	if (name == "Tree")
-	{
-		return GetModel(L"Tree");
-	}
-	if (name == "SoilBlock")
-	{
-		return GetModel(L"SoilBlock");
 	}
 	if (name == "NeedleBoss")
 	{
 		return GetModel(L"NeedleBoss");
 	}
-	if (name == "Fence_Metal")
+	if (name == "Stage1_1")
 	{
-		return GetModel(L"Fence_Metal");
-	}
-	if (name == "Wall_Stone")
-	{
-		return GetModel(L"Wall_Stone");
+		return GetModel(L"Stage1_1");
 	}
 	return 0;
 }

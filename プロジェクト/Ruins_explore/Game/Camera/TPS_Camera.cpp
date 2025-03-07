@@ -64,18 +64,16 @@ void NRLib::TPS_Camera::CalculateProjectionMatrix()
 		FOV, aspectRatio, NEAR_PLANE, FAR_PLANE);
 }
 
-//-------------------------------------------------------------------
-// カメラ座標を計算する
-//-------------------------------------------------------------------
 void NRLib::TPS_Camera::CalculateEyePosition(const DirectX::SimpleMath::Matrix& rotate)
 {
 	// カメラのデフォルトの座標ベクトル
-	DirectX::SimpleMath::Vector3 eye{ 0.0f,CAMERA_HIGHT,CAMERA_DISTANCE };
-
+	DirectX::SimpleMath::Vector3 eye{ 0.0f, CAMERA_HIGHT, CAMERA_DISTANCE };
 	// ターゲットの向いている方向に追従する
 	eye = DirectX::SimpleMath::Vector3::Transform(eye, rotate);
-
 	// カメラ座標を計算する
-	//m_eye = m_target + eye;	// バネなし
-	m_eye += (m_target + eye - m_eye) * 0.05f;	// バネ付き
+	m_eye += (m_target + eye - m_eye) * 0.05f;
+	// x, z 座標を -20 から 20 の範囲に制限
+	m_eye.x = std::max(-30.0f, std::min(m_eye.x, 30.0f));
+	m_eye.z = std::max(-30.0f, std::min(m_eye.z, 30.0f));
 }
+

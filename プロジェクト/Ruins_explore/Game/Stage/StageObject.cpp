@@ -125,34 +125,34 @@ void StageObject::Update()
 //---------------------------------------------------------
 void StageObject::Render()
 {
-    using namespace DirectX;
-    using namespace DirectX::SimpleMath;
+    //using namespace DirectX;
+    //using namespace DirectX::SimpleMath;
 
-    // コンテキストと共通ステートを取得
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
+    //// コンテキストと共通ステートを取得
+    //auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+    //auto states = Graphics::GetInstance()->GetCommonStates();
 
-    // ビュー・プロジェクション行列を取得
-    Matrix view = Graphics::GetInstance()->GetViewMatrix();
-    Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();
+    //// ビュー・プロジェクション行列を取得
+    //Matrix view = Graphics::GetInstance()->GetViewMatrix();
+    //Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();
 
-    // 各モデルを描画
-    for (const auto& model : m_models)
-    {
-        Matrix worldMatrix =
-            // スケール行列
-            Matrix::CreateScale(model.scale) *
-            // 回転行列
-            Matrix::CreateFromYawPitchRoll(
-                model.rotation.y,
-                model.rotation.x,
-                model.rotation.z) *
-            // 移動行列
-            Matrix::CreateTranslation(model.position);
+    //// 各モデルを描画
+    //for (const auto& model : m_models)
+    //{
+    //    Matrix worldMatrix =
+    //        // スケール行列
+    //        Matrix::CreateScale(model.scale) *
+    //        // 回転行列
+    //        Matrix::CreateFromYawPitchRoll(
+    //            model.rotation.y,
+    //            model.rotation.x,
+    //            model.rotation.z) *
+    //        // 移動行列
+    //        Matrix::CreateTranslation(model.position);
 
-        // モデル描画処理
-        model.m_model->Draw(context, *states, worldMatrix, view, proj);
-    }
+    //    // モデル描画処理
+    //    model.m_model->Draw(context, *states, worldMatrix, view, proj);
+    //}
 }
 
 //---------------------------------------------------------

@@ -1,21 +1,39 @@
 {
-    "Stage1_1": [
-      {
-        "name": "SoilBlock",
-        "position": [ 0.0, -1.0, 0.0 ],
-        "rotation": [ 0.0, 0.0, 0.0 ],
-        "scale": [ 22.0, 1.0, 22.0 ]
-      },
-      {
-        "name": "SoilBlock",
-        "position": [ 0.0, 1.0, -20.0 ],
-        "rotation": [ 0.0, 0.0, 0.0 ],
-        "scale": [ 22.0, 1.0, 1.0 ]
-      }
-    ],
+  "Stage1_1": [
+    {
+      "name": "CollisionBlock",
+      "position": [ 0.0, -1.0, 0.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 30.0, 1.0, 30.0 ]
+    },
+    {
+      "name": "CollisionBlock",
+      "position": [ 0.0, 1.0, -31.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 30.0, 1.0, 1.0 ]
+    },
+    {
+      "name": "CollisionBlock",
+      "position": [ 0.0, 1.0, 31.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 30.0, 1.0, 1.0 ]
+    },
+    {
+      "name": "CollisionBlock",
+      "position": [ -31.0, 1.0, 0.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 30.0 ]
+    },
+    {
+      "name": "CollisionBlock",
+      "position": [ 31.0, 1.0, 0.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 30.0 ]
+    }
+  ],
     "Stage1_2": [
         {
-            "name": "SoilBlock",
+            "name": "CollisionBlock",
             "position": [ 0.0, -1.0, 0.0 ],
             "rotation": [ 0.0, 0.0, 0.0 ],
             "scale": [ 30.0, 1.0, 30.0 ]
