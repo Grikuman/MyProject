@@ -60,7 +60,7 @@ void Sky::Initialize()
 void Sky::Update()
 {
 	// ‰ñ“]‚³‚¹‚é
-	m_rotateCnt += ROTATE_SPEED;
+	//m_rotateCnt += ROTATE_SPEED;
 }
 
 //---------------------------------------------------------

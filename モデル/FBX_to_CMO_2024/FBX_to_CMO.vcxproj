@@ -212,7 +212,7 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\Stage1_1.fbx" />
+    <MeshContentTask Include="Assets\FBX\Skydome_Cave.fbx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
