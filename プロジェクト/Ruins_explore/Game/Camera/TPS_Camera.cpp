@@ -15,7 +15,11 @@ NRLib::TPS_Camera::TPS_Camera(const DirectX::SimpleMath::Vector3& target)
 	m_projection{},
 	m_eye{},
 	m_target{ target },
-	m_up{ DirectX::SimpleMath::Vector3::UnitY }
+	m_up{ DirectX::SimpleMath::Vector3::UnitY },
+	m_isShaking{false},
+	m_shakeIntensity{},
+	m_shakeDuration{},
+	m_shakeOffset{}
 {
 	CalculateEyePosition(DirectX::SimpleMath::Matrix::Identity);
 	CalculateViewMatrix();
@@ -36,6 +40,24 @@ void NRLib::TPS_Camera::Update(
 
 	// カメラ座標を計算する
 	CalculateEyePosition(rotate);
+
+	// カメラ揺れの適用
+	if (m_isShaking)
+	{
+		// ランダムな揺れを加える
+		m_shakeOffset.x = ((rand() % 100) / 50.0f - 1.0f) * m_shakeIntensity;
+		m_shakeOffset.y = ((rand() % 100) / 50.0f - 1.0f) * m_shakeIntensity;
+		m_shakeOffset.z = ((rand() % 100) / 50.0f - 1.0f) * m_shakeIntensity;
+
+		// 揺れが終了したらフラグをリセット
+		m_shakeDuration -= 0.016f; // フレームごとに減らす（約60FPS）
+		if (m_shakeDuration <= 0.0f)
+		{
+			m_isShaking = false;
+			m_shakeOffset = DirectX::SimpleMath::Vector3::Zero;
+		}
+	}
+
 	// ビュー行列を更新する
 	CalculateViewMatrix();
 }
@@ -45,7 +67,11 @@ void NRLib::TPS_Camera::Update(
 //-------------------------------------------------------------------
 void NRLib::TPS_Camera::CalculateViewMatrix()
 {
-	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(m_eye, m_target, m_up);
+	// カメラ位置に揺れを加える
+	DirectX::SimpleMath::Vector3 shakePosition = m_eye + m_shakeOffset;
+
+	// ビュー行列を更新
+	m_view = DirectX::SimpleMath::Matrix::CreateLookAt(shakePosition, m_target, m_up);
 }
 
 //-------------------------------------------------------------------
@@ -76,4 +102,14 @@ void NRLib::TPS_Camera::CalculateEyePosition(const DirectX::SimpleMath::Matrix& 
 	m_eye.x = std::max(-30.0f, std::min(m_eye.x, 30.0f));
 	m_eye.z = std::max(-30.0f, std::min(m_eye.z, 30.0f));
 }
+
+// ダメージを受けたときのカメラ揺れ処理を開始
+void NRLib::TPS_Camera::StartShake(float intensity, float duration)
+{
+	m_isShaking = true;
+	m_shakeIntensity = intensity;
+	m_shakeDuration = duration;
+}
+
+
 

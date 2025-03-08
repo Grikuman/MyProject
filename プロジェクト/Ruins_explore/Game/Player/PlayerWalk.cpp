@@ -9,6 +9,7 @@
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
+#include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
 // コンストラクタ

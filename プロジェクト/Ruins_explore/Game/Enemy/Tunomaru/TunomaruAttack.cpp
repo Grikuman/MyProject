@@ -6,6 +6,7 @@
 #include "Tunomaru.h"
 #include "Game/Player/Player.h"
 #include "TunomaruAttack.h"
+#include "Game/Camera/TPS_Camera.h"
 
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
@@ -89,6 +90,8 @@ void TunomaruAttack::Rush()
 	// つのまるとプレイヤーが接触した場合
 	if (m_tunomaru->GetBoundingSphere().Intersects(m_tunomaru->GetPlayer()->GetBoundingSphere()))
 	{
+		// カメラを揺らす
+		m_tunomaru->GetPlayer()->GetCamera()->StartShake(0.2f, 0.2f);
 		// プレイヤーが無敵でなければ
 		if (m_tunomaru->GetPlayer()->GetInvincible() == false)
 		{
@@ -104,7 +107,6 @@ void TunomaruAttack::Rush()
 		m_stayTime = MAX_STAYTIME;
 		m_tunomaru->ChangeState(m_tunomaru->GetTunomaruDown());
 	}
-
 	// 移動量を補正する
 	m_tunomaru->SetVelocity(m_tunomaru->GetVelocity() * -0.05f);
 	// 回転を加味して実際に移動する

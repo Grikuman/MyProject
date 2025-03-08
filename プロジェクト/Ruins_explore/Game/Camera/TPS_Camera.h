@@ -27,6 +27,8 @@ namespace NRLib
 		~TPS_Camera() = default;
 		// 更新処理
 		void Update(const DirectX::SimpleMath::Vector3& newTarget,const DirectX::SimpleMath::Matrix& rotate);
+		// ダメージを受けたときのカメラ揺れ処理を開始
+		void StartShake(float intensity, float duration);
 
 	private:
 		// ビュー行列を計算する
@@ -58,5 +60,14 @@ namespace NRLib
 		DirectX::SimpleMath::Vector3 m_target;
 		// カメラの頭の方向
 		DirectX::SimpleMath::Vector3 m_up;
+
+		// ダメージ時のカメラ揺れの状態管理
+		bool m_isShaking;
+		// カメラ揺れの強さ
+		float m_shakeIntensity;
+		// カメラ揺れの残り時間
+		float m_shakeDuration;
+		// カメラ揺れのオフセット
+		DirectX::SimpleMath::Vector3 m_shakeOffset;
 	};
 }
