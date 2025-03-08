@@ -70,7 +70,7 @@ void NeedleBossSearch::Update()
         m_needleBoss->AddVelocity(directionToPlayer);
         m_needleBoss->ApplyVelocity(0.05f);
 
-        m_needleBoss->SetPotision(tunomaruPosition + m_needleBoss->GetVelocity());
+        m_needleBoss->SetPosition(tunomaruPosition + m_needleBoss->GetVelocity());
     }
 
     // ’Tõ‚©‚çUŒ‚‚Ö

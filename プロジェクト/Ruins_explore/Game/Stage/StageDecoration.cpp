@@ -15,9 +15,13 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-StageDecoration::StageDecoration() 
+StageDecoration::StageDecoration()
+    :
+    m_models{},
+    m_player{}
 { 
-
+    // 空を作成する
+    m_sky = std::make_unique<Sky>();
 }
 
 //---------------------------------------------------------
@@ -32,6 +36,68 @@ StageDecoration::~StageDecoration()
 // 初期化する
 //---------------------------------------------------------
 void StageDecoration::Initialize(const std::string& stageName)
+{
+    //ファイルを読み込む
+    LoadFile(stageName);
+    // 空を初期化する
+    m_sky->Initialize();
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void StageDecoration::Update()
+{
+    // 空を更新する
+    m_sky->Update();
+}
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void StageDecoration::Render()
+{
+    using namespace DirectX;
+    using namespace DirectX::SimpleMath;
+    // コンテキストと共通ステートを取得
+    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+    auto states = Graphics::GetInstance()->GetCommonStates();
+    // ビュー・プロジェクション行列を取得
+    Matrix view = Graphics::GetInstance()->GetViewMatrix();
+    Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();
+
+    // 各モデルを描画
+    for (const auto& model : m_models)
+    {
+        Matrix worldMatrix =
+            // スケール行列
+            Matrix::CreateScale(model.scale) *
+            // 回転行列
+            Matrix::CreateRotationY(XMConvertToRadians(model.rotation.y)) *
+            // 移動行列
+            Matrix::CreateTranslation(model.position);
+
+        // モデル描画処理
+        model.m_model->Draw(context, *states, worldMatrix, view, proj);
+    }
+    // 空を描画する
+    m_sky->Render();
+}
+
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
+void StageDecoration::Finalize()
+{
+    m_sky->Finalize();
+    // モデルリソースの解放処理
+    m_models.clear();
+}
+
+//---------------------------------------------------------
+// ファイルを読み込む
+//---------------------------------------------------------
+void StageDecoration::LoadFile(const std::string& stageName)
 {
     using json = nlohmann::json;
     // 既存データをクリアする
@@ -96,55 +162,6 @@ void StageDecoration::Initialize(const std::string& stageName)
             m_models.push_back(std::move(model));
         }
     }
-}
-
-//---------------------------------------------------------
-// 更新する
-//---------------------------------------------------------
-void StageDecoration::Update()
-{
-    
-}
-
-//---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
-void StageDecoration::Render()
-{
-    using namespace DirectX;
-    using namespace DirectX::SimpleMath;
-
-    // コンテキストと共通ステートを取得
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-
-    // ビュー・プロジェクション行列を取得
-    Matrix view = Graphics::GetInstance()->GetViewMatrix();
-    Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();
-
-    // 各モデルを描画
-    for (const auto& model : m_models)
-    {
-        Matrix worldMatrix =
-            // スケール行列
-            Matrix::CreateScale(model.scale) *
-            // 回転行列
-            Matrix::CreateRotationY(XMConvertToRadians(model.rotation.y)) *
-            // 移動行列
-            Matrix::CreateTranslation(model.position);
-
-        // モデル描画処理
-        model.m_model->Draw(context, *states, worldMatrix, view, proj);
-    }
-}
-
-//---------------------------------------------------------
-// 終了処理
-//---------------------------------------------------------
-void StageDecoration::Finalize()
-{
-    // モデルリソースの解放処理
-    m_models.clear();
 }
 
 

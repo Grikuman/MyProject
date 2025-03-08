@@ -13,8 +13,10 @@
 // コンストラクタ
 //---------------------------------------------------------
 StageEnemy::StageEnemy(Player* player)
-    : m_player(player)
-    , m_isChangeStage(false) 
+    :
+    m_enemies{},
+    m_player{ player },
+    m_isChangeStage{ false }
 {
 
 }
@@ -31,6 +33,62 @@ StageEnemy::~StageEnemy()
 //---------------------------------------------------------
 void StageEnemy::Initialize(const std::string& stageName)
 {
+    // ファイルを読み込む
+    LoadFile(stageName);
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void StageEnemy::Update()
+{
+    m_isChangeStage = true;  // ステージ遷移フラグをON
+
+    // 敵を更新する
+    for (auto& enemy : m_enemies) 
+    {
+        // 生存している場合のみ
+        if (enemy->IsAlive())
+        {
+            enemy->Update();
+            m_isChangeStage = false;  // 敵が生きていたらフラグをOFF
+        }
+    }
+}
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void StageEnemy::Render() 
+{
+    // 敵を描画する
+    for (auto& enemy : m_enemies)
+    {
+        // 生存している場合のみ
+        if (enemy->IsAlive())
+        {
+            enemy->Render();
+        }
+    }
+}
+
+//---------------------------------------------------------
+// 終了処理
+//---------------------------------------------------------
+void StageEnemy::Finalize() 
+{
+    // 敵の終了処理
+    for (auto& enemy : m_enemies) 
+    {
+        enemy->Finalize();
+    }
+}
+
+//---------------------------------------------------------
+// ファイルを読み込む
+//---------------------------------------------------------
+void StageEnemy::LoadFile(const std::string& stageName)
+{
     using json = nlohmann::json;
 
     // 既存の敵を削除
@@ -39,7 +97,7 @@ void StageEnemy::Initialize(const std::string& stageName)
     std::ifstream file("Resources/StageEnemyData/EnemyData1.json");
 
     // 読み込めない場合は処理をスキップ
-    if (!file.is_open()) 
+    if (!file.is_open())
     {
         return;
     }
@@ -63,56 +121,15 @@ void StageEnemy::Initialize(const std::string& stageName)
                 enemyData["position"][1].get<float>(),
                 enemyData["position"][2].get<float>()
             );
-
             // ファクトリーで敵を生成
             auto enemy = EnemyFactory::CreateEnemy(type, m_player);
             if (enemy)
             {
+                // 敵を初期化する
                 enemy->Initialize(position);
+                // 敵をリストに登録
                 m_enemies.push_back(std::move(enemy));
             }
         }
-    }
-}
-
-//---------------------------------------------------------
-// 更新する
-//---------------------------------------------------------
-void StageEnemy::Update()
-{
-    m_isChangeStage = true;  // ステージ遷移フラグをON
-
-    for (auto& enemy : m_enemies) 
-    {
-        if (enemy->IsAlive())
-        {
-            enemy->Update();
-            m_isChangeStage = false;  // 敵が生きていたらフラグをOFF
-        }
-    }
-}
-
-//---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
-void StageEnemy::Render() 
-{
-    for (auto& enemy : m_enemies)
-    {
-        if (enemy->IsAlive())
-        {
-            enemy->Render();
-        }
-    }
-}
-
-//---------------------------------------------------------
-// 終了処理
-//---------------------------------------------------------
-void StageEnemy::Finalize() 
-{
-    for (auto& enemy : m_enemies) 
-    {
-        enemy->Finalize();
     }
 }

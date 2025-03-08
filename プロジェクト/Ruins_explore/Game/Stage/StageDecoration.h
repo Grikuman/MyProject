@@ -3,6 +3,7 @@
     　　　概要：ステージのオブジェクトを管理するクラス
 */
 #pragma once
+#include "Game/Stage/Sky.h"
 class Player;
 
 class StageDecoration
@@ -22,6 +23,10 @@ public:
     void Finalize();
 
 private:
+    // ファイルを読み込む
+    void LoadFile(const std::string& stageName);
+
+private:
     // オブジェクトのデータ構造体
     struct ModelData
     {
@@ -33,8 +38,11 @@ private:
         DirectX::Model* m_model;               // モデルデータ
     };
 
+private:
     // ステージ内のモデルリスト
     std::vector<ModelData> m_models;
+    // 空
+    std::unique_ptr<Sky> m_sky;
     // プレイヤー
     Player* m_player;
 };

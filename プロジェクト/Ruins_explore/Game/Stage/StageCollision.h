@@ -1,21 +1,22 @@
 /*
-    ファイル名：StageObject.h
+    ファイル名：StageCollision.h
     　　　概要：ステージのオブジェクトを管理するクラス
 */
 #pragma once
+#include "Game/Interface/IEnemy.h"
 class Player;
 
-class StageObject
+class StageCollision
 {
 public:
     // コンストラクタ
-    StageObject(Player* player);
+    StageCollision(Player* player);
     // デストラクタ
-    ~StageObject();
+    ~StageCollision();
     // 初期化処理（ステージ名を指定）
     void Initialize(const std::string& stageName);
     //更新処理
-    void Update();
+    void Update(std::vector<std::unique_ptr<IEnemy>>& enemies);
     // 描画処理
     void Render();
     // 終了処理
@@ -33,8 +34,15 @@ private:
         DirectX::Model* m_model;               // モデルデータ
     };
 
+private:
+    // 描画するかどうか(true:描画する.false:描画しない)
+    static const bool VIEW = false;
+
+private:
     // ステージ内のモデルリスト
     std::vector<ModelData> m_models;
     // プレイヤー
     Player* m_player;
+    // 描画判断
+    bool m_view;
 };

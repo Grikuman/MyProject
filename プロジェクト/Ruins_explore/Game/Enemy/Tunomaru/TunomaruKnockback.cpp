@@ -64,7 +64,7 @@ void TunomaruKnockback::Update()
 	m_tunomaru->SetVelocity(diffVec * 0.04f);
 
 	// ŽÀÛ‚ÉˆÚ“®‚·‚é
-	m_tunomaru->SetPotision(m_tunomaru->GetPosition() + m_tunomaru->GetVelocity());
+	m_tunomaru->SetPosition(m_tunomaru->GetPosition() + m_tunomaru->GetVelocity());
 }
 
 //---------------------------------------------------------

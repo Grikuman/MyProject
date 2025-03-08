@@ -18,10 +18,9 @@ Stage1_1::Stage1_1(std::string stageName)
 	:
 	m_stageEnemy{},
 	m_stageName{"Stage1_1"},
-	m_stageObject{},
+	m_stageCollision{},
 	m_isClearStage{},
 	m_player{},
-	m_sky{},
 	m_timeUI{},
 	m_gameTime{}
 {
@@ -29,13 +28,11 @@ Stage1_1::Stage1_1(std::string stageName)
 	m_player = std::make_unique<Player>();
 	// 敵を作成する
 	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
-	// ステージのオブジェクトを作成する
-	m_stageObject = std::make_unique<StageObject>(m_player.get());
+	// ステージの衝突判定を作成する
+	m_stageCollision = std::make_unique<StageCollision>(m_player.get());
 	// ステージの装飾を作成する
 	m_stageDecoration = std::make_unique<StageDecoration>();
-	// 天球を作成
-	m_sky = std::make_unique <Sky>();
-	//TimeUIを作成
+	//時間UIを作成
 	m_timeUI = std::make_unique<TimeUI>(
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
 		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
@@ -59,14 +56,11 @@ void Stage1_1::Initialize()
 	// 敵を初期化する
 	m_stageEnemy->Initialize(m_stageName);
 	// ステージのオブジェクトを初期化する
-	m_stageObject->Initialize(m_stageName);
+	m_stageCollision->Initialize(m_stageName);
 	// ステージの装飾を初期化する
 	m_stageDecoration->Initialize(m_stageName);
-	// 天球を初期化する
-	m_sky->Initialize();
 	// 時間UIを初期化する
 	m_timeUI->Initialize();
-
 	// ステージクリアフラグを初期化する
 	m_isClearStage = false;
 	// ゲーム時間を設定
@@ -80,25 +74,54 @@ void Stage1_1::Initialize()
 //---------------------------------------------------------
 void Stage1_1::Update(float elapsedTime)
 {
-	UNREFERENCED_PARAMETER(elapsedTime);
-	
 	//ゲーム時間
 	m_gameTime -= elapsedTime;
-
 	//プレイヤーを更新
 	m_player->Update(elapsedTime);
 	// 敵を更新
 	m_stageEnemy->Update();
-	// 天球を更新
-	m_sky->Update();
-	// TextUIを更新
-	m_timeUI->Update(m_gameTime);
-	// ステージのオブジェクトを更新する
-	m_stageObject->Update();
+	// ステージの衝突判定を行う
+	m_stageCollision->Update(m_stageEnemy->GetEnemies());
 	// ステージの装飾を更新する
 	m_stageDecoration->Update();
+	// 時間UIを更新
+	m_timeUI->Update(m_gameTime);
+	// ステージの遷移処理
+	Transition();
+}
 
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void Stage1_1::Render()
+{
+	// ステージのオブジェクトを描画する
+	m_stageCollision->Render();
+	// ステージの装飾を描画する
+	m_stageDecoration->Render();
+	// 敵を描画する
+	m_stageEnemy->Render();
+	// プレイヤーを描画
+	m_player->Render();
+	//TextUIを描画
+	m_timeUI->Render();
+}
 
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void Stage1_1::Finalize()
+{
+	m_player->Finalize();
+	m_stageEnemy->Finalize();
+	m_timeUI->Finalize();
+}
+
+//---------------------------------------------------------
+// ステージの遷移処理
+//---------------------------------------------------------
+void Stage1_1::Transition()
+{
 	// 敵が全員死んだらシーン遷移を行う
 	if (m_stageEnemy->IsChangeStage())
 	{
@@ -116,7 +139,7 @@ void Stage1_1::Update(float elapsedTime)
 
 	//------------------------------------------------------------------
 	// デバッグ機能
-	//------------------------------------------------------------------
+	//------------------------------------------------------------------ 
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 	if (kb->IsKeyPressed(DirectX::Keyboard::Q))
 	{
@@ -130,34 +153,4 @@ void Stage1_1::Update(float elapsedTime)
 		// プレイ結果をDeadにする
 		Data::GetInstance()->SetPlaySceneResult(false);
 	}
-}
-
-//---------------------------------------------------------
-// 描画する
-//---------------------------------------------------------
-void Stage1_1::Render()
-{
-	// 天球を描画
-	m_sky->Render();
-	// ステージのオブジェクトを描画する
-	m_stageObject->Render();
-	// ステージの装飾を描画する
-	m_stageDecoration->Render();
-	// 敵を描画する
-	m_stageEnemy->Render();
-	// プレイヤーを描画
-	m_player->Render();
-	//TextUIを描画
-	m_timeUI->Render();
-}
-
-//---------------------------------------------------------
-// 後始末する
-//---------------------------------------------------------
-void Stage1_1::Finalize()
-{
-	m_player->Finalize();
-	m_sky->Finalize();
-	m_stageEnemy->Finalize();
-	m_timeUI->Finalize();
 }

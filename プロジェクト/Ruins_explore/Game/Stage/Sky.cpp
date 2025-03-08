@@ -81,29 +81,19 @@ void Sky::Render()
 			BasicEffect* basicEffect = dynamic_cast<BasicEffect*>(effect);
 			if (basicEffect)
 			{
-				//// ライトを有効化する
-				//basicEffect->SetLightingEnabled(true);
-				/*
-					・モデルクラスではデフォルトで内部的にライトが有効化されている
-					・この設定が無くてもライトは有効化されている
-				*/
-
 				// 個別のライトをすべて無効化する
 				basicEffect->SetLightEnabled(0, false);
 				basicEffect->SetLightEnabled(1, false);
 				basicEffect->SetLightEnabled(2, false);
-
 				// モデルを自発光させる
 				basicEffect->SetEmissiveColor(Colors::White);
 			}
 		}
 	);
-
 	// ワールド行列を更新する
 	Matrix world 
       = Matrix::CreateRotationX(XMConvertToRadians(ROTATE_X))
      *= Matrix::CreateRotationY(XMConvertToRadians(m_rotateCnt));
-
 	// モデルを描画する
 	m_model->Draw(context, *states, world, view, m_projection);
 }

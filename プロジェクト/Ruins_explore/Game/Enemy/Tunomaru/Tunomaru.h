@@ -23,7 +23,7 @@ class Tunomaru : public IEnemy
 {
 public:
     // 位置を設定する
-    void SetPotision(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
+    void SetPosition(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
     // 速度を加算する
     void AddVelocity(const DirectX::SimpleMath::Vector3& velocity){ m_velocity += velocity; }
     // 速度に係数をかける
@@ -60,6 +60,8 @@ public:
     bool IsKnockback() const override;
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
+    // バウンディングボックスを取得する
+    DirectX::BoundingBox GetBoundingBox() const override;
 
 public:
     // プレイヤーを取得する

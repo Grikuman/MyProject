@@ -95,7 +95,7 @@ void TunomaruSearch::ChasePlayer()
         m_tunomaru->AddVelocity(directionToPlayer);
         m_tunomaru->ApplyVelocity(0.05f);// ‚Â‚Ì‚Ü‚é‚ðˆÚ“®‚³‚¹‚é
         // ˆÊ’u‚ðÝ’è‚·‚é
-        m_tunomaru->SetPotision(tunomaruPosition + m_tunomaru->GetVelocity());
+        m_tunomaru->SetPosition(tunomaruPosition + m_tunomaru->GetVelocity());
     }
 }
 

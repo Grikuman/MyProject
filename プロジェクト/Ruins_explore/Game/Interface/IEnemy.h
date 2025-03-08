@@ -12,6 +12,8 @@ public:
 	virtual bool IsAlive() const = 0;
 	// ノックバックしているか
 	virtual bool IsKnockback() const = 0;
+	// バウンディングボックスを取得する
+	virtual DirectX::BoundingBox GetBoundingBox() const = 0;
 
 public:
 	// ノックバックさせる

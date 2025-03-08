@@ -68,17 +68,11 @@
     <Filter Include="Game\Interface">
       <UniqueIdentifier>{ad1f8ad8-573b-4f8d-885b-1ef71f57cf6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\StageObject">
-      <UniqueIdentifier>{10485ce9-ff2e-42f6-8fad-86d8f9ac0d59}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Factory">
       <UniqueIdentifier>{56c16771-9f85-45ee-9635-7c4eb2c112be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Player\Action">
       <UniqueIdentifier>{8e384628-ffdd-4721-a196-be9119db3e73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\StageObjectData">
-      <UniqueIdentifier>{54ec019a-69e5-4827-97ba-aa79fec04724}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\UI\TimeUI">
       <UniqueIdentifier>{a5d53d67-040f-40d9-8cc8-5e59712e28a5}</UniqueIdentifier>
@@ -103,6 +97,9 @@
     </Filter>
     <Filter Include="Resources\StageDecorationData">
       <UniqueIdentifier>{aa8ddf9d-c12d-4267-aeee-b542f66cd2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\StageCollisionData">
+      <UniqueIdentifier>{54ec019a-69e5-4827-97ba-aa79fec04724}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -195,9 +192,6 @@
     <ClInclude Include="Game\Interface\IStage.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Game\StageObject\Sky.h">
-      <Filter>Game\StageObject</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Stage\Stage1_1.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
@@ -224,9 +218,6 @@
     </ClInclude>
     <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h">
       <Filter>Game\Player\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Stage\StageObject.h">
-      <Filter>Game\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\PlayerJump.h">
       <Filter>Game\Player</Filter>
@@ -315,6 +306,12 @@
     <ClInclude Include="Game\Stage\StageDecoration.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Stage\StageCollision.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Stage\Sky.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -380,9 +377,6 @@
     <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp">
       <Filter>Game\Player\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\StageObject\Sky.cpp">
-      <Filter>Game\StageObject</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Stage\Stage1_1.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
@@ -397,9 +391,6 @@
     </ClCompile>
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp">
       <Filter>Game\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Stage\StageObject.cpp">
-      <Filter>Game\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\PlayerJump.cpp">
       <Filter>Game\Player</Filter>
@@ -488,6 +479,12 @@
     <ClCompile Include="Game\Stage\StageDecoration.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Stage\StageCollision.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\Sky.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />
@@ -507,9 +504,6 @@
     <None Include="Resources\Shaders\UI.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="Resources\StageObjectData\StageObjectData.json">
-      <Filter>Resources\StageObjectData</Filter>
-    </None>
     <None Include="Resources\Shaders\Particle.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
@@ -524,6 +518,9 @@
     </None>
     <None Include="Resources\StageEnemyData\EnemyData1.json">
       <Filter>Resources\StageEnemyData</Filter>
+    </None>
+    <None Include="Resources\StageCollisionData\StageCollisionData.json">
+      <Filter>Resources\StageCollisionData</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

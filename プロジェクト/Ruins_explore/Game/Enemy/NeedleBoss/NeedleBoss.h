@@ -20,7 +20,7 @@ class NeedleBoss : public IEnemy
 {
 public:
     // 位置を設定する
-    void SetPotision(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
+    void SetPosition(const DirectX::SimpleMath::Vector3 position)  { m_position = position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity)  { m_velocity = velocity; }
     // 速度を加算する
@@ -62,6 +62,8 @@ public:
     bool IsKnockback() const override { return true; }
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
+    // バウンディングボックスを取得する
+    DirectX::BoundingBox GetBoundingBox() const override;
 
 public:
     // プレイヤーを取得する

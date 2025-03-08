@@ -14,6 +14,8 @@ class StageEnemy
 public:
     // ステージ遷移フラグの取得
     bool IsChangeStage() const { return m_isChangeStage; };
+    // 全ての敵を取得する
+    std::vector<std::unique_ptr<IEnemy>>& GetEnemies() { return m_enemies; }
 
 public:
     // コンストラクタ
@@ -30,10 +32,14 @@ public:
     void Finalize();
 
 private:
-    // プレイヤー
-    Player* m_player;
+    // ファイルを読み込む
+    void LoadFile(const std::string& stageName);
+
+private:
     // 敵のリスト
     std::vector<std::unique_ptr<IEnemy>> m_enemies;
+    // プレイヤー
+    Player* m_player;
     // ステージ遷移フラグ
     bool m_isChangeStage;
 };

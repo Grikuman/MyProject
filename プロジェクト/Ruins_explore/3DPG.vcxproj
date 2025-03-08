@@ -232,12 +232,12 @@
     <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="Game\Screen.h" />
-    <ClInclude Include="Game\StageObject\Sky.h" />
+    <ClInclude Include="Game\Stage\Sky.h" />
     <ClInclude Include="Game\Stage\Stage1_1.h" />
     <ClInclude Include="Game\Stage\Stage1_2.h" />
+    <ClInclude Include="Game\Stage\StageCollision.h" />
     <ClInclude Include="Game\Stage\StageDecoration.h" />
     <ClInclude Include="Game\Stage\StageEnemy.h" />
-    <ClInclude Include="Game\Stage\StageObject.h" />
     <ClInclude Include="Game\Transition\Fade.h" />
     <ClInclude Include="Game\UI\EnemyUI\EnemyHPUI.h" />
     <ClInclude Include="Game\UI\MapSelectUI.h" />
@@ -294,12 +294,12 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
-    <ClCompile Include="Game\StageObject\Sky.cpp" />
+    <ClCompile Include="Game\Stage\Sky.cpp" />
     <ClCompile Include="Game\Stage\Stage1_1.cpp" />
     <ClCompile Include="Game\Stage\Stage1_2.cpp" />
+    <ClCompile Include="Game\Stage\StageCollision.cpp" />
     <ClCompile Include="Game\Stage\StageDecoration.cpp" />
     <ClCompile Include="Game\Stage\StageEnemy.cpp" />
-    <ClCompile Include="Game\Stage\StageObject.cpp" />
     <ClCompile Include="Game\Transition\Fade.cpp" />
     <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp" />
     <ClCompile Include="Game\UI\MapSelectUI.cpp" />
@@ -334,9 +334,9 @@
     <None Include="Resources\Shaders\Particle.hlsli" />
     <None Include="Resources\Shaders\SmokeEffect.hlsli" />
     <None Include="Resources\Shaders\UI.hlsli" />
+    <None Include="Resources\StageCollisionData\StageCollisionData.json" />
     <None Include="Resources\StageDecorationData\StageDecorationData.json" />
     <None Include="Resources\StageEnemyData\EnemyData1.json" />
-    <None Include="Resources\StageObjectData\StageObjectData.json" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\FadeGS.hlsl">

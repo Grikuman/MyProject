@@ -212,6 +212,18 @@ DirectX::BoundingSphere Tunomaru::GetBoundingSphere() const
 }
 
 //---------------------------------------------------------
+// バウンディングボックスを取得する
+//---------------------------------------------------------
+DirectX::BoundingBox Tunomaru::GetBoundingBox() const
+{
+    // 当たり判定ボックスの中心を設定
+    DirectX::SimpleMath::Vector3 center = m_position;
+    // ボックスの大きさ（半径）を設定
+    DirectX::SimpleMath::Vector3 extents(1.0f, 1.0f, 1.0f); // サイズに応じて調整
+    return DirectX::BoundingBox(center, extents);
+}
+
+//---------------------------------------------------------
 // ダメージを与える
 //---------------------------------------------------------
 void Tunomaru::Damage(const float damage)
