@@ -312,6 +312,9 @@
     <ClInclude Include="Game\Stage\Sky.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Audio.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -484,6 +487,9 @@
     </ClCompile>
     <ClCompile Include="Game\Stage\Sky.cpp">
       <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Audio.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

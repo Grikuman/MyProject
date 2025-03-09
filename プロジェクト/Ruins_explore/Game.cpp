@@ -9,6 +9,7 @@
 #include "Framework/Resources.h"
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
 
 extern void ExitGame() noexcept;
 
@@ -46,12 +47,13 @@ void Game::Initialize(HWND window, int width, int height)
 
     // グラフィックスを初期化
     Graphics::GetInstance()->Initialize();
-
     // リソースを読み込む
     Resources::GetInstance()->LoadResources();
-
     // インプットデバイスを作成
     InputDevice::GetInstance()->CreateDevice();
+    // オーディオを初期化する
+    Audio::GetInstance()->Initialize();
+    Audio::GetInstance()->PlaySound("Resources/Sounds/b.wav");
 
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();
@@ -84,13 +86,13 @@ void Game::Update(DX::StepTimer const& timer)
 
     // 入力マネージャを更新する
     Graphics::GetInstance()->Update();
-
     // インプットデバイスを更新する
     InputDevice::GetInstance()->Update();
+    // オーディオを更新する
+    Audio::GetInstance()->Update();
 
     // キーボードステートを取得する
     auto keyboardState = InputDevice::GetInstance()->GetKeyboardState();
-
     // 「ECS」キーで終了する
     if (keyboardState->Escape)
     {
