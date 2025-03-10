@@ -1,0 +1,19 @@
+{
+  "Stage1_1": [
+    {
+      "type": "Tunomaru",
+      "position": [ 10, 1.0, -5 ]
+    },
+    {
+      "type": "Tunomaru",
+      "position": [ -10, 1.0, -5 ]
+    }
+  ],
+
+  "Stage1_2": [
+    {
+        "type": "NeedleBoss",
+        "position": [ 1, 1.0, -20 ]
+    }
+  ]
+}
