@@ -15,6 +15,10 @@ namespace NRLib
 class PlayerDash : public IPlayerState
 {
 public:
+	// ダッシュ方向を設定する
+	void SetDashDirection(DirectX::SimpleMath::Vector3 direction) { m_nowDirection = direction; }
+
+public:
 	// コンストラクタ
 	PlayerDash(Player* player);
 	// デストラクタ
@@ -43,6 +47,8 @@ private:
 private:
 	//プレイヤー
 	Player* m_player;
+	// 現在のダッシュ方向
+	DirectX::SimpleMath::Vector3 m_nowDirection;
 	// ダッシュ時間
 	float m_dashTime; 
 };

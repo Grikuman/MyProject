@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "Player.h"
 #include "PlayerWalk.h"
+#include "PlayerDash.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
@@ -120,13 +121,32 @@ void PlayerWalk::PlayerMove()
 void PlayerWalk::WalkToDash()
 {
     // キーボードを取得する
-    auto dashkb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+    auto dashKb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+    // ダッシュ方向用のキーボードを取得する
+    auto directionKb = InputDevice::GetInstance()->GetKeyboardState();
+    // ダッシュ方向を設定する
+    if (directionKb->W || directionKb->Up)
+    {
+        m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Forward);
+    }
+    if (directionKb->S || directionKb->Down)
+    {
+        m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Backward); 
+    }
+    if (directionKb->D || directionKb->Right)
+    {
+        m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Right); 
+    }
+    if (directionKb->A || directionKb->Left)
+    {
+        m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Left); 
+    }
 
     // スタミナがある場合
     if (m_player->GetStamina() >= 1)
     {
         // スペースキーを押したら
-        if (dashkb->IsKeyPressed(DirectX::Keyboard::Space))
+        if (dashKb->IsKeyPressed(DirectX::Keyboard::Space))
         {
             // スタミナを消費する
             m_player->SetStamina(m_player->GetStamina() - 1);
@@ -177,6 +197,8 @@ void PlayerWalk::WalkToAttack()
             }
             // 攻撃へ移行する
             m_player->ChangeState(m_player->GetPlayerAttack());
+            // パンチ音
+            Audio::GetInstance()->PlaySE("PunchSE");
             // 長押し時間を0に
             m_keyHoldTime = 0;
         }
