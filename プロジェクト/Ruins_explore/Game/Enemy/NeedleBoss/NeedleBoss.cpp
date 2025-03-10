@@ -72,7 +72,7 @@ void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
     // アタック状態
     m_needleBossAttack->Initialize();
     // ダウン状態
-    m_needleBossDown = std::make_unique<NeedleBossDown>(this);
+    m_needleBossDown->Initialize();
     // 体力のUIを初期化する
     m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(),1920,720);
 
