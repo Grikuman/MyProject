@@ -81,15 +81,15 @@ public:
     // コンストラクタ
     NeedleBoss(Player* player);
     // デストラクタ
-    ~NeedleBoss();
+    ~NeedleBoss() override;
     // 初期化する
-    void Initialize(DirectX::SimpleMath::Vector3 position);
+    void Initialize(DirectX::SimpleMath::Vector3 position) override;
     // 更新する
-    void Update();
+    void Update() override;
     // 描画する
-    void Render();
+    void Render() override;
     // 後処理をする
-    void Finalize();
+    void Finalize() override;
 
 private:
     // 生存しているか判定する

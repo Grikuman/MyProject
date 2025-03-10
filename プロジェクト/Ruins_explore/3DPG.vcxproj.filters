@@ -162,9 +162,6 @@
     <ClInclude Include="Game\Scene\MapSelectScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\MapSelectUI.h">
-      <Filter>Game\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Player\Parts\PlayerBody.h">
       <Filter>Game\Player\Parts</Filter>
     </ClInclude>
@@ -321,6 +318,9 @@
     <ClInclude Include="Game\UI\EnemyUI\UserInterface.h">
       <Filter>Game\UI\EnemyUI</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\MapSelectUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -373,9 +373,6 @@
     </ClCompile>
     <ClCompile Include="Game\Scene\MapSelectScene.cpp">
       <Filter>Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\MapSelectUI.cpp">
-      <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp">
       <Filter>Game\Player\Parts</Filter>
@@ -502,6 +499,9 @@
     </ClCompile>
     <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\MapSelectUI.cpp">
+      <Filter>Game\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,9 @@
 
 using namespace DirectX;
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 BossHPUI::BossHPUI()
     : m_menuIndex(0)
     ,m_windowHeight(0)
@@ -40,10 +43,16 @@ BossHPUI::BossHPUI()
     
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 BossHPUI::~BossHPUI()
 {
 }
 
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void BossHPUI::Initialize(DX::DeviceResources* pDR,int width,int height)
 {
     // デバイス・画面サイズを設定
@@ -63,6 +72,9 @@ void BossHPUI::Initialize(DX::DeviceResources* pDR,int width,int height)
     m_spriteFont = Graphics::GetInstance()->GetFont();
 }
 
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void BossHPUI::Update(float bossHP,float MAX_BossHP)
 {
     m_currentHP = bossHP;
@@ -76,6 +88,9 @@ void BossHPUI::Update(float bossHP,float MAX_BossHP)
 
 }
 
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void BossHPUI::Render()
 {
     // 各テクスチャを描画する
@@ -100,6 +115,9 @@ void BossHPUI::Render()
 
 }
 
+//---------------------------------------------------------
+// 追加する
+//---------------------------------------------------------
 void BossHPUI::Add(const wchar_t* path, DirectX::SimpleMath::Vector2 position, DirectX::SimpleMath::Vector2 scale, UserInterface::ANCHOR anchor)
 {
     // 体力ゲージ(赤色)を作成する

@@ -28,7 +28,8 @@ TitleSceneUI::TitleSceneUI(TitleScene* titlescene)
     m_rotate{},
     m_selectArrowPos{}
 {
-    
+    // スプライトバッチを取得する
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
 }
 
 //---------------------------------------------------------
@@ -44,8 +45,6 @@ TitleSceneUI::~TitleSceneUI()
 //---------------------------------------------------------
 void TitleSceneUI::Initialize()
 {
-    // スプライトバッチを取得する
-    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
     // 画像読み込み
     m_gameTitle_Tex   = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Ruins_Explorer.png");
     m_select_Tex      = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/TitleSelect.png");

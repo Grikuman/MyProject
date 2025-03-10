@@ -14,21 +14,24 @@ public:
 	// コンストラクタ
 	TunomaruSearch(Tunomaru* tunomaru);
 	// デストラクタ
-	~TunomaruSearch();
+	~TunomaruSearch() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update();
+	void Update() override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 
 private:
 	// プレイヤーを追いかける
 	void ChasePlayer();
 	// 探索から攻撃へ
 	void SearchToAttack();
+
+private:
+	const float SEARCH_DISTANCE = 5.0f;
 
 private:
 	// つのまる

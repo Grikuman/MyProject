@@ -19,6 +19,10 @@ public:
     // 後処理する
     void Finalize();
 private:
+    // エフェクトの大きさ
+    const float SIZE = 3.6f;
+
+private:
     // プレイヤー
     Player* m_player;
     // 球

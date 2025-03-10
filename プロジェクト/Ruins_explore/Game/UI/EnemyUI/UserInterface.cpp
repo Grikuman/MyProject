@@ -1,9 +1,7 @@
-//--------------------------------------------------------------------------------------
-// File: UserInterface.h
-//
-// ユーザーインターフェースクラス
-//
-//-------------------------------------------------------------------------------------
+/*
+	ファイル名：UserInterface.cpp
+	　　　概要：UIクラスのサポートをするクラス
+*/
 
 #include "pch.h"
 #include "UserInterface.h"
@@ -20,9 +18,9 @@
 
 using namespace DirectX;
 
-/// <summary>
-/// インプットレイアウト
-/// </summary>
+//---------------------------------------------------------
+// インプットレイアウト
+//---------------------------------------------------------
 const std::vector<D3D11_INPUT_ELEMENT_DESC> UserInterface::INPUT_LAYOUT =
 {
 	{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -30,9 +28,9 @@ const std::vector<D3D11_INPUT_ELEMENT_DESC> UserInterface::INPUT_LAYOUT =
 	{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(SimpleMath::Vector3)+ sizeof(SimpleMath::Vector4), D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-/// <summary>
-/// コンストラクタ
-/// </summary>
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 UserInterface::UserInterface()
 	:m_pDR(nullptr)
 	,m_windowHeight(0)
@@ -50,17 +48,16 @@ UserInterface::UserInterface()
 
 }
 
-/// <summary>
-/// デストラクタ
-/// </summary>
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 UserInterface::~UserInterface()
 {
 }
 
-/// <summary>
-/// テクスチャリソース読み込み関数
-/// </summary>
-/// <param name="path">相対パス(Resources/Textures/・・・.pngなど）</param>
+//---------------------------------------------------------
+// リソースを読み込む
+//---------------------------------------------------------
 void UserInterface::LoadTexture(const wchar_t* path)
 {
 
@@ -76,10 +73,9 @@ void UserInterface::LoadTexture(const wchar_t* path)
 
 }
 
-/// <summary>
-/// 生成関数
-/// </summary>
-/// <param name="pDR">ユーザーリソース等から持ってくる</param>
+//---------------------------------------------------------
+// 生成する
+//---------------------------------------------------------
 void UserInterface::Create(DX::DeviceResources* pDR
 	, const wchar_t* path
 	, DirectX::SimpleMath::Vector2 position
@@ -105,29 +101,44 @@ void UserInterface::Create(DX::DeviceResources* pDR
 
 }
 
+//---------------------------------------------------------
+// 拡縮を設定する
+//---------------------------------------------------------
 void UserInterface::SetScale(DirectX::SimpleMath::Vector2 scale)
 {
 	m_scale = scale;
 }
+//---------------------------------------------------------
+// 位置を設定する
+//---------------------------------------------------------
 void UserInterface::SetPosition(DirectX::SimpleMath::Vector2 position)
 {
 	m_position = position;
 }
+//---------------------------------------------------------
+// アンカーを設定する
+//---------------------------------------------------------
 void UserInterface::SetAnchor(ANCHOR anchor)
 {
 	m_anchor = anchor;
 }
+//---------------------------------------------------------
+// 描画比率を設定する
+//---------------------------------------------------------
 void UserInterface::SetRenderRatio(float ratio)
 {
 	m_renderRatio = ratio;
 }
+//---------------------------------------------------------
+// 描画比率のオフセットを設定する
+//---------------------------------------------------------
 void UserInterface::SetRenderRatioOffset(float offset)
 {
 	m_renderRatioOffset = offset;
 }
-/// <summary>
-/// Shader作成部分だけ分離した関数
-/// </summary>
+//---------------------------------------------------------
+// シェーダーを作成する
+//---------------------------------------------------------
 void UserInterface::CreateShader()
 {
 	auto device = m_pDR->GetD3DDevice();
@@ -176,9 +187,9 @@ void UserInterface::CreateShader()
 
 
 
-/// <summary>
-/// 描画関数
-/// </summary>
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void UserInterface::Render()
 {
 	auto context = m_pDR->GetD3DDeviceContext();
@@ -249,7 +260,9 @@ void UserInterface::Render()
 	context->PSSetShader(nullptr, nullptr, 0);
 }
 
+//---------------------------------------------------------
 // 画面サイズを設定する
+//---------------------------------------------------------
 void UserInterface::SetWindowSize(const int& width, const int& height)
 {
 	m_windowWidth = width;

@@ -63,7 +63,7 @@ public:
 	//	XV
 	bool Update();
 
-	//	getter
+	//	æ“¾ŠÖ”
 	const DirectX::SimpleMath::Vector3 GetPosition() { return m_position; }
 		
 	const DirectX::SimpleMath::Vector3 GetVelocity() { return m_velocity; }

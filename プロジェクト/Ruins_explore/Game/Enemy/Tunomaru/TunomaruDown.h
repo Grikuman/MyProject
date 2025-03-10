@@ -20,15 +20,15 @@ public:
 	// コンストラクタ
 	TunomaruDown(Tunomaru* tunomaru);
 	// デストラクタ
-	~TunomaruDown();
+	~TunomaruDown() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update();
+	void Update() override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 
 private:
 	// ダウン処理

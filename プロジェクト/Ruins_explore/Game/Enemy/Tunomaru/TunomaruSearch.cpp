@@ -104,15 +104,12 @@ void TunomaruSearch::SearchToAttack()
 
     // プレイヤーの位置を取得
     Vector3 playerPosition = m_tunomaru->GetPlayer()->GetPosition();
-
     // つのまるの現在位置を取得
     Vector3 tunomaruPosition = m_tunomaru->GetPosition();
-
     // プレイヤーとの距離を計算
     float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
-
-    // 距離が20.0f以内の場合、攻撃に移行する
-    if (distanceToPlayer <= 5.0f)
+    // 探知以内なら、攻撃に移行する
+    if (distanceToPlayer <= SEARCH_DISTANCE)
     {
         m_tunomaru->ChangeState(m_tunomaru->GetTunomaruAttack());
     }

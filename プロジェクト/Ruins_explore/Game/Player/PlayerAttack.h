@@ -36,15 +36,15 @@ public:
 	// コンストラクタ
 	PlayerAttack(Player* player);
 	// デストラクタ
-	~PlayerAttack();
+	~PlayerAttack() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update(const float& elapsedTime);
+	void Update(const float& elapsedTime) override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 
 private:
 	// 攻撃から歩行へ

@@ -46,7 +46,6 @@ private:
     TitleScene* m_titleScene;
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
-
     // ゲームタイトル
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_gameTitle_Tex;
     // 選択文字
@@ -58,7 +57,6 @@ private:
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_o_Tex;
     // 背景
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backGround_Tex;
-
     // セレクトフラグ
     bool m_selectFlag;
     // 回転

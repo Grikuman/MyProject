@@ -109,6 +109,8 @@ private:
 	static const int MAX_HP = 6;
 	// 最大スタミナ
 	static const int MAX_STAMINA = 6;
+	// 無敵時間
+	const float MAX_INVINCIBLE = 120.0f;
 
 private:
 	// UI管理クラス

@@ -89,7 +89,7 @@ void PlayerDash::DashToWalk()
 {
     // ダッシュ時間の管理
     m_dashTime--;
-    if (m_dashTime <= 0.f)
+    if (m_dashTime <= 0.0f)
     {
         m_dashTime = DASHTIME;
         m_player->ChangeState(m_player->GetPlayerWalk());
@@ -109,36 +109,3 @@ void PlayerDash::DashToAttack()
         m_player->ChangeState(m_player->GetPlayerAttack());
     }
 }
-
-//using namespace DirectX::SimpleMath;
-//auto kb = InputDevice::GetInstance()->GetKeyboardState();
-//
-//// プレイヤー入力
-//if (kb->A || kb->Left)
-//{
-//    m_player->AddRotation(3.0f); // 回転
-//}
-//if (kb->D || kb->Right)
-//{
-//    m_player->AddRotation(-3.0f); // 回転
-//}
-//
-//// 真っ直ぐ進む
-//m_player->AddVelocity(Vector3::Forward * 4.f);
-//// ダッシュ時間を減少させる
-//m_dashTime--;
-//
-//// ダッシュ時間が終了した場合
-//if (m_dashTime <= 0.f)
-//{
-//    // ダッシュ時間をリセットする
-//    m_dashTime = DASHTIME;
-//    // アイドリング状態へ移行する
-//    m_player->ChangeState(m_player->GetPlayerWalk());
-//}
-//
-//// 移動速度を補正
-//m_player->ApplyVelocity(0.05f);
-//
-//// クォータニオンを用いて移動
-//m_player->SetPosition(m_player->GetPosition() + Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));

@@ -1,3 +1,7 @@
+/*
+    ファイル名：Debris.cpp
+    　　　概要：破片のエフェクトクラス
+*/
 #include "pch.h"
 #include "DebrisEffect.h"
 #include "Framework/Graphics.h"

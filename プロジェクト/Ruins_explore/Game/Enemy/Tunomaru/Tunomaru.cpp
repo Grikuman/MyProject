@@ -31,10 +31,19 @@ Tunomaru::Tunomaru(Player* player)
     m_isAlive(true)
 {
     m_hp = MAXHP;
-
+    //* ステートを作成する *
+    // サーチ状態
+    m_tunomaruSearch = std::make_unique<TunomaruSearch>(this);
+    // アタック状態
+    m_tunomaruAttack = std::make_unique<TunomaruAttack>(this);
+    // ダウン状態
+    m_tunomaruDown = std::make_unique<TunomaruDown>(this);
+    // ノックバック状態
+    m_tunomaruKnockback = std::make_unique<TunomaruKnockback>(this);
+    //HPUIを作成する
+    m_hpUI = std::make_unique<EnemyHPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
     // 煙エフェクトを作成する
     m_smokeEffect = std::make_unique<SmokeEffect>();
-    m_smokeEffect->Initialize();
 }
 
 //---------------------------------------------------------
@@ -80,22 +89,19 @@ void Tunomaru::Initialize(DirectX::SimpleMath::Vector3 position)
             }
         });
 
-    //HPUIを作成する
-    m_hpUI = std::make_unique<EnemyHPUI>(Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice());
+    // HPUIを初期化する
     m_hpUI->Initialize(m_position, 1.0f);
+    // 煙エフェクトを初期化する
+    m_smokeEffect->Initialize();
 
-    //* ステートを作成する *
+    //* ステートを初期化する *
     // サーチ状態
-    m_tunomaruSearch = std::make_unique<TunomaruSearch>(this);
     m_tunomaruSearch->Initialize();
     // アタック状態
-    m_tunomaruAttack = std::make_unique<TunomaruAttack>(this);
     m_tunomaruAttack->Initialize();
     // ダウン状態
-    m_tunomaruDown = std::make_unique<TunomaruDown>(this);
     m_tunomaruDown->Initialize();
     // ノックバック状態
-    m_tunomaruKnockback = std::make_unique<TunomaruKnockback>(this);
     m_tunomaruKnockback->Initialize();
 
     // ステートを設定する

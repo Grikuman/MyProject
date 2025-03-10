@@ -14,15 +14,15 @@ public:
 	// コンストラクタ
 	TunomaruKnockback(Tunomaru* tunomaru);
 	// デストラクタ
-	~TunomaruKnockback();
+	~TunomaruKnockback() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update();
+	void Update() override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 private:
 	// 突進時間
 	const float MAX_KNOCKBACK_TIME = 120.0f;

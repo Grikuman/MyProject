@@ -1,3 +1,7 @@
+/*
+    ファイル名：Debris.h
+    　　　概要：破片のエフェクトクラス
+*/
 #pragma once
 
 class DebrisEffect 

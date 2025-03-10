@@ -19,7 +19,7 @@ public:
 	// コンストラクタ
 	PlayerNormalPunch(Player* player);
 	// デストラクタ
-	~PlayerNormalPunch();
+	~PlayerNormalPunch() override;
 	// 初期化する
 	void Initialize() override;
 	// 更新する

@@ -27,7 +27,7 @@ Player::Player()
 	m_angle{},
 	m_chargeCnt{},
 	m_invincible{ false },
-	m_invincibleTime{ 120.0f },
+	m_invincibleTime{ MAX_INVINCIBLE },
 	m_stamina{ MAX_STAMINA },
 	m_hp{ MAX_HP }
 {
@@ -181,12 +181,6 @@ DirectX::BoundingBox Player::GetBoundingBox()
 //---------------------------------------------------------
 DirectX::SimpleMath::Vector3 Player::GetForwardDirection()
 {
-	// 回転角度から方向ベクトルを計算
-	//return DirectX::SimpleMath::Vector3(
-	//	std::cos(DirectX::XMConvertToRadians(m_playerAngle)), // X
-	//	0.0f,                    // Y（2D計算だから0で大丈夫）
-	//	std::sin(DirectX::XMConvertToRadians(m_playerAngle))  // Z
-	//);
 	return DirectX::SimpleMath::Vector3(0,0,0);
 }
 
@@ -221,7 +215,7 @@ void Player::Invincible()
 		// 無敵時間が終わると
 		if (m_invincibleTime <= 0.f)
 		{
-			m_invincibleTime = 120.f; // リセット
+			m_invincibleTime = MAX_INVINCIBLE; // リセット
 			m_invincible = false;     // 無敵解除
 		}
 	}

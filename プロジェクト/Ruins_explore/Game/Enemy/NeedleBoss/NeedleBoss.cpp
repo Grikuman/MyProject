@@ -30,8 +30,17 @@ NeedleBoss::NeedleBoss(Player* player)
     m_isAlive(true)
 {
     m_hp = MAXHP;
+    //* ステートを作成する *
+    // サーチ状態
+    m_needleBossSearch = std::make_unique<NeedleBossSearch>(this);
+    // アタック状態
+    m_needleBossAttack = std::make_unique<NeedleBossAttack>(this);
+    // ダウン状態
+    m_needleBossDown = std::make_unique<NeedleBossDown>(this);
+    // 体力のUIを作成する
+    m_bossHPUI = std::make_unique<BossHPUI>();
+    // 煙エフェクトを作成する
     m_smokeEffect = std::make_unique<SmokeEffect>();
-
 }
 
 //---------------------------------------------------------
@@ -54,27 +63,22 @@ void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
 
     // 位置を設定する
     m_position = position;
-
     // モデルを読み込む
     m_model = Resources::GetInstance()->GetModel(L"NeedleBoss");
 
-    //* ステートを作成する *
+    //* ステートを初期化する *
     // サーチ状態
-    m_needleBossSearch = std::make_unique<NeedleBossSearch>(this);
     m_needleBossSearch->Initialize();
     // アタック状態
-    m_needleBossAttack = std::make_unique<NeedleBossAttack>(this);
     m_needleBossAttack->Initialize();
     // ダウン状態
     m_needleBossDown = std::make_unique<NeedleBossDown>(this);
-    m_needleBossDown->Initialize();
-
-    m_bossHPUI = std::make_unique<BossHPUI>();
+    // 体力のUIを初期化する
     m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(),1920,720);
 
     // ステートを設定する
     m_currentState = m_needleBossSearch.get();
-
+    // 煙エフェクトを初期化する
     m_smokeEffect->Initialize();
 }
 
@@ -143,7 +147,7 @@ void NeedleBoss::Render()
     m_model->Draw(context, *states, worldMatrix, view, proj);
     // 体力UIを描画する
     m_bossHPUI->Render();
-    // 
+    // 現在のステートを描画する
     m_currentState->Render();
 }
 

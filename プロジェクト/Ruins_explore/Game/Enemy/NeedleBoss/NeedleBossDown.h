@@ -15,15 +15,15 @@ public:
 	// コンストラクタ
 	NeedleBossDown(NeedleBoss* needleBoss);
 	// デストラクタ
-	~NeedleBossDown();
+	~NeedleBossDown() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update();
+	void Update() override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 private:
 	// 設定するダウン時間
 	const float MAX_DOWNTIME = 240.f;

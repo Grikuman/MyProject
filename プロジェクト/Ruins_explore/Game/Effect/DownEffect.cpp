@@ -1,6 +1,6 @@
 /*
-	ファイル名：.cpp
-	　　　概要：を管理するクラス
+	ファイル名：DownEffect.cpp
+	　　　概要：ダウンのエフェクトクラス
 */
 #include "pch.h"
 #include "DownEffect.h"

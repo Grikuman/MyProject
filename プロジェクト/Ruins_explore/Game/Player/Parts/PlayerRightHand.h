@@ -17,13 +17,13 @@ public:
 	~PlayerRightHand();
 
 	// ‰Šú‰»‚·‚é
-	void Initialize()  override;
+	void Initialize() override;
 	// XV‚·‚é
-	void Update()      override;
+	void Update() override;
 	// •`‰æ‚·‚é
-	void Render()      override;
+	void Render() override;
 	// Œãˆ—‚·‚é
-	void Finalize()    override;
+	void Finalize() override;
 
 private: 
 

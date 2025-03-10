@@ -96,13 +96,13 @@ void PlayerWalk::PlayerMove()
     if(kb->A || kb->Left)
     {
         // YŽ²‚ð’†S‚É¶‰ñ“]‚ð‰ÁŽZ
-        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(3.0f));
+        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(ROTATE_SPEED));
         m_player->AddAngle(rotation);
     }
     if (kb->D || kb->Right)
     {
         // YŽ²‚ð’†S‚É‰E‰ñ“]‚ð‰ÁŽZ
-        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(-3.0f));
+        Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(-ROTATE_SPEED));
         m_player->AddAngle(rotation);
     }
 

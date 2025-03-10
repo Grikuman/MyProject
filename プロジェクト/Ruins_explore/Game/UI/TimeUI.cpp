@@ -17,9 +17,12 @@ TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     m_renderVal{},
     m_timeText{}
 {
+    // スプライトバッチとスプライトフォントを初期化
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
+    m_spriteFont = Graphics::GetInstance()->GetFont();
     m_number = std::make_unique<RenderNumber>();
     m_number->Initialize(Graphics::GetInstance()->GetDeviceResources());
-
+    // UVサイズを設定する
     m_number->SetUVSize(0.05f * 1.0f, 0.125f * 1.0f);
 
     m_number->SetPosition(950.0f, 600.0f);
@@ -50,10 +53,6 @@ TimeUI::~TimeUI()
 
 void TimeUI::Initialize()
 {
-    // スプライトバッチとスプライトフォントを初期化
-    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-    m_spriteFont = Graphics::GetInstance()->GetFont();
-
     m_timeText = Resources::GetInstance()->GetTexture(L"Time_Text");
 }
 

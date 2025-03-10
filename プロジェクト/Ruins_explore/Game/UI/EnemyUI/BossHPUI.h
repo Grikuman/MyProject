@@ -40,21 +40,12 @@ public:
 private:
 	unsigned int m_menuIndex;
 	DX::DeviceResources* m_pDR;
-
-	//std::vector<std::unique_ptr<tito::UserInterface>> m_userInterface;
-	//std::vector<std::unique_ptr<tito::UserInterface>> m_base;
-
 	std::unique_ptr<UserInterface> m_BossHPUI;
 	std::unique_ptr<UserInterface> m_frame;
 	std::unique_ptr<UserInterface> m_base;
-
-
 	const wchar_t* m_baseTexturePath;
-
 	std::unique_ptr<UserInterface> m_baseWindow;
-
 	int m_windowWidth, m_windowHeight;
-
 	DirectX::Keyboard::KeyboardStateTracker m_tracker;
 
 	// スプライトバッチ

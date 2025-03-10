@@ -14,15 +14,15 @@ public:
 	// コンストラクタ
 	PlayerWalk(Player* player);
 	// デストラクタ
-	~PlayerWalk();
+	~PlayerWalk() override;
 	// 初期化する
-	void Initialize();
+	void Initialize() override;
 	// 更新する
-	void Update(const float& elapsedTime);
+	void Update(const float& elapsedTime) override;
 	// 描画する
-	void Render();
+	void Render() override;
 	// 後処理する
-	void Finalize();
+	void Finalize() override;
 
 private:
 	// プレイヤー移動
@@ -31,6 +31,10 @@ private:
 	void WalkToDash();
 	// 歩行から攻撃へ
 	void WalkToAttack();
+
+private:
+	// 回転する速さ
+	const float ROTATE_SPEED = 3.0f;
 
 private:
 	//プレイヤー

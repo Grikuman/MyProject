@@ -40,7 +40,7 @@ void InvincibleEffect::Initialize()
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 
     // 球を作成する
-    m_sphere = DirectX::GeometricPrimitive::CreateSphere(context, 3.6f);
+    m_sphere = DirectX::GeometricPrimitive::CreateSphere(context, SIZE);
 
     // ブレンドステートを作成する
     D3D11_BLEND_DESC blendDesc = {};

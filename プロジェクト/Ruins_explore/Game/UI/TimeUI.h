@@ -36,12 +36,10 @@ private:
     uint64_t m_renderVal;
     //経過時間
     float m_time;
-
     // スプラインバッチ
     DirectX::SpriteBatch* m_spriteBatch;
     // スプライトフォント
     DirectX::SpriteFont* m_spriteFont;
-
     // テキスト(残り時間)
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_timeText;
 };
