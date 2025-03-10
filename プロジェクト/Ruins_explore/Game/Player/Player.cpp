@@ -43,7 +43,6 @@ Player::Player()
 	m_playerWalk    = std::make_unique<PlayerWalk>(this);
 	m_playerAttack  = std::make_unique<PlayerAttack>(this);
 	m_playerDash    = std::make_unique<PlayerDash>(this);
-	m_playerJump    = std::make_unique<PlayerJump>(this);
 
 	// UI管理クラスを作成
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
@@ -73,7 +72,6 @@ void Player::Initialize()
 	m_playerWalk->Initialize();
 	m_playerAttack->Initialize();
 	m_playerDash->Initialize();
-	m_playerJump->Initialize();
 	// UI管理クラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクト初期化する

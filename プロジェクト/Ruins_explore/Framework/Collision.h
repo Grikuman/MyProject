@@ -13,7 +13,9 @@ class Collision
 {
 public:
 	// プレイヤーと通常敵の判定をまとめたもの
-	void PlayerToNormalEnemy(IEnemy* enemy);
+	void NormalEnemy(IEnemy* enemy);
+	// プレイヤーとボスの当たり判定をまとめたもの
+	void BossEnemy(IEnemy* enemy);
 	// プレイヤーとステージの衝突判定
 	void CheckPlayerStageCollision(DirectX::BoundingBox object);
 	// 敵とステージの衝突判定

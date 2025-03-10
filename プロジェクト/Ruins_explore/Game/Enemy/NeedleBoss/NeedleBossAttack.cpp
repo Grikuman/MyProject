@@ -12,6 +12,7 @@
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
@@ -21,7 +22,8 @@ NeedleBossAttack::NeedleBossAttack(NeedleBoss* needleBoss)
     m_needleBoss(needleBoss),
 	m_model{},
 	m_rotateCnt{},
-	m_atackStartTime{}
+	m_atackStartTime{},
+	m_attackType{AttackType::Charging}
 {
 	
 }
@@ -47,17 +49,18 @@ void NeedleBossAttack::Initialize()
 //---------------------------------------------------------
 void NeedleBossAttack::Update()
 {
-	// UŒ‚‚Ü‚Å‚Ì—P—\ŽžŠÔ‚ðƒJƒEƒ“ƒg‚·‚é
 	m_atackStartTime++;
 
-	SpinningAttack();
-
-	// 
-	if (m_rotateCnt >= 360.f)
+	switch (m_attackType)
 	{
-		m_rotateCnt = 0.f;
-		m_atackStartTime = 0.f;
-		m_needleBoss->ChangeState(m_needleBoss->GetNeedleBossDown());
+		case AttackType::Spinning:
+			// ‰ñ“]UŒ‚
+			SpinningAttack();
+			break;
+		case AttackType::Charging:
+			// “ËiUŒ‚
+			ChargingAttack();
+			break;
 	}
 }
 
@@ -101,10 +104,62 @@ void NeedleBossAttack::SpinningAttack()
 				m_needleBoss->GetPlayer()->SetHP(m_needleBoss->GetPlayer()->GetHP() - 1);
 				// ƒvƒŒƒCƒ„[‚ð–³“G‚É
 				m_needleBoss->GetPlayer()->SetInvincible(true);
+				// UŒ‚‰¹
+				Audio::GetInstance()->PlaySE("EnemyAttackSE");
+				// ƒJƒƒ‰‚ð—h‚ç‚·
+				m_needleBoss->GetPlayer()->GetCamera()->StartShake(0.2f, 0.4f);
 			}
 		}
 	}
+
+	if (m_rotateCnt >= 360.f)
+	{
+		// “ËiUŒ‚‚ÉØ‚è‘Ö‚¦‚é
+		m_rotateCnt = 0.f;
+		m_atackStartTime = 0.f;
+		m_attackType = AttackType::Charging;
+		m_needleBoss->ChangeState(m_needleBoss->GetNeedleBossDown());
+	}
 }
+
+void NeedleBossAttack::ChargingAttack()
+{
+	// •ûŒü‚ðƒvƒŒƒCƒ„[‚ÉŒü‚¯‚é
+	DirectX::SimpleMath::Vector3 direction = m_needleBoss->GetPlayer()->GetPosition() - m_needleBoss->GetPosition();
+	direction.Normalize();
+
+	// “Ëi‘¬“x‚ð“K—p
+	// “Ëi‚·‚é
+	m_needleBoss->SetVelocity(DirectX::SimpleMath::Vector3::Forward);
+	// ˆÚ“®—Ê‚ð•â³‚·‚é
+	m_needleBoss->SetVelocity(m_needleBoss->GetVelocity() * -0.06f);
+	// ‰ñ“]‚ð‰Á–¡‚µ‚ÄŽÀÛ‚ÉˆÚ“®‚·‚é
+	m_needleBoss->SetPosition(
+		m_needleBoss->GetPosition() +
+		DirectX::SimpleMath::Vector3::Transform(m_needleBoss->GetVelocity(), DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_needleBoss->GetAngle())));
+
+	// Õ“Ë”»’è
+	if (GetAttackBoundingSphere().Intersects(m_needleBoss->GetPlayer()->GetBoundingSphere()))
+	{
+		if (!m_needleBoss->GetPlayer()->GetInvincible())
+		{
+			m_needleBoss->GetPlayer()->SetHP(m_needleBoss->GetPlayer()->GetHP() - 1);
+			m_needleBoss->GetPlayer()->SetInvincible(true);
+			// UŒ‚‰¹
+			Audio::GetInstance()->PlaySE("EnemyAttackSE");
+			// ƒJƒƒ‰‚ð—h‚ç‚·
+			m_needleBoss->GetPlayer()->GetCamera()->StartShake(0.2f, 0.4f);
+		}
+	}
+	// “Ëi‚ªˆê’è‹——£‚É’B‚µ‚½‚çI—¹
+	if (m_atackStartTime >= 120)
+	{
+		m_attackType = AttackType::Spinning;
+		m_atackStartTime = 0;
+		m_needleBoss->ChangeState(m_needleBoss->GetNeedleBossDown());
+	}
+}
+
 
 DirectX::BoundingSphere NeedleBossAttack::GetAttackBoundingSphere() const
 {

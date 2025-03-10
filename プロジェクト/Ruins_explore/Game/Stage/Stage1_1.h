@@ -14,7 +14,7 @@ class Stage1_1 final : public IStage
 {
 public:
 	// 次のステージIDを取得する
-	StageID GetNextStageID() const override { return StageID::NONE; }
+	StageID GetNextStageID() const override { return StageID::Stage1_2; }
 	// ステージをクリアしたかどうか
 	bool IsClearStage() const override { return m_isClearStage; }
 

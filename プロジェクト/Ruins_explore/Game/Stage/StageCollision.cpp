@@ -133,7 +133,6 @@ void StageCollision::Render()
         // コンテキストと共通ステートを取得
         auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
         auto states = Graphics::GetInstance()->GetCommonStates();
-
         // ビュー・プロジェクション行列を取得
         Matrix view = Graphics::GetInstance()->GetViewMatrix();
         Matrix proj = Graphics::GetInstance()->GetProjectionMatrix();

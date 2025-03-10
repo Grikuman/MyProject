@@ -55,23 +55,19 @@ void NeedleBossSearch::Update()
     // プレイヤーとの距離を計算
     float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
 
-    // 距離が20.0f以内の場合、プレイヤーを追いかける
-    if (distanceToPlayer <= 20.0f)
-    {
-        // プレイヤーへの方向を計算
-        Vector3 directionToPlayer = playerPosition - tunomaruPosition;
-        directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+    // プレイヤーへの方向を計算
+    Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+    directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
 
-        // 岩ボスの回転をプレイヤーに向ける
-        float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
-        m_needleBoss->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+    // 岩ボスの回転をプレイヤーに向ける
+    float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+    m_needleBoss->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
 
-        // 速度を設定
-        m_needleBoss->AddVelocity(directionToPlayer);
-        m_needleBoss->ApplyVelocity(0.05f);
+    // 速度を設定
+    m_needleBoss->AddVelocity(directionToPlayer);
+    m_needleBoss->ApplyVelocity(0.05f);
 
-        m_needleBoss->SetPosition(tunomaruPosition + m_needleBoss->GetVelocity());
-    }
+    m_needleBoss->SetPosition(tunomaruPosition + m_needleBoss->GetVelocity());
 
     // 探索から攻撃へ
     SearchToAttack();

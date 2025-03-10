@@ -13,7 +13,7 @@
   "Stage1_2": [
     {
         "type": "NeedleBoss",
-        "position": [ 1, 1.0, -6 ]
+        "position": [ 1, 1.0, -20 ]
     }
   ]
 }

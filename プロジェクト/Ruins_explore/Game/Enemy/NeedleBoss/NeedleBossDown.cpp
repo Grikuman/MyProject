@@ -22,6 +22,8 @@ NeedleBossDown::NeedleBossDown(NeedleBoss* needleBoss)
 {
 	// ダウン時間を設定する
 	m_downTime = MAX_DOWNTIME;
+	// エフェクトを作成する
+	m_effect = std::make_unique<DownEffect>();
 }
 
 //---------------------------------------------------------
@@ -37,7 +39,8 @@ NeedleBossDown::~NeedleBossDown()
 //---------------------------------------------------------
 void NeedleBossDown::Initialize()
 {
-	
+	// エフェクトを初期化する
+	m_effect->Initialize(m_needleBoss->GetPosition());
 }
 
 //---------------------------------------------------------
@@ -55,6 +58,8 @@ void NeedleBossDown::Update()
 		// サーチ状態へ移行する
 		m_needleBoss->ChangeState(m_needleBoss->GetNeedleBossSearch());
 	}
+	// エフェクトを更新する
+	m_effect->Update();
 }
 
 //---------------------------------------------------------
@@ -62,6 +67,8 @@ void NeedleBossDown::Update()
 //---------------------------------------------------------
 void NeedleBossDown::Render()
 {
+	// エフェクトを描画する
+	m_effect->Render(m_needleBoss->GetPosition() + DirectX::SimpleMath::Vector3(0.0f,2.0f,0.0f));
 }
 
 //---------------------------------------------------------

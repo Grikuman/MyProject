@@ -100,7 +100,7 @@ void PlayerAttack::AttackToWalk()
 DirectX::BoundingSphere PlayerAttack::GetAttackRange()
 {
     DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // “–‚½‚è”»’è‹…‚Ì’†S
-    float radius = 2.f; // ”ÍˆÍ‚É‰‚¶‚Ä’²®
+    float radius = 3.f; // ”ÍˆÍ‚É‰‚¶‚Ä’²®
     return DirectX::BoundingSphere(center, radius);
 }
 

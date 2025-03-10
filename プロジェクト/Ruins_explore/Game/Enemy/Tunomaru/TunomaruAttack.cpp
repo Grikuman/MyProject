@@ -108,7 +108,7 @@ void TunomaruAttack::Rush()
 			m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
 			m_tunomaru->GetPlayer()->SetInvincible(true);
 			// UŒ‚‰¹
-			Audio::GetInstance()->PlaySE("TunomaruAttackSE");
+			Audio::GetInstance()->PlaySE("EnemyAttackSE");
 		}
 	}
 	// “ËiŠÔ‚ªI—¹‚µ‚½ê‡

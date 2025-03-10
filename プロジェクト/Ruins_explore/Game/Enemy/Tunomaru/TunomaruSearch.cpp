@@ -80,23 +80,19 @@ void TunomaruSearch::ChasePlayer()
     // プレイヤーとの距離を計算
     float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
 
-    // 距離が20.0f以内の場合、プレイヤーを追いかける
-    if (distanceToPlayer <= 20.0f)
-    {
-        // プレイヤーへの方向を計算
-        Vector3 directionToPlayer = playerPosition - tunomaruPosition;
-        directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+    // プレイヤーへの方向を計算
+    Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+    directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
 
-        // つのまるの回転をプレイヤーに向ける
-        float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
-        m_tunomaru->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+    // つのまるの回転をプレイヤーに向ける
+    float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+    m_tunomaru->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
 
-        // 速度を設定する
-        m_tunomaru->AddVelocity(directionToPlayer);
-        m_tunomaru->ApplyVelocity(0.05f);// つのまるを移動させる
-        // 位置を設定する
-        m_tunomaru->SetPosition(tunomaruPosition + m_tunomaru->GetVelocity());
-    }
+    // 速度を設定する
+    m_tunomaru->AddVelocity(directionToPlayer);
+    m_tunomaru->ApplyVelocity(0.05f);// つのまるを移動させる
+    // 位置を設定する
+    m_tunomaru->SetPosition(tunomaruPosition + m_tunomaru->GetVelocity());
 }
 
 //---------------------------------------------------------

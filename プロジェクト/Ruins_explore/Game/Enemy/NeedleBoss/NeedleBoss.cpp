@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "NeedleBoss.h"
 #include "Game/Player/Player.h"
+#include "Game/Camera/TPS_Camera.h"
 #include "Framework/DeviceResources.h"
 #include <cassert>
 #include "Framework/Graphics.h"
@@ -29,6 +30,8 @@ NeedleBoss::NeedleBoss(Player* player)
     m_isAlive(true)
 {
     m_hp = MAXHP;
+    m_smokeEffect = std::make_unique<SmokeEffect>();
+
 }
 
 //---------------------------------------------------------
@@ -66,8 +69,13 @@ void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
     m_needleBossDown = std::make_unique<NeedleBossDown>(this);
     m_needleBossDown->Initialize();
 
+    m_bossHPUI = std::make_unique<BossHPUI>();
+    m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(),1920,720);
+
     // ステートを設定する
     m_currentState = m_needleBossSearch.get();
+
+    m_smokeEffect->Initialize();
 }
 
 //---------------------------------------------------------
@@ -76,12 +84,18 @@ void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
 void NeedleBoss::Update()
 {
     m_isHit = false; 
+    m_velocity = DirectX::SimpleMath::Vector3::Zero;
 
     //生存しているか確認する
-    CheckAlive(); 
-
+    CheckAlive();
     //現在のステートを更新する
     m_currentState->Update();
+    // 体力UIを更新する
+    m_bossHPUI->Update(m_hp, MAXHP);
+    // プレイヤーとの当たり判定
+    Collision::GetInstance()->BossEnemy(this);
+    // 煙エフェクトを更新する
+    m_smokeEffect->Update(m_position + DirectX::SimpleMath::Vector3(0.0f, -0.3f, 0.0f));
 }
 
 //---------------------------------------------------------
@@ -101,16 +115,36 @@ void NeedleBoss::Render()
 
     Matrix worldMatrix =
         // スケール行列を作成
-        Matrix::CreateScale(0.8f) *
+        Matrix::CreateScale(1.0f) *
         // 180度回転させる(モデルが逆を向いていたので)
-        Matrix::CreateRotationY(DirectX::XM_PI) *
+        //Matrix::CreateRotationY(DirectX::XM_PI) *
         // 回転行列を作成
         Matrix::CreateFromQuaternion(m_angle) *
         // 移動行列を作成
         Matrix::CreateTranslation(m_position);
 
+    if (m_currentState == m_needleBossDown.get())
+    {
+        worldMatrix =
+            // スケール行列を作成
+            Matrix::CreateScale(1.0f) *
+            // 少し下を向かせる
+            Matrix::CreateRotationX(DirectX::XMConvertToRadians(30.0f)) *
+            // 回転行列を作成
+            Matrix::CreateFromQuaternion(m_angle) *
+            // 移動行列を作成
+            Matrix::CreateTranslation(m_position);
+    }
+
+    // 煙エフェクト
+    m_smokeEffect->CreateBillboard(m_player->GetPosition(), m_player->GetCamera()->GetEyePosition(), m_player->GetCamera()->GetUpVector());
+    m_smokeEffect->Render(view, proj);
     // モデル表示
     m_model->Draw(context, *states, worldMatrix, view, proj);
+    // 体力UIを描画する
+    m_bossHPUI->Render();
+    // 
+    m_currentState->Render();
 }
 
 //---------------------------------------------------------
@@ -127,7 +161,7 @@ void NeedleBoss::Finalize()
 DirectX::BoundingSphere NeedleBoss::GetBoundingSphere() const
 {
     DirectX::SimpleMath::Vector3 center = m_position;
-    float radius = 3.f;
+    float radius = 2.f;
     return DirectX::BoundingSphere(center, radius);
 }
 

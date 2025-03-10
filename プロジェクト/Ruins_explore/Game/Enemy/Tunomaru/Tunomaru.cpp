@@ -123,7 +123,7 @@ void Tunomaru::Update()
         );
 
     // ƒvƒŒƒCƒ„[‚Æ‚Ì“–‚½‚è”»’è
-    Collision::GetInstance()->PlayerToNormalEnemy(this);
+    Collision::GetInstance()->NormalEnemy(this);
 }
 
 //---------------------------------------------------------

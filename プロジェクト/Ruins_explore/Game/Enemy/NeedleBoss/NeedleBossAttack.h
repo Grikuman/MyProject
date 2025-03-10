@@ -16,6 +16,13 @@ namespace NRLib
 class NeedleBossAttack : public IEnemyState
 {
 public:
+	// 攻撃の種類
+	enum class AttackType
+	{
+		Spinning,
+		Charging
+	};
+public:
 	// 攻撃のバウンディングスフィアを取得する
 	DirectX::BoundingSphere GetAttackBoundingSphere() const;
 	// 攻撃を受けないバウンディングスフィアを取得する
@@ -35,15 +42,20 @@ public:
 	// 後処理する
 	void Finalize();
 private:
-	// 攻撃開始までの時間
-	const float ATACKSTART_TIME = 60.f;
-
 	// 回転攻撃
 	void SpinningAttack();
+	// 突進攻撃
+	void ChargingAttack();
+
+private:
+	// 攻撃開始までの時間
+	const float ATACKSTART_TIME = 60.0f;
 
 private:
 	// 岩ボス
 	NeedleBoss* m_needleBoss;
+    // 現在の攻撃タイプ
+	AttackType m_attackType; 
 	// モデル
 	DirectX::Model* m_model;
 

@@ -35,7 +35,18 @@ Collision::Collision()
 }
 
 // プレイヤーと通常敵の当たり判定をまとめたもの
-void Collision::PlayerToNormalEnemy(IEnemy* enemy)
+void Collision::NormalEnemy(IEnemy* enemy)
+{
+	// 攻撃判定
+	CheckHitPlayerToEnemy(enemy);
+	// 押し戻し判定
+	CheckPushBack(enemy);
+	// 判定時の効果音
+	PlayerCollisionSound(enemy);
+}
+
+// プレイヤーとボスの当たり判定をまとめたもの
+void Collision::BossEnemy(IEnemy* enemy)
 {
 	// 攻撃判定
 	CheckHitPlayerToEnemy(enemy);

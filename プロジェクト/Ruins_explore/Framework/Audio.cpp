@@ -42,7 +42,7 @@ void Audio::Initialize()
     LoadSE("PunchHitSE", "Resources/Sounds/PunchHitSE.mp3");
     LoadSE("PunchSE", "Resources/Sounds/PunchSE.mp3");
     LoadSE("DashSE", "Resources/Sounds/DashSE.mp3");
-    LoadSE("TunomaruAttackSE", "Resources/Sounds/TunomaruAttackSE.mp3");
+    LoadSE("EnemyAttackSE", "Resources/Sounds/EnemyAttackSE.mp3");
 }
 
 //---------------------------------------------------------

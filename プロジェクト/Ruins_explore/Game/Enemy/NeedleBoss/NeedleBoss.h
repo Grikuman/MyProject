@@ -9,6 +9,8 @@
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
+#include "Game/UI/EnemyUI/BossHPUI.h"
+#include "Game/Effect/SmokeEffect.h"
 
 #include "NeedleBossSearch.h"
 #include "NeedleBossAttack.h"
@@ -95,7 +97,7 @@ private:
 
 private:
     // 最大体力
-    const float MAXHP = 100;
+    const float MAXHP = 300;
 
 private:
     // プレイヤー
@@ -110,6 +112,10 @@ private:
     std::unique_ptr<NeedleBossAttack> m_needleBossAttack;
     // ダウン状態
     std::unique_ptr<NeedleBossDown> m_needleBossDown;
+    // 体力のUI
+    std::unique_ptr<BossHPUI> m_bossHPUI;
+    // 煙エフェクト
+    std::unique_ptr<SmokeEffect> m_smokeEffect;
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
     // 速度

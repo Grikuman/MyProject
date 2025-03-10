@@ -52,8 +52,6 @@ void PlayerWalk::Update(const float& elapsedTime)
     WalkToDash();
     // 歩行から攻撃へ
     WalkToAttack();
-    // 歩行からジャンプへ
-    WalkToJump();
 }
 
 
@@ -207,15 +205,5 @@ void PlayerWalk::WalkToAttack()
     {
         // Cキーが離されたら長押しカウントをリセット
         m_keyHoldTime = 0;
-    }
-}
-
-void PlayerWalk::WalkToJump()
-{
-    // キーボードの状態を取得
-    auto kb = InputDevice::GetInstance()->GetKeyboardState();
-    if (kb->G)
-    {
-        m_player->ChangeState(m_player->GetPlayerJump());
     }
 }

@@ -219,9 +219,6 @@
     <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h">
       <Filter>Game\Player\Action</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\PlayerJump.h">
-      <Filter>Game\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UI\TimeUI.h">
       <Filter>Game\UI\TimeUI</Filter>
     </ClInclude>
@@ -318,6 +315,12 @@
     <ClInclude Include="Game\Effect\DebrisEffect.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h">
+      <Filter>Game\UI\EnemyUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\EnemyUI\UserInterface.h">
+      <Filter>Game\UI\EnemyUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -397,9 +400,6 @@
     </ClCompile>
     <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp">
       <Filter>Game\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\PlayerJump.cpp">
-      <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\TimeUI.cpp">
       <Filter>Game\UI\TimeUI</Filter>
@@ -496,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="Game\Effect\DebrisEffect.cpp">
       <Filter>Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp">
+      <Filter>Game\UI\EnemyUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp">
+      <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

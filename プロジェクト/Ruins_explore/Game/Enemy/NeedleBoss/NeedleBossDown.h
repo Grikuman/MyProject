@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
+#include "Game/Effect/DownEffect.h"
 
 // 前方宣言
 class NeedleBoss;
@@ -25,11 +26,13 @@ public:
 	void Finalize();
 private:
 	// 設定するダウン時間
-	const float MAX_DOWNTIME = 180.f;
+	const float MAX_DOWNTIME = 240.f;
 
 private:
 	// 岩ボス
 	NeedleBoss* m_needleBoss;
+	// エフェクト
+	std::unique_ptr<DownEffect> m_effect;
 	// モデル
 	DirectX::Model* m_model;
 	// ダウン時間
