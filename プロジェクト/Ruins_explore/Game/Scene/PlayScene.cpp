@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "PlayScene.h"
 #include "Framework/Data.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -35,6 +36,9 @@ void PlayScene::Initialize()
 	// 選択したステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);
 	m_currentStage->Initialize();
+
+	// オーディオを再生
+	Audio::GetInstance()->PlayBGM("PlayBGM",0.2f);
 }
 
 //---------------------------------------------------------

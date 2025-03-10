@@ -11,6 +11,7 @@
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -98,6 +99,8 @@ void TunomaruAttack::Rush()
 			// プレイヤーを攻撃
 			m_tunomaru->GetPlayer()->SetHP(m_tunomaru->GetPlayer()->GetHP() - 1);
 			m_tunomaru->GetPlayer()->SetInvincible(true);
+			// 攻撃音
+			Audio::GetInstance()->PlaySE("TunomaruAttackSE");
 		}
 	}
 	// 突進時間が終了した場合

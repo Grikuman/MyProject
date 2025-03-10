@@ -53,7 +53,6 @@ void Game::Initialize(HWND window, int width, int height)
     InputDevice::GetInstance()->CreateDevice();
     // オーディオを初期化する
     Audio::GetInstance()->Initialize();
-    Audio::GetInstance()->PlaySound("Resources/Sounds/b.wav");
 
     // シーンを作成する
     m_sceneManager = std::make_unique<SceneManager>();

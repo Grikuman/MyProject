@@ -8,6 +8,7 @@
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 #include "Framework/Graphics.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -37,6 +38,8 @@ void TitleScene::Initialize()
 	m_isChangeScene = false;
 	// 初期化する
 	m_titleSceneUI->Initialize();
+	// オーディオを再生
+	Audio::GetInstance()->PlayBGM("TitleBGM",0.2f);
 }
 
 //---------------------------------------------------------

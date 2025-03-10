@@ -1,47 +1,55 @@
 #pragma once
 #include "fmod.hpp"
+#include <unordered_map>
+#include <string>
+#include <memory>
 
 class Audio
 {
 public:
-    // コリジョンのインスタンス取得
+    // インスタンス取得（シングルトン）
     static Audio* const GetInstance();
 
 public:
-    // デストラクタ
     ~Audio() = default;
-    // 初期化する
+
+    // 初期化
     void Initialize();
-    // 更新する
+    // 更新
     void Update();
     // 終了処理
     void Finalize();
 
-    // サウンドを再生する
-    void PlaySound(const char* filename);
+    // BGMとSEの再生
+    void PlayBGM(const std::string& name, float volume);
+    void PlaySE(const std::string& name);
+    // BGMの音量を設定する
+    void SetBGMVolume(float volume) { m_bgmChannel->setVolume(volume); }
+
+private:
+    // BGMとSEの読み込み
+    void LoadBGM(const std::string& name, const char* filename);
+    void LoadSE(const std::string& name, const char* filename);
 
 private:
     // コンストラクタ
     Audio();
 
-    // インスタンスをコピーすることを禁止する
+    // コピー・ムーブ禁止
     void operator=(const Audio&) = delete;
-
-    // インスタンスをムーブすることを禁止する
-    Audio& operator= (Audio&&) = delete;
-    // コピーコンストラクタは禁止する
+    Audio& operator=(Audio&&) = delete;
     Audio(const Audio&) = delete;
-    // ムーブコンストラクタは禁止する
     Audio(Audio&&) = delete;
 
 private:
-    // シングルトン
     static std::unique_ptr<Audio> m_audio;
 
     // FMODのシステム
     FMOD::System* m_system;
-    // FMODのサウンド
-    FMOD::Sound* m_sound;
-    // FMODのチャンネル
-    FMOD::Channel* m_channel;
+    // BGMとSEの管理
+    std::unordered_map<std::string, FMOD::Sound*> m_bgm;
+    std::unordered_map<std::string, FMOD::Sound*> m_se;
+    // BGMとSEのチャンネル
+    FMOD::Channel* m_bgmChannel;
+    FMOD::Channel* m_seChannel;
 };

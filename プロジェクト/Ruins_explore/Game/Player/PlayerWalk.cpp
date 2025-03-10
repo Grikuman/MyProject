@@ -9,6 +9,7 @@
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
 #include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
@@ -131,6 +132,8 @@ void PlayerWalk::WalkToDash()
             m_player->SetStamina(m_player->GetStamina() - 1);
             // ステートをダッシュに変更する
             m_player->ChangeState(m_player->GetPlayerDash());
+            // ダッシュ音
+            Audio::GetInstance()->PlaySE("DashSE");
         }
     }
 }
@@ -151,6 +154,8 @@ void PlayerWalk::WalkToAttack()
             m_player->GetPlayerAttack()->GetPlayerNormalPunch());
         // 攻撃へ移行する
         m_player->ChangeState(m_player->GetPlayerAttack());
+        // パンチ音
+        Audio::GetInstance()->PlaySE("PunchSE");
     }
 
     // Cキーが押されているかを確認
