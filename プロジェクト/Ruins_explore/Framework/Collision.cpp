@@ -9,6 +9,8 @@
 #include "Game/Enemy/Tunomaru/Tunomaru.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
+#include "Framework/Audio.h"
+#include "Framework/InputDevice.h"
 
 // シングルトンパターンを実装するための静的メンバ変数
 // 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
@@ -32,18 +34,6 @@ Collision::Collision()
 
 }
 
-// 更新する
-void Collision::Update()
-{
-
-}
-
-// 終了処理
-void Collision::Finalize()
-{
-
-}
-
 // プレイヤーと通常敵の当たり判定をまとめたもの
 void Collision::PlayerToNormalEnemy(IEnemy* enemy)
 {
@@ -51,23 +41,26 @@ void Collision::PlayerToNormalEnemy(IEnemy* enemy)
 	CheckHitPlayerToEnemy(enemy);
 	// 押し戻し判定
 	CheckPushBack(enemy);
+	// 判定時の効果音
+	PlayerCollisionSound(enemy);
 }
 
 // プレイヤーから敵への攻撃判定
 void Collision::CheckHitPlayerToEnemy(IEnemy* enemy)
 {
+	// キーボードを取得する
+	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 	// プレイヤーが攻撃していない場合終了
 	if (!m_player->IsAttack())
 	{
 		return;
 	}
-    
     // 通常パンチの判定処理
     if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
     {
+		// ダメージ
 		enemy->Damage(0.5f);
     }
-
 	// チャージパンチの判定処理
 	if (m_player->GetPlayerAttack()->GetCurrentAttackAction() == m_player->GetPlayerAttack()->GetPlayerChargePunch())
 	{
@@ -136,6 +129,35 @@ void Collision::CheckPushBack(ICollisionObject* object)
 	// ⑥を使用して、Ａの座標とＡのコライダー座標を更新する（実際に押し戻す）
 	m_player->SetPosition(m_player->GetPosition() += diffVec);
 	m_boundingSphereA.Center = m_boundingSphereA.Center + diffVec;
+}
+
+//---------------------------------------------------------
+// // 判定時の効果音
+//---------------------------------------------------------
+void Collision::PlayerCollisionSound(IEnemy* enemy)
+{
+	// キーボードを取得する
+	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+	// 通常攻撃したときに敵が範囲内であれば
+	if(kb->IsKeyPressed(DirectX::Keyboard::F) && m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
+	{
+		// 効果音を鳴らす
+		Audio::GetInstance()->PlaySE("PunchHitSE");
+	}
+	// チャージパンチの判定処理
+	if (m_player->GetPlayerAttack()->GetCurrentAttackAction() == m_player->GetPlayerAttack()->GetPlayerChargePunch())
+	{
+		// 攻撃範囲内に入っていたら
+		if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
+		{
+			// ノックバックしていなければ
+			if (!enemy->IsKnockback())
+			{
+				// パンチ音
+				Audio::GetInstance()->PlaySE("PunchHitSE");
+			}
+		}
+	}
 }
 
 //---------------------------------------------------------

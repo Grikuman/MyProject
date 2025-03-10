@@ -38,7 +38,7 @@ void TitleScene::Initialize()
 	m_isChangeScene = false;
 	// 初期化する
 	m_titleSceneUI->Initialize();
-	// オーディオを再生
+	// BGMを再生
 	Audio::GetInstance()->PlayBGM("TitleBGM",0.2f);
 }
 

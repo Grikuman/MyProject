@@ -39,6 +39,7 @@ void Audio::Initialize()
     LoadBGM("TitleBGM", "Resources/Sounds/TitleBGM.mp3");
     LoadBGM("PlayBGM", "Resources/Sounds/PlayBGM.mp3");
     // SEÇì«Ç›çûÇﬁ
+    LoadSE("PunchHitSE", "Resources/Sounds/PunchHitSE.mp3");
     LoadSE("PunchSE", "Resources/Sounds/PunchSE.mp3");
     LoadSE("DashSE", "Resources/Sounds/DashSE.mp3");
     LoadSE("TunomaruAttackSE", "Resources/Sounds/TunomaruAttackSE.mp3");

@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
+#include "Game/Effect/DebrisEffect.h"
 
 // 前方宣言
 class Tunomaru;
@@ -35,8 +36,8 @@ private:
 private:
 	// つのまる
 	Tunomaru* m_tunomaru;
-	// モデル
-	DirectX::Model* m_model;
+	// 破片エフェクト
+	std::unique_ptr<DebrisEffect> m_debrisEffect;
 	// 待機時間
 	float m_stayTime;
 	// 突進時間

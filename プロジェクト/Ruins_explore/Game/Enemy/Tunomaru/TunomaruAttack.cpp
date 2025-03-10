@@ -19,11 +19,11 @@
 TunomaruAttack::TunomaruAttack(Tunomaru* tunomaru)
 	:
     m_tunomaru(tunomaru),
-	m_model{},
 	m_stayTime{},
 	m_rushTime{}
 {
-	
+	// 破片エフェクトを作成する
+	m_debrisEffect = std::make_unique<DebrisEffect>();
 }
 
 
@@ -40,12 +40,13 @@ TunomaruAttack::~TunomaruAttack()
 //---------------------------------------------------------
 void TunomaruAttack::Initialize()
 {
-	// モデルを取得する
-	m_model = Resources::GetInstance()->GetModel(L"Tunomaru");
 	// 待機時間を設定する
 	m_stayTime = MAX_STAYTIME;
 	// 突進時間を設定する
 	m_rushTime = MAX_RUSHTIME;
+
+	// 破片エフェクトを初期化する
+	m_debrisEffect->Initialize();
 }
 
 //---------------------------------------------------------
@@ -60,6 +61,8 @@ void TunomaruAttack::Update()
 		// 待機時間終了後に突進する
 		Rush();
 	}
+	// 破片エフェクトを更新する
+	m_debrisEffect->Update(m_tunomaru->GetPosition());
 }
 
 //---------------------------------------------------------
@@ -67,7 +70,12 @@ void TunomaruAttack::Update()
 //---------------------------------------------------------
 void TunomaruAttack::Render()
 {
-
+	// 移動時のみ描画する
+	if (m_stayTime <= 0)
+	{
+		// 破片エフェクトを描画する
+		m_debrisEffect->Render();
+	}
 }
 
 //---------------------------------------------------------
@@ -75,7 +83,7 @@ void TunomaruAttack::Render()
 //---------------------------------------------------------
 void TunomaruAttack::Finalize()
 {
-    
+	m_debrisEffect->Finalize();
 }
 
 //---------------------------------------------------------

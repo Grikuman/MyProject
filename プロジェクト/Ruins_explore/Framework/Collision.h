@@ -12,31 +12,29 @@ class IEnemy;
 class Collision
 {
 public:
-	// プレイヤーと通常敵の当たり判定をまとめたもの
+	// プレイヤーと通常敵の判定をまとめたもの
 	void PlayerToNormalEnemy(IEnemy* enemy);
-	// プレイヤーから敵への攻撃判定
-	void CheckHitPlayerToEnemy(IEnemy* enemy);
-	// プレイヤーと球オブジェクトの押し戻し判定
-	void CheckPushBack(ICollisionObject* object);
 	// プレイヤーとステージの衝突判定
 	void CheckPlayerStageCollision(DirectX::BoundingBox object);
 	// 敵とステージの衝突判定
 	void CheckEnemyStageCollision(IEnemy& enemy, const DirectX::BoundingBox stageObject);
 public:
+	// プレイヤーを設定する
+	void SetPlayer(Player* player) { m_player = player; };
 	// コリジョンのインスタンス取得
 	static Collision* const GetInstance();
 
-public:
-	// プレイヤーを設定する
-	void SetPlayer(Player* player) { m_player = player; };
+private:
+	// プレイヤーから敵への攻撃判定
+	void CheckHitPlayerToEnemy(IEnemy* enemy); 
+	// プレイヤーと球オブジェクトの押し戻し判定
+	void CheckPushBack(ICollisionObject* object); 
+	// 判定時の効果音
+	void PlayerCollisionSound(IEnemy* enemy);
 
 public:
 	//デストラクタ
 	~Collision() = default;
-	// 更新する
-	void Update();
-	// 終了処理
-	void Finalize();
 
 private:
 	// コンストラクタ

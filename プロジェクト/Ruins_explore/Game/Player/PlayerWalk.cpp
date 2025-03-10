@@ -156,6 +156,8 @@ void PlayerWalk::WalkToAttack()
         m_player->ChangeState(m_player->GetPlayerAttack());
         // パンチ音
         Audio::GetInstance()->PlaySE("PunchSE");
+        // カメラを揺らす
+        m_player->GetCamera()->StartShake(0.1f, 0.05f);
     }
 
     // Cキーが押されているかを確認

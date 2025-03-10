@@ -40,7 +40,7 @@ ResultSceneUI::~ResultSceneUI()
 //---------------------------------------------------------
 void ResultSceneUI::Initialize()
 {
-    // スプライトバッチを設定する
+    // スプライトバッチを取得する
     m_spriteBatch     = Graphics::GetInstance()->GetSpriteBatch();
     // 画像を取得する
     m_clearText_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Clear_Text.png");
