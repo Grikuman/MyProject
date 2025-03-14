@@ -1,10 +1,6 @@
 /*
-	RenderNumber.cpp
-
-	桁数の多い数値をテクスチャ表示するためのクラスの実体
-
-	2024/11/25
-	堀川　和雅
+	 ファイル名：RenderNumber.h
+	　　　概要：桁数の多い数値をテクスチャ表示するためのクラス
 */
 #include "pch.h"
 #include "RenderNumber.h"
@@ -37,7 +33,7 @@ RenderNumber::~RenderNumber()
 {
 	Finalize();
 }
-
+// 初期化処理
 void RenderNumber::Initialize(DX::DeviceResources* pDR)
 {
 	m_pDR = pDR;
@@ -45,7 +41,7 @@ void RenderNumber::Initialize(DX::DeviceResources* pDR)
 	m_pNumberObject = new tito::Particle();
 	m_pNumberObject->Create(pDR);
 }
-
+// 更新処理
 void RenderNumber::Update(float elapseTime)
 {
 	int64_t moveValue = m_renderValue - m_oldValue;
@@ -90,6 +86,7 @@ void RenderNumber::Update(float elapseTime)
 	}
 }
 
+// 描画処理
 void RenderNumber::Render()
 {
 	//	値を表示するためにコピーを作成
@@ -156,12 +153,14 @@ void RenderNumber::Render()
 	}
 }
 
+// 終了処理
 void RenderNumber::Finalize()
 {
 	delete m_pNumberObject;
 	m_pNumberObject = nullptr;
 }
 
+// 表示する数値を設定
 void RenderNumber::SetRenderValue(uint64_t val, bool notAnimation)
 {
 	if (val >= 0)
@@ -202,6 +201,7 @@ void RenderNumber::SetRenderValue(uint64_t val, bool notAnimation)
 	}
 }
 
+// 表示桁数を設定
 void RenderNumber::SetRenderColumn(int column)
 {
 	if(column > 0)
@@ -210,49 +210,55 @@ void RenderNumber::SetRenderColumn(int column)
 	}
 }
 
+// 描画方向を設定
 void RenderNumber::SetDirection(RenderNumber::RenderDirection dir)
 {
 	m_direction = dir;
 }
 
+// 位置を設定（座標指定）
 void RenderNumber::SetPosition(float x, float y)
 {
 	SetPosition(DirectX::SimpleMath::Vector2(x, y));
 }
-
+// 位置を設定（座標指定）
 void RenderNumber::SetPosition(DirectX::SimpleMath::Vector2 pos)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetPositionUV(pos.x / viewPort.Width, pos.y / viewPort.Height);
 }
 
+// UV座標を設定
 void RenderNumber::SetPositionUV(float x, float y)
 {
 	m_uvPos = DirectX::SimpleMath::Vector2(x, y);
 }
 
+// サイズを設定（座標指定）
 void RenderNumber::SetSize(float x, float y)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetUVSize(DirectX::SimpleMath::Vector2(x / viewPort.Width, y / viewPort.Height));
 }
-
+// サイズを設定（座標指定）
 void RenderNumber::SetSize(DirectX::SimpleMath::Vector2 size)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetUVSize(DirectX::SimpleMath::Vector2(size.x / viewPort.Width, size.y / viewPort.Height));
 }
 
+// UVサイズを設定
 void RenderNumber::SetUVSize(float x, float y)
 {
 	SetUVSize(DirectX::SimpleMath::Vector2(x, y));
 }
-
+// UVサイズを設定
 void RenderNumber::SetUVSize(DirectX::SimpleMath::Vector2 size)
 {
 	m_uvSize = size;
 }
 
+// 数字の色を設定（メインカラー、アウトライン風カラー）
 void RenderNumber::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB)
 {
 	m_colorA = colorA;
@@ -260,13 +266,14 @@ void RenderNumber::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::
 
 	m_pNumberObject->SetNumberColor(m_colorA, m_colorB);
 }
-
+// 背景色を設定
 void RenderNumber::SetBackColor(DirectX::SimpleMath::Vector4 color)
 {
 	m_colorC = color;
 	m_pNumberObject->SetBackColor(m_colorC);
 }
 
+// 桁数オーバー時の描画許可フラグを設定
 void RenderNumber::SetRenderOverColumn(bool flag)
 {
 	m_isOverColumn = flag;

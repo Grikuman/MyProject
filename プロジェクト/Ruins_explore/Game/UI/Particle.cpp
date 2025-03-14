@@ -221,7 +221,7 @@ void tito::Particle::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMat
 	context->PSSetShader(nullptr, nullptr, 0);
 
 }
-
+// 値を設定する関数（オーバーロード）
 void tito::Particle::SetValue(float val)
 {
 	m_time = val;
@@ -231,25 +231,25 @@ void tito::Particle::SetValue(float val)
 		m_time = 9.0f;
 	}
 }
-
+// 値を設定する関数（オーバーロード）
 void tito::Particle::SetValue(int val)
 {
 	SetValue((float)val);
 }
-
+// 画面上の位置を設定
 void tito::Particle::SetScreenPosition(DirectX::SimpleMath::Vector2 pos)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 
 	SetScreenUV(DirectX::SimpleMath::Vector2(pos.x / viewPort.Width, pos.y / viewPort.Height));
 }
-
+// 画面上の位置を設定
 void tito::Particle::SetScreenUV(DirectX::SimpleMath::Vector2 pos)
 {
 	m_pos.x = pos.x;
 	m_pos.y = pos.y;
 }
-
+// サイズを設定（オーバーロード）
 void tito::Particle::SetSize(DirectX::SimpleMath::Vector2 size)
 {
 	m_size = size;
@@ -263,18 +263,18 @@ void tito::Particle::SetSize(DirectX::SimpleMath::Vector2 size)
 		m_size.y = 1.0f;
 	}
 }
-
+// サイズを設定（オーバーロード）
 void tito::Particle::SetSize(float x, float y)
 {
 	SetSize(DirectX::SimpleMath::Vector2(x, y));
 }
-
+// 数字の色を設定
 void tito::Particle::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB)
 {
 	m_colorA = colorA;
 	m_colorB = colorB;
 }
-
+// 背景色を設定
 void tito::Particle::SetBackColor(DirectX::SimpleMath::Vector4 color)
 {
 	m_colorC = color;

@@ -18,29 +18,36 @@ TimeUI::TimeUI(ID3D11Device* device, ID3D11DeviceContext* context)
     m_timeText{}
 {
     // スプライトバッチとスプライトフォントを初期化
-    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-    m_spriteFont = Graphics::GetInstance()->GetFont();
+    m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();  // スプライト描画用バッチを取得
+    m_spriteFont = Graphics::GetInstance()->GetFont();          // フォント描画用オブジェクトを取得
+
+    // 数値描画用のRenderNumberオブジェクトを作成
     m_number = std::make_unique<RenderNumber>();
-    m_number->Initialize(Graphics::GetInstance()->GetDeviceResources());
-    // UVサイズを設定する
-    m_number->SetUVSize(0.05f * 1.0f, 0.125f * 1.0f);
+    m_number->Initialize(Graphics::GetInstance()->GetDeviceResources()); // 初期化処理
 
-    m_number->SetPosition(950.0f, 600.0f);
+    // UVサイズを設定（テクスチャの一部分を使用する場合のサイズ指定）
+    m_number->SetUVSize(0.05f * 1.0f, 0.125f * 1.0f); // 幅0.05、高さ0.125に設定
 
+    // 画面上の描画位置を設定（スクリーン座標）
+    m_number->SetPosition(950.0f, 600.0f); // X:950, Y:600 に配置
+
+    // 描画する桁数（1桁のみ表示）
     m_number->SetRenderColumn(1);
 
+    // 桁数を超える数字が表示されるかどうかを設定（trueで許可）
     m_number->SetRenderOverColumn(true);
 
+    // 数字の描画方向を設定（左寄せ）
     m_number->SetDirection(RenderNumber::RenderDirection::LeftAlignment);
 
+    // 数字の色を設定（メインカラーとアウトライン風カラー）
     m_number->SetNumberColor(
-    //  メインの色　例：白
-    DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f),
-    //  アウトラインモドキの色　例：黒
-    DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f)
+        DirectX::SimpleMath::Vector4(1.0f, 1.0f, 1.0f, 1.0f), // メインの色（白）
+        DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 1.0f)  // アウトライン風の色（黒）
     );
 
-    m_number->SetBackColor(DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 0.0f));
+    // 背景色を設定（透明）
+    m_number->SetBackColor(DirectX::SimpleMath::Vector4(0.0f, 0.0f, 0.0f, 0.0f)); // 透明（黒+アルファ0）
 }
 
 //---------------------------------------------------------

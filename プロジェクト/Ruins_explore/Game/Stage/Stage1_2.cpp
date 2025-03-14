@@ -140,17 +140,17 @@ void Stage1_2::Transition()
 	//------------------------------------------------------------------
 	// デバッグ機能
 	//------------------------------------------------------------------ 
-	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	if (kb->IsKeyPressed(DirectX::Keyboard::Q))
-	{
-		m_isClearStage = true;
-		// プレイ結果をClearにする
-		Data::GetInstance()->SetPlaySceneResult(true);
-	}
-	if (kb->IsKeyPressed(DirectX::Keyboard::E))
-	{
-		m_isClearStage = true;
-		// プレイ結果をDeadにする
-		Data::GetInstance()->SetPlaySceneResult(false);
-	}
+	//auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+	//if (kb->IsKeyPressed(DirectX::Keyboard::Q))
+	//{
+	//	m_isClearStage = true;
+	//	// プレイ結果をClearにする
+	//	Data::GetInstance()->SetPlaySceneResult(true);
+	//}
+	//if (kb->IsKeyPressed(DirectX::Keyboard::E))
+	//{
+	//	m_isClearStage = true;
+	//	// プレイ結果をDeadにする
+	//	Data::GetInstance()->SetPlaySceneResult(false);
+	//}
 }

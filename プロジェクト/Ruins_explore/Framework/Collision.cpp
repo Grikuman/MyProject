@@ -165,7 +165,7 @@ void Collision::PlayerCollisionSound(IEnemy* enemy)
 			if (!enemy->IsKnockback())
 			{
 				// ƒpƒ“ƒ`‰¹
-				Audio::GetInstance()->PlaySE("PunchHitSE");
+				//Audio::GetInstance()->PlaySE("PunchHitSE");
 			}
 		}
 	}
