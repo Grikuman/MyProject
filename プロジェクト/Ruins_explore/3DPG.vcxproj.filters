@@ -321,6 +321,12 @@
     <ClInclude Include="Game\UI\MapSelectUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Libraries\Microsoft\ReadData.h">
+      <Filter>Libraries\Microsoft</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Microsoft\RenderTexture.h">
+      <Filter>Libraries\Microsoft</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -502,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="Game\UI\MapSelectUI.cpp">
       <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\Microsoft\RenderTexture.cpp">
+      <Filter>Libraries\Microsoft</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

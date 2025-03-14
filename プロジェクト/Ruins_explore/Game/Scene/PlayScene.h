@@ -6,7 +6,12 @@
 #include "Game/Interface/IScene.h"
 #include "Game/Interface/IStage.h"
 #include "Game/Factory/StageFactory.h"
+#include <PostProcess.h>
 
+namespace DX
+{
+	class RenderTexture;
+}
 
 class PlayScene final : public IScene
 {
@@ -31,10 +36,22 @@ public:
 private:
 	// 次のステージへの移行を処理する
 	void TransitionToNextStage();
+	// レンダーテクスチャを作成する
+	void CreateRenderTexture(ID3D11Device* device);
 
 private:
 	// 現在のステージ
 	std::unique_ptr<IStage> m_currentStage;
 	// シーンチェンジフラグ
-	bool m_isChangeScene;	
+	bool m_isChangeScene;
+
+	// ポストプロセス
+	std::unique_ptr<DirectX::BasicPostProcess> m_basicPostProcess;
+	std::unique_ptr<DirectX::DualPostProcess> m_dualPostProcess;
+	// レンダーテクスチャ
+	std::unique_ptr<DX::RenderTexture> m_offScreenRT;
+	std::unique_ptr<DX::RenderTexture> m_blur1RT;
+	std::unique_ptr<DX::RenderTexture> m_blur2RT;
+	// スクリーンサイズ
+	RECT m_screenSize;
 };

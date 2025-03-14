@@ -253,6 +253,8 @@
     <ClInclude Include="Game\UI\TitleSceneUI.h" />
     <ClInclude Include="Game\UI\TimeUI.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
+    <ClInclude Include="Libraries\Microsoft\ReadData.h" />
+    <ClInclude Include="Libraries\Microsoft\RenderTexture.h" />
     <ClInclude Include="Libraries\MyLib\MemoryLeakDetector.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StepTimer.h" />
@@ -318,6 +320,7 @@
     <ClCompile Include="Game\UI\TitleSceneUI.cpp" />
     <ClCompile Include="Game\UI\TimeUI.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
+    <ClCompile Include="Libraries\Microsoft\RenderTexture.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
