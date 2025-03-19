@@ -51,6 +51,8 @@ void MapSelectScene::Update(float elapsedTime)
 
 	// UIを更新する
 	m_mapSelectUI->Update();
+	// 次のシーンIDを取得する
+	GetNextSceneID();
 }
 
 //---------------------------------------------------------

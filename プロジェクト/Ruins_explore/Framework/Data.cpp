@@ -22,6 +22,7 @@ Data* const Data::GetInstance()
 // コンストラクタ
 Data::Data()
 	:
+	m_mapSerectStage{},
 	m_playSceneResult{}
 {
 

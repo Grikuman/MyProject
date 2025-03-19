@@ -60,7 +60,7 @@ TimeUI::~TimeUI()
 
 void TimeUI::Initialize()
 {
-    m_timeText = Resources::GetInstance()->GetTexture(L"Time_Text");
+    m_timeText = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Time_Text.png");
 }
 
 //---------------------------------------------------------

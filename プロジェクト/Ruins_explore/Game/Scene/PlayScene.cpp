@@ -36,11 +36,9 @@ void PlayScene::Initialize()
 
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-	// 選択したステージ
-	StageID selectStage = StageID::Stage1_2;
-	// 選択したステージを生成する
-	m_currentStage = StageFactory::CreateStage(selectStage);
-	m_currentStage->Initialize();
+	
+	// ステージの初期化
+	StageInitialize();
 
 	// レンダーテクスチャを作成する
 	CreateRenderTexture(device);
@@ -64,7 +62,6 @@ void PlayScene::Update(float elapsedTime)
 	{
 		TransitionToNextStage();
 	}
-
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -166,6 +163,27 @@ void PlayScene::Finalize()
 {
 	// ステージの終了処理
 	m_currentStage->Finalize();
+}
+
+//---------------------------------------------------------
+// ステージの初期化
+//---------------------------------------------------------
+void PlayScene::StageInitialize()
+{
+	// 選択するステージ
+	StageID selectStage =  StageID::Stage1_1;
+	switch (Data::GetInstance()->GetMapSelectStage())
+	{
+	case 0:
+		selectStage = StageID::Stage1_1;
+		break;
+	case 1:
+		selectStage = StageID::Stage1_2;
+	default:
+		break;
+	}
+	m_currentStage = StageFactory::CreateStage(selectStage); 
+	m_currentStage->Initialize(); 
 }
 
 //---------------------------------------------------------

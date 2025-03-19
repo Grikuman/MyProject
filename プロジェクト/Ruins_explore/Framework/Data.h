@@ -10,9 +10,12 @@ public:
 	// コリジョンのインスタンス取得
 	static Data* const GetInstance();
 	// プレイシーンの結果を取得する
+	bool GetMapSelectStage() const { return m_mapSerectStage; }
+	// プレイシーンの結果を取得する
 	bool GetPlaySceneResult() const { return m_playSceneResult; }
 
 public:
+	void SetMapSelectStage(const int stageNumber) { m_mapSerectStage = stageNumber; }
 	// プレイシーンの結果を設定する
 	void SetPlaySceneResult(const bool result) { m_playSceneResult = result; };
 
@@ -36,6 +39,9 @@ private:
 private:
 	// シングルトン
 	static std::unique_ptr<Data> m_Data;
+	// マップ選択のステージ
+	int m_mapSerectStage;
 	// プレイシーンの結果
 	bool m_playSceneResult;
+
 };

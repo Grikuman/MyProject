@@ -34,6 +34,8 @@ public:
 	void Finalize() override;
 
 private:
+	// ステージの初期化
+	void StageInitialize();
 	// 次のステージへの移行を処理する
 	void TransitionToNextStage();
 	// レンダーテクスチャを作成する
