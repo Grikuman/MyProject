@@ -35,7 +35,7 @@ namespace NRLib
 		void CalculateViewMatrix();
 		// プロジェクション行列を計算する
 		void CalculateProjectionMatrix();
-		// カメラ座標を計算する
+		// カメラ座標を計算する 
 		void CalculateEyePosition(const DirectX::SimpleMath::Matrix& rotate);
 
 	private:

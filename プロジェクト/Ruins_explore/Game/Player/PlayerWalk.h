@@ -41,4 +41,6 @@ private:
 	Player* m_player;
 	// キーを押している時間
 	float m_keyHoldTime;
+	// マウスの移動保存
+	int m_prevMouse;
 };

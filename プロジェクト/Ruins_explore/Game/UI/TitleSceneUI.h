@@ -23,44 +23,46 @@ public:
     void Finalize();
 
 private:
-    // ゲームタイトルの位置
-    const DirectX::SimpleMath::Vector2 GAMETITLE_POS = DirectX::SimpleMath::Vector2(350, 150);
-    // 選択文字の位置
-    const DirectX::SimpleMath::Vector2 SELECT_POS = DirectX::SimpleMath::Vector2(450, 400);
+    // 選択フラグでの処理をする
+    void SelectFlagProcess();
+
+private:
+    // タイトル文字の位置
+    const DirectX::SimpleMath::Vector2 TITLETEXT_POS = DirectX::SimpleMath::Vector2(260, 80);
+    // 『プレイする』文字の位置
+    const DirectX::SimpleMath::Vector2 PLAYTEXT_POS = DirectX::SimpleMath::Vector2(450, 360);
+    // 『終了する』文字の位置
+    const DirectX::SimpleMath::Vector2 ENDTEXT_POS = DirectX::SimpleMath::Vector2(420, 480);
+    // 『スペースキーで決定する』文字の位置
+    const DirectX::SimpleMath::Vector2 SPACECONFILMTEXT_POS = DirectX::SimpleMath::Vector2(440, 650);
     // 選択矢印の位置
-    const DirectX::SimpleMath::Vector2 SELECTARROW_POS_1 = DirectX::SimpleMath::Vector2(500, 390);
-    const DirectX::SimpleMath::Vector2 SELECTARROW_POS_2 = DirectX::SimpleMath::Vector2(500, 510);
-    // i文字の位置
-    const DirectX::SimpleMath::Vector2 I_POS = DirectX::SimpleMath::Vector2(485, 210);
-    // o文字の位置
-    const DirectX::SimpleMath::Vector2 O_POS = DirectX::SimpleMath::Vector2(810, 255);
-    // i・oの回転中心位置
-    const DirectX::SimpleMath::Vector2 I_CENTER_POS = DirectX::SimpleMath::Vector2(25, 25);
-    const DirectX::SimpleMath::Vector2 O_CENTER_POS = DirectX::SimpleMath::Vector2(25, 25);
+    const DirectX::SimpleMath::Vector2 SELECTARROW_POS_1 = DirectX::SimpleMath::Vector2(400, 390);
+    const DirectX::SimpleMath::Vector2 SELECTARROW_POS_2 = DirectX::SimpleMath::Vector2(400, 510);
     // タイトル背景の位置
     const DirectX::SimpleMath::Vector2 BACKGROUND_POS = DirectX::SimpleMath::Vector2(0,0);
-
-
 private:
     // タイトルシーン
     TitleScene* m_titleScene;
-    //スプライトバッチ
+    // スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
-    // ゲームタイトル
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_gameTitle_Tex;
-    // 選択文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_select_Tex;
+    // 『Ruins Explorer』文字
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_titleText_Tex;
+    // 『プレイする』文字
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_playText_Tex;
+    // 『終了する』文字
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_endText_Tex;
+    // 『スペースキーで決定する』文字
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_SpaceConfilmText_Tex;
     // 選択矢印
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_selectArrow_Tex;
-    // i・oの回転文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_i_Tex;
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_o_Tex;
-    // 背景
+    // タイトル背景
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backGround_Tex;
     // セレクトフラグ
     bool m_selectFlag;
-    // 回転
-    float m_rotate;
+    // 文字の点滅
+    float m_alpha;
+    // 点滅用の色
+    DirectX::SimpleMath::Vector4 m_color;
     // 選択矢印の位置
     DirectX::SimpleMath::Vector2 m_selectArrowPos;
 };

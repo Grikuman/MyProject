@@ -69,7 +69,10 @@ void Resources::LoadResources()
 	//================
 	// * テクスチャ *
 	//================
-	// 変数
+	// 画像
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SelectArrow;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleBackGround;
+
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> health_red;       // 体力(赤)
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> health_gray;      // 体力(灰色)
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> stamina_yellow;   // スタミナ(黄色)
@@ -78,8 +81,6 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ruins_explorer;   // タイトル文字
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titleselect;      // タイトルセレクト
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> selectarrow;       // セレクトアイコン
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> i_rotate;         // iのぐるぐる
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> o_rotate;         // oのぐるぐる
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> titlebackground;  // タイトル背景
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> black;            // 黒
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> clear;            // クリア文字
@@ -89,7 +90,25 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pushspacekey;     // スペースキー
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> time;             // 時間
 
-	// 読み込む
+	// 文字の画像
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;       // タイトル
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> PlayText;        // プレイする
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> EndText;         // 終了する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SpaceConfilmText;  // スペースキーで開始する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageSelectText; // ステージを選択する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TutorialText;    // チュートリアル
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage1Text;      // ステージ1
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage2Text;      // ステージ2
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage3Text;      // ステージ3
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage4Text;      // ステージ4
+
+	//================
+	// * 読み込む *
+	//================
+	// 画像
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択矢印.png", nullptr, SelectArrow.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル背景.png", nullptr, TitleBackGround.GetAddressOf());
+
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Red.png", nullptr, health_red.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Health_Gray.png", nullptr, health_gray.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Stamina_Yellow.png", nullptr, stamina_yellow.GetAddressOf());
@@ -98,8 +117,6 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Ruins_Explorer.png", nullptr, ruins_explorer.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleSelect.png", nullptr, titleselect.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/SelectIcon.png", nullptr, selectarrow.GetAddressOf());
-	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/i_rotate.png", nullptr, i_rotate.GetAddressOf());
-	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/o_rotate.png", nullptr, o_rotate.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/TitleScene.png", nullptr, titlebackground.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Black.png", nullptr, black.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Clear_text.png", nullptr, clear.GetAddressOf());
@@ -109,7 +126,25 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/PushSpaceKey.png", nullptr, pushspacekey.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Time_text.png", nullptr, time.GetAddressOf());
 
-	// テクスチャを登録する
+	// 文字
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/プレイする.png", nullptr, PlayText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/終了する.png", nullptr, EndText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/スペースキーで決定する.png", nullptr, SpaceConfilmText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージを選択する.png", nullptr, StageSelectText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアル.png", nullptr, TutorialText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ1.png", nullptr, Stage1Text.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ2.png", nullptr, Stage2Text.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ3.png", nullptr, Stage3Text.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ4.png", nullptr, Stage4Text.GetAddressOf());
+
+	//================
+	// * 登録する *
+	//================
+	// 画像
+	m_textures.emplace(L"SelectArrow", SelectArrow);
+	m_textures.emplace(L"TitleBackGround", TitleBackGround);
+
 	m_textures.emplace(L"Health_Red", health_red);
 	m_textures.emplace(L"Health_Gray", health_gray);
 	m_textures.emplace(L"Stamina_Yellow", stamina_yellow);
@@ -118,8 +153,6 @@ void Resources::LoadResources()
 	m_textures.emplace(L"Ruins_Explorer", ruins_explorer);
 	m_textures.emplace(L"TitleSelect", titleselect);
 	m_textures.emplace(L"SelectArrow", selectarrow);
-	m_textures.emplace(L"i_Rotate", i_rotate);
-	m_textures.emplace(L"o_Rotate", o_rotate);
 	m_textures.emplace(L"TitleBackGround", titlebackground);
 	m_textures.emplace(L"Black", black);
 	m_textures.emplace(L"Clear", clear);
@@ -128,6 +161,18 @@ void Resources::LoadResources()
 	m_textures.emplace(L"ResultDead", resultdead);
 	m_textures.emplace(L"PushSpaceKey", pushspacekey);
 	m_textures.emplace(L"Time_Text", time);
+
+	// 文字
+	m_textures.emplace(L"TitleText", TitleText);
+	m_textures.emplace(L"PlayText", PlayText);
+	m_textures.emplace(L"EndText", EndText);
+	m_textures.emplace(L"SpaceConfilmText", SpaceConfilmText);
+	m_textures.emplace(L"StageSelectText", StageSelectText);
+	m_textures.emplace(L"TutorialText", TutorialText);
+	m_textures.emplace(L"Stgae1Text", Stage1Text);
+	m_textures.emplace(L"Stage2Text", Stage2Text);
+	m_textures.emplace(L"Stage3Text", Stage3Text);
+	m_textures.emplace(L"Stage4Text", Stage4Text);
 }
 
 // モデルを取得する

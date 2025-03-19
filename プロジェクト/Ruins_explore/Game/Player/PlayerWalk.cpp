@@ -19,7 +19,8 @@
 PlayerWalk::PlayerWalk(Player* player)
 	:
     m_player(player),
-    m_keyHoldTime{}
+    m_keyHoldTime{},
+    m_prevMouse{}
 {
 }
 
@@ -83,23 +84,31 @@ void PlayerWalk::PlayerMove()
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
     // 移動処理
-    if (kb->W || kb->Up)
+    if (kb->W)
     {
         m_player->AddVelocity(Vector3::Forward);
     }
-    if (kb->S || kb->Down)
+    if (kb->S)
     {
         m_player->AddVelocity(Vector3::Backward);
     }
+    if (kb->A)
+    {
+        m_player->AddVelocity(Vector3::Left);
+    }
+    if (kb->D)
+    {
+        m_player->AddVelocity(Vector3::Right);
+    }
 
     // 回転処理
-    if(kb->A || kb->Left)
+    if(kb->Left)
     {
         // Y軸を中心に左回転を加算
         Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(ROTATE_SPEED));
         m_player->AddAngle(rotation);
     }
-    if (kb->D || kb->Right)
+    if (kb->Right)
     {
         // Y軸を中心に右回転を加算
         Quaternion rotation = Quaternion::CreateFromAxisAngle(Vector3::Up, DirectX::XMConvertToRadians(-ROTATE_SPEED));
@@ -123,19 +132,19 @@ void PlayerWalk::WalkToDash()
     // ダッシュ方向用のキーボードを取得する
     auto directionKb = InputDevice::GetInstance()->GetKeyboardState();
     // ダッシュ方向を設定する
-    if (directionKb->W || directionKb->Up)
+    if (directionKb->W)
     {
         m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Forward);
     }
-    if (directionKb->S || directionKb->Down)
+    if (directionKb->S)
     {
         m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Backward); 
     }
-    if (directionKb->D || directionKb->Right)
+    if (directionKb->D)
     {
         m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Right); 
     }
-    if (directionKb->A || directionKb->Left)
+    if (directionKb->A)
     {
         m_player->GetPlayerDash()->SetDashDirection(DirectX::SimpleMath::Vector3::Left); 
     }

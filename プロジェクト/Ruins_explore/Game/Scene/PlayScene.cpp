@@ -37,7 +37,7 @@ void PlayScene::Initialize()
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
 	// 選択したステージ
-	StageID selectStage = StageID::Stage1_1;
+	StageID selectStage = StageID::Stage1_2;
 	// 選択したステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);
 	m_currentStage->Initialize();
@@ -150,7 +150,7 @@ void PlayScene::Render()
 
 	// オフスクリーン画像とブラー画像をポストプロセスのパラメータを加えてマージする
 	m_dualPostProcess->SetEffect(DirectX::DualPostProcess::BloomCombine); 
-	m_dualPostProcess->SetBloomCombineParameters(0.6f, 1.0f, 1.0f, 1.0f); 
+	m_dualPostProcess->SetBloomCombineParameters(0.5f, 1.0f, 1.0f, 1.0f); 
 	m_dualPostProcess->SetSourceTexture(offScreenSRV); 
 	m_dualPostProcess->SetSourceTexture2(blur1SRV); 
 	m_dualPostProcess->Process(context); 

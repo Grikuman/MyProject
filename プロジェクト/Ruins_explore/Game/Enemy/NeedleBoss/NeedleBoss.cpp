@@ -94,6 +94,8 @@ void NeedleBoss::Update()
     CheckAlive();
     //現在のステートを更新する
     m_currentState->Update();
+    // プレイヤーの視点を自身に向ける
+    SetPlayerAngle();
     // 体力UIを更新する
     m_bossHPUI->Update(m_hp, MAXHP);
     // プレイヤーとの当たり判定
@@ -199,4 +201,28 @@ void NeedleBoss::CheckAlive()
         m_isAlive = false;
         m_hp = 0.0f;
     }
+}
+
+//---------------------------------------------------------
+// プレイヤーの視点を自身に向ける
+//---------------------------------------------------------
+void NeedleBoss::SetPlayerAngle()
+{
+    // プレイヤーと敵の位置を取得
+    DirectX::SimpleMath::Vector3 playerPosition = m_player->GetPosition();
+    DirectX::SimpleMath::Vector3 enemyPosition = m_position;
+
+    // プレイヤーと敵の方向ベクトルを計算
+    DirectX::SimpleMath::Vector3 direction = playerPosition - enemyPosition;
+    direction.y = 0.0f;  // 高さ方向を無視してY軸回りの回転だけを考慮
+
+    // ベクトルの正規化
+    direction.DirectX::SimpleMath::Vector3::Normalize();
+
+    // プレイヤーが向くべき角度を計算
+    float angle = atan2(direction.x, direction.z);  // X,Z平面での角度を計算
+
+    // プレイヤーの向きを変更
+    DirectX::SimpleMath::Quaternion rotation = DirectX::SimpleMath::Quaternion::CreateFromYawPitchRoll(angle, 0.0f, 0.0f);
+    m_player->SetAngle(rotation);  // プレイヤーの回転を設定
 }

@@ -94,7 +94,8 @@ public:
 private:
     // 生存しているか判定する
     void CheckAlive();
-
+    // プレイヤーの視点を自身に向ける
+    void SetPlayerAngle();
 private:
     // 最大体力
     const float MAXHP = 300;
