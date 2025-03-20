@@ -78,15 +78,15 @@ void Resources::LoadResources()
 	// * テクスチャ *
 	//================
 	// 画像
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Black;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SelectArrow;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleBackGround;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SelectMenu;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TutorialIcon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage1Icon;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage2Icon;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage3Icon;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage4Icon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> MissionCheckMark;     // ミッションのチェックマーク
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageClearIcon;     // ステージ成功のアイコン
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageFailedIcon;    // ステージ失敗のアイコン
 
 	// 文字の画像
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;            // タイトル
@@ -99,12 +99,15 @@ void Resources::LoadResources()
 	// * 読み込む *
 	//================
 	// 画像
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Black.png", nullptr, Black.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択矢印.png", nullptr, SelectArrow.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル背景.png", nullptr, TitleBackGround.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択メニュー.png", nullptr, SelectMenu.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアルのアイコン.png", nullptr, TutorialIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ1のアイコン.png", nullptr, Stage1Icon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ミッションのチェックマーク.png", nullptr, MissionCheckMark.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ成功のアイコン.png", nullptr, StageClearIcon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ失敗のアイコン.png", nullptr, StageFailedIcon.GetAddressOf());
 
 	// 文字
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
@@ -117,12 +120,15 @@ void Resources::LoadResources()
 	// * 登録する *
 	//================
 	// 画像
+	m_textures.emplace(L"Black", Black);
 	m_textures.emplace(L"SelectArrow", SelectArrow);
 	m_textures.emplace(L"TitleBackGround", TitleBackGround);
 	m_textures.emplace(L"SelectMenu", SelectMenu);
 	m_textures.emplace(L"TutorialIcon", TutorialIcon);
 	m_textures.emplace(L"Stage1Icon", Stage1Icon);
 	m_textures.emplace(L"MissionCheckMark", MissionCheckMark);
+	m_textures.emplace(L"StageClearIcon", StageClearIcon);
+	m_textures.emplace(L"StageFailedIcon", StageFailedIcon);
 
 	// 文字
 	m_textures.emplace(L"TitleText", TitleText);

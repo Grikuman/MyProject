@@ -17,6 +17,8 @@ PlayScene::PlayScene()
 	m_isChangeScene{},
 	m_currentStage{}
 {
+	// ステージ終了演出を作成する
+	m_stageEnd = std::make_unique<StageEnd>();
 }
 
 //---------------------------------------------------------
@@ -35,6 +37,8 @@ void PlayScene::Initialize()
 	m_isChangeScene = false;
 	// ステージの初期化
 	StageInitialize();
+	// ステージ終了演出を初期化する
+	m_stageEnd->Initialize();
 }
 
 //---------------------------------------------------------
@@ -42,13 +46,22 @@ void PlayScene::Initialize()
 //---------------------------------------------------------
 void PlayScene::Update(float elapsedTime)
 {
+	// 現在のステージを更新する
 	m_currentStage->Update(elapsedTime);
 
-	// ステージをクリアしたら次のステージへ進む
-	if (m_currentStage->IsClearStage()) 
+	// もしステージが終了したら演出を更新する
+	if (m_currentStage->IsEndStage()) 
 	{
-		TransitionToNextStage();
+		// 演出を再生
+		m_stageEnd->Update();
+		// 演出が終了したら
+		if (m_stageEnd->GetEnd())
+		{
+			// リザルトへ移行
+			m_isChangeScene = true;
+		}
 	}
+
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -60,6 +73,8 @@ void PlayScene::Render()
 {
 	// ステージを描画する
 	m_currentStage->Render();
+	// ステージの終了演出を描画する
+	m_stageEnd->Render();
 }
 
 //---------------------------------------------------------
@@ -76,44 +91,27 @@ void PlayScene::Finalize()
 //---------------------------------------------------------
 void PlayScene::StageInitialize()
 {
-	// 選択するステージ
-	StageID selectStage =  StageID::Stage1_1;
+	// 選択するステージ用の変数
+	StageID selectStage;
+
+	// マップ選択で選ばれたステージを確認する
 	switch (Data::GetInstance()->GetMapSelectStage())
 	{
 	case 0:
 		selectStage = StageID::TutorialStage;
 		break;
 	case 1:
-		selectStage = StageID::Stage1_1;
+		selectStage = StageID::Stage1;
 		break;
 	default:
 		break;
 	}
+
+	// マップ選択で選ばれたステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);
+
+	// ステージを初期化する
 	m_currentStage->Initialize(); 
-}
-
-//---------------------------------------------------------
-// 次のステージへの移行を処理する
-//---------------------------------------------------------
-void PlayScene::TransitionToNextStage()
-{
-	// 現在のステージの終了処理
-	m_currentStage->Finalize();
-	// 次のステージIDを取得
-	StageID nextStageID = m_currentStage->GetNextStageID();
-
-	// 次のステージを生成
-	if (nextStageID != StageID::NONE)
-	{
-		m_currentStage = StageFactory::CreateStage(nextStageID);
-		m_currentStage->Initialize();
-	}
-	else
-	{
-		// 全ステージ終了後、シーン変更フラグを設定
-		m_isChangeScene = true;
-	}
 }
 
 //---------------------------------------------------------

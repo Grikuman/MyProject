@@ -5,13 +5,7 @@
       "position": [ 0, 1000.0, 0 ]
     }
   ],
-  "Stage1_1": [
-    {
-      "type": "NeedleBoss",
-      "position": [ 1, 1.0, -20 ]
-    }
-  ],
-  "Stage1_2": [
+  "Stage1": [
     {
       "type": "NeedleBoss",
       "position": [ 1, 1.0, -20 ]

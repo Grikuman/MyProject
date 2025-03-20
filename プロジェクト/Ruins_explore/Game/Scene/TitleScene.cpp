@@ -39,7 +39,7 @@ void TitleScene::Initialize()
 	// ‰Šú‰»‚·‚é
 	m_titleSceneUI->Initialize();
 	// BGM‚ðÄ¶
-	Audio::GetInstance()->PlayBGM("TitleBGM",0.2f);
+	Audio::GetInstance()->PlayBGM("TitleBGM",0.05f);
 }
 
 //---------------------------------------------------------

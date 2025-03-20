@@ -6,12 +6,7 @@
 #include "Game/Interface/IScene.h"
 #include "Game/Interface/IStage.h"
 #include "Game/Factory/StageFactory.h"
-#include <PostProcess.h>
-
-namespace DX
-{
-	class RenderTexture;
-}
+#include "Game/Transition/StageEnd.h"
 
 class PlayScene final : public IScene
 {
@@ -27,7 +22,7 @@ public:
 	// 初期化する
 	void Initialize() override;
 	// 更新する
-	void Update(float elapsedTime)override;
+	void Update(float elapsedTime) override;
 	// 描画する
 	void Render() override;
 	// 終了処理
@@ -36,12 +31,12 @@ public:
 private:
 	// ステージの初期化
 	void StageInitialize();
-	// 次のステージへの移行を処理する
-	void TransitionToNextStage();
 
 private:
 	// 現在のステージ
 	std::unique_ptr<IStage> m_currentStage;
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
+	// ステージ終了演出
+	std::unique_ptr<StageEnd> m_stageEnd;
 };

@@ -1,25 +1,26 @@
 /*
-	ファイル名：Stage1_2.cpp
-	　　　概要：ステージ1_2を管理するクラス
+	ファイル名：Stage1.cpp
+	　　　概要：ステージ1_1を管理するクラス
 */
 #include "pch.h"
-#include "Stage1_2.h"
+#include "Stage1.h"
 
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Stage1_2::Stage1_2(std::string stageName)
+Stage1::Stage1(std::string stageName)
 	:
 	m_stageEnemy{},
-	m_stageName{"Stage1_2"},
+	m_stageName{"Stage1"},
 	m_stageCollision{},
-	m_isClearStage{},
+	m_isEndStage{},
 	m_player{},
 	m_timeUI{},
 	m_gameTime{}
@@ -42,14 +43,14 @@ Stage1_2::Stage1_2(std::string stageName)
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-Stage1_2::~Stage1_2()
+Stage1::~Stage1()
 {
 }
 
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void Stage1_2::Initialize()
+void Stage1::Initialize()
 {
 	// プレイヤーを初期化する
 	m_player->Initialize();
@@ -62,17 +63,19 @@ void Stage1_2::Initialize()
 	// 時間UIを初期化する
 	m_timeUI->Initialize();
 	// ステージクリアフラグを初期化する
-	m_isClearStage = false;
+	m_isEndStage = false;
 	// ゲーム時間を設定
 	m_gameTime = MAX_GAMETIME;
 	// 当たり判定クラスにプレイヤーを設定する
 	Collision::GetInstance()->SetPlayer(m_player.get());
+	// BGMを再生する
+	Audio::GetInstance()->PlayBGM("BattleBGM_1", 0.07f);
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void Stage1_2::Update(float elapsedTime)
+void Stage1::Update(float elapsedTime)
 {
 	//ゲーム時間
 	m_gameTime -= elapsedTime;
@@ -93,7 +96,7 @@ void Stage1_2::Update(float elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void Stage1_2::Render()
+void Stage1::Render()
 {
 	// ステージのオブジェクトを描画する
 	m_stageCollision->Render();
@@ -110,7 +113,7 @@ void Stage1_2::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void Stage1_2::Finalize()
+void Stage1::Finalize()
 {
 	m_player->Finalize();
 	m_stageEnemy->Finalize();
@@ -120,20 +123,20 @@ void Stage1_2::Finalize()
 //---------------------------------------------------------
 // ステージの遷移処理
 //---------------------------------------------------------
-void Stage1_2::Transition()
+void Stage1::Transition()
 {
 	// 敵が全員死んだらシーン遷移を行う
 	if (m_stageEnemy->IsChangeStage())
 	{
-		m_isClearStage = true;
-		// プレイ結果をClearにする
+		m_isEndStage = true;
+		// プレイ結果を成功にする
 		Data::GetInstance()->SetPlaySceneResult(true);
 	}
 	// プレイヤーの体力が0になったらシーン遷移を行う
 	if (m_player->GetHP() <= 0)
 	{
-		m_isClearStage = true;
-		// プレイ結果をDeadにする
+		m_isEndStage = true;
+		// プレイ結果を失敗にする
 		Data::GetInstance()->SetPlaySceneResult(false);
 	}
 }

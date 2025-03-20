@@ -9,17 +9,14 @@ enum class StageID
 {
 	NONE,
 	TutorialStage,
-	Stage1_1,
-	Stage1_2,
+	Stage1,
 };
 
 class IStage
 {
 public:
-	// 次のステージIDを取得する
-	virtual StageID GetNextStageID() const = 0;
-	// ステージをクリアしたかどうか
-	virtual bool IsClearStage() const = 0;
+	// ステージが終了したかどうか
+	virtual bool IsEndStage() const = 0;
 
 public:
 	virtual ~IStage() = default;

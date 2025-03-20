@@ -39,6 +39,9 @@ void Audio::Initialize()
     LoadBGM("TitleBGM", "Resources/Sounds/TitleBGM.mp3");
     LoadBGM("TutorialBGM", "Resources/Sounds/TutorialBGM.mp3");
     LoadBGM("BattleBGM_1", "Resources/Sounds/BattleBGM_1.mp3");
+    LoadBGM("StageClearBGM", "Resources/Sounds/StageClearBGM.mp3");
+    LoadBGM("StageFailedBGM", "Resources/Sounds/StageFailedBGM.mp3");
+
     // SEÇì«Ç›çûÇﬁ
     LoadSE("PunchHitSE", "Resources/Sounds/PunchHitSE.mp3");
     LoadSE("PunchSE", "Resources/Sounds/PunchSE.mp3");

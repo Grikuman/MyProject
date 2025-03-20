@@ -192,10 +192,7 @@
     <ClInclude Include="Game\Interface\IStage.h">
       <Filter>Game\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Stage\Stage1_1.h">
-      <Filter>Game\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Stage\Stage1_2.h">
+    <ClInclude Include="Game\Stage\Stage1.h">
       <Filter>Game\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Game\Interface\IEnemy.h">
@@ -339,6 +336,9 @@
     <ClInclude Include="Game\Enemy\PracticeEnemy\PracticeEnemy.h">
       <Filter>Game\Enemy\PracticeEnemy</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Transition\StageEnd.h">
+      <Filter>Game\Transition</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -401,10 +401,7 @@
     <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp">
       <Filter>Game\Player\Parts</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Stage\Stage1_1.cpp">
-      <Filter>Game\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Stage\Stage1_2.cpp">
+    <ClCompile Include="Game\Stage\Stage1.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\StageEnemy.cpp">
@@ -532,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\PracticeEnemy\PracticeEnemy.cpp">
       <Filter>Game\Enemy\PracticeEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Transition\StageEnd.cpp">
+      <Filter>Game\Transition</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -15,10 +15,8 @@
 class TutorialStage final : public IStage
 {
 public:
-	// 次のステージIDを取得する
-	StageID GetNextStageID() const override { return StageID::NONE; }
 	// ステージをクリアしたかどうか
-	bool IsClearStage() const override { return m_isClearStage; }
+	bool IsEndStage() const override { return m_isEndStage; }
 
 public:
 	// コンストラクタ
@@ -53,8 +51,8 @@ private:
 	DirectX::Model* m_stageModel;
 	// ステージの名前
 	std::string m_stageName;
-	// ステージクリアフラグ
-	bool m_isClearStage;
+	// ステージ終了フラグ
+	bool m_isEndStage;
 	// 移動カウント
 	int m_moveCnt;
 };

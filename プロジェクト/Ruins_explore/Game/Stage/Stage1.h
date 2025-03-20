@@ -1,5 +1,5 @@
 /*
-	ファイル名：Stage1_1.h
+	ファイル名：Stage1.h
 	　　　概要：ステージ1_1を管理するクラス
 */
 #pragma once
@@ -10,19 +10,17 @@
 #include "Game/Stage/StageCollision.h"
 #include "Game/Stage/StageDecoration.h"
 
-class Stage1_1 final : public IStage
+class Stage1 final : public IStage
 {
 public:
-	// 次のステージIDを取得する
-	StageID GetNextStageID() const override { return StageID::NONE; }
 	// ステージをクリアしたかどうか
-	bool IsClearStage() const override { return m_isClearStage; }
+	bool IsEndStage() const override { return m_isEndStage; }
 
 public:
 	// コンストラクタ
-	Stage1_1(std::string stageName);
+	Stage1(std::string stageName);
 	// コンストラクタ
-	~Stage1_1() override;
+	~Stage1() override;
 	// 初期化する
 	void Initialize() override;
 	// 更新する
@@ -54,7 +52,7 @@ private:
 	// ステージの名前
 	std::string m_stageName;
 	// ステージクリアフラグ
-	bool m_isClearStage;
+	bool m_isEndStage;
 	// ゲーム時間
 	float m_gameTime;
 };

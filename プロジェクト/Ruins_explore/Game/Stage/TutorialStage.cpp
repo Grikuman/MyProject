@@ -20,7 +20,7 @@ TutorialStage::TutorialStage(std::string stageName)
 	:
 	m_stageModel{},
 	m_stageName{"TutorialStage"},
-	m_isClearStage{},
+	m_isEndStage{},
 	m_player{},
 	m_moveCnt{}
 {
@@ -44,9 +44,8 @@ TutorialStage::~TutorialStage()
 //---------------------------------------------------------
 void TutorialStage::Initialize()
 {
-
-	// ステージクリアフラグを初期化する
-	m_isClearStage = false;
+	// ステージ終了フラグを初期化する
+	m_isEndStage = false;
 	// 移動カウントを初期化する
 	m_moveCnt = 0;
 	// プレイヤーを初期化する
@@ -75,7 +74,7 @@ void TutorialStage::Initialize()
 				basicEffect->SetEmissiveColor(DirectX::Colors::White);
 			}
 		});
-	Audio::GetInstance()->PlayBGM("TutorialBGM",0.1f);
+	Audio::GetInstance()->PlayBGM("TutorialBGM", 0.05f);
 }
 
 //---------------------------------------------------------
@@ -175,7 +174,14 @@ void TutorialStage::Collision()
 //---------------------------------------------------------
 void TutorialStage::Transition()
 {
-	
+	// 全てのミッションをクリアしていた場合
+	if (m_tutorialGuideUI->GetMissionFlag(3))
+	{
+		// ステージ終了
+		m_isEndStage = true;
+		// ステージ結果を成功に設定する
+		Data::GetInstance()->SetPlaySceneResult(true);
+	}
 }
 
 //---------------------------------------------------------
@@ -205,7 +211,7 @@ void TutorialStage::Mission()
 	}
 
 	// ミッション3の判定-----------------------------------
-	if(m_practiceEnemy->GetHitCount() >= 120)
+	if(m_practiceEnemy->GetHitCount() >= 200)
 	{
 		// ミッション3をクリア
 		m_tutorialGuideUI->ClearMission(2);
