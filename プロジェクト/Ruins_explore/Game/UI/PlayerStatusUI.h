@@ -25,13 +25,13 @@ public:
 
 private:
     // ステータスアイコンの位置
-    const DirectX::SimpleMath::Vector2 STATUS_ICON_POS = DirectX::SimpleMath::Vector2(10.f, 600.f);
+    const DirectX::SimpleMath::Vector2 STATUS_ICON_POS = DirectX::SimpleMath::Vector2(10.f, 10.f);
     // 体力表示位置の原点
-    const DirectX::SimpleMath::Vector2 HEALTH_POS_ORIGIN = DirectX::SimpleMath::Vector2(108.f, 600.f);
+    const DirectX::SimpleMath::Vector2 HEALTH_POS_ORIGIN = DirectX::SimpleMath::Vector2(108.f, 10.f);
     // 体力表示一つずつの距離
     const float HEALTH_SHIFT_LENGTH = 53.f;
     // スタミナ表示位置の原点
-    const DirectX::SimpleMath::Vector2 STAMINA_POS_ORIGIN = DirectX::SimpleMath::Vector2(130.f, 660.f);
+    const DirectX::SimpleMath::Vector2 STAMINA_POS_ORIGIN = DirectX::SimpleMath::Vector2(130.f, 60.f);
     // 体力表示一つずつの距離
     const float STAMINA_SHIFT_LENGTH = 50.f;
 

@@ -37,12 +37,15 @@ void Audio::Initialize()
     m_system->init(512, FMOD_INIT_NORMAL, nullptr);
     // BGMÇì«Ç›çûÇﬁ
     LoadBGM("TitleBGM", "Resources/Sounds/TitleBGM.mp3");
-    LoadBGM("PlayBGM", "Resources/Sounds/PlayBGM.mp3");
+    LoadBGM("TutorialBGM", "Resources/Sounds/TutorialBGM.mp3");
+    LoadBGM("BattleBGM_1", "Resources/Sounds/BattleBGM_1.mp3");
     // SEÇì«Ç›çûÇﬁ
     LoadSE("PunchHitSE", "Resources/Sounds/PunchHitSE.mp3");
     LoadSE("PunchSE", "Resources/Sounds/PunchSE.mp3");
     LoadSE("DashSE", "Resources/Sounds/DashSE.mp3");
     LoadSE("EnemyAttackSE", "Resources/Sounds/EnemyAttackSE.mp3");
+    LoadSE("MenuSelectSE", "Resources/Sounds/MenuSelectSE.mp3");
+    LoadSE("MapSelectSE", "Resources/Sounds/MapSelectSE.mp3");
 }
 
 //---------------------------------------------------------

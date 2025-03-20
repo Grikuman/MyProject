@@ -9,6 +9,7 @@
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
 #include "Game/Scene/TitleScene.h"
 
 //---------------------------------------------------------
@@ -112,16 +113,20 @@ void TitleSceneUI::SelectFlagProcess()
     // キーボードを取得する
     auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
-    // 上キーを押したら
-    if (kb->IsKeyPressed(DirectX::Keyboard::Up))
+    // 上キー　または　下キーを押したら
+    if (kb->IsKeyPressed(DirectX::Keyboard::Up) || kb->IsKeyPressed(DirectX::Keyboard::Down))
     {
-        m_selectFlag = true;
+        if (m_selectFlag)
+        {
+            m_selectFlag = false;
+        }
+        else
+        {
+            m_selectFlag = true;
+        }
+        Audio::GetInstance()->PlaySE("MenuSelectSE");
     }
-    // 下キーを押したら
-    if (kb->IsKeyPressed(DirectX::Keyboard::Down))
-    {
-        m_selectFlag = false;
-    }
+
     // フラグごとにセレクトアイコンの位置を移動
     if (m_selectFlag)
     {

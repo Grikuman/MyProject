@@ -204,6 +204,7 @@
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossSearch.h" />
+    <ClInclude Include="Game\Enemy\PracticeEnemy\PracticeEnemy.h" />
     <ClInclude Include="Game\Enemy\Tunomaru\Tunomaru.h" />
     <ClInclude Include="Game\Enemy\Tunomaru\TunomaruAttack.h" />
     <ClInclude Include="Game\Enemy\Tunomaru\TunomaruDown.h" />
@@ -240,6 +241,7 @@
     <ClInclude Include="Game\Stage\StageCollision.h" />
     <ClInclude Include="Game\Stage\StageDecoration.h" />
     <ClInclude Include="Game\Stage\StageEnemy.h" />
+    <ClInclude Include="Game\Stage\TutorialStage.h" />
     <ClInclude Include="Game\Transition\Fade.h" />
     <ClInclude Include="Game\UI\EnemyUI\EnemyHPUI.h" />
     <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h" />
@@ -252,6 +254,7 @@
     <ClInclude Include="Game\UI\ResultSceneUI.h" />
     <ClInclude Include="Game\UI\TitleSceneUI.h" />
     <ClInclude Include="Game\UI\TimeUI.h" />
+    <ClInclude Include="Game\UI\TutorialGuideUI.h" />
     <ClInclude Include="Libraries\Microsoft\DebugDraw.h" />
     <ClInclude Include="Libraries\Microsoft\ReadData.h" />
     <ClInclude Include="Libraries\Microsoft\RenderTexture.h" />
@@ -282,6 +285,7 @@
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossSearch.cpp" />
+    <ClCompile Include="Game\Enemy\PracticeEnemy\PracticeEnemy.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru\Tunomaru.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru\TunomaruAttack.cpp" />
     <ClCompile Include="Game\Enemy\Tunomaru\TunomaruDown.cpp" />
@@ -307,6 +311,7 @@
     <ClCompile Include="Game\Stage\StageCollision.cpp" />
     <ClCompile Include="Game\Stage\StageDecoration.cpp" />
     <ClCompile Include="Game\Stage\StageEnemy.cpp" />
+    <ClCompile Include="Game\Stage\TutorialStage.cpp" />
     <ClCompile Include="Game\Transition\Fade.cpp" />
     <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp" />
     <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp" />
@@ -319,6 +324,7 @@
     <ClCompile Include="Game\UI\ResultSceneUI.cpp" />
     <ClCompile Include="Game\UI\TitleSceneUI.cpp" />
     <ClCompile Include="Game\UI\TimeUI.cpp" />
+    <ClCompile Include="Game\UI\TutorialGuideUI.cpp" />
     <ClCompile Include="Libraries\Microsoft\DebugDraw.cpp" />
     <ClCompile Include="Libraries\Microsoft\RenderTexture.cpp" />
     <ClCompile Include="Main.cpp" />

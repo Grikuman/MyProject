@@ -10,6 +10,7 @@
 #include "Framework/Collision.h"
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ

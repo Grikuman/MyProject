@@ -10,6 +10,7 @@
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
 #include "Framework/Data.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -103,6 +104,7 @@ void MapSelectUI::SelectFlagProcess()
         {
             m_selectFlag--;
         }
+        Audio::GetInstance()->PlaySE("MapSelectSE");
     }
     if (kb->IsKeyPressed((DirectX::Keyboard::Down)))
     {
@@ -114,6 +116,7 @@ void MapSelectUI::SelectFlagProcess()
         {
             m_selectFlag++;
         }
+        Audio::GetInstance()->PlaySE("MapSelectSE");
     }
     switch (m_selectFlag)
     {

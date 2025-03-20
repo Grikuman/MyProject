@@ -8,6 +8,7 @@
 #include "Game/Interface/IStage.h"
 #include <string>
 
+#include "Game/Stage/TutorialStage.h"
 #include "Game/Stage/Stage1_1.h"
 #include "game/Stage/Stage1_2.h"
 
@@ -22,6 +23,7 @@ public:
         // ステージを格納する変数
         static std::unordered_map<StageID, std::function<std::unique_ptr<IStage>()>> stageMap = 
         {
+            { StageID::TutorialStage, []() { return std::make_unique<TutorialStage>("TutorialStage"); }},
             { StageID::Stage1_1, []() { return std::make_unique<Stage1_1>("Stage1_1"); }},
             { StageID::Stage1_2, []() { return std::make_unique<Stage1_2>("Stage1_2"); }},
         };

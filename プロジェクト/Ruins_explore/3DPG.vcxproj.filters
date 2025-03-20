@@ -101,6 +101,9 @@
     <Filter Include="Resources\StageCollisionData">
       <UniqueIdentifier>{54ec019a-69e5-4827-97ba-aa79fec04724}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Enemy\PracticeEnemy">
+      <UniqueIdentifier>{9bd65591-4d4e-45e1-a4e0-262cac4e997d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -327,6 +330,15 @@
     <ClInclude Include="Libraries\Microsoft\RenderTexture.h">
       <Filter>Libraries\Microsoft</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Stage\TutorialStage.h">
+      <Filter>Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\UI\TutorialGuideUI.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\PracticeEnemy\PracticeEnemy.h">
+      <Filter>Game\Enemy\PracticeEnemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -511,6 +523,15 @@
     </ClCompile>
     <ClCompile Include="Libraries\Microsoft\RenderTexture.cpp">
       <Filter>Libraries\Microsoft</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Stage\TutorialStage.cpp">
+      <Filter>Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\UI\TutorialGuideUI.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\PracticeEnemy\PracticeEnemy.cpp">
+      <Filter>Game\Enemy\PracticeEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

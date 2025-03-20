@@ -8,6 +8,7 @@
 enum class StageID
 {
 	NONE,
+	TutorialStage,
 	Stage1_1,
 	Stage1_2,
 };

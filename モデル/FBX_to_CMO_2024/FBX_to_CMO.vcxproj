@@ -212,7 +212,7 @@
     <Manifest Include="settings.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <MeshContentTask Include="Assets\FBX\NeedleBoss.fbx" />
+    <MeshContentTask Include="Assets\FBX\TutorialStage.fbx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,6 +17,7 @@
 PlayerStatusUI::PlayerStatusUI(Player* player)
     :
     m_player{player},
+    m_spriteBatch{},
     m_healthPosition{},
     m_staminaPosition{},
     m_scale{1.f},

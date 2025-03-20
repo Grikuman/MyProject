@@ -48,6 +48,11 @@ void Resources::LoadResources()
 	//============
 	// // 岩のブロック
 	std::unique_ptr<DirectX::Model> CollisionBlock = DirectX::Model::CreateFromCMO(device, L"Resources/Models/CollisionBlock.cmo", *fx);
+	// チュートリアルの練習モデル
+	std::unique_ptr<DirectX::Model> PracticeModel = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PracticeModel.cmo", *fx);
+	std::unique_ptr<DirectX::Model> PracticeModel_Hit = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PracticeModel_Hit.cmo", *fx);
+	// チュートリアルステージのモデル
+	std::unique_ptr<DirectX::Model> TutorialStage = DirectX::Model::CreateFromCMO(device, L"Resources/Models/TutorialStage.cmo", *fx);
 	// つのまる
 	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
 	// トゲボス
@@ -60,6 +65,9 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Stage1_1 = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Stage1_1.cmo", *fx);
 	// モデルを登録する
 	m_models.emplace(L"CollisionBlock", std::move(CollisionBlock));
+	m_models.emplace(L"PracticeModel", std::move(PracticeModel));
+	m_models.emplace(L"PracticeModel_Hit", std::move(PracticeModel_Hit));
+	m_models.emplace(L"TutorialStage", std::move(TutorialStage));
 	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
 	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
 	m_models.emplace(L"Skydome", std::move(Skydome));
@@ -78,13 +86,14 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage2Icon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage3Icon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage4Icon;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> MissionCheckMark;     // ミッションのチェックマーク
 
 	// 文字の画像
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;       // タイトル
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> PlayText;        // プレイする
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> EndText;         // 終了する
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SpaceConfilmText;  // スペースキーで開始する
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageSelectText; // ステージを選択する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;            // タイトル
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> PlayText;             // プレイする
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> EndText;              // 終了する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SpaceConfilmText;     // スペースキーで開始する
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TutorialGuideMission; // チュートリアルガイドミッションの文字
 
 	//================
 	// * 読み込む *
@@ -95,13 +104,14 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択メニュー.png", nullptr, SelectMenu.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアルのアイコン.png", nullptr, TutorialIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ1のアイコン.png", nullptr, Stage1Icon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ミッションのチェックマーク.png", nullptr, MissionCheckMark.GetAddressOf());
 
 	// 文字
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/プレイする.png", nullptr, PlayText.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/終了する.png", nullptr, EndText.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/スペースキーで決定する.png", nullptr, SpaceConfilmText.GetAddressOf());
-	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージを選択する.png", nullptr, StageSelectText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアルガイドミッションの文字.png", nullptr, TutorialGuideMission.GetAddressOf());
 
 	//================
 	// * 登録する *
@@ -112,13 +122,14 @@ void Resources::LoadResources()
 	m_textures.emplace(L"SelectMenu", SelectMenu);
 	m_textures.emplace(L"TutorialIcon", TutorialIcon);
 	m_textures.emplace(L"Stage1Icon", Stage1Icon);
+	m_textures.emplace(L"MissionCheckMark", MissionCheckMark);
 
 	// 文字
 	m_textures.emplace(L"TitleText", TitleText);
 	m_textures.emplace(L"PlayText", PlayText);
 	m_textures.emplace(L"EndText", EndText);
 	m_textures.emplace(L"SpaceConfilmText", SpaceConfilmText);
-	m_textures.emplace(L"StageSelectText", StageSelectText);
+	m_textures.emplace(L"TutorialGuideMissionText", TutorialGuideMission);
 }
 
 // モデルを取得する
