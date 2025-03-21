@@ -1,10 +1,10 @@
 /*
-    ファイル名：MapSelectUI.cpp
+    ファイル名：QuestSelectUI.cpp
     　　　概要：マップセレクトのUIを管理するクラス
 */
 #include "pch.h"
-#include "MapSelectUI.h"
-#include "Game/Scene/MapSelectScene.h"
+#include "QuestSelectUI.h"
+#include "Game/Scene/QuestSelectScene.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
@@ -15,9 +15,8 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MapSelectUI::MapSelectUI(MapSelectScene* mapSelectScene)
+QuestSelectUI::QuestSelectUI()
     :
-    m_mapSelectScene{mapSelectScene},
     m_SelectMenu_Tex{},
     m_selectArrow_Tex{},
     m_tutorialIcon_Tex{},
@@ -27,7 +26,8 @@ MapSelectUI::MapSelectUI(MapSelectScene* mapSelectScene)
     m_questArrowPos{},
     m_popupArrowPos{},
     m_popupViewFlag{false},
-    m_popupFlag{false}
+    m_popupFlag{false},
+    m_questStart{false}
 {
     // スプライトバッチを設定する
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
@@ -36,7 +36,7 @@ MapSelectUI::MapSelectUI(MapSelectScene* mapSelectScene)
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-MapSelectUI::~MapSelectUI()
+QuestSelectUI::~QuestSelectUI()
 {
     
 }
@@ -44,7 +44,7 @@ MapSelectUI::~MapSelectUI()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void MapSelectUI::Initialize()
+void QuestSelectUI::Initialize()
 {
     // 画像を取得する
     m_SelectMenu_Tex = Resources::GetInstance()->GetTexture(L"SelectMenu");
@@ -52,12 +52,14 @@ void MapSelectUI::Initialize()
     m_tutorialIcon_Tex = Resources::GetInstance()->GetTexture(L"TutorialIcon");
     m_stage1Icon_Tex = Resources::GetInstance()->GetTexture(L"Stage1Icon");
     m_questPopup_Tex = Resources::GetInstance()->GetTexture(L"QuestPopup");
+    m_questBoard_Tex[0] = Resources::GetInstance()->GetTexture(L"QuestBoard0");
+    m_questBoard_Tex[1] = Resources::GetInstance()->GetTexture(L"QuestBoard1");
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void MapSelectUI::Update()
+void QuestSelectUI::Update()
 {
     // 選択フラグの処理をする
     SelectFlagProcess();
@@ -66,7 +68,7 @@ void MapSelectUI::Update()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void MapSelectUI::Render()
+void QuestSelectUI::Render()
 {
     // 通常のスプライトバッチを開始する
     m_spriteBatch->Begin();
@@ -79,6 +81,8 @@ void MapSelectUI::Render()
     m_spriteBatch->Draw(m_tutorialIcon_Tex.Get(), TUTORIALICON_POS);
     // ステージ1のアイコンを表示する
     m_spriteBatch->Draw(m_stage1Icon_Tex.Get(), STAGE1ICON_POS);
+    // クエストボードを表示する
+    m_spriteBatch->Draw(m_questBoard_Tex[m_selectFlag].Get(), QUEST_BOARD_POS);
 
     // 通常のスプライトバッチを終了する
     m_spriteBatch->End();
@@ -90,7 +94,7 @@ void MapSelectUI::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void MapSelectUI::Finalize()
+void QuestSelectUI::Finalize()
 {
    
 }
@@ -98,7 +102,7 @@ void MapSelectUI::Finalize()
 //---------------------------------------------------------
 // 選択フラグの処理をする
 //---------------------------------------------------------
-void MapSelectUI::SelectFlagProcess()
+void QuestSelectUI::SelectFlagProcess()
 {
     // キーボードを取得する
     auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
@@ -131,7 +135,7 @@ void MapSelectUI::SelectFlagProcess()
             {
                 m_selectFlag--;
             }
-            Audio::GetInstance()->PlaySE("MapSelectSE");
+            Audio::GetInstance()->PlaySE("QuestSelectSE1");
         }
         if (kb->IsKeyPressed((DirectX::Keyboard::Down))) // 下に移動
         {
@@ -143,14 +147,14 @@ void MapSelectUI::SelectFlagProcess()
             {
                 m_selectFlag++;
             }
-            Audio::GetInstance()->PlaySE("MapSelectSE");
+            Audio::GetInstance()->PlaySE("QuestSelectSE1");
         }
 
         // クエストを選択し、ポップアップ操作を可能にする
         if (kb->IsKeyPressed((DirectX::Keyboard::Space)))
         {
             m_popupViewFlag = true;
-            Audio::GetInstance()->PlaySE("MapSelectSE");
+            Audio::GetInstance()->PlaySE("QuestSelectSE2");
             return;
         }
     }
@@ -163,18 +167,18 @@ void MapSelectUI::SelectFlagProcess()
         if (kb->IsKeyPressed((DirectX::Keyboard::Left)))  // はい
         {
             m_popupFlag = true;
-            Audio::GetInstance()->PlaySE("MapSelectSE");
+            Audio::GetInstance()->PlaySE("QuestSelectSE1");
         }
         if (kb->IsKeyPressed((DirectX::Keyboard::Right))) // いいえ
         {
             m_popupFlag = false;
-            Audio::GetInstance()->PlaySE("MapSelectSE");
+            Audio::GetInstance()->PlaySE("QuestSelectSE1");
         }
 
         // ポップアップ内でのフラグ処理
         if (kb->IsKeyPressed((DirectX::Keyboard::Space)))
         {
-            // はい　を選んでいる場合はステージに移動する
+            // はい　を選んでいる場合はステージを決定する
             if (m_popupFlag)
             {
                 switch (m_selectFlag)
@@ -188,14 +192,15 @@ void MapSelectUI::SelectFlagProcess()
                 default:
                     break;
                 }
-                m_mapSelectScene->ChangeScene();
+                // クエストを開始する
+                m_questStart = true;
             }
             // いいえ　を選んでいる場合はクエスト選択に戻る
             else
             {
                 // ポップアップを閉じてクエスト選択に戻る
                 m_popupViewFlag = false;
-                Audio::GetInstance()->PlaySE("MapSelectSE");
+                Audio::GetInstance()->PlaySE("QuestSelectSE3");
                 return;
             }
         }
@@ -205,7 +210,7 @@ void MapSelectUI::SelectFlagProcess()
 //---------------------------------------------------------
 // ポップアップ内での描画をする
 //---------------------------------------------------------
-void MapSelectUI::PopupRender()
+void QuestSelectUI::PopupRender()
 {
     // ポップアップの表示フラグがtrueならばポップアップを表示する
     if (m_popupViewFlag)

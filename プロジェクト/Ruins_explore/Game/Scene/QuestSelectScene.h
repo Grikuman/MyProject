@@ -1,13 +1,14 @@
 /*
-	ファイル名：MapSelectScene.h
-	　　　概要：マップセレクトシーンを管理するクラス
+	ファイル名：QuestSelectScene.h
+	　　　概要：クエスト選択シーンを管理するクラス
 */
 #pragma once
 #include "Game/Interface/IScene.h"
+#include "Game/Transition/StageStart.h"
 
-class MapSelectUI;
+class QuestSelectUI;
 
-class MapSelectScene final : public IScene
+class QuestSelectScene final : public IScene
 {
 public:
 	// 次のシーンIDを取得する
@@ -19,9 +20,9 @@ public:
 
 public:
 	// コンストラクタ
-	MapSelectScene();
+	QuestSelectScene();
 	// デストラクタ
-	~MapSelectScene() override;
+	~QuestSelectScene() override;
 	// 初期化する
 	void Initialize() override;
 	// 更新する
@@ -32,8 +33,10 @@ public:
 	void Finalize() override;
 
 private:
-	// マップセレクトUI
-	std::unique_ptr<MapSelectUI> m_mapSelectUI;
+	// クエスト選択のUI
+	std::unique_ptr<QuestSelectUI> m_questSelectUI;
+	// クエスト開始の演出
+	std::unique_ptr<StageStart> m_stageStart;
 	// シーンチェンジフラグ
 	bool m_isChangeScene;
 };

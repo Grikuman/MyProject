@@ -1,10 +1,10 @@
 /*
-	ファイル名：MapSelectScene.cpp
-	　　　概要：マップセレクトシーンを管理するクラス
+	ファイル名：QuestSelectScene.cpp
+	　　　概要：クエスト選択シーンを管理するクラス
 */
 #include "pch.h"
-#include "MapSelectScene.h"
-#include "Game/UI/MapSelectUI.h"
+#include "QuestSelectScene.h"
+#include "Game/UI/QuestSelectUI.h"
 #include "Framework/DeviceResources.h"
 
 #include <cassert>
@@ -14,19 +14,20 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MapSelectScene::MapSelectScene()
+QuestSelectScene::QuestSelectScene()
 	:
-	m_isChangeScene{},
-	m_mapSelectUI{}
+	m_isChangeScene{}
 {
-	// UIを作成する
-	m_mapSelectUI = std::make_unique<MapSelectUI>(this);
+	// クエスト選択のUIを作成する
+	m_questSelectUI = std::make_unique<QuestSelectUI>();
+	// ステージ開始の演出を作成する
+	m_stageStart = std::make_unique<StageStart>();
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-MapSelectScene::~MapSelectScene()
+QuestSelectScene::~QuestSelectScene()
 {
 
 }
@@ -34,23 +35,39 @@ MapSelectScene::~MapSelectScene()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void MapSelectScene::Initialize()
+void QuestSelectScene::Initialize()
 {
 	// シーン変更フラグを初期化する
 	m_isChangeScene = false;
-	// UIを初期化する
-	m_mapSelectUI->Initialize();
+	// クエスト選択のUIを初期化する
+	m_questSelectUI->Initialize();
+	// クエスト開始の演出を初期化する
+	m_stageStart->Initialize();
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void MapSelectScene::Update(float elapsedTime)
+void QuestSelectScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 
-	// UIを更新する
-	m_mapSelectUI->Update();
+	// クエスト選択のUIを更新する
+	m_questSelectUI->Update();
+
+	// クエスト開始の演出
+	if (m_questSelectUI->GetQuestStart())
+	{
+		// ステージ開始演出を更新する
+		m_stageStart->Update();
+		// 演出が終了したら
+		if (m_stageStart->GetEnd())
+		{
+			// プレイシーンに移行
+			ChangeScene();
+		}
+	}
+
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -58,25 +75,29 @@ void MapSelectScene::Update(float elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void MapSelectScene::Render()
+void QuestSelectScene::Render()
 {
-	// UIを描画する
-	m_mapSelectUI->Render();
+	// クエスト選択画面のUIを描画する
+	m_questSelectUI->Render();
+	// クエスト開始の演出を描画する
+	m_stageStart->Render();
 }
 
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void MapSelectScene::Finalize()
+void QuestSelectScene::Finalize()
 {
-	// UIの終了処理
-	m_mapSelectUI->Finalize();
+	// クエスト選択画面のUIの終了処理
+	m_questSelectUI->Finalize();
+	// クエスト開始の演出の終了処理
+	m_stageStart->Finalize();
 }
 
 //---------------------------------------------------------
 // 次のシーンIDを取得する
 //---------------------------------------------------------
-IScene::SceneID MapSelectScene::GetNextSceneID() const
+IScene::SceneID QuestSelectScene::GetNextSceneID() const
 {
 	// シーン変更がある場合
 	if (m_isChangeScene)
@@ -90,7 +111,7 @@ IScene::SceneID MapSelectScene::GetNextSceneID() const
 //---------------------------------------------------------
 // シーンを変更する
 //---------------------------------------------------------
-void MapSelectScene::ChangeScene()
+void QuestSelectScene::ChangeScene()
 {
 	m_isChangeScene = true;
 }

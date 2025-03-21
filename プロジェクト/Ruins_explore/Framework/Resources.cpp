@@ -85,9 +85,12 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TutorialIcon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage1Icon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> MissionCheckMark;     // ミッションのチェックマーク
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestStartIcon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageClearIcon;     // ステージ成功のアイコン
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageFailedIcon;    // ステージ失敗のアイコン
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestPopup;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestBoard0;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestBoard1;
 
 	// 文字の画像
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;            // タイトル
@@ -107,9 +110,12 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアルのアイコン.png", nullptr, TutorialIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ1のアイコン.png", nullptr, Stage1Icon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ミッションのチェックマーク.png", nullptr, MissionCheckMark.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエスト開始のアイコン.png", nullptr, QuestStartIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ成功のアイコン.png", nullptr, StageClearIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ失敗のアイコン.png", nullptr, StageFailedIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエスト受注ポップアップ.png", nullptr, QuestPopup.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエストボード0.png", nullptr, QuestBoard0.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエストボード1.png", nullptr, QuestBoard1.GetAddressOf());
 
 	// 文字
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
@@ -129,9 +135,12 @@ void Resources::LoadResources()
 	m_textures.emplace(L"TutorialIcon", TutorialIcon);
 	m_textures.emplace(L"Stage1Icon", Stage1Icon);
 	m_textures.emplace(L"MissionCheckMark", MissionCheckMark);
+	m_textures.emplace(L"QuestStartIcon", QuestStartIcon);
 	m_textures.emplace(L"StageClearIcon", StageClearIcon);
 	m_textures.emplace(L"StageFailedIcon", StageFailedIcon);
 	m_textures.emplace(L"QuestPopup", QuestPopup);
+	m_textures.emplace(L"QuestBoard0", QuestBoard0);
+	m_textures.emplace(L"QuestBoard1", QuestBoard1);
 
 	// 文字
 	m_textures.emplace(L"TitleText", TitleText);

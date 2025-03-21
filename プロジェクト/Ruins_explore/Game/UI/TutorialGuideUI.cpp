@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "TutorialGuideUI.h"
-#include "Game/Scene/MapSelectScene.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"

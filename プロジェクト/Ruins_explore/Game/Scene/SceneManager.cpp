@@ -7,7 +7,7 @@
 //---------------------------
 #include "PlayScene.h"
 #include "TitleScene.h"
-#include "MapSelectScene.h"
+#include "QuestSelectScene.h"
 #include "ResultScene.h"
 //---------------------------
 #include "Game/Screen.h"
@@ -114,7 +114,7 @@ void SceneManager::CreateScene(IScene::SceneID sceneID)
 			m_currentScene = std::make_unique<TitleScene>();
 			break;
 		case IScene::SceneID::MAPSELECT:
-			m_currentScene = std::make_unique<MapSelectScene>();
+			m_currentScene = std::make_unique<QuestSelectScene>();
 			break;
 		case IScene::SceneID::PLAY:
 			m_currentScene = std::make_unique<PlayScene>();

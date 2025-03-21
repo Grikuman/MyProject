@@ -162,7 +162,7 @@
     <ClInclude Include="Game\UI\ResultSceneUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\MapSelectScene.h">
+    <ClInclude Include="Game\Scene\QuestSelectScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\Parts\PlayerBody.h">
@@ -318,7 +318,7 @@
     <ClInclude Include="Game\UI\EnemyUI\UserInterface.h">
       <Filter>Game\UI\EnemyUI</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\MapSelectUI.h">
+    <ClInclude Include="Game\UI\QuestSelectUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
     <ClInclude Include="Libraries\Microsoft\ReadData.h">
@@ -337,6 +337,9 @@
       <Filter>Game\Enemy\PracticeEnemy</Filter>
     </ClInclude>
     <ClInclude Include="Game\Transition\StageEnd.h">
+      <Filter>Game\Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Transition\StageStart.h">
       <Filter>Game\Transition</Filter>
     </ClInclude>
   </ItemGroup>
@@ -389,7 +392,7 @@
     <ClCompile Include="Game\UI\ResultSceneUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\MapSelectScene.cpp">
+    <ClCompile Include="Game\Scene\QuestSelectScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\Parts\PlayerBody.cpp">
@@ -515,7 +518,7 @@
     <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
-    <ClCompile Include="Game\UI\MapSelectUI.cpp">
+    <ClCompile Include="Game\UI\QuestSelectUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
     <ClCompile Include="Libraries\Microsoft\RenderTexture.cpp">
@@ -531,6 +534,9 @@
       <Filter>Game\Enemy\PracticeEnemy</Filter>
     </ClCompile>
     <ClCompile Include="Game\Transition\StageEnd.cpp">
+      <Filter>Game\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Transition\StageStart.cpp">
       <Filter>Game\Transition</Filter>
     </ClCompile>
   </ItemGroup>

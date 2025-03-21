@@ -48,7 +48,10 @@ void Audio::Initialize()
     LoadSE("DashSE", "Resources/Sounds/DashSE.mp3");
     LoadSE("EnemyAttackSE", "Resources/Sounds/EnemyAttackSE.mp3");
     LoadSE("MenuSelectSE", "Resources/Sounds/MenuSelectSE.mp3");
-    LoadSE("MapSelectSE", "Resources/Sounds/MapSelectSE.mp3");
+    LoadSE("QuestSelectSE1", "Resources/Sounds/QuestSelectSE1.mp3");
+    LoadSE("QuestSelectSE2", "Resources/Sounds/QuestSelectSE2.mp3");
+    LoadSE("QuestSelectSE3", "Resources/Sounds/QuestSelectSE3.mp3");
+    LoadSE("QuestStartSE", "Resources/Sounds/QuestStartSE.mp3");
 }
 
 //---------------------------------------------------------
@@ -111,6 +114,18 @@ void Audio::PlaySE(const std::string& name)
     if (it != m_se.end())
     {
         m_system->playSound(it->second, nullptr, false, &m_seChannel);
+    }
+}
+
+//---------------------------------------------------------
+// BGM‚ð’âŽ~‚·‚é
+//---------------------------------------------------------
+void Audio::StopBGM()
+{
+    // Œ»Ý‚ÌBGM‚ð’âŽ~
+    if (m_bgmChannel)
+    {
+        m_bgmChannel->stop();
     }
 }
 

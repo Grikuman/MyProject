@@ -25,6 +25,8 @@ public:
     void PlaySE(const std::string& name);
     // BGM‚Ì‰¹—Ê‚ğİ’è‚·‚é
     void SetBGMVolume(float volume) { m_bgmChannel->setVolume(volume); }
+    // BGM‚ğ’â~‚·‚é
+    void StopBGM();
 
 private:
     // BGM‚ÆSE‚Ì“Ç‚İ‚İ
