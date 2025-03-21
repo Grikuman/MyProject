@@ -87,6 +87,7 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> MissionCheckMark;     // ミッションのチェックマーク
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageClearIcon;     // ステージ成功のアイコン
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StageFailedIcon;    // ステージ失敗のアイコン
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestPopup;
 
 	// 文字の画像
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;            // タイトル
@@ -108,6 +109,7 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ミッションのチェックマーク.png", nullptr, MissionCheckMark.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ成功のアイコン.png", nullptr, StageClearIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ失敗のアイコン.png", nullptr, StageFailedIcon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエスト受注ポップアップ.png", nullptr, QuestPopup.GetAddressOf());
 
 	// 文字
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
@@ -129,6 +131,7 @@ void Resources::LoadResources()
 	m_textures.emplace(L"MissionCheckMark", MissionCheckMark);
 	m_textures.emplace(L"StageClearIcon", StageClearIcon);
 	m_textures.emplace(L"StageFailedIcon", StageFailedIcon);
+	m_textures.emplace(L"QuestPopup", QuestPopup);
 
 	// 文字
 	m_textures.emplace(L"TitleText", TitleText);

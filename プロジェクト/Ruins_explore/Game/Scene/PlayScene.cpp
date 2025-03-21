@@ -9,13 +9,17 @@
 #include "Libraries/Microsoft/ReadData.h"
 #include "Libraries/Microsoft/RenderTexture.h"
 
+#include "ScreenGrab.h"
+#include "wincodec.h"
+
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 PlayScene::PlayScene()
 	:
 	m_isChangeScene{},
-	m_currentStage{}
+	m_currentStage{},
+	m_stageEnd{}
 {
 	// ステージ終了演出を作成する
 	m_stageEnd = std::make_unique<StageEnd>();
@@ -26,6 +30,7 @@ PlayScene::PlayScene()
 //---------------------------------------------------------
 PlayScene::~PlayScene()
 {
+
 }
 
 //---------------------------------------------------------
@@ -46,9 +51,6 @@ void PlayScene::Initialize()
 //---------------------------------------------------------
 void PlayScene::Update(float elapsedTime)
 {
-	// 現在のステージを更新する
-	m_currentStage->Update(elapsedTime);
-
 	// もしステージが終了したら演出を更新する
 	if (m_currentStage->IsEndStage()) 
 	{
@@ -60,6 +62,11 @@ void PlayScene::Update(float elapsedTime)
 			// リザルトへ移行
 			m_isChangeScene = true;
 		}
+	}
+	else // ステージが終了するまで
+	{
+		// 現在のステージを更新する
+		m_currentStage->Update(elapsedTime);
 	}
 
 	// 次のシーンIDを取得する
@@ -92,7 +99,7 @@ void PlayScene::Finalize()
 void PlayScene::StageInitialize()
 {
 	// 選択するステージ用の変数
-	StageID selectStage;
+	StageID selectStage = StageID::TutorialStage;
 
 	// マップ選択で選ばれたステージを確認する
 	switch (Data::GetInstance()->GetMapSelectStage())
@@ -128,3 +135,6 @@ IScene::SceneID PlayScene::GetNextSceneID() const
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
 }
+
+
+

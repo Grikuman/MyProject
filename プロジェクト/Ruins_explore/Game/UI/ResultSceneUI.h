@@ -23,20 +23,19 @@ public:
     void Finalize();
 
 private:
-    // クリア文字の位置
-    const DirectX::SimpleMath::Vector2 CLEAR_TEXT_POS = DirectX::SimpleMath::Vector2(200, 50);
-    // 死亡文字の位置
-    const DirectX::SimpleMath::Vector2 DEAD_TEXT_POS = DirectX::SimpleMath::Vector2(200, 50);
-    // クリア画像の位置
-    const DirectX::SimpleMath::Vector2 CLEAR_POS = DirectX::SimpleMath::Vector2(0,0);
-    // 死亡画像の位置
-    const DirectX::SimpleMath::Vector2 DEAD_POS = DirectX::SimpleMath::Vector2(0,0);
-    // スペースキー文字の位置
-    const DirectX::SimpleMath::Vector2 SPACEKEY_TEXT_POS = DirectX::SimpleMath::Vector2(400, 580);
-    // スペースキー文字の色調整
-    const float SPACEKEY_TEXT_COLOR_R = 0.9f;
-    const float SPACEKEY_TEXT_COLOR_G = 0.9f;
-    const float SPACEKEY_TEXT_COLOR_B = 0.9f;
+    // * 各ステージの結果を描画する *
+    void TutorialRender(); // チュートリアル
+    void Stage1Render();   // ステージ1
+
+private:
+    // 背景の位置
+    const DirectX::SimpleMath::Vector2 BACKGROUND_POS = { 0, 0 };
+    // アイコンの表示する位置
+    const DirectX::SimpleMath::Vector2 ICON_POS[2] =
+    {
+        { 500, 100 }, // チュートリアル
+        { 420, 100 }  // ステージ1
+    };
 
 private:
     // タイトルシーン
@@ -44,19 +43,10 @@ private:
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
 
-    // クリア文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clearText_Tex;
-    // 死亡文字
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_deadText_Tex;
-    // リザルトクリア画面
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_clear_Tex;
-    // リザルト死亡画面
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_dead_Tex;
-    // スペースキー
-    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_spaceKeyText_Tex;
-
-    // スペースキーのアルファ値
-    float m_spaceAlpha;
-    // 時間
-    float m_time;
+    // 背景
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backGround_Tex;
+    // チュートリアルクエストのアイコン
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_tutorialIcon_Tex;
+    // ステージ1のアイコン
+    Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_stage1Icon_Tex;
 };

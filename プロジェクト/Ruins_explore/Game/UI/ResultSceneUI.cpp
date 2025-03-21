@@ -5,7 +5,6 @@
 #include "pch.h"
 #include "ResultSceneUI.h"
 #include "Game/Scene/ResultScene.h"
-#include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/Data.h"
@@ -15,14 +14,6 @@
 // コンストラクタ
 //---------------------------------------------------------
 ResultSceneUI::ResultSceneUI(ResultScene* result)
-    :
-    m_clearText_Tex{},
-    m_deadText_Tex{},
-    m_clear_Tex{},
-    m_dead_Tex{},
-    m_spaceKeyText_Tex{},
-    m_spaceAlpha{1.0f},
-    m_time{}
 {
     
 }
@@ -43,11 +34,9 @@ void ResultSceneUI::Initialize()
     // スプライトバッチを取得する
     m_spriteBatch     = Graphics::GetInstance()->GetSpriteBatch();
     // 画像を取得する
-    m_clearText_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Clear_Text.png");
-    m_deadText_Tex     = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Dead_Text.png");;
-    m_clear_Tex        = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Clear.png");;
-    m_dead_Tex         = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Dead.png");
-    m_spaceKeyText_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/PushSpaceKey.png");
+    m_backGround_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/リザルト背景.png");
+    m_tutorialIcon_Tex = Resources::GetInstance()->GetTexture(L"TutorialIcon");
+    m_stage1Icon_Tex = Resources::GetInstance()->GetTexture(L"Stage1Icon");
 }
 
 //---------------------------------------------------------
@@ -55,12 +44,7 @@ void ResultSceneUI::Initialize()
 //---------------------------------------------------------
 void ResultSceneUI::Update()
 {
-    // 点滅の速度を設定
-    float blinkSpeed = 5.0f; // 1秒間に1回点滅
-    // 時間加算
-    m_time += 0.016f;
-    // 0から1の間で変化させる
-    m_spaceAlpha = (sin(m_time * blinkSpeed) + 1) / 2; 
+   
 }
 
 //---------------------------------------------------------
@@ -73,25 +57,25 @@ void ResultSceneUI::Render()
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
 
-    // ＜ リザルト結果で表示を変更する ＞
-    if (Data::GetInstance()->GetPlaySceneResult()) // 生存
-    {
-        m_spriteBatch->Draw(m_clear_Tex.Get(), CLEAR_POS);
-        m_spriteBatch->Draw(m_clearText_Tex.Get(), CLEAR_TEXT_POS);
-    }
-    else // 死亡
-    {
-        m_spriteBatch->Draw(m_dead_Tex.Get(), DEAD_POS);
-        m_spriteBatch->Draw(m_deadText_Tex.Get(), DEAD_TEXT_POS);
-    }
+    // 背景を表示する
+    m_spriteBatch->Draw(m_backGround_Tex.Get(), BACKGROUND_POS);
     
-    // スペースキー
-    m_spriteBatch->Draw(
-        m_spaceKeyText_Tex.Get(), SPACEKEY_TEXT_POS, 
-        Color(SPACEKEY_TEXT_COLOR_R, SPACEKEY_TEXT_COLOR_G, SPACEKEY_TEXT_COLOR_B, m_spaceAlpha));
-
     // 通常のスプライトバッチを終了
     m_spriteBatch->End();
+
+    // 各ステージごとの描画を分ける
+    int stageNumber = Data::GetInstance()->GetMapSelectStage();
+    switch (stageNumber)
+    {
+    case 0:
+        TutorialRender();
+        break;
+    case 1:
+        Stage1Render();
+        break;
+    default:
+        break;
+    }
 }
 
 //---------------------------------------------------------
@@ -100,4 +84,34 @@ void ResultSceneUI::Render()
 void ResultSceneUI::Finalize()
 {
    
+}
+
+//---------------------------------------------------------
+// チュートリアルステージの描画
+//---------------------------------------------------------
+void ResultSceneUI::TutorialRender()
+{
+    // 通常のスプライトバッチを開始
+    m_spriteBatch->Begin();
+
+    // チュートリアルのアイコンを表示する
+    m_spriteBatch->Draw(m_tutorialIcon_Tex.Get(), ICON_POS[0]);
+
+    // 通常のスプライトバッチを終了
+    m_spriteBatch->End();
+}
+
+//---------------------------------------------------------
+// ステージ1の描画
+//---------------------------------------------------------
+void ResultSceneUI::Stage1Render()
+{
+    // 通常のスプライトバッチを開始
+    m_spriteBatch->Begin();
+
+    // ステージ1のアイコンを表示する
+    m_spriteBatch->Draw(m_stage1Icon_Tex.Get(), ICON_POS[1]);
+
+    // 通常のスプライトバッチを終了
+    m_spriteBatch->End();
 }

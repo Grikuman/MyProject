@@ -99,3 +99,4 @@ void ResultScene::ChangeScene()
 {
 	m_isChangeScene = true;
 }
+
