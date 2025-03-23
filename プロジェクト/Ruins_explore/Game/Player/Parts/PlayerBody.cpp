@@ -6,10 +6,9 @@
 #include "PlayerBody.h"
 #include "Game/Player/Player.h"
 
-#include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/Resources.h"
+#include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -19,7 +18,10 @@ PlayerBody::PlayerBody(Player* player)
 	m_player{player},
 	m_model{}
 {
-	
+	// 左手を作成する
+	m_leftHand = std::make_unique<PlayerLeftHand>(player);
+	// 右手を作成する
+	m_rightHand = std::make_unique<PlayerRightHand>(player);
 }
 
 //---------------------------------------------------------
@@ -36,7 +38,10 @@ PlayerBody::~PlayerBody()
 void PlayerBody::Initialize()
 {
 	m_model = Resources::GetInstance()->GetModelFromFile(L"Resources/Models/PlayerBody.cmo");
-
+	// 左手を初期化する
+	m_leftHand->Initialize();
+	// 右手を初期化する
+	m_rightHand->Initialize();
 }
 
 //---------------------------------------------------------
@@ -44,7 +49,10 @@ void PlayerBody::Initialize()
 //---------------------------------------------------------
 void PlayerBody::Update()
 {	
-
+	// 左手を更新する
+	m_leftHand->Update();
+	// 右手を更新する
+	m_rightHand->Update();
 }
 
 //---------------------------------------------------------
@@ -72,12 +80,18 @@ void PlayerBody::Render()
 
 	// プレイヤーの描画
 	m_model->Draw(context, *states, worldMatrix, view, proj);
+
+	// 左手を描画する
+	m_leftHand->Render();
+	// 右手を描画する
+	m_rightHand->Render();
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerBody::Finalize()
 {
-	
+	m_leftHand->Finalize();
+	m_rightHand->Finalize();
 }

@@ -6,9 +6,7 @@
 #include "PlayerLeftHand.h"
 #include "Game/Player/Player.h"
 
-#include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/Resources.h"
 
 //---------------------------------------------------------
@@ -81,7 +79,7 @@ void PlayerLeftHand::Render()
 }
 
 //---------------------------------------------------------
-// å„énññÇ∑ÇÈ
+// èIóπèàóù
 //---------------------------------------------------------
 void PlayerLeftHand::Finalize()
 {

@@ -59,8 +59,6 @@ void Collision::BossEnemy(IEnemy* enemy)
 // プレイヤーから敵への攻撃判定
 void Collision::CheckHitPlayerToEnemy(IEnemy* enemy)
 {
-	// キーボードを取得する
-	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 	// プレイヤーが攻撃していない場合終了
 	if (!m_player->IsAttack())
 	{

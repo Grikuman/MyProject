@@ -6,13 +6,8 @@
 #include "PlayerRightHand.h"
 #include "Game/Player/Player.h"
 
-#include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/Resources.h"
-
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -85,7 +80,7 @@ void PlayerRightHand::Render()
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerRightHand::Finalize()
 {

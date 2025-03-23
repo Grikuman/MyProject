@@ -115,7 +115,7 @@ void StageStart::Time()
 void StageStart::TexturesAnimate()
 {
 	// 徐々にスケールを大きくする
-	m_scale += 0.005f;
+	m_scale += 0.01f;
 	if (m_scale >= 1.0f)
 	{
 		m_scale = 1.0f;  // 最大サイズを設定

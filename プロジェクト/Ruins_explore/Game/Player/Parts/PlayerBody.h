@@ -3,12 +3,13 @@
 	　　　概要：プレイヤーの体を管理するクラス
 */
 #pragma once
-#include "Game/Interface/IPlayerPart.h"
+#include "Game/Player/Parts/PlayerLeftHand.h"
+#include "Game/Player/Parts/PlayerRightHand.h"
 
 // 前方宣言
 class Player;
 
-class PlayerBody : public IPlayerPart
+class PlayerBody
 {
 public:
 	// コンストラクタ
@@ -17,17 +18,21 @@ public:
 	~PlayerBody();
 
 	// 初期化する
-	void Initialize()override;
+	void Initialize();
 	// 更新する
-	void Update() override;
+	void Update();
 	// 描画する
-	void Render() override;
+	void Render();
 	// 後処理する
-	void Finalize() override;
+	void Finalize();
 
 private:
-	// モデル
-	std::unique_ptr<DirectX::Model> m_model;
 	// プレイヤー
 	Player* m_player;
+	// 左手
+	std::unique_ptr<PlayerLeftHand> m_leftHand;
+	// 右手
+	std::unique_ptr<PlayerRightHand> m_rightHand;
+	// モデル
+	std::unique_ptr<DirectX::Model> m_model;
 };

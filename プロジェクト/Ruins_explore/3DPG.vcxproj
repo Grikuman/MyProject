@@ -216,7 +216,6 @@
     <ClInclude Include="Game\Interface\IEnemy.h" />
     <ClInclude Include="Game\Interface\IEnemyState.h" />
     <ClInclude Include="Game\Interface\IPlayerAction.h" />
-    <ClInclude Include="Game\Interface\IPlayerPart.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
     <ClInclude Include="Game\Interface\IStage.h" />
     <ClInclude Include="Game\Interface\IPlayerState.h" />

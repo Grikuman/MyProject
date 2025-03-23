@@ -11,6 +11,8 @@
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
 
+#include "Game/Player/Parts/PlayerBody.h"
+
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -22,7 +24,7 @@ Player::Player()
 	m_playerAttack{},
 	m_currentState{},
 	m_camera{},
-	m_position{ DirectX::SimpleMath::Vector3(0.0f, 1.0f, 0.0f) },
+	m_position{ PLAYER_INITIAL_POS },
 	m_velocity{},
 	m_angle{},
 	m_chargeCnt{},
@@ -33,20 +35,15 @@ Player::Player()
 {
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
-
 	// パーツを作成する
-	m_parts.push_back(std::make_unique<PlayerBody>(this));
-	m_parts.push_back(std::make_unique<PlayerRightHand>(this));
-	m_parts.push_back(std::make_unique<PlayerLeftHand>(this));
-
-	// プレイヤーのステートを作成
+	m_playerBody = std::make_unique<PlayerBody>(this);
+	// プレイヤーのステートを作成する
 	m_playerWalk    = std::make_unique<PlayerWalk>(this);
 	m_playerAttack  = std::make_unique<PlayerAttack>(this);
 	m_playerDash    = std::make_unique<PlayerDash>(this);
-
-	// UI管理クラスを作成
+	// プレイヤーのUI管理クラスを作成する
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
-	// エフェクト管理クラスを作成する
+	// プレイヤーのエフェクト管理クラスを作成する
 	m_playerEffectManager = std::make_unique<PlayerEffectManager>(this);
 }
 
@@ -63,21 +60,17 @@ Player::~Player()
 //---------------------------------------------------------
 void Player::Initialize()
 {
-	// パーツを初期化する
-	for (auto& parts : m_parts)
-	{
-		parts->Initialize();
-	}
 	// ステートを初期化する
 	m_playerWalk->Initialize();
 	m_playerAttack->Initialize();
 	m_playerDash->Initialize();
-	// UI管理クラスを初期化する
+	// プレイヤーの体を初期化する
+	m_playerBody->Initialize();
+	// UIを管理するクラスを初期化する
 	m_playerUIManager->Initialize();
-	// エフェクト初期化する
+	// エフェクトを管理するクラスを初期化する
 	m_playerEffectManager->Initialize();
-
-	// 初期ステートを設定
+	// 初期の状態を設定する(初期状態：歩き)
 	m_currentState = m_playerWalk.get();
 }
 
@@ -87,8 +80,8 @@ void Player::Initialize()
 void Player::Update(float elapsedTime)
 {	
 	using namespace DirectX::SimpleMath;
-	UNREFERENCED_PARAMETER(elapsedTime);
-	// 速度を初期化
+	
+	// 速度を初期化する
 	m_velocity = Vector3::Zero;
 	// 重力加算
 	m_velocity.y -= GRAVITY * 0.5f;
@@ -97,22 +90,16 @@ void Player::Update(float elapsedTime)
 	Invincible();
 	// スタミナ回復処理
 	ChargeStamina();
-
-	//現在のステートを更新する
+	// 現在の状態を更新する
 	m_currentState->Update(elapsedTime);
-
-	// Y軸を中心にカメラも回転させる
-	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle)); 
-
-	// UI管理クラスを更新する
+	// カメラを更新する
+	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle));
+	// UIを管理するクラスを更新する
 	m_playerUIManager->Update();
-	// エフェクト管理クラスを更新する
+	// エフェクトを管理するクラスを更新する
 	m_playerEffectManager->Update();
-	// パーツを更新する
-	for(auto& parts : m_parts)
-	{
-		parts->Update();
-	}
+	// プレイヤーの体を更新する
+	m_playerBody->Update();
 
 	// ビューとプロジェクションを設定する
 	Graphics::GetInstance()->SetViewMatrix(m_camera->GetViewMatrix());
@@ -124,33 +111,24 @@ void Player::Update(float elapsedTime)
 //---------------------------------------------------------
 void Player::Render()
 {
-	// パーツを描画する
-	for(auto& parts : m_parts)
-	{
-		parts->Render();
-	}
-	// 現在のステートを描画をする
+	// プレイヤーの体を描画する
+	m_playerBody->Render();
+	// 現在の状態を描画をする
 	m_currentState->Render();
-	// UI管理クラスを描画する
+	// UIを管理するクラスを描画する
 	m_playerUIManager->Render();
-	// エフェクト管理クラス描画する
+	// エフェクトを管理するクラス描画する
 	m_playerEffectManager->Render();
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void Player::Finalize()
 {
-	for(auto& parts : m_parts)
-	{
-		parts->Finalize();
-	}
+	m_playerBody->Finalize();
 	m_playerUIManager->Finalize();
 	m_playerEffectManager->Finalize();
-	m_playerWalk.reset();
-	m_playerAttack.reset();
-	m_playerDash.reset();
 }
 
 
@@ -164,6 +142,9 @@ DirectX::BoundingSphere Player::GetBoundingSphere()
 	return DirectX::BoundingSphere(center, radius);
 }
 
+//---------------------------------------------------------
+// バウンディングボックスを取得する
+//---------------------------------------------------------
 DirectX::BoundingBox Player::GetBoundingBox()
 {
 	// 当たり判定ボックスの中心を設定
@@ -201,6 +182,7 @@ void Player::ChangeState(IPlayerState* newState)
 {
 	m_currentState = newState;
 }
+
 //---------------------------------------------------------
 // 無敵処理
 //---------------------------------------------------------

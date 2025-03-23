@@ -52,9 +52,6 @@ void QuestSelectScene::Update(float elapsedTime)
 {
 	UNREFERENCED_PARAMETER(elapsedTime);
 
-	// クエスト選択のUIを更新する
-	m_questSelectUI->Update();
-
 	// クエスト開始の演出
 	if (m_questSelectUI->GetQuestStart())
 	{
@@ -66,6 +63,12 @@ void QuestSelectScene::Update(float elapsedTime)
 			// プレイシーンに移行
 			ChangeScene();
 		}
+	}
+	// クエスト開始の演出ではないとき
+	else
+	{
+		// クエスト選択のUIを更新する
+		m_questSelectUI->Update();
 	}
 
 	// 次のシーンIDを取得する

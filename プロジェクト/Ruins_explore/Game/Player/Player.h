@@ -8,10 +8,7 @@
 #include "PlayerAttack.h"
 #include "PlayerDash.h"
 
-#include "Game/Interface/IPlayerPart.h"
 #include "Parts/PlayerBody.h"
-#include "Parts/PlayerRightHand.h"
-#include "Parts/PlayerLeftHand.h"
 
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
@@ -40,7 +37,7 @@ public:
 	void SetHP(const int hp) { m_hp = hp; }
 	// スタミナを設定する
 	void SetStamina(const int stamina) { m_stamina = stamina; }
-	//無敵を設定する
+	// 無敵を設定する
 	void SetInvincible(const bool invincible) { m_invincible = invincible; }
 	// ステートを変更する
 	void ChangeState(IPlayerState* newState);
@@ -53,15 +50,15 @@ public:
 	// 角度を取得する
 	DirectX::SimpleMath::Quaternion GetAngle() const { return m_angle; }
 	// 体力を取得する
-	int GetHP() const                                { return m_hp; }
+	int GetHP() const { return m_hp; }
 	// 最大体力を取得する
-	int GetMAXHP() const                             { return MAX_HP; }
+	int GetMAXHP() const { return MAX_HP; }
 	// スタミナを取得する
-	int GetStamina() const                           { return m_stamina; }
+	int GetStamina() const { return m_stamina; }
 	// 最大スタミナを取得する
-	int GetMAXSTAMINA() const                        { return MAX_STAMINA; }
+	int GetMAXSTAMINA() const { return MAX_STAMINA; }
 	// 無敵を取得
-	bool GetInvincible() const                       { return m_invincible; }
+	bool GetInvincible() const { return m_invincible; }
 	// プレイヤーの向きを取得する
 	DirectX::SimpleMath::Vector3 GetForwardDirection();
 	// 攻撃しているか取得する
@@ -71,7 +68,7 @@ public:
 	// バウンディングボックスを取得する
 	DirectX::BoundingBox GetBoundingBox();
 	// カメラを取得する
-	NRLib::TPS_Camera* GetCamera()                   { return m_camera.get(); }
+	NRLib::TPS_Camera* GetCamera() { return m_camera.get(); }
 
 public:
 	// プレイヤーアイドリングを取得する
@@ -80,7 +77,6 @@ public:
 	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
 	// プレイヤーダッシュを取得する
 	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
-
 
 public:
 	// コンストラクタ
@@ -103,6 +99,8 @@ private:
 	void ChargeStamina();
 
 private:
+	// プレイヤーの初期位置
+	const DirectX::SimpleMath::Vector3 PLAYER_INITIAL_POS = { 0.0f,1.0f,0.0f };
 	// 重力加速度
 	const float GRAVITY = 9.8f;
 	// 最大体力
@@ -113,24 +111,24 @@ private:
 	const float MAX_INVINCIBLE = 120.0f;
 
 private:
-	// UI管理クラス
-	std::unique_ptr<PlayerUIManager> m_playerUIManager;
-	// エフェクト管理クラス
-	std::unique_ptr<PlayerEffectManager> m_playerEffectManager;
 	// 現在のステート
 	IPlayerState* m_currentState;
-	// カメラ
-	std::unique_ptr<NRLib::TPS_Camera> m_camera;
-
-	// プレイヤーのパーツ
-	std::vector<std::unique_ptr<IPlayerPart>> m_parts;
-
 	// アイドリング状態
 	std::unique_ptr<PlayerWalk>   m_playerWalk;
 	// アタック状態
 	std::unique_ptr<PlayerAttack> m_playerAttack;
 	// ダッシュ状態
 	std::unique_ptr<PlayerDash>   m_playerDash;
+
+	// プレイヤーの体
+	std::unique_ptr<PlayerBody> m_playerBody;
+
+	// カメラ
+	std::unique_ptr<NRLib::TPS_Camera> m_camera;
+	// UIを管理するクラス
+	std::unique_ptr<PlayerUIManager> m_playerUIManager; 
+	// エフェクトを管理するクラス
+	std::unique_ptr<PlayerEffectManager> m_playerEffectManager; 
 
 	// 位置
 	DirectX::SimpleMath::Vector3 m_position;

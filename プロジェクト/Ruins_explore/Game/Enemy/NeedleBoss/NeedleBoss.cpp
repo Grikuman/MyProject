@@ -19,6 +19,7 @@
 NeedleBoss::NeedleBoss(Player* player)
     :
     m_player{player},
+    m_currentState{},
     m_model{},
     m_needleBossSearch{},
     m_needleBossAttack{},
@@ -56,11 +57,6 @@ NeedleBoss::~NeedleBoss()
 //---------------------------------------------------------
 void NeedleBoss::Initialize(DirectX::SimpleMath::Vector3 position)
 {
-    // コンテキストを取得する
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    // デバイスを取得する
-    auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
-
     // 位置を設定する
     m_position = position;
     // モデルを読み込む

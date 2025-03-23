@@ -34,7 +34,7 @@ private:
 
 private:
 	// 演出の時間
-	const float MAX_TIME = 420.0f;
+	const float MAX_TIME = 360.0f;
 	// 黒のぼかしの位置
 	const DirectX::SimpleMath::Vector2 BLACK_POS = { 0.0f, 0.0f };
 	// アイコンの位置
