@@ -27,6 +27,9 @@ public:
 	void Finalize();
 
 private:
+	// 
+
+private:
 	// ƒvƒŒƒCƒ„[
 	Player* m_player;
 	// ¶è
