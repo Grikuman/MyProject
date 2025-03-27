@@ -65,27 +65,11 @@ void Collision::CheckHitPlayerToEnemy(IEnemy* enemy)
 		return;
 	}
     // 通常パンチの判定処理
-    if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
+    if (m_player->GetPlayerAttackingNormal()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
     {
 		// ダメージ
 		enemy->Damage(0.5f);
     }
-	// チャージパンチの判定処理
-	if (m_player->GetPlayerAttack()->GetCurrentAttackAction() == m_player->GetPlayerAttack()->GetPlayerChargePunch())
-	{
-		// 攻撃範囲内に入っていたら
-		if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
-		{
-			// ノックバックしていなければ
-			if (!enemy->IsKnockback())
-			{
-				// 敵にダメージを与える
-				enemy->Damage(20.0f);
-				// 敵を飛ばす処理
-				enemy->Knockback();
-			}
-		}
-	}
 }
 
 //---------------------------------------------------------
@@ -145,28 +129,14 @@ void Collision::CheckPushBack(ICollisionObject* object)
 //---------------------------------------------------------
 void Collision::PlayerCollisionSound(IEnemy* enemy)
 {
-	// キーボードを取得する
-	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	// 通常攻撃したときに敵が範囲内であれば
-	if(kb->IsKeyPressed(DirectX::Keyboard::F) && m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
-	{
-		// 効果音を鳴らす
-		Audio::GetInstance()->PlaySE("PunchHitSE");
-	}
-	// チャージパンチの判定処理
-	if (m_player->GetPlayerAttack()->GetCurrentAttackAction() == m_player->GetPlayerAttack()->GetPlayerChargePunch())
-	{
-		// 攻撃範囲内に入っていたら
-		if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
-		{
-			// ノックバックしていなければ
-			if (!enemy->IsKnockback())
-			{
-				// パンチ音
-				//Audio::GetInstance()->PlaySE("PunchHitSE");
-			}
-		}
-	}
+	//// キーボードを取得する
+	//auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
+	//// 通常攻撃したときに敵が範囲内であれば
+	//if(kb->IsKeyPressed(DirectX::Keyboard::F) && m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
+	//{
+	//	 効果音を鳴らす
+	//	Audio::GetInstance()->PlaySE("PunchHitSE");
+	//}
 }
 
 //---------------------------------------------------------

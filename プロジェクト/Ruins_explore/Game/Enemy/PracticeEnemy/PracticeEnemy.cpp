@@ -170,7 +170,7 @@ void PracticeEnemy::CheckHit()
     if (m_player->IsAttack())
     {
         // ƒvƒŒƒCƒ„[UŒ‚‚ª“–‚½‚Á‚Ä‚¢‚½‚ç
-        if (m_player->GetPlayerAttack()->GetAttackRange().Intersects(GetBoundingSphere()))
+        if (m_player->GetPlayerAttackingNormal()->GetAttackRange().Intersects(GetBoundingSphere()))
         {
             if (!m_isHit)
             {

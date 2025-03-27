@@ -62,17 +62,11 @@
     <Filter Include="Game\UI\PlayerUI">
       <UniqueIdentifier>{7247d7d1-241e-4c49-8f58-99596a4a0799}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Player\Parts">
-      <UniqueIdentifier>{c30f5d7c-fcfa-4e98-9eb0-0e031a1c1b82}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Interface">
       <UniqueIdentifier>{ad1f8ad8-573b-4f8d-885b-1ef71f57cf6c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Factory">
       <UniqueIdentifier>{56c16771-9f85-45ee-9635-7c4eb2c112be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Player\Action">
-      <UniqueIdentifier>{8e384628-ffdd-4721-a196-be9119db3e73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\UI\TimeUI">
       <UniqueIdentifier>{a5d53d67-040f-40d9-8cc8-5e59712e28a5}</UniqueIdentifier>
@@ -103,6 +97,12 @@
     </Filter>
     <Filter Include="Game\Enemy\PracticeEnemy">
       <UniqueIdentifier>{9bd65591-4d4e-45e1-a4e0-262cac4e997d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player\States">
+      <UniqueIdentifier>{37dc206f-6f55-4ef4-b3f2-7fb151e97f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player\Animation">
+      <UniqueIdentifier>{0e405599-204c-49ee-baae-fe2fb05aaafc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -135,15 +135,6 @@
     <ClInclude Include="Game\Scene\ResultScene.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\PlayerWalk.h">
-      <Filter>Game\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\PlayerAttack.h">
-      <Filter>Game\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\PlayerDash.h">
-      <Filter>Game\Player</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Effect\InvincibleEffect.h">
       <Filter>Game\Effect</Filter>
     </ClInclude>
@@ -164,15 +155,6 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\QuestSelectScene.h">
       <Filter>Game\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Parts\PlayerBody.h">
-      <Filter>Game\Player\Parts</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Parts\PlayerLeftHand.h">
-      <Filter>Game\Player\Parts</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Parts\PlayerRightHand.h">
-      <Filter>Game\Player\Parts</Filter>
     </ClInclude>
     <ClInclude Include="Game\Interface\ICollisionObject.h">
       <Filter>Game\Interface</Filter>
@@ -206,12 +188,6 @@
     </ClInclude>
     <ClInclude Include="Game\Interface\IPlayerAction.h">
       <Filter>Game\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Action\PlayerChargePunch.h">
-      <Filter>Game\Player\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\Action\PlayerNormalPunch.h">
-      <Filter>Game\Player\Action</Filter>
     </ClInclude>
     <ClInclude Include="Game\UI\TimeUI.h">
       <Filter>Game\UI\TimeUI</Filter>
@@ -339,6 +315,36 @@
     <ClInclude Include="Game\Transition\StageStart.h">
       <Filter>Game\Transition</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Animation.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerAttackingNormal.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerAttackingSpecial.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerGuarding.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerIdling.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerRolling.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerRunning.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Animation\PlayerIdlingAnimation.h">
+      <Filter>Game\Player\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Animation\PlayerRollingAnimation.h">
+      <Filter>Game\Player\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Animation\PlayerRunningAnimation.h">
+      <Filter>Game\Player\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -362,15 +368,6 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\PlayerWalk.cpp">
-      <Filter>Game\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\PlayerAttack.cpp">
-      <Filter>Game\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\PlayerDash.cpp">
-      <Filter>Game\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp">
       <Filter>Game\Effect</Filter>
     </ClCompile>
@@ -392,26 +389,11 @@
     <ClCompile Include="Game\Scene\QuestSelectScene.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\Parts\PlayerBody.cpp">
-      <Filter>Game\Player\Parts</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\Parts\PlayerLeftHand.cpp">
-      <Filter>Game\Player\Parts</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\Parts\PlayerRightHand.cpp">
-      <Filter>Game\Player\Parts</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Stage\Stage1.cpp">
       <Filter>Game\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\StageEnemy.cpp">
       <Filter>Game\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\Action\PlayerChargePunch.cpp">
-      <Filter>Game\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\Action\PlayerNormalPunch.cpp">
-      <Filter>Game\Player\Action</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\TimeUI.cpp">
       <Filter>Game\UI\TimeUI</Filter>
@@ -535,6 +517,36 @@
     </ClCompile>
     <ClCompile Include="Game\Transition\StageStart.cpp">
       <Filter>Game\Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Animation.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerAttackingNormal.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerAttackingSpecial.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerGuarding.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerIdling.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerRolling.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerRunning.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\Animation\PlayerIdlingAnimation.cpp">
+      <Filter>Game\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\Animation\PlayerRollingAnimation.cpp">
+      <Filter>Game\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\Animation\PlayerRunningAnimation.cpp">
+      <Filter>Game\Player\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

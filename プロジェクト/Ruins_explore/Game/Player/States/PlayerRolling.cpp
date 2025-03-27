@@ -1,0 +1,99 @@
+/*
+    ファイル名：PlayerRolling.cpp
+    　　　概要：プレイヤーのダッシュ状態を管理するクラス
+*/
+#include "pch.h"
+#include "PlayerRolling.h"
+#include "Game/Player/Player.h"
+
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/InputDevice.h"
+
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
+PlayerRolling::PlayerRolling(Player* player)
+	:
+    m_player{player}
+{
+    // アニメーションを作成する
+    m_animation = std::make_unique<PlayerRollingAnimation>(player);
+}
+
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+PlayerRolling::~PlayerRolling()
+{
+
+}
+
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
+void PlayerRolling::Initialize()
+{
+    // アニメーションを初期化する
+    m_animation->Initialize();
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void PlayerRolling::Update(const float& elapsedTime)
+{
+    // 回避処理
+    Rolling();
+    // 待機状態への移行処理
+    TransitionToIdling();
+
+    // アニメーションを更新する
+    m_animation->Update(elapsedTime);
+}
+
+
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void PlayerRolling::Render()
+{
+   // アニメーションを描画する
+    m_animation->Render();
+}
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void PlayerRolling::Finalize()
+{
+    m_animation->Finalize();
+}
+
+//---------------------------------------------------------
+// 回避処理
+//---------------------------------------------------------
+void PlayerRolling::Rolling()
+{
+    // 向きを取得する
+    DirectX::SimpleMath::Vector3 direction = m_player->GetDirection();
+    // 移動速度を設定する
+    m_player->SetVelocity(direction);
+    // 移動速度を補正する
+    m_player->ApplyVelocity(0.1f);
+    // 移動する
+    m_player->SetPosition(m_player->GetPosition() + DirectX::SimpleMath::Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
+}
+
+//---------------------------------------------------------
+// 待機状態への移行処理
+//---------------------------------------------------------
+void PlayerRolling::TransitionToIdling()
+{
+    // アニメーションが終了したら待機状態へ移行する
+    if (m_animation->GetEndAnimation())
+    {
+        m_player->ChangeState(m_player->GetPlayerIdling());
+    }
+}

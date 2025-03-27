@@ -4,11 +4,12 @@
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
-#include "PlayerWalk.h"
-#include "PlayerAttack.h"
-#include "PlayerDash.h"
-
-#include "Parts/PlayerBody.h"
+#include "Game/Player/States/PlayerIdling.h"
+#include "Game/Player/States/PlayerRunning.h"
+#include "Game/Player/States/PlayerRolling.h"
+#include "Game/Player/States/PlayerAttackingNormal.h"
+#include "Game/Player/States/PlayerAttackingSpecial.h"
+#include "Game/Player/States/PlayerGuarding.h"
 
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
@@ -26,19 +27,19 @@ public:
 	// 位置を設定する
 	void SetPosition(const DirectX::SimpleMath::Vector3& position) { m_position = position; }
 	// 速度を加算する
-	void AddVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity += velocity; }
+	void SetVelocity(const DirectX::SimpleMath::Vector3& velocity) { m_velocity = velocity; }
 	// 速度に係数をかける
 	void ApplyVelocity(float scale) { m_velocity *= scale; }
 	// 回転を設定する
 	void SetAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle = angle; }
-	// 回転を加算する
-	void AddAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle *= angle; }
 	// 体力を設定する
 	void SetHP(const int hp) { m_hp = hp; }
 	// スタミナを設定する
 	void SetStamina(const int stamina) { m_stamina = stamina; }
 	// 無敵を設定する
 	void SetInvincible(const bool invincible) { m_invincible = invincible; }
+	// 向きを設定する
+	void SetDirection(const DirectX::SimpleMath::Vector3 direction) { m_direction = direction; }
 	// ステートを変更する
 	void ChangeState(IPlayerState* newState);
 
@@ -60,23 +61,29 @@ public:
 	// 無敵を取得
 	bool GetInvincible() const { return m_invincible; }
 	// プレイヤーの向きを取得する
-	DirectX::SimpleMath::Vector3 GetForwardDirection();
+	DirectX::SimpleMath::Vector3 GetDirection() { return m_direction; }
 	// 攻撃しているか取得する
 	bool IsAttack();
 	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere();
 	// バウンディングボックスを取得する
 	DirectX::BoundingBox GetBoundingBox();
-	// カメラを取得する
-	NRLib::TPS_Camera* GetCamera() { return m_camera.get(); }
 
 public:
-	// プレイヤーアイドリングを取得する
-	PlayerWalk* GetPlayerWalk() { return m_playerWalk.get(); }
-	// プレイヤーアタックを取得する
-	PlayerAttack* GetPlayerAttack() { return m_playerAttack.get(); }
-	// プレイヤーダッシュを取得する
-	PlayerDash* GetPlayerDash() { return m_playerDash.get(); }
+	// プレイヤーの待機状態を取得する
+	PlayerIdling* GetPlayerIdling() { return m_playerIdling.get(); }
+	// プレイヤーの走り状態を取得する
+	PlayerRunning* GetPlayerRunning() { return m_playerRunning.get(); }
+	// プレイヤーの回避状態を取得する
+	PlayerRolling* GetPlayerRolling() { return m_playerRolling.get(); }
+	// プレイヤーの通常攻撃状態を取得する
+	PlayerAttackingNormal* GetPlayerAttackingNormal() { return m_playerAttackingNormal.get(); }
+	// プレイヤーの特殊攻撃状態を取得する
+	PlayerAttackingSpecial* GetPlayerAttackingSpecial() { return m_playerAttackingSpecial.get(); }
+	// プレイヤーの防御状態を取得する
+	PlayerGuarding* GetPlayerGuarding() { return m_playerGuarding.get(); }
+	// カメラを取得する
+	NRLib::TPS_Camera* GetCamera() { return m_camera.get(); }
 
 public:
 	// コンストラクタ
@@ -113,21 +120,24 @@ private:
 private:
 	// 現在のステート
 	IPlayerState* m_currentState;
-	// アイドリング状態
-	std::unique_ptr<PlayerWalk>   m_playerWalk;
-	// アタック状態
-	std::unique_ptr<PlayerAttack> m_playerAttack;
-	// ダッシュ状態
-	std::unique_ptr<PlayerDash>   m_playerDash;
-
-	// プレイヤーの体
-	std::unique_ptr<PlayerBody> m_playerBody;
+	// 待機状態
+	std::unique_ptr<PlayerIdling> m_playerIdling;
+	// 走り状態
+	std::unique_ptr<PlayerRunning> m_playerRunning;
+	// 回避状態
+	std::unique_ptr<PlayerRolling> m_playerRolling;
+	// 通常攻撃
+	std::unique_ptr<PlayerAttackingNormal> m_playerAttackingNormal;
+	// 特殊攻撃
+	std::unique_ptr<PlayerAttackingSpecial> m_playerAttackingSpecial;
+	// 防御状態
+	std::unique_ptr<PlayerGuarding> m_playerGuarding;
 
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
-	// UIを管理するクラス
+	// UI
 	std::unique_ptr<PlayerUIManager> m_playerUIManager; 
-	// エフェクトを管理するクラス
+	// エフェクト
 	std::unique_ptr<PlayerEffectManager> m_playerEffectManager; 
 
 	// 位置
@@ -136,7 +146,6 @@ private:
 	DirectX::SimpleMath::Vector3 m_velocity;
 	// 回転
 	DirectX::SimpleMath::Quaternion m_angle;
-
 	// 体力
 	int m_hp;
 	// スタミナ
@@ -147,4 +156,6 @@ private:
 	bool m_invincible;
 	// 無敵時間
 	float m_invincibleTime;
+	// プレイヤーの向き
+	DirectX::SimpleMath::Vector3 m_direction;
 };

@@ -40,12 +40,10 @@ void Resources::LoadResources()
 	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
 	// エフェクトファクトリーを取得する
 	DirectX::EffectFactory* fx = Graphics::GetInstance()->GetFX();
+
+	// ■ cmo形式のモデル ■
 	// ディレクトリを設定する
 	fx->SetDirectory(L"Resources/Models");
-
-	//============
-	// * モデル *
-	//============
 	// // 岩のブロック
 	std::unique_ptr<DirectX::Model> CollisionBlock = DirectX::Model::CreateFromCMO(device, L"Resources/Models/CollisionBlock.cmo", *fx);
 	// チュートリアルの練習モデル
@@ -63,6 +61,17 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Star = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Star.cmo", *fx);
 	// ステージ1_1【装飾】
 	std::unique_ptr<DirectX::Model> Stage1_1 = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Stage1_1.cmo", *fx);
+
+	// ■　sdkmesh形式のモデル ■
+	// ディレクトリの再設定
+	fx->SetDirectory(L"Resources/SDKMesh");
+	// プレイヤーモデルローダーフラグ
+	DirectX::ModelLoaderFlags flags = DirectX::ModelLoader_Clockwise | DirectX::ModelLoader_IncludeBones;
+
+	// プレイヤー
+	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Player_Run.sdkmesh", *fx,flags);
+
+
 	// モデルを登録する
 	m_models.emplace(L"CollisionBlock", std::move(CollisionBlock));
 	m_models.emplace(L"PracticeModel", std::move(PracticeModel));
@@ -73,6 +82,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"Skydome", std::move(Skydome));
 	m_models.emplace(L"Star", std::move(Star));
 	m_models.emplace(L"Stage1_1", std::move(Stage1_1));
+	m_models.emplace(L"Player", std::move(Player));
 
 	//================
 	// * テクスチャ *

@@ -1,0 +1,97 @@
+/*
+    ファイル名：PlayerIdling.cpp
+    　　　概要：プレイヤーの歩行状態を管理するクラス
+*/
+#include "pch.h"
+#include "PlayerIdling.h"
+#include "Game/Player/Player.h"
+
+#include "Framework/Graphics.h"
+#include "Framework/Resources.h"
+#include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
+
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
+PlayerIdling::PlayerIdling(Player* player)
+	:
+    m_player{player}
+{
+    // アニメーションを作成する
+    m_animation = std::make_unique<PlayerIdlingAnimation>(player);
+}
+
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+PlayerIdling::~PlayerIdling()
+{
+
+}
+
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
+void PlayerIdling::Initialize()
+{
+    // アニメーションを初期化する
+    m_animation->Initialize();
+}
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
+void PlayerIdling::Update(const float& elapsedTime)
+{
+    // 待機処理
+    Idling();
+    // 待機状態→走り状態
+    TransitionToRunning();
+
+    // アニメーションを更新する
+    m_animation->Update(elapsedTime);
+}
+
+
+
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void PlayerIdling::Render()
+{
+    // アニメーションを描画する
+    m_animation->Render();
+}
+
+
+//---------------------------------------------------------
+// 後始末する
+//---------------------------------------------------------
+void PlayerIdling::Finalize()
+{
+    m_animation->Finalize();
+}
+
+//---------------------------------------------------------
+// 待機処理
+//---------------------------------------------------------
+void PlayerIdling::Idling()
+{
+    
+}
+
+//---------------------------------------------------------
+// // 走る状態への移行処理
+//---------------------------------------------------------
+void PlayerIdling::TransitionToRunning()
+{
+    // キーボード入力を取得
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    // 入力があれば走る状態へ移行する
+    if (kb->W || kb->S || kb->A || kb->D) // 前
+    {
+        m_player->ChangeState(m_player->GetPlayerRunning());
+    }
+}

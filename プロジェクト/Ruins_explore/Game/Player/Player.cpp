@@ -11,18 +11,14 @@
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
 
-#include "Game/Player/Parts/PlayerBody.h"
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 Player::Player()
 	:
+	m_currentState{},
 	m_playerUIManager{},
 	m_playerEffectManager{},
-	m_playerWalk{},
-	m_playerAttack{},
-	m_currentState{},
 	m_camera{},
 	m_position{ PLAYER_INITIAL_POS },
 	m_velocity{},
@@ -31,16 +27,24 @@ Player::Player()
 	m_invincible{ false },
 	m_invincibleTime{ MAX_INVINCIBLE },
 	m_stamina{ MAX_STAMINA },
-	m_hp{ MAX_HP }
+	m_hp{ MAX_HP },
+	m_direction{ DirectX::SimpleMath::Vector3::Forward }
 {
+	// 待機状態を作成する
+	m_playerIdling = std::make_unique<PlayerIdling>(this);
+	// 走り状態を作成する
+	m_playerRunning = std::make_unique<PlayerRunning>(this); 
+	// 回避状態を作成する
+	m_playerRolling = std::make_unique<PlayerRolling>(this); 
+	// 通常攻撃を作成する
+	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>(this); 
+	// 特殊攻撃を作成する
+	m_playerAttackingSpecial = std::make_unique<PlayerAttackingSpecial>(this); 
+	// 防御状態を作成する
+	m_playerGuarding = std::make_unique<PlayerGuarding>(this); 
+	
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
-	// パーツを作成する
-	m_playerBody = std::make_unique<PlayerBody>(this);
-	// プレイヤーのステートを作成する
-	m_playerWalk    = std::make_unique<PlayerWalk>(this);
-	m_playerAttack  = std::make_unique<PlayerAttack>(this);
-	m_playerDash    = std::make_unique<PlayerDash>(this);
 	// プレイヤーのUI管理クラスを作成する
 	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
 	// プレイヤーのエフェクト管理クラスを作成する
@@ -60,18 +64,25 @@ Player::~Player()
 //---------------------------------------------------------
 void Player::Initialize()
 {
-	// ステートを初期化する
-	m_playerWalk->Initialize();
-	m_playerAttack->Initialize();
-	m_playerDash->Initialize();
-	// プレイヤーの体を初期化する
-	m_playerBody->Initialize();
+	// 待機状態を初期化する
+	m_playerIdling->Initialize();
+	// 待機状態を初期化する
+	m_playerRunning->Initialize(); 
+	// 待機状態を初期化する
+	m_playerRolling->Initialize(); 
+	// 待機状態を初期化する
+	m_playerAttackingNormal->Initialize();
+	// 待機状態を初期化する
+	m_playerAttackingSpecial->Initialize(); 
+	// 待機状態を初期化する
+	m_playerGuarding->Initialize(); 
+
 	// UIを管理するクラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクトを管理するクラスを初期化する
 	m_playerEffectManager->Initialize();
-	// 初期の状態を設定する(初期状態：歩き)
-	m_currentState = m_playerWalk.get();
+	// 初期の状態を設定する(初期状態：待機)
+	m_currentState = m_playerIdling.get();
 }
 
 //---------------------------------------------------------
@@ -98,8 +109,6 @@ void Player::Update(float elapsedTime)
 	m_playerUIManager->Update();
 	// エフェクトを管理するクラスを更新する
 	m_playerEffectManager->Update();
-	// プレイヤーの体を更新する
-	m_playerBody->Update();
 
 	// ビューとプロジェクションを設定する
 	Graphics::GetInstance()->SetViewMatrix(m_camera->GetViewMatrix());
@@ -111,8 +120,6 @@ void Player::Update(float elapsedTime)
 //---------------------------------------------------------
 void Player::Render()
 {
-	// プレイヤーの体を描画する
-	m_playerBody->Render();
 	// 現在の状態を描画をする
 	m_currentState->Render();
 	// UIを管理するクラスを描画する
@@ -126,7 +133,6 @@ void Player::Render()
 //---------------------------------------------------------
 void Player::Finalize()
 {
-	m_playerBody->Finalize();
 	m_playerUIManager->Finalize();
 	m_playerEffectManager->Finalize();
 }
@@ -157,24 +163,17 @@ DirectX::BoundingBox Player::GetBoundingBox()
 }
 
 //---------------------------------------------------------
-// プレイヤーの向きを取得する
-//---------------------------------------------------------
-DirectX::SimpleMath::Vector3 Player::GetForwardDirection()
-{
-	return DirectX::SimpleMath::Vector3(0,0,0);
-}
-
-//---------------------------------------------------------
 // 攻撃しているか取得する
 //---------------------------------------------------------
 bool Player::IsAttack()
 {
-	if (m_currentState == m_playerAttack.get())
+	if (m_currentState == m_playerAttackingNormal.get())
 	{
 		return true;
 	}
 	return false;
 }
+
 //---------------------------------------------------------
 // ステートを変更する
 //---------------------------------------------------------
