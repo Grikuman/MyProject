@@ -48,6 +48,8 @@ void PlayerIdling::Update(const float& elapsedTime)
     Idling();
     // 待機状態→走り状態
     TransitionToRunning();
+    // 
+    TransitionToAttackingNormal();
 
     // アニメーションを更新する
     m_animation->Update(elapsedTime);
@@ -82,7 +84,7 @@ void PlayerIdling::Idling()
 }
 
 //---------------------------------------------------------
-// // 走る状態への移行処理
+// 走る状態への移行処理
 //---------------------------------------------------------
 void PlayerIdling::TransitionToRunning()
 {
@@ -93,5 +95,19 @@ void PlayerIdling::TransitionToRunning()
     if (kb->W || kb->S || kb->A || kb->D) // 前
     {
         m_player->ChangeState(m_player->GetPlayerRunning());
+    }
+}
+
+//---------------------------------------------------------
+// 通常攻撃状態への移行処理
+//---------------------------------------------------------
+void PlayerIdling::TransitionToAttackingNormal()
+{
+    // キーボード入力を取得
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    if (kb->F)
+    {
+        m_player->ChangeState(m_player->GetPlayerAttackingNormal());
     }
 }

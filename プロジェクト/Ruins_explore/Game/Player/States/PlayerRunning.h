@@ -32,6 +32,8 @@ private:
 	void TransitionToIdling();
 	// ‰ñ”ğó‘Ô‚Ö‚ÌˆÚsˆ—
 	void TransitionToRolling();
+	// ’ÊíUŒ‚ó‘Ô‚Ö‚ÌˆÚsˆ—
+	void TransitionToAttackingNormal();
 	// Œü‚«‚Ìˆ—
 	void Direction();
 

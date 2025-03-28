@@ -1,5 +1,5 @@
 /*
-	ファイル名：PlayerAnimation.h
+	ファイル名：PlayerAttackingNormalAnimation.h
 	　　　概要：プレイヤーのアニメーションを管理するクラス
 */
 #pragma once
@@ -8,13 +8,17 @@
 // 前方宣言
 class Player;
 
-class PlayerAnimation
+class PlayerAttackingNormalAnimation
 {
 public:
+	// アニメーションが終了しているかどうか取得する
+	bool GetEndAnimation();
+
+public:
 	// コンストラクタ
-	PlayerAnimation(Player* player);
+	PlayerAttackingNormalAnimation(Player* player);
 	// デストラクタ
-	~PlayerAnimation();
+	~PlayerAttackingNormalAnimation();
 
 	// 初期化する
 	void Initialize();
@@ -35,6 +39,10 @@ private:
 		);
 
 private:
+	// アニメーションの再生時間
+	const float ANIMATION_TIME = 1.5f;
+
+private:
 	// プレイヤー
 	Player* m_player;
 	// モデル
@@ -46,7 +54,7 @@ private:
 	// ボーンマトリックス
 	DirectX::SimpleMath::Matrix m_boneMatrix;
 	// 総時間
-	float m_totalSecond;
+	float m_time;
 	// アニメーション時間
 	double m_animTime;
 };

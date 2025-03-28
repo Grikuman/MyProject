@@ -16,7 +16,8 @@ PlayerAttackingNormal::PlayerAttackingNormal(Player* player)
 	:
     m_player{player}
 {
-    
+    // アニメーションを作成する
+    m_animation = std::make_unique<PlayerAttackingNormalAnimation>(player);
 }
 
 //---------------------------------------------------------
@@ -32,7 +33,8 @@ PlayerAttackingNormal::~PlayerAttackingNormal()
 //---------------------------------------------------------
 void PlayerAttackingNormal::Initialize()
 {
-    
+    // アニメーションを初期化する
+    m_animation->Initialize();
 }
 
 //---------------------------------------------------------
@@ -40,7 +42,10 @@ void PlayerAttackingNormal::Initialize()
 //---------------------------------------------------------
 void PlayerAttackingNormal::Update(const float& elapsedTime)
 {
-    
+    // 待機状態への移行処理
+    TransitionToIdling();
+    // アニメーションを更新する
+    m_animation->Update(elapsedTime);
 }
 
 
@@ -50,7 +55,8 @@ void PlayerAttackingNormal::Update(const float& elapsedTime)
 //---------------------------------------------------------
 void PlayerAttackingNormal::Render()
 {
-    
+    // アニメーションを描画する
+    m_animation->Render();
 }
 
 
@@ -59,7 +65,18 @@ void PlayerAttackingNormal::Render()
 //---------------------------------------------------------
 void PlayerAttackingNormal::Finalize()
 {
-    
+    m_animation->Finalize();
+}
+
+//---------------------------------------------------------
+// 待機状態への移行処理
+//---------------------------------------------------------
+void PlayerAttackingNormal::TransitionToIdling()
+{
+    if (m_animation->GetEndAnimation())
+    {
+        m_player->ChangeState(m_player->GetPlayerIdling());
+    }
 }
 
 //---------------------------------------------------------

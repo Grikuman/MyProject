@@ -8,8 +8,6 @@
 #include "Game/Player/States/PlayerRunning.h"
 #include "Game/Player/States/PlayerRolling.h"
 #include "Game/Player/States/PlayerAttackingNormal.h"
-#include "Game/Player/States/PlayerAttackingSpecial.h"
-#include "Game/Player/States/PlayerGuarding.h"
 
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
@@ -78,10 +76,6 @@ public:
 	PlayerRolling* GetPlayerRolling() { return m_playerRolling.get(); }
 	// プレイヤーの通常攻撃状態を取得する
 	PlayerAttackingNormal* GetPlayerAttackingNormal() { return m_playerAttackingNormal.get(); }
-	// プレイヤーの特殊攻撃状態を取得する
-	PlayerAttackingSpecial* GetPlayerAttackingSpecial() { return m_playerAttackingSpecial.get(); }
-	// プレイヤーの防御状態を取得する
-	PlayerGuarding* GetPlayerGuarding() { return m_playerGuarding.get(); }
 	// カメラを取得する
 	NRLib::TPS_Camera* GetCamera() { return m_camera.get(); }
 
@@ -128,10 +122,6 @@ private:
 	std::unique_ptr<PlayerRolling> m_playerRolling;
 	// 通常攻撃
 	std::unique_ptr<PlayerAttackingNormal> m_playerAttackingNormal;
-	// 特殊攻撃
-	std::unique_ptr<PlayerAttackingSpecial> m_playerAttackingSpecial;
-	// 防御状態
-	std::unique_ptr<PlayerGuarding> m_playerGuarding;
 
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;

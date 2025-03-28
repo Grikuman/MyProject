@@ -1,9 +1,9 @@
 /*
-	ファイル名：PlayerAnimation.h
+	ファイル名：PlayerAttackingNormalAnimation.h
 	　　　概要：プレイヤーのアニメーションを管理するクラス
 */
 #include "pch.h"
-#include "PlayerAnimation.h"
+#include "PlayerAttackingNormalAnimation.h"
 #include "Game/Player/Player.h"
 
 #include "Framework/Graphics.h"
@@ -11,13 +11,30 @@
 #include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
+// // アニメーションが終了しているかどうか取得する
+//---------------------------------------------------------
+bool PlayerAttackingNormalAnimation::GetEndAnimation()
+{
+	// アニメーションが終了した場合
+	if (m_time >= ANIMATION_TIME)
+	{
+		// アニメーション時間をリセットする
+		m_animation->SetAnimTime(0.0f);
+		m_time = 0.0f;
+		// アニメーションを終了する
+		return true;
+	}
+	return false;
+}
+
+//---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerAnimation::PlayerAnimation(Player* player)
+PlayerAttackingNormalAnimation::PlayerAttackingNormalAnimation(Player* player)
 	:
 	m_player{player},
 	m_model{},
-	m_totalSecond{},
+	m_time{},
 	m_animTime{}
 {
 	
@@ -26,7 +43,7 @@ PlayerAnimation::PlayerAnimation(Player* player)
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerAnimation::~PlayerAnimation()
+PlayerAttackingNormalAnimation::~PlayerAttackingNormalAnimation()
 {
 
 }
@@ -34,7 +51,7 @@ PlayerAnimation::~PlayerAnimation()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerAnimation::Initialize()
+void PlayerAttackingNormalAnimation::Initialize()
 {
 	// プレイヤーのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Player");
@@ -43,7 +60,7 @@ void PlayerAnimation::Initialize()
 	// リソースディレクトリの設定
 	Graphics::GetInstance()->GetFX()->SetDirectory(L"Resources/SDKMesh");
 	// アニメーションをロードする
-	m_animation->Load(L"Resources/SDKMesh/Player_Run.sdkmesh_anim");
+	m_animation->Load(L"Resources/SDKMesh/Player_AttackingNormal.sdkmesh_anim");
 	// アニメーションとモデルをバインドする
 	m_animation->Bind(*m_model);
 	// ボーン用のトランスフォーム配列を生成する
@@ -65,25 +82,20 @@ void PlayerAnimation::Initialize()
 	// アニメーションの開始時間を設定する
 	m_animation->SetStartTime(0.0f);
 	// アニメーションの終了時間を設定する
-	m_animation->SetEndTime(20.0f);
+	m_animation->SetEndTime(ANIMATION_TIME);
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerAnimation::Update(float elapsedTime)
+void PlayerAttackingNormalAnimation::Update(float elapsedTime)
 {
-	m_totalSecond += elapsedTime;
-
-	// アニメーションが終了時間に達した場合、開始時間にリセット
-	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) {
-		// 通常のアニメーション更新
+	m_time += elapsedTime;
+	// アニメーションが終了するまで更新
+	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) 
+	{
+		// アニメーションを更新する
 		m_animation->Update(elapsedTime);
-	}
-	else {
-		// 終了時間を超えている場合は補完してループ
-		m_animation->Update(elapsedTime);  // 補完処理
-		m_animation->SetAnimTime(0.0f);    // アニメーションの時間を0にリセット
 	}
 }
 
@@ -92,7 +104,7 @@ void PlayerAnimation::Update(float elapsedTime)
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerAnimation::Render()
+void PlayerAttackingNormalAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
@@ -108,9 +120,9 @@ void PlayerAnimation::Render()
 		// スケール行列を作成
 		Matrix::CreateScale(0.02f) * 
 		// 回転行列を作成
-		Matrix::CreateFromQuaternion(m_player->GetAngle()) * 
+		Matrix::CreateFromQuaternion(m_player->GetAngle()) *
 		// 移動行列を作成
-	    Matrix::CreateTranslation(m_player->GetPosition()); 
+	    Matrix::CreateTranslation(m_player->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
 
 	// アニメーションモデルの描画する
 	DrawAnimation(m_model, m_animation.get(), &m_animBone, worldMatrix);
@@ -119,7 +131,7 @@ void PlayerAnimation::Render()
 //---------------------------------------------------------
 // 終了処理
 //---------------------------------------------------------
-void PlayerAnimation::Finalize()
+void PlayerAttackingNormalAnimation::Finalize()
 {
 
 }
@@ -127,7 +139,7 @@ void PlayerAnimation::Finalize()
 //---------------------------------------------------------
 // アニメーションモデルを描画する
 //---------------------------------------------------------
-void PlayerAnimation::DrawAnimation(
+void PlayerAttackingNormalAnimation::DrawAnimation(
 	const DirectX::Model* model, 
 	const DX::AnimationSDKMESH* animationSDKMESH,
 	const DirectX::ModelBone::TransformArray* transformArray, 

@@ -30,6 +30,8 @@ private:
 	void Idling();
 	// 走る状態への移行処理
 	void TransitionToRunning();
+	// 通常攻撃状態への移行処理
+	void TransitionToAttackingNormal();
 
 private:
 	//プレイヤー

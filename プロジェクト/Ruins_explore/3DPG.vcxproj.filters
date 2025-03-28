@@ -321,12 +321,6 @@
     <ClInclude Include="Game\Player\States\PlayerAttackingNormal.h">
       <Filter>Game\Player\States</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player\States\PlayerAttackingSpecial.h">
-      <Filter>Game\Player\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Player\States\PlayerGuarding.h">
-      <Filter>Game\Player\States</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Player\States\PlayerIdling.h">
       <Filter>Game\Player\States</Filter>
     </ClInclude>
@@ -343,6 +337,9 @@
       <Filter>Game\Player\Animation</Filter>
     </ClInclude>
     <ClInclude Include="Game\Player\Animation\PlayerRunningAnimation.h">
+      <Filter>Game\Player\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Animation\PlayerAttackingNormalAnimation.h">
       <Filter>Game\Player\Animation</Filter>
     </ClInclude>
   </ItemGroup>
@@ -524,12 +521,6 @@
     <ClCompile Include="Game\Player\States\PlayerAttackingNormal.cpp">
       <Filter>Game\Player\States</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Player\States\PlayerAttackingSpecial.cpp">
-      <Filter>Game\Player\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Player\States\PlayerGuarding.cpp">
-      <Filter>Game\Player\States</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Player\States\PlayerIdling.cpp">
       <Filter>Game\Player\States</Filter>
     </ClCompile>
@@ -546,6 +537,9 @@
       <Filter>Game\Player\Animation</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player\Animation\PlayerRunningAnimation.cpp">
+      <Filter>Game\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\Animation\PlayerAttackingNormalAnimation.cpp">
       <Filter>Game\Player\Animation</Filter>
     </ClCompile>
   </ItemGroup>

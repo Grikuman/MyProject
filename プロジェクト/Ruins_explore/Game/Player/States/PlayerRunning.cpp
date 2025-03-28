@@ -53,6 +53,8 @@ void PlayerRunning::Update(const float& elapsedTime)
     TransitionToIdling();
     // 回避状態への移行処理
     TransitionToRolling();
+    // 通常攻撃状態への移行処理
+    TransitionToAttackingNormal();
     // 向きの処理
     Direction();
 
@@ -149,6 +151,20 @@ void PlayerRunning::TransitionToRolling()
             // 回避状態に変更する
             m_player->ChangeState(m_player->GetPlayerRolling());
         }
+    }
+}
+
+//---------------------------------------------------------
+// 通常攻撃状態への移行処理
+//---------------------------------------------------------
+void PlayerRunning::TransitionToAttackingNormal()
+{
+    // キーボードを取得する
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    if (kb->F)
+    {
+        m_player->ChangeState(m_player->GetPlayerAttackingNormal());
     }
 }
 

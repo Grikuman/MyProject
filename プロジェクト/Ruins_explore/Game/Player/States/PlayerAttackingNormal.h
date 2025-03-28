@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
+#include "Game/Player/Animation/PlayerAttackingNormalAnimation.h"
 
 // 前方宣言
 class Player;
@@ -29,6 +30,12 @@ public:
 	void Finalize() override;
 
 private:
+	// 待機状態への移行処理
+	void TransitionToIdling();
+
+private:
 	//プレイヤー
 	Player* m_player;
+	// アニメーション
+	std::unique_ptr<PlayerAttackingNormalAnimation> m_animation;
 };
