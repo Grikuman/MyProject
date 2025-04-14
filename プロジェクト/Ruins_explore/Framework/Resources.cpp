@@ -70,6 +70,8 @@ void Resources::LoadResources()
 
 	// プレイヤー
 	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Player_Run.sdkmesh", *fx,flags);
+	// ミュータント
+	std::unique_ptr<DirectX::Model> mutant = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Mutant_Walking.sdkmesh", *fx, flags);
 
 
 	// モデルを登録する

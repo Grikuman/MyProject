@@ -104,6 +104,15 @@
     <Filter Include="Game\Player\Animation">
       <UniqueIdentifier>{0e405599-204c-49ee-baae-fe2fb05aaafc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Enemy\Mutant">
+      <UniqueIdentifier>{756e3154-70a7-4dce-86db-443fb00925e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Mutant\States">
+      <UniqueIdentifier>{db488220-42fa-480b-ba3f-97ce83a1d52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Mutant\Animation">
+      <UniqueIdentifier>{fb560809-8f9a-4f1c-af09-a07e1a1a3208}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -342,6 +351,27 @@
     <ClInclude Include="Game\Player\Animation\PlayerAttackingNormalAnimation.h">
       <Filter>Game\Player\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\Mutant.h">
+      <Filter>Game\Enemy\Mutant</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantAttackingRushing.h">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantAttackingSlash.h">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantWalking.h">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantAttackingRushingAnimation.h">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantAttackingSlashAnimation.h">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -541,6 +571,27 @@
     </ClCompile>
     <ClCompile Include="Game\Player\Animation\PlayerAttackingNormalAnimation.cpp">
       <Filter>Game\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\Mutant.cpp">
+      <Filter>Game\Enemy\Mutant</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantAttackingRushing.cpp">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantAttackingSlash.cpp">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantWalking.cpp">
+      <Filter>Game\Enemy\Mutant\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantAttackingRushingAnimation.cpp">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantAttackingSlashAnimation.cpp">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.cpp">
+      <Filter>Game\Enemy\Mutant\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

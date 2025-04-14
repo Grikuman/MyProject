@@ -201,6 +201,13 @@
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
     <ClInclude Include="Game\Effect\SmokeEffect.h" />
     <ClInclude Include="Game\Effect\SmokeEffectUtility.h" />
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantAttackingRushingAnimation.h" />
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantAttackingSlashAnimation.h" />
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h" />
+    <ClInclude Include="Game\Enemy\Mutant\Mutant.h" />
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantAttackingRushing.h" />
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantAttackingSlash.h" />
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantWalking.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBoss.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossAttack.h" />
     <ClInclude Include="Game\Enemy\NeedleBoss\NeedleBossDown.h" />
@@ -283,6 +290,13 @@
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
     <ClCompile Include="Game\Effect\SmokeEffect.cpp" />
     <ClCompile Include="Game\Effect\SmokeEffectUtility.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantAttackingRushingAnimation.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantAttackingSlashAnimation.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\Mutant.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantAttackingRushing.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantAttackingSlash.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantWalking.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBoss.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossAttack.cpp" />
     <ClCompile Include="Game\Enemy\NeedleBoss\NeedleBossDown.cpp" />

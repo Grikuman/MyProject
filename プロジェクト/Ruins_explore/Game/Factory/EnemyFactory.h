@@ -6,6 +6,7 @@
 #include "Game/Interface/IEnemy.h"
 #include "Game/Enemy/Tunomaru/Tunomaru.h"
 #include "Game/Enemy/NeedleBoss/NeedleBoss.h"
+#include "Game/Enemy/Mutant/Mutant.h"
 
 class EnemyFactory 
 {
@@ -21,6 +22,10 @@ public:
         else if (type == "NeedleBoss")
         {
             return std::make_unique<NeedleBoss>(player);
+        }
+        else if (type == "Mutant")
+        {
+            return std::make_unique<Mutant>(player);
         }
         
         return nullptr;  // “Gƒ^ƒCƒv‚ª‚¢‚È‚¢ê‡
