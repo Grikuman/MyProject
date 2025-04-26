@@ -35,6 +35,12 @@ private:
 		);
 
 private:
+	// アニメーションの再生時間
+	const float ANIMATION_TIME = 299.0f;
+	// アニメーションの再生速度
+	const float ANIMATION_SPEED = 0.016f;
+
+private:
 	// プレイヤー
 	Mutant* m_mutant;
 	// モデル

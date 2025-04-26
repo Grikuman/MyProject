@@ -65,7 +65,7 @@ void MutantWalkingAnimation::Initialize()
 	// アニメーションの開始時間を設定する
 	m_animation->SetStartTime(0.0f);
 	// アニメーションの終了時間を設定する
-	m_animation->SetEndTime(299.0f);
+	m_animation->SetEndTime(ANIMATION_TIME);
 }
 
 //---------------------------------------------------------
@@ -73,21 +73,9 @@ void MutantWalkingAnimation::Initialize()
 //---------------------------------------------------------
 void MutantWalkingAnimation::Update(float elapsedTime)
 {
-	m_totalSecond += elapsedTime;
-
-	// アニメーションが終了時間に達した場合、開始時間にリセット
-	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) {
-		// 通常のアニメーション更新
-		m_animation->Update(elapsedTime);
-	}
-	else {
-		// 終了時間を超えている場合は補完してループ
-		m_animation->Update(elapsedTime);  // 補完処理
-		m_animation->SetAnimTime(0.0f);    // アニメーションの時間を0にリセット
-	}
+	// 通常のアニメーション更新
+	m_animation->Update(elapsedTime);
 }
-
-
 
 //---------------------------------------------------------
 // 描画する
@@ -106,7 +94,9 @@ void MutantWalkingAnimation::Render()
 
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(0.02f) * 
+		Matrix::CreateScale(0.035f) *
+		// 180度回転させる(モデルの向き調整)
+		Matrix::CreateRotationY(DirectX::XM_PI) *
 		// 回転行列を作成
 		Matrix::CreateFromQuaternion(m_mutant->GetAngle()) *
 		// 移動行列を作成

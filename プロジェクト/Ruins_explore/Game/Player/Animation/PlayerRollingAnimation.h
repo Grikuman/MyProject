@@ -12,7 +12,7 @@ class PlayerRollingAnimation
 {
 public:
 	// アニメーションが終了しているかどうか取得する
-	bool GetEndAnimation();
+	bool IsEndAnimation();
 
 public:
 	// コンストラクタ

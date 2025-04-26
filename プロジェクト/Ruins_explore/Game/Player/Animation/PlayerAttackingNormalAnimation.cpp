@@ -13,7 +13,7 @@
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
 //---------------------------------------------------------
-bool PlayerAttackingNormalAnimation::GetEndAnimation()
+bool PlayerAttackingNormalAnimation::IsEndAnimation()
 {
 	// アニメーションが終了した場合
 	if (m_time >= ANIMATION_TIME)

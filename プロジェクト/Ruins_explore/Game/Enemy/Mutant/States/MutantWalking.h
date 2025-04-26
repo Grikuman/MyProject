@@ -34,7 +34,9 @@ private:
 	// 歩きの処理
 	void Walking();
 	// 探索から攻撃へ
-	void SearchToAttack();
+	void TransitionToRushing();
+	// 斬りつけ攻撃状態への移行処理
+	void TransitionToSlashing();
 
 private:
 	// ミュータント

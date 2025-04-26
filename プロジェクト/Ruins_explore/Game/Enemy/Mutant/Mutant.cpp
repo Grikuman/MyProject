@@ -22,8 +22,8 @@ Mutant::Mutant(Player* player)
     m_currentState{},
     m_model{},
     m_mutantWalking{},
-    m_mutantAttackingSlash{},
-    m_mutanAttackingRushing{},
+    m_mutantRushing{},
+    m_mutantSlashing{},
     m_position{},
     m_velocity{},
     m_angle{},
@@ -33,11 +33,11 @@ Mutant::Mutant(Player* player)
 {
     // 歩き状態を作成する
     m_mutantWalking = std::make_unique<MutantWalking>(this);
-    // 斬りつけ攻撃状態を作成する
-    m_mutantAttackingSlash = std::make_unique<MutantAttackingSlash>(this);
-    // 突進攻撃状態を作成する
-    m_mutanAttackingRushing = std::make_unique<MutantAttackingRushing>(this);
-
+    // 突進状態を作成する
+    m_mutantRushing = std::make_unique<MutantRushing>(this);
+    // 斬りつけ状態を作成する
+    m_mutantSlashing = std::make_unique<MutantSlashing>(this);
+    
     // 体力のUIを作成する
     m_bossHPUI = std::make_unique<BossHPUI>();
     // 煙エフェクトを作成する
@@ -64,10 +64,10 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
 
     // 歩き状態を初期化する
     m_mutantWalking->Initialize();
-    // 斬りつけ攻撃状態を作成する
-    m_mutantAttackingSlash->Initialize();
-    // 突進攻撃状態を作成する
-    m_mutanAttackingRushing->Initialize();
+    // 突進状態を初期化する
+    m_mutantRushing->Initialize(); 
+    // 斬りつけ状態を初期化する
+    m_mutantSlashing->Initialize(); 
     // 初期の状態を設定する
     m_currentState = m_mutantWalking.get();
 
@@ -75,7 +75,6 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
     m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(), 1920, 720);
     // 煙エフェクトを初期化する
     m_smokeEffect->Initialize();
-
 }
 
 //---------------------------------------------------------
@@ -128,8 +127,6 @@ void Mutant::Render()
     // 煙エフェクト
     m_smokeEffect->CreateBillboard(m_player->GetPosition(), m_player->GetCamera()->GetEyePosition(), m_player->GetCamera()->GetUpVector());
     m_smokeEffect->Render(view, proj);
-    // モデル表示
-    m_model->Draw(context, *states, worldMatrix, view, proj);
     // 体力UIを描画する
     m_bossHPUI->Render();
     // 現在のステートを描画する

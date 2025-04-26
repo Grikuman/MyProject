@@ -45,8 +45,6 @@ private:
 	std::unique_ptr<DX::AnimationSDKMESH> m_animation;
 	// ボーンマトリックス
 	DirectX::SimpleMath::Matrix m_boneMatrix;
-	// 総時間
-	float m_totalSecond;
 	// アニメーション時間
 	double m_animTime;
 };

@@ -125,8 +125,6 @@ void TutorialStage::Render()
 	m_practiceEnemy->Render();
 	// チュートリアルガイドを表示する
 	m_tutorialGuideUI->Render();
-
-
 }
 
 //---------------------------------------------------------

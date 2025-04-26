@@ -73,7 +73,6 @@ void Resources::LoadResources()
 	// ミュータント
 	std::unique_ptr<DirectX::Model> mutant = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Mutant_Walking.sdkmesh", *fx, flags);
 
-
 	// モデルを登録する
 	m_models.emplace(L"CollisionBlock", std::move(CollisionBlock));
 	m_models.emplace(L"PracticeModel", std::move(PracticeModel));
@@ -85,6 +84,7 @@ void Resources::LoadResources()
 	m_models.emplace(L"Star", std::move(Star));
 	m_models.emplace(L"Stage1_1", std::move(Stage1_1));
 	m_models.emplace(L"Player", std::move(Player));
+	m_models.emplace(L"Mutant", std::move(mutant));
 
 	//================
 	// * テクスチャ *

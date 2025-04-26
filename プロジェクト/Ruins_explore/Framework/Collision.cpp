@@ -6,7 +6,6 @@
 #include "Framework/Collision.h"
 
 #include "Game/Player/Player.h"
-#include "Game/Enemy/Tunomaru/Tunomaru.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
 #include "Framework/Audio.h"

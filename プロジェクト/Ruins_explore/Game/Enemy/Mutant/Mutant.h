@@ -4,8 +4,8 @@
 */
 #pragma once
 #include "Game/Enemy/Mutant/States/MutantWalking.h"
-#include "Game/Enemy/Mutant/States/MutantAttackingSlash.h"
-#include "Game/Enemy/Mutant/States/MutantAttackingRushing.h"
+#include "Game/Enemy/Mutant/States/MutantSlashing.h"
+#include "Game/Enemy/Mutant/States/MutantRushing.h"
 
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
@@ -42,8 +42,6 @@ public:
     void Damage(const float damage) override;
     // ステートを変更する
     void ChangeState(IEnemyState* newState)                        { m_currentState = newState; }
-    // ノックバックさせる
-    void Knockback() override {  }
 public:
     // 位置を取得する
     DirectX::SimpleMath::Vector3 GetPosition() const override      { return m_position; }
@@ -59,8 +57,6 @@ public:
     bool GetHit() const                                            { return m_isHit; }
     // 生存状況を取得する
     bool IsAlive() const override                                  { return m_isAlive; }
-    // ノックバックしているか
-    bool IsKnockback() const override { return true; }
     // バウンディングスフィアを取得する
     DirectX::BoundingSphere GetBoundingSphere() const override;
     // バウンディングボックスを取得する
@@ -69,12 +65,12 @@ public:
 public:
     // プレイヤーを取得する
     Player* GetPlayer() { return m_player; }
-    // トゲボスサーチを取得する
-    MutantWalking* GetMutantSearch() { return m_mutantWalking.get(); }
-    // トゲボスアタックを取得する
-    MutantAttackingSlash* GetMutantAttack() { return m_mutantAttackingSlash.get(); }
-    // トゲボスダウンを取得する
-    MutantAttackingRushing* GetMutantAttackingRushing() { return m_mutanAttackingRushing.get(); }
+    // 歩き状態を取得する
+    MutantWalking* GetMutantWalking() { return m_mutantWalking.get(); }
+    // 突進状態を取得する
+    MutantRushing* GetMutantRushing() { return m_mutantRushing.get(); }
+    // 斬りつけ状態を取得する
+    MutantSlashing* GetMutantSlashing() { return m_mutantSlashing.get(); }
     
 public:
     // コンストラクタ
@@ -105,14 +101,14 @@ private:
     // モデル
     DirectX::Model* m_model;
 
-    // ステート
+    // 現在の状態
     IEnemyState* m_currentState;
     // 歩き状態
     std::unique_ptr<MutantWalking> m_mutantWalking;
-    // 斬りつけ攻撃状態
-    std::unique_ptr<MutantAttackingSlash> m_mutantAttackingSlash;
-    // 突進攻撃状態
-    std::unique_ptr<MutantAttackingRushing> m_mutanAttackingRushing;
+    // 突進状態
+    std::unique_ptr<MutantRushing> m_mutantRushing;
+    // 斬りつけ状態
+    std::unique_ptr<MutantSlashing> m_mutantSlashing;
 
     // 体力のUI
     std::unique_ptr<BossHPUI> m_bossHPUI;

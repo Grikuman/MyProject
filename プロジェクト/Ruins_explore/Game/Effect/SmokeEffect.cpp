@@ -178,7 +178,7 @@ void SmokeEffect::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::
 	ID3D11SamplerState* sampler[1] = { m_states->LinearWrap() };
 	context->PSSetSamplers(0, 1, sampler);
 
-	//	半透明描画指定		補間アルファ合成
+	//	半透明描画指定 補間アルファ合成
 	ID3D11BlendState* blendstate = m_states->NonPremultiplied();
 
 	//	透明判定処理

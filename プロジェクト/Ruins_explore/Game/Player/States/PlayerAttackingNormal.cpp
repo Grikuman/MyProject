@@ -45,7 +45,7 @@ void PlayerAttackingNormal::Update(const float& elapsedTime)
     // 待機状態への移行処理
     TransitionToIdling();
     // アニメーションを更新する
-    m_animation->Update(elapsedTime);
+    m_animation->Update(elapsedTime * 1.4);
 }
 
 
@@ -73,7 +73,7 @@ void PlayerAttackingNormal::Finalize()
 //---------------------------------------------------------
 void PlayerAttackingNormal::TransitionToIdling()
 {
-    if (m_animation->GetEndAnimation())
+    if (m_animation->IsEndAnimation())
     {
         m_player->ChangeState(m_player->GetPlayerIdling());
     }

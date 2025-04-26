@@ -1,7 +1,7 @@
 {
   "TutorialStage": [
     {
-      "type": "Tunomaru",
+      "type": "TutorialEnemy",
       "position": [ 0, 1000.0, 0 ]
     }
   ],

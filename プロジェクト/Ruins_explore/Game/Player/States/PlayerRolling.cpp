@@ -92,7 +92,7 @@ void PlayerRolling::Rolling()
 void PlayerRolling::TransitionToIdling()
 {
     // アニメーションが終了したら待機状態へ移行する
-    if (m_animation->GetEndAnimation())
+    if (m_animation->IsEndAnimation())
     {
         m_player->ChangeState(m_player->GetPlayerIdling());
     }

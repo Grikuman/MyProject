@@ -10,14 +10,8 @@ class IEnemy : public ICollisionObject
 public:
 	// 生存しているか
 	virtual bool IsAlive() const = 0;
-	// ノックバックしているか
-	virtual bool IsKnockback() const = 0;
 	// バウンディングボックスを取得する
 	virtual DirectX::BoundingBox GetBoundingBox() const = 0;
-
-public:
-	// ノックバックさせる
-	virtual void Knockback() = 0;
 
 public:
 	virtual ~IEnemy() = default;

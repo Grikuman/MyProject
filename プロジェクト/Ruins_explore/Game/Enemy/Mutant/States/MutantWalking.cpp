@@ -47,11 +47,13 @@ void MutantWalking::Update()
 {
     // 歩き処理
     Walking();
-    // 探索から攻撃へ
-    SearchToAttack();
+    // 突進状態への移行処理
+    TransitionToRushing();
+    // 斬りつけ状態への移行処理
+    TransitionToSlashing();
 
     // アニメーションを更新する
-    m_animation->Update();
+    m_animation->Update(0.016f);
 }
 
 //---------------------------------------------------------
@@ -59,7 +61,8 @@ void MutantWalking::Update()
 //---------------------------------------------------------
 void MutantWalking::Render()
 {
-
+    // アニメーションを描画する
+    m_animation->Render();
 }
 
 //---------------------------------------------------------
@@ -67,7 +70,7 @@ void MutantWalking::Render()
 //---------------------------------------------------------
 void MutantWalking::Finalize()
 {
-    
+    m_animation->Finalize();
 }
 
 //---------------------------------------------------------
@@ -94,27 +97,51 @@ void MutantWalking::Walking()
 
     // 速度を設定する
     m_mutant->AddVelocity(directionToPlayer);
-    m_mutant->ApplyVelocity(0.05f);
+    m_mutant->ApplyVelocity(0.08f);
     // 位置を設定する
     m_mutant->SetPosition(tunomaruPosition + m_mutant->GetVelocity());
 }
 
 //---------------------------------------------------------
-// 探索から攻撃へ
+// 突進状態への移行処理
 //---------------------------------------------------------
-void MutantWalking::SearchToAttack()
+void MutantWalking::TransitionToRushing()
 {
-    //using namespace DirectX::SimpleMath;
+    using namespace DirectX::SimpleMath;
 
-    //// プレイヤーの位置を取得する
-    //Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
-    //// ミュータントの現在位置を取得する
-    //Vector3 tunomaruPosition = m_mutant->GetPosition();
-    //// プレイヤーとの距離を計算する
-    //float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+    // プレイヤーの位置を取得する
+    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
+    // ミュータントの現在位置を取得する
+    Vector3 mutantPos = m_mutant->GetPosition();
+    // プレイヤーとミュータントの距離を計算する
+    float distanceToPlayer = Vector3::Distance(mutantPos, playerPos);
 
-    //if (distanceToPlayer <= 5)
-    //{
-    //    m_mutant->ChangeState(m_mutant->GetNeedleBossAttack());
-    //}
+    // 一定距離以上プレイヤーが離れた場合
+    if (distanceToPlayer >= 10)
+    {
+        // 突撃状態へ移行する
+        m_mutant->ChangeState(m_mutant->GetMutantRushing());
+    }
+}
+
+//---------------------------------------------------------
+// 斬りつけ状態への移行処理
+//---------------------------------------------------------
+void MutantWalking::TransitionToSlashing()
+{
+    using namespace DirectX::SimpleMath;
+
+    // プレイヤーの位置を取得する
+    Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
+    // ミュータントの現在位置を取得する
+    Vector3 tunomaruPosition = m_mutant->GetPosition();
+    // プレイヤーとの距離を計算する
+    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+
+    // 一定距離以内にプレイヤーがいた場合
+    if (distanceToPlayer <= 5)
+    {
+        // 斬りつけ状態へ移行する
+        m_mutant->ChangeState(m_mutant->GetMutantSlashing());
+    }
 }

@@ -17,7 +17,6 @@ PlayerIdlingAnimation::PlayerIdlingAnimation(Player* player)
 	:
 	m_player{player},
 	m_model{},
-	m_totalSecond{},
 	m_animTime{}
 {
 	
@@ -73,18 +72,8 @@ void PlayerIdlingAnimation::Initialize()
 //---------------------------------------------------------
 void PlayerIdlingAnimation::Update(float elapsedTime)
 {
-	m_totalSecond += elapsedTime;
-
-	// アニメーションが終了時間に達した場合、開始時間にリセット
-	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) {
-		// 通常のアニメーション更新
-		m_animation->Update(elapsedTime);
-	}
-	else {
-		// 終了時間を超えている場合は補完してループ
-		m_animation->Update(elapsedTime);  // 補完処理
-		m_animation->SetAnimTime(0.0f);    // アニメーションの時間を0にリセット
-	}
+	// 通常のアニメーション更新
+	m_animation->Update(elapsedTime);
 }
 
 

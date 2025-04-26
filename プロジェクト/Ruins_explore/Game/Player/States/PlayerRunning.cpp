@@ -49,7 +49,7 @@ void PlayerRunning::Update(const float& elapsedTime)
     
     // 走る処理
     Running();
-    // 走る状態→待機状態
+    // 待機状態への移行処理
     TransitionToIdling();
     // 回避状態への移行処理
     TransitionToRolling();
