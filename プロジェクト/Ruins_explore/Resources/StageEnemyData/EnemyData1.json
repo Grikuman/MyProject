@@ -1,9 +1,6 @@
 {
   "TutorialStage": [
-    {
-      "type": "TutorialEnemy",
-      "position": [ 0, 1000.0, 0 ]
-    }
+    
   ],
   "Stage1": [
     {

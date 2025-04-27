@@ -2,9 +2,7 @@
     ファイル名：ICollisionObject.h
     　　　概要：当たり判定のある物体のインターフェース
 */
-
 #pragma once
-#include "pch.h"
 
 class ICollisionObject
 {
@@ -18,5 +16,4 @@ public:
     virtual void SetPosition(const DirectX::SimpleMath::Vector3 position) = 0;
     // ダメージを与える
     virtual void Damage(const float damage) = 0;
-    virtual ~ICollisionObject() = default;
 };

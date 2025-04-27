@@ -17,10 +17,6 @@ namespace NRLib
 class MutantSlashing : public IEnemyState
 {
 public:
-	// 攻撃のバウンディングスフィアを取得する
-	DirectX::BoundingSphere GetAttackBoundingSphere() const;
-	
-public:
 	// コンストラクタ
 	MutantSlashing(Mutant* mutant);
 	// デストラクタ
@@ -31,7 +27,7 @@ public:
 	void Update() override;
 	// 描画する
 	void Render() override;
-	// 後処理する
+	// 終了処理
 	void Finalize() override;
 
 private:
@@ -39,6 +35,14 @@ private:
 	void Slashing();
 	// 歩き状態への移行処理
 	void TransitionToWalking();
+
+private:
+	// 攻撃の当たる距離
+	const float ATTACK_DISTANCE = 5.0f;
+	// 攻撃が当たった際のカメラ振動の強度
+	const float CAMERA_INTENSITY = 0.2f;
+	// 攻撃が当たった際のカメラ振動の時間
+	const float CAMERA_DURATION = 0.4f;
 
 private:
 	// ミュータント

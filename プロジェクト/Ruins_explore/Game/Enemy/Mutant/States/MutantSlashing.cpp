@@ -6,23 +6,12 @@
 #include "MutantSlashing.h"
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Game/Player/Player.h"
-
-#include "Framework/DeviceResources.h"
 #include "Game/Camera/TPS_Camera.h"
+#include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
-
-//---------------------------------------------------------
-// 攻撃のバウンディングスフィアを取得する
-//---------------------------------------------------------
-DirectX::BoundingSphere MutantSlashing::GetAttackBoundingSphere() const
-{
-	DirectX::SimpleMath::Vector3 center = m_mutant->GetPosition();
-	float radius = 3.f;
-	return DirectX::BoundingSphere(center, radius);
-}
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -63,7 +52,7 @@ void MutantSlashing::Update()
 	TransitionToWalking();
 	
 	// アニメーションを更新する
-	m_animation->Update(0.016f);
+	m_animation->Update();
 }
 
 //---------------------------------------------------------
@@ -96,14 +85,10 @@ void MutantSlashing::Slashing()
 		return;
 	}
     // プレイヤーが無敵でなければ通過
-	if (!m_mutant->GetPlayer()->GetInvincible())
+	if (m_mutant->GetPlayer()->GetInvincible())
 	{
 		return;
 	}
-
-	//=====================================================
-	// * ダメージ処理 *
-	//=====================================================
 
 	// プレイヤーの位置を取得する
 	Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
@@ -111,12 +96,15 @@ void MutantSlashing::Slashing()
 	Vector3 mutantPos = m_mutant->GetPosition();
 	// プレイヤーとミュータントの距離を計算する
 	float distanceToPlayer = Vector3::Distance(mutantPos, playerPos);
-
-	// 一定距離以内プレイヤーが離れた場合
-	if (distanceToPlayer >= 10)
+	// 一定距離以内にプレイヤーがいる場合通過
+	if (distanceToPlayer > ATTACK_DISTANCE)
 	{
-		
+		return;
 	}
+
+	//=====================================================
+	// * ダメージ処理 *
+	//=====================================================
 	
 	// mutantの前方向ベクトルをQuaternionから求める
 	Matrix rotMatrix = Matrix::CreateFromQuaternion(m_mutant->GetAngle());
@@ -138,7 +126,7 @@ void MutantSlashing::Slashing()
 		m_mutant->GetPlayer()->SetHP(m_mutant->GetPlayer()->GetHP() - 1);
 		m_mutant->GetPlayer()->SetInvincible(true);
 		Audio::GetInstance()->PlaySE("EnemyAttackSE");
-		m_mutant->GetPlayer()->GetCamera()->StartShake(0.2f, 0.4f);
+		m_mutant->GetPlayer()->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
 	}
 }
 
@@ -153,41 +141,3 @@ void MutantSlashing::TransitionToWalking()
 		m_mutant->ChangeState(m_mutant->GetMutantWalking());
 	}
 }
-
-//void MutantAttackingSlash::ChargingAttack()
-//{
-//	// 方向をプレイヤーに向ける
-//	DirectX::SimpleMath::Vector3 direction = m_needleBoss->GetPlayer()->GetPosition() - m_needleBoss->GetPosition();
-//	direction.Normalize();
-//
-//	// 突進速度を適用
-//	// 突進する
-//	m_needleBoss->SetVelocity(DirectX::SimpleMath::Vector3::Forward);
-//	// 移動量を補正する
-//	m_needleBoss->SetVelocity(m_needleBoss->GetVelocity() * -0.06f);
-//	// 回転を加味して実際に移動する
-//	m_needleBoss->SetPosition(
-//		m_needleBoss->GetPosition() +
-//		DirectX::SimpleMath::Vector3::Transform(m_needleBoss->GetVelocity(), DirectX::SimpleMath::Matrix::CreateFromQuaternion(m_needleBoss->GetAngle())));
-//
-//	// 衝突判定
-//	if (GetAttackBoundingSphere().Intersects(m_needleBoss->GetPlayer()->GetBoundingSphere()))
-//	{
-//		if (!m_needleBoss->GetPlayer()->GetInvincible())
-//		{
-//			m_needleBoss->GetPlayer()->SetHP(m_needleBoss->GetPlayer()->GetHP() - 1);
-//			m_needleBoss->GetPlayer()->SetInvincible(true);
-//			// 攻撃音
-//			Audio::GetInstance()->PlaySE("EnemyAttackSE");
-//			// カメラを揺らす
-//			m_needleBoss->GetPlayer()->GetCamera()->StartShake(0.2f, 0.4f);
-//		}
-//	}
-//	// 突進が一定距離に達したら終了
-//	if (m_atackStartTime >= 120)
-//	{
-//		m_attackType = AttackType::Spinning;
-//		m_atackStartTime = 0;
-//		m_needleBoss->ChangeState(m_needleBoss->GetNeedleBossDown());
-//	}
-//}

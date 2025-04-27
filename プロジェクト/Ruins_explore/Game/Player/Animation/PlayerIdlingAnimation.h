@@ -19,7 +19,7 @@ public:
 	// 初期化する
 	void Initialize();
 	// 更新する
-	void Update(float elapsedTime);
+	void Update();
 	// 描画する
 	void Render();
 	// 後処理する
@@ -29,10 +29,17 @@ private:
 	// アニメーションモデルを描画する
 	void DrawAnimation(
 		const DirectX::Model* model,
-		const DX::AnimationSDKMESH* animationSDKMESH,
 		const DirectX::ModelBone::TransformArray* transformArray,
 		const DirectX::SimpleMath::Matrix& worldMatrix
 		);
+
+private:
+	// アニメーションの再生時間
+	const float ANIMATION_TIME = 300.0f;
+	// アニメーションの再生速度
+	const float ANIMATION_SPEED = 0.016f;
+	// モデルの拡縮
+	const float MODEL_SCALE = 0.02f;
 
 private:
 	// プレイヤー

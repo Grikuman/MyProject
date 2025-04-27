@@ -5,10 +5,8 @@
 #include "pch.h"
 #include "MutantSlashingAnimation.h"
 #include "Game/Enemy/Mutant/Mutant.h"
-
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
-#include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
@@ -33,7 +31,7 @@ bool MutantSlashingAnimation::IsEndAnimation()
 bool MutantSlashingAnimation::IsAbleToDealDamage()
 {
 	// アニメーションの時間が【1.4f～1.7】の場合
-	if (m_time > 1.4f && m_time < 1.7f)
+	if (m_time > HIT_START_TIME && m_time < HIT_END_TIME)
 	{
 		// ダメージ処理は可能
 		return true;
@@ -106,14 +104,14 @@ void MutantSlashingAnimation::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void MutantSlashingAnimation::Update(float elapsedTime)
+void MutantSlashingAnimation::Update()
 {
-	m_time += elapsedTime;
+	m_time += ANIMATION_SPEED;
 	// アニメーションが終了するまで更新
 	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) 
 	{
 		// アニメーションを更新する
-		m_animation->Update(elapsedTime);
+		m_animation->Update(ANIMATION_SPEED);
 	}
 }
 
@@ -126,17 +124,9 @@ void MutantSlashingAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
-	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj;
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
-
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(0.035f) *
+		Matrix::CreateScale(MODEL_SCALE) *
 		// 180度回転させる(モデルの向き調整)
 		Matrix::CreateRotationY(DirectX::XM_PI) *
 		// 回転行列を作成
@@ -145,7 +135,7 @@ void MutantSlashingAnimation::Render()
 	    Matrix::CreateTranslation(m_mutant->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
 
 	// アニメーションモデルの描画する
-	DrawAnimation(m_model, m_animation.get(), &m_animBone, worldMatrix);
+	DrawAnimation(m_model, &m_animBone, worldMatrix);
 }
 
 //---------------------------------------------------------
@@ -161,7 +151,6 @@ void MutantSlashingAnimation::Finalize()
 //---------------------------------------------------------
 void MutantSlashingAnimation::DrawAnimation(
 	const DirectX::Model* model, 
-	const DX::AnimationSDKMESH* animationSDKMESH,
 	const DirectX::ModelBone::TransformArray* transformArray, 
 	const DirectX::SimpleMath::Matrix& worldMatrix)
 {

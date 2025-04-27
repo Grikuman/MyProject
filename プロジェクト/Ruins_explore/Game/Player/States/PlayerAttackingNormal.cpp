@@ -1,6 +1,6 @@
 /*
     ファイル名：PlayerAttackingNormal.cpp
-    　　　概要：プレイヤーの攻撃状態を管理するクラス
+    　　　概要：プレイヤーの通常攻撃状態を管理するクラス
 */
 #include "pch.h"
 #include "Game/Player/Player.h"
@@ -40,12 +40,12 @@ void PlayerAttackingNormal::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerAttackingNormal::Update(const float& elapsedTime)
+void PlayerAttackingNormal::Update()
 {
     // 待機状態への移行処理
     TransitionToIdling();
     // アニメーションを更新する
-    m_animation->Update(elapsedTime * 1.4);
+    m_animation->Update();
 }
 
 
@@ -61,7 +61,7 @@ void PlayerAttackingNormal::Render()
 
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerAttackingNormal::Finalize()
 {

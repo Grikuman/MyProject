@@ -1,5 +1,5 @@
 /*
-	ayer.cpp
+	ファイル名：Player.cpp
 	　　　概要：プレイヤーの情報を管理するクラス
 */
 #include "pch.h"
@@ -38,7 +38,6 @@ Player::Player()
 	m_playerRolling = std::make_unique<PlayerRolling>(this); 
 	// 通常攻撃を作成する
 	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>(this); 
-	
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 	// プレイヤーのUI管理クラスを作成する
@@ -68,7 +67,6 @@ void Player::Initialize()
 	m_playerRolling->Initialize(); 
 	// 待機状態を初期化する
 	m_playerAttackingNormal->Initialize();
-
 	// UIを管理するクラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクトを管理するクラスを初期化する
@@ -88,20 +86,18 @@ void Player::Update(float elapsedTime)
 	m_velocity = Vector3::Zero;
 	// 重力加算
 	m_velocity.y -= GRAVITY * 0.5f;
-
 	// 無敵処理
 	Invincible();
 	// スタミナ回復処理
 	ChargeStamina();
 	// 現在の状態を更新する
-	m_currentState->Update(elapsedTime);
+	m_currentState->Update();
 	// カメラを更新する
 	m_camera->Update(m_position, Matrix::CreateFromQuaternion(m_angle));
 	// UIを管理するクラスを更新する
 	m_playerUIManager->Update();
 	// エフェクトを管理するクラスを更新する
 	m_playerEffectManager->Update();
-
 	// ビューとプロジェクションを設定する
 	Graphics::GetInstance()->SetViewMatrix(m_camera->GetViewMatrix());
 	Graphics::GetInstance()->SetProjectionMatrix(m_camera->GetProjectionMatrix());

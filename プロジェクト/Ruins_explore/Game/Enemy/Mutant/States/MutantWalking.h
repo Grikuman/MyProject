@@ -9,11 +9,6 @@
 // ‘O•ûéŒ¾
 class Mutant;
 
-namespace NRLib
-{
-	class TPS_Camera;
-};
-
 class MutantWalking : public IEnemyState
 {
 public:

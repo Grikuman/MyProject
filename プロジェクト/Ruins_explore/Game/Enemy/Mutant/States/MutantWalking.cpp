@@ -6,8 +6,6 @@
 #include "MutantWalking.h"
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Game/Player/Player.h"
-
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
@@ -53,7 +51,7 @@ void MutantWalking::Update()
     TransitionToSlashing();
 
     // アニメーションを更新する
-    m_animation->Update(0.016f);
+    m_animation->Update();
 }
 
 //---------------------------------------------------------

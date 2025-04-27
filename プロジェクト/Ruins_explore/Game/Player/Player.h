@@ -8,12 +8,10 @@
 #include "Game/Player/States/PlayerRunning.h"
 #include "Game/Player/States/PlayerRolling.h"
 #include "Game/Player/States/PlayerAttackingNormal.h"
-
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
 
 // 前方宣言
-
 namespace NRLib
 {
 	class TPS_Camera;
@@ -122,14 +120,12 @@ private:
 	std::unique_ptr<PlayerRolling> m_playerRolling;
 	// 通常攻撃
 	std::unique_ptr<PlayerAttackingNormal> m_playerAttackingNormal;
-
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
 	// UI
 	std::unique_ptr<PlayerUIManager> m_playerUIManager; 
 	// エフェクト
 	std::unique_ptr<PlayerEffectManager> m_playerEffectManager; 
-
 	// 位置
 	DirectX::SimpleMath::Vector3 m_position;
 	// 速度

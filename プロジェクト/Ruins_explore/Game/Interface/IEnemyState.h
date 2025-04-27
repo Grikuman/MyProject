@@ -2,11 +2,7 @@
     ファイル名：IEnemyState.h
     　　　概要：敵の状態のインターフェース
 */
-
 #pragma once
-
-#include <DirectXMath.h>
-#include <SimpleMath.h>
 
 class IEnemyState
 {

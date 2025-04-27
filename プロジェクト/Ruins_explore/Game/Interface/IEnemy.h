@@ -14,6 +14,7 @@ public:
 	virtual DirectX::BoundingBox GetBoundingBox() const = 0;
 
 public:
+	// デストラクタ
 	virtual ~IEnemy() = default;
 	// 初期化する
 	virtual void Initialize(DirectX::SimpleMath::Vector3 position) = 0;
@@ -21,6 +22,6 @@ public:
 	virtual void Update() = 0;
 	// 描画する
 	virtual void Render() = 0;
-	// 後処理を行う
+	// 終了処理
 	virtual void Finalize() = 0;
 };

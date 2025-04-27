@@ -107,9 +107,6 @@
     <Filter Include="Game\Enemy\Mutant\Animation">
       <UniqueIdentifier>{fb560809-8f9a-4f1c-af09-a07e1a1a3208}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Enemy\TutorialEnemy">
-      <UniqueIdentifier>{1a5cf5e1-ae2f-4617-9514-ffaec2157ce3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -192,9 +189,6 @@
     <ClInclude Include="Game\Factory\StageFactory.h">
       <Filter>Game\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Interface\IPlayerAction.h">
-      <Filter>Game\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UI\TimeUI.h">
       <Filter>Game\UI\TimeUI</Filter>
     </ClInclude>
@@ -225,12 +219,6 @@
     <ClInclude Include="Framework\Resources.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Camera\FixedCamera.h">
-      <Filter>Game\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Camera\FollowCamera.h">
-      <Filter>Game\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Camera\TPS_Camera.h">
       <Filter>Game\Camera</Filter>
     </ClInclude>
@@ -239,15 +227,6 @@
     </ClInclude>
     <ClInclude Include="Game\Transition\Fade.h">
       <Filter>Game\Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Effect\DownEffect.h">
-      <Filter>Game\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Effect\SmokeEffect.h">
-      <Filter>Game\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Effect\SmokeEffectUtility.h">
-      <Filter>Game\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Game\Stage\StageDecoration.h">
       <Filter>Game\Stage</Filter>
@@ -260,9 +239,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Audio.h">
       <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Effect\DebrisEffect.h">
-      <Filter>Game\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h">
       <Filter>Game\UI\EnemyUI</Filter>
@@ -341,9 +317,6 @@
     </ClInclude>
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h">
       <Filter>Game\Enemy\Mutant\Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Enemy\TutorialEnemy\TutorialEnemy.h">
-      <Filter>Game\Enemy\TutorialEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -428,26 +401,11 @@
     <ClCompile Include="Framework\Resources.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Camera\FixedCamera.cpp">
-      <Filter>Game\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Camera\FollowCamera.cpp">
-      <Filter>Game\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Camera\TPS_Camera.cpp">
       <Filter>Game\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Effect\DownEffect.cpp">
-      <Filter>Game\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Effect\SmokeEffect.cpp">
-      <Filter>Game\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Effect\SmokeEffectUtility.cpp">
-      <Filter>Game\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\StageDecoration.cpp">
       <Filter>Game\Stage</Filter>
@@ -460,9 +418,6 @@
     </ClCompile>
     <ClCompile Include="Framework\Audio.cpp">
       <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Effect\DebrisEffect.cpp">
-      <Filter>Game\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp">
       <Filter>Game\UI\EnemyUI</Filter>
@@ -564,9 +519,6 @@
     <None Include="Resources\Shaders\Fade.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
-    <None Include="Resources\Shaders\SmokeEffect.hlsli">
-      <Filter>Resources\Shaders</Filter>
-    </None>
     <None Include="Resources\StageDecorationData\StageDecorationData.json">
       <Filter>Resources\StageDecorationData</Filter>
     </None>
@@ -603,15 +555,6 @@
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\FadeVS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectGS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectPS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectVS.hlsl">
       <Filter>Resources\Shaders</Filter>
     </FxCompile>
   </ItemGroup>

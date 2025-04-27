@@ -5,10 +5,8 @@
 #include "pch.h"
 #include "MutantWalkingAnimation.h"
 #include "Game/Enemy/Mutant/Mutant.h"
-
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
-#include "Game/Camera/TPS_Camera.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -71,10 +69,10 @@ void MutantWalkingAnimation::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void MutantWalkingAnimation::Update(float elapsedTime)
+void MutantWalkingAnimation::Update()
 {
 	// 通常のアニメーション更新
-	m_animation->Update(elapsedTime);
+	m_animation->Update(ANIMATION_SPEED);
 }
 
 //---------------------------------------------------------
@@ -84,17 +82,9 @@ void MutantWalkingAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
-	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj;
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
-
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(0.035f) *
+		Matrix::CreateScale(MODEL_SCALE) *
 		// 180度回転させる(モデルの向き調整)
 		Matrix::CreateRotationY(DirectX::XM_PI) *
 		// 回転行列を作成
@@ -103,7 +93,7 @@ void MutantWalkingAnimation::Render()
 	    Matrix::CreateTranslation(m_mutant->GetPosition() + Vector3(0.0f,-1.0f,0.0f));
 
 	// アニメーションモデルの描画する
-	DrawAnimation(m_model, m_animation.get(), &m_animBone, worldMatrix);
+	DrawAnimation(m_model, &m_animBone, worldMatrix);
 }
 
 //---------------------------------------------------------
@@ -119,7 +109,6 @@ void MutantWalkingAnimation::Finalize()
 //---------------------------------------------------------
 void MutantWalkingAnimation::DrawAnimation(
 	const DirectX::Model* model, 
-	const DX::AnimationSDKMESH* animationSDKMESH,
 	const DirectX::ModelBone::TransformArray* transformArray, 
 	const DirectX::SimpleMath::Matrix& worldMatrix)
 {

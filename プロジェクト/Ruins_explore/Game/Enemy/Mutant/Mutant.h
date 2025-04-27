@@ -11,9 +11,6 @@
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
 #include "Game/UI/EnemyUI/BossHPUI.h"
-#include "Game/Effect/SmokeEffect.h"
-
-
 
 class Player;
 
@@ -93,14 +90,11 @@ private:
     void SetPlayerAngle();
 private:
     // 最大体力
-    const float MAXHP = 300;
+    const float MAXHP = 200;
 
 private:
     // プレイヤー
     Player* m_player;
-    // モデル
-    DirectX::Model* m_model;
-
     // 現在の状態
     IEnemyState* m_currentState;
     // 歩き状態
@@ -109,12 +103,8 @@ private:
     std::unique_ptr<MutantRushing> m_mutantRushing;
     // 斬りつけ状態
     std::unique_ptr<MutantSlashing> m_mutantSlashing;
-
     // 体力のUI
     std::unique_ptr<BossHPUI> m_bossHPUI;
-    // 煙エフェクト
-    std::unique_ptr<SmokeEffect> m_smokeEffect;
-
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
     // 速度

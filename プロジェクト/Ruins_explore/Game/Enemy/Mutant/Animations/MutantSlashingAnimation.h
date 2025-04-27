@@ -25,7 +25,7 @@ public:
 	// 初期化する
 	void Initialize();
 	// 更新する
-	void Update(float elapsedTime);
+	void Update();
 	// 描画する
 	void Render();
 	// 後処理する
@@ -35,16 +35,21 @@ private:
 	// アニメーションモデルを描画する
 	void DrawAnimation(
 		const DirectX::Model* model,
-		const DX::AnimationSDKMESH* animationSDKMESH,
 		const DirectX::ModelBone::TransformArray* transformArray,
 		const DirectX::SimpleMath::Matrix& worldMatrix
 		);
 
 private:
 	// アニメーションの再生時間
-	const float ANIMATION_TIME = 2.6f; // 【メモ】1.4f ～ 1.7f辺りが攻撃の時間
+	const float ANIMATION_TIME = 2.6f; // 【メモ】1.4f ～ 1.7f辺りが攻撃が当たる時間
+	// 攻撃が接触する時間
+	const float HIT_START_TIME = 1.4f;
+	// 攻撃の接触が終わる時間
+	const float HIT_END_TIME = 1.7f;
 	// アニメーションの再生速度
 	const float ANIMATION_SPEED = 0.016f;
+	// モデルの拡縮
+	const float MODEL_SCALE = 0.035f;
 
 private:
 	// プレイヤー

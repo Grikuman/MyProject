@@ -5,7 +5,6 @@
 #pragma once
 #include "Game/Interface/IEnemy.h"
 #include "Game/Enemy/Mutant/Mutant.h"
-#include "Game/Enemy/TutorialEnemy/TutorialEnemy.h"
 
 class EnemyFactory 
 {
@@ -14,11 +13,7 @@ public:
     static std::unique_ptr<IEnemy> CreateEnemy(const std::string& type, Player* player) 
     {
         // “Gƒ^ƒCƒv‚ð‚±‚±‚É’Ç‰Á
-        if (type == "TutorialEnemy") 
-        {
-            return std::make_unique<TutorialEnemy>(player);
-        }
-        else if (type == "Mutant")
+        if (type == "Mutant")
         {
             return std::make_unique<Mutant>(player);
         }

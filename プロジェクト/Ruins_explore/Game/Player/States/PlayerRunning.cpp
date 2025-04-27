@@ -1,11 +1,10 @@
 /*
     ファイル名：PlayerRunning.cpp
-    　　　概要：プレイヤーの歩行状態を管理するクラス
+    　　　概要：プレイヤーの走り状態を管理するクラス
 */
 #include "pch.h"
 #include "Game/Player/Player.h"
 #include "PlayerRunning.h"
-
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
@@ -44,9 +43,8 @@ void PlayerRunning::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerRunning::Update(const float& elapsedTime)
+void PlayerRunning::Update()
 {
-    
     // 走る処理
     Running();
     // 待機状態への移行処理
@@ -59,7 +57,7 @@ void PlayerRunning::Update(const float& elapsedTime)
     Direction();
 
     // アニメーションを更新する
-    m_animation->Update(elapsedTime);
+    m_animation->Update();
 }
 
 
@@ -75,7 +73,7 @@ void PlayerRunning::Render()
 
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerRunning::Finalize()
 {
@@ -91,7 +89,7 @@ void PlayerRunning::Running()
     // キーボード入力を取得
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
-    // ■ 入力方向を取得して、向きに応じて移動する ■
+    // 入力方向を取得して、向きに応じて移動する
     if (kb->W) // 前
     {
         m_player->SetVelocity(Vector3::Forward);
@@ -122,7 +120,7 @@ void PlayerRunning::TransitionToIdling()
 {
     // キーボード入力を取得
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
-    // ■ 入力が無ければ待機状態へ移行する ■
+    // 入力が無ければ待機状態へ移行する
     if (kb->W || kb->S || kb->A || kb->D)
     {
         return;
@@ -177,7 +175,7 @@ void PlayerRunning::Direction()
     // キーボードを取得する
     auto kb = InputDevice::GetInstance()->GetKeyboardState();
 
-    // ■ 入力方向を取得して、向きを設定する ■
+    // 入力方向を取得して、向きを設定する
     if (kb->W) // 前
     {
         m_player->SetDirection(Vector3::Forward);

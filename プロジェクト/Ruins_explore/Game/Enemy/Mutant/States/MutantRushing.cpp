@@ -6,20 +6,11 @@
 #include "MutantRushing.h"
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Game/Player/Player.h"
-
 #include "Framework/DeviceResources.h"
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
-
-DirectX::BoundingSphere MutantRushing::GetAttackBoundingSphere() const
-{
-	DirectX::SimpleMath::Vector3 center = m_mutant->GetPosition();
-	float radius = 3.f;
-	return DirectX::BoundingSphere(center, radius);
-}
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -60,7 +51,7 @@ void MutantRushing::Update()
     TransitionToWalking();
 
     // アニメーションを更新する
-    m_animation->Update(0.016f);
+    m_animation->Update();
 }
 
 //---------------------------------------------------------
@@ -90,12 +81,9 @@ void MutantRushing::Rushing()
     // プレイヤーの位置を取得する
     Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
     // ミュータントの位置を取得する
-    Vector3 tunomaruPosition = m_mutant->GetPosition();
-    // プレイヤーとの距離を計算する
-    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
-
+    Vector3 mutantPosition = m_mutant->GetPosition();
     // プレイヤーへの方向を計算する
-    Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+    Vector3 directionToPlayer = playerPosition - mutantPosition;
     directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
 
     // ミュータントの回転をプレイヤーに向ける
@@ -104,9 +92,9 @@ void MutantRushing::Rushing()
 
     // 速度を設定する
     m_mutant->AddVelocity(directionToPlayer);
-    m_mutant->ApplyVelocity(0.15f);
+    m_mutant->ApplyVelocity(APPLY_VELOCITY);
     // 位置を設定する
-    m_mutant->SetPosition(tunomaruPosition + m_mutant->GetVelocity());
+    m_mutant->SetPosition(mutantPosition + m_mutant->GetVelocity());
 }
 
 //---------------------------------------------------------
@@ -124,7 +112,7 @@ void MutantRushing::TransitionToWalking()
     float distanceToPlayer = Vector3::Distance(mutantPos, playerPos); 
 
     // 一定距離内にプレイヤーがいる場合
-    if (distanceToPlayer <= 10) 
+    if (distanceToPlayer <= WALKING_DISTANCE) 
     {
         // 歩き状態へ移行する
         m_mutant->ChangeState(m_mutant->GetMutantWalking());

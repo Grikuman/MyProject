@@ -1,6 +1,6 @@
 /*
 	ファイル名：PlayerRolling.h
-	　　　概要：プレイヤーのダッシュ状態を管理するクラス
+	　　　概要：プレイヤーの回避状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
@@ -19,10 +19,10 @@ public:
 	// 初期化する
 	void Initialize() override;
 	// 更新する
-	void Update(const float& elapsedTime) override;
+	void Update() override;
 	// 描画する
 	void Render() override;
-	// 後処理する
+	// 終了処理
 	void Finalize() override;
 
 private:

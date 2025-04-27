@@ -88,14 +88,14 @@ void PlayerAttackingNormalAnimation::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerAttackingNormalAnimation::Update(float elapsedTime)
+void PlayerAttackingNormalAnimation::Update()
 {
-	m_time += elapsedTime;
+	m_time += ANIMATION_SPEED;
 	// アニメーションが終了するまで更新
 	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) 
 	{
 		// アニメーションを更新する
-		m_animation->Update(elapsedTime);
+		m_animation->Update(ANIMATION_SPEED);
 	}
 }
 
@@ -108,24 +108,16 @@ void PlayerAttackingNormalAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
-	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj;
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
-
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(0.02f) * 
+		Matrix::CreateScale(MODEL_SCALE) * 
 		// 回転行列を作成
 		Matrix::CreateFromQuaternion(m_player->GetAngle()) *
 		// 移動行列を作成
 	    Matrix::CreateTranslation(m_player->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
 
 	// アニメーションモデルの描画する
-	DrawAnimation(m_model, m_animation.get(), &m_animBone, worldMatrix);
+	DrawAnimation(m_model, &m_animBone, worldMatrix);
 }
 
 //---------------------------------------------------------
@@ -141,7 +133,6 @@ void PlayerAttackingNormalAnimation::Finalize()
 //---------------------------------------------------------
 void PlayerAttackingNormalAnimation::DrawAnimation(
 	const DirectX::Model* model, 
-	const DX::AnimationSDKMESH* animationSDKMESH,
 	const DirectX::ModelBone::TransformArray* transformArray, 
 	const DirectX::SimpleMath::Matrix& worldMatrix)
 {

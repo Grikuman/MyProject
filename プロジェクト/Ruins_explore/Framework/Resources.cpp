@@ -51,10 +51,6 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> PracticeModel_Hit = DirectX::Model::CreateFromCMO(device, L"Resources/Models/PracticeModel_Hit.cmo", *fx);
 	// チュートリアルステージのモデル
 	std::unique_ptr<DirectX::Model> TutorialStage = DirectX::Model::CreateFromCMO(device, L"Resources/Models/TutorialStage.cmo", *fx);
-	// つのまる
-	std::unique_ptr<DirectX::Model> Tunomaru = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Tunomaru.cmo", *fx);
-	// トゲボス
-	std::unique_ptr<DirectX::Model> NeedleBoss = DirectX::Model::CreateFromCMO(device, L"Resources/Models/NeedleBoss.cmo", *fx);
 	// スカイドーム
 	std::unique_ptr<DirectX::Model> Skydome = DirectX::Model::CreateFromCMO(device, L"Resources/Models/Skydome_Cave.cmo", *fx);
 	// エフェクト【星】
@@ -78,8 +74,6 @@ void Resources::LoadResources()
 	m_models.emplace(L"PracticeModel", std::move(PracticeModel));
 	m_models.emplace(L"PracticeModel_Hit", std::move(PracticeModel_Hit));
 	m_models.emplace(L"TutorialStage", std::move(TutorialStage));
-	m_models.emplace(L"Tunomaru", std::move(Tunomaru));
-	m_models.emplace(L"NeedleBoss", std::move(NeedleBoss));
 	m_models.emplace(L"Skydome", std::move(Skydome));
 	m_models.emplace(L"Star", std::move(Star));
 	m_models.emplace(L"Stage1_1", std::move(Stage1_1));

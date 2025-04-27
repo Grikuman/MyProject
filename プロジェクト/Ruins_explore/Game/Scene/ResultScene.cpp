@@ -8,7 +8,6 @@
 #include "Libraries/MyLib/MemoryLeakDetector.h"
 #include <cassert>
 #include "Framework/Graphics.h"
-#include "Game/Camera/FixedCamera.h"
 #include "Framework/InputDevice.h"
 
 using namespace DirectX;

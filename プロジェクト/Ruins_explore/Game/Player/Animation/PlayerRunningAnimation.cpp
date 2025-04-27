@@ -64,16 +64,16 @@ void PlayerRunningAnimation::Initialize()
 	// アニメーションの開始時間を設定する
 	m_animation->SetStartTime(0.0f);
 	// アニメーションの終了時間を設定する
-	m_animation->SetEndTime(20.0f);
+	m_animation->SetEndTime(ANIMATION_TIME);
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerRunningAnimation::Update(float elapsedTime)
+void PlayerRunningAnimation::Update()
 {
 	// 通常のアニメーション更新
-	m_animation->Update(elapsedTime);
+	m_animation->Update(ANIMATION_SPEED);
 }
 
 
@@ -85,14 +85,6 @@ void PlayerRunningAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
-	// コンテキスト・ステートを取得する
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states = Graphics::GetInstance()->GetCommonStates();
-	// ビュー・プロジェクションを取得する
-	DirectX::SimpleMath::Matrix view, proj;
-	view = Graphics::GetInstance()->GetViewMatrix();
-	proj = Graphics::GetInstance()->GetProjectionMatrix();
-
 	// 向きを取得する
 	Vector3 direction = m_player->GetDirection();
 	// Y軸回転角へ変換する
@@ -100,7 +92,7 @@ void PlayerRunningAnimation::Render()
 
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(0.02f) *
+		Matrix::CreateScale(MODEL_SCALE) *
 		// 回転行列を作成
 		Matrix::CreateRotationY(angleY) *
 		// 回転行列を作成
@@ -109,7 +101,7 @@ void PlayerRunningAnimation::Render()
 	    Matrix::CreateTranslation(m_player->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
 
 	// アニメーションモデルの描画する
-	DrawAnimation(m_model, m_animation.get(), &m_animBone, worldMatrix);
+	DrawAnimation(m_model, &m_animBone, worldMatrix);
 }
 
 //---------------------------------------------------------
@@ -125,7 +117,6 @@ void PlayerRunningAnimation::Finalize()
 //---------------------------------------------------------
 void PlayerRunningAnimation::DrawAnimation(
 	const DirectX::Model* model, 
-	const DX::AnimationSDKMESH* animationSDKMESH,
 	const DirectX::ModelBone::TransformArray* transformArray, 
 	const DirectX::SimpleMath::Matrix& worldMatrix)
 {

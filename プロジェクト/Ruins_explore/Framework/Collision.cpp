@@ -40,8 +40,6 @@ void Collision::NormalEnemy(IEnemy* enemy)
 	CheckHitPlayerToEnemy(enemy);
 	// 押し戻し判定
 	CheckPushBack(enemy);
-	// 判定時の効果音
-	PlayerCollisionSound(enemy);
 }
 
 // プレイヤーとボスの当たり判定をまとめたもの
@@ -51,8 +49,6 @@ void Collision::BossEnemy(IEnemy* enemy)
 	CheckHitPlayerToEnemy(enemy);
 	// 押し戻し判定
 	CheckPushBack(enemy);
-	// 判定時の効果音
-	PlayerCollisionSound(enemy);
 }
 
 // プレイヤーから敵への攻撃判定
@@ -121,21 +117,6 @@ void Collision::CheckPushBack(ICollisionObject* object)
 	// ⑥を使用して、Ａの座標とＡのコライダー座標を更新する（実際に押し戻す）
 	m_player->SetPosition(m_player->GetPosition() += diffVec);
 	m_boundingSphereA.Center = m_boundingSphereA.Center + diffVec;
-}
-
-//---------------------------------------------------------
-// // 判定時の効果音
-//---------------------------------------------------------
-void Collision::PlayerCollisionSound(IEnemy* enemy)
-{
-	//// キーボードを取得する
-	//auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
-	//// 通常攻撃したときに敵が範囲内であれば
-	//if(kb->IsKeyPressed(DirectX::Keyboard::F) && m_player->GetPlayerAttack()->GetAttackRange().Intersects(enemy->GetBoundingSphere()))
-	//{
-	//	 効果音を鳴らす
-	//	Audio::GetInstance()->PlaySE("PunchHitSE");
-	//}
 }
 
 //---------------------------------------------------------

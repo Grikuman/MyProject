@@ -1,6 +1,6 @@
 /*
     ファイル名：PlayerRolling.cpp
-    　　　概要：プレイヤーのダッシュ状態を管理するクラス
+    　　　概要：プレイヤーの回避状態を管理するクラス
 */
 #include "pch.h"
 #include "PlayerRolling.h"
@@ -41,7 +41,7 @@ void PlayerRolling::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerRolling::Update(const float& elapsedTime)
+void PlayerRolling::Update()
 {
     // 回避処理
     Rolling();
@@ -49,7 +49,7 @@ void PlayerRolling::Update(const float& elapsedTime)
     TransitionToIdling();
 
     // アニメーションを更新する
-    m_animation->Update(elapsedTime);
+    m_animation->Update();
 }
 
 
@@ -64,7 +64,7 @@ void PlayerRolling::Render()
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerRolling::Finalize()
 {

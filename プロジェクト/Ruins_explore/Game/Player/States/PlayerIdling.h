@@ -1,6 +1,6 @@
 /*
 	ファイル名：PlayerIdling.h
-	　　　概要：プレイヤーの歩行状態を管理するクラス
+	　　　概要：プレイヤーの待機状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
@@ -19,16 +19,16 @@ public:
 	// 初期化する
 	void Initialize() override;
 	// 更新する
-	void Update(const float& elapsedTime) override;
+	void Update() override;
 	// 描画する
 	void Render() override;
-	// 後処理する
+	// 終了処理
 	void Finalize() override;
 
 private:
 	// 待機処理
 	void Idling();
-	// 走る状態への移行処理
+	// 走り状態への移行処理
 	void TransitionToRunning();
 	// 通常攻撃状態への移行処理
 	void TransitionToAttackingNormal();

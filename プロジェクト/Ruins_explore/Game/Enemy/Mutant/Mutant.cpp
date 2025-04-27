@@ -20,7 +20,6 @@ Mutant::Mutant(Player* player)
     :
     m_player{player},
     m_currentState{},
-    m_model{},
     m_mutantWalking{},
     m_mutantRushing{},
     m_mutantSlashing{},
@@ -37,11 +36,8 @@ Mutant::Mutant(Player* player)
     m_mutantRushing = std::make_unique<MutantRushing>(this);
     // 斬りつけ状態を作成する
     m_mutantSlashing = std::make_unique<MutantSlashing>(this);
-    
     // 体力のUIを作成する
     m_bossHPUI = std::make_unique<BossHPUI>();
-    // 煙エフェクトを作成する
-    m_smokeEffect = std::make_unique<SmokeEffect>();
 }
 
 //---------------------------------------------------------
@@ -59,9 +55,6 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
 {
     // 位置を設定する
     m_position = position;
-    // モデルを読み込む
-    m_model = Resources::GetInstance()->GetModel(L"NeedleBoss");
-
     // 歩き状態を初期化する
     m_mutantWalking->Initialize();
     // 突進状態を初期化する
@@ -70,11 +63,8 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
     m_mutantSlashing->Initialize(); 
     // 初期の状態を設定する
     m_currentState = m_mutantWalking.get();
-
     // 体力のUIを初期化する
     m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(), 1920, 720);
-    // 煙エフェクトを初期化する
-    m_smokeEffect->Initialize();
 }
 
 //---------------------------------------------------------
@@ -82,7 +72,9 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
 //---------------------------------------------------------
 void Mutant::Update()
 {
+    // ダメージ判定を無しにする
     m_isHit = false; 
+    // 速度をゼロにする
     m_velocity = DirectX::SimpleMath::Vector3::Zero;
 
     //生存しているか確認する
@@ -93,10 +85,8 @@ void Mutant::Update()
     SetPlayerAngle();
     // 体力UIを更新する
     m_bossHPUI->Update(m_hp, MAXHP);
-    // プレイヤーとの当たり判定
+    // プレイヤーとの当たり判定を行う
     Collision::GetInstance()->BossEnemy(this);
-    // 煙エフェクトを更新する
-    m_smokeEffect->Update(m_position + DirectX::SimpleMath::Vector3(0.0f, -0.3f, 0.0f));
 }
 
 //---------------------------------------------------------
@@ -105,14 +95,6 @@ void Mutant::Update()
 void Mutant::Render()
 {
     using namespace DirectX::SimpleMath;
-
-    // コンテキスト・ステートを取得する
-    auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-    auto states = Graphics::GetInstance()->GetCommonStates();
-    // ビュー・プロジェクションを取得する
-    DirectX::SimpleMath::Matrix view, proj;
-    view = Graphics::GetInstance()->GetViewMatrix();
-    proj = Graphics::GetInstance()->GetProjectionMatrix();
 
     Matrix worldMatrix =
         // スケール行列を作成
@@ -124,9 +106,6 @@ void Mutant::Render()
         // 移動行列を作成
         Matrix::CreateTranslation(m_position);
 
-    // 煙エフェクト
-    m_smokeEffect->CreateBillboard(m_player->GetPosition(), m_player->GetCamera()->GetEyePosition(), m_player->GetCamera()->GetUpVector());
-    m_smokeEffect->Render(view, proj);
     // 体力UIを描画する
     m_bossHPUI->Render();
     // 現在のステートを描画する

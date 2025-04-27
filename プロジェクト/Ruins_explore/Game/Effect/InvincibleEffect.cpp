@@ -64,18 +64,18 @@ void InvincibleEffect::Update()
     // 無敵時間の場合
     if (m_player->GetInvincible())
     {
-        m_alpha = 0.3f;   // アルファ値
+        m_alpha = ALPHA;   // アルファ値を設定する
     }
     // 無敵時間でない場合
     else
     {
-        m_alpha -= 0.03f; // アルファ値を減少
+        m_alpha -= ALPHA_DECREASE_SPEED; // アルファ値を減少させる
     }
 
     // アルファ値の制限
-    if (m_alpha <= 0)
+    if (m_alpha <= 0.0f)
     {
-        m_alpha = 0.f;
+        m_alpha = 0.0f;
     }
 }
 
@@ -94,7 +94,7 @@ void InvincibleEffect::Render()
     DirectX::SimpleMath::Color color(1.0f, 1.0f, 1.0f, m_alpha);
 
     // 球体のワールド行列を計算する
-    DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::CreateTranslation(m_player->GetPosition());
+    DirectX::SimpleMath::Matrix world = DirectX::SimpleMath::Matrix::CreateTranslation(m_player->GetPosition() + SHIFT_POS);
     // 球体を描画する
     m_sphere->Draw(world, Graphics::GetInstance()->GetViewMatrix(), Graphics::GetInstance()->GetProjectionMatrix(), color);
 
@@ -107,5 +107,12 @@ void InvincibleEffect::Render()
 //---------------------------------------------------------
 void InvincibleEffect::Finalize()
 {
-    
+    // ブレンドステートを解放
+    if (m_blendState)
+    {
+        m_blendState->Release();
+        m_blendState = nullptr;
+    }
+    // 球体もリセット
+    m_sphere.reset();
 }

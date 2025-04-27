@@ -192,15 +192,9 @@
     <ClInclude Include="Framework\InputDevice.h" />
     <ClInclude Include="Framework\Resources.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Game\Camera\FixedCamera.h" />
-    <ClInclude Include="Game\Camera\FollowCamera.h" />
     <ClInclude Include="Game\Camera\TPS_Camera.h" />
-    <ClInclude Include="Game\Effect\DebrisEffect.h" />
-    <ClInclude Include="Game\Effect\DownEffect.h" />
     <ClInclude Include="Game\Effect\InvincibleEffect.h" />
     <ClInclude Include="Game\Effect\PlayerEffectManager.h" />
-    <ClInclude Include="Game\Effect\SmokeEffect.h" />
-    <ClInclude Include="Game\Effect\SmokeEffectUtility.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantRushingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantSlashingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h" />
@@ -209,13 +203,11 @@
     <ClInclude Include="Game\Enemy\Mutant\States\MutantSlashing.h" />
     <ClInclude Include="Game\Enemy\Mutant\States\MutantWalking.h" />
     <ClInclude Include="Game\Enemy\PracticeEnemy\PracticeEnemy.h" />
-    <ClInclude Include="Game\Enemy\TutorialEnemy\TutorialEnemy.h" />
     <ClInclude Include="Game\Factory\EnemyFactory.h" />
     <ClInclude Include="Game\Factory\StageFactory.h" />
     <ClInclude Include="Game\Interface\ICollisionObject.h" />
     <ClInclude Include="Game\Interface\IEnemy.h" />
     <ClInclude Include="Game\Interface\IEnemyState.h" />
-    <ClInclude Include="Game\Interface\IPlayerAction.h" />
     <ClInclude Include="Game\Interface\IScene.h" />
     <ClInclude Include="Game\Interface\IStage.h" />
     <ClInclude Include="Game\Interface\IPlayerState.h" />
@@ -273,15 +265,9 @@
     <ClCompile Include="Framework\InputDevice.cpp" />
     <ClCompile Include="Framework\Resources.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game\Camera\FixedCamera.cpp" />
-    <ClCompile Include="Game\Camera\FollowCamera.cpp" />
     <ClCompile Include="Game\Camera\TPS_Camera.cpp" />
-    <ClCompile Include="Game\Effect\DebrisEffect.cpp" />
-    <ClCompile Include="Game\Effect\DownEffect.cpp" />
     <ClCompile Include="Game\Effect\InvincibleEffect.cpp" />
     <ClCompile Include="Game\Effect\PlayerEffectManager.cpp" />
-    <ClCompile Include="Game\Effect\SmokeEffect.cpp" />
-    <ClCompile Include="Game\Effect\SmokeEffectUtility.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantRushingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantSlashingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.cpp" />
@@ -348,7 +334,6 @@
     <None Include="packages.config" />
     <None Include="Resources\Shaders\Fade.hlsli" />
     <None Include="Resources\Shaders\Particle.hlsli" />
-    <None Include="Resources\Shaders\SmokeEffect.hlsli" />
     <None Include="Resources\Shaders\UI.hlsli" />
     <None Include="Resources\StageCollisionData\StageCollisionData.json" />
     <None Include="Resources\StageDecorationData\StageDecorationData.json" />
@@ -393,19 +378,6 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectGS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SmokeEffectVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\UIGS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>

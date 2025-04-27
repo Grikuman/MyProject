@@ -1,6 +1,6 @@
 /*
     ファイル名：PlayerIdling.cpp
-    　　　概要：プレイヤーの歩行状態を管理するクラス
+    　　　概要：プレイヤーの待機状態を管理するクラス
 */
 #include "pch.h"
 #include "PlayerIdling.h"
@@ -42,17 +42,17 @@ void PlayerIdling::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerIdling::Update(const float& elapsedTime)
+void PlayerIdling::Update()
 {
     // 待機処理
     Idling();
-    // 待機状態→走り状態
+    // 走り状態への移行処理
     TransitionToRunning();
-    // 
+    // 通常攻撃状態への移行処理
     TransitionToAttackingNormal();
 
     // アニメーションを更新する
-    m_animation->Update(elapsedTime);
+    m_animation->Update();
 }
 
 
@@ -68,7 +68,7 @@ void PlayerIdling::Render()
 
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerIdling::Finalize()
 {

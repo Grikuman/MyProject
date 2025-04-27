@@ -31,8 +31,6 @@ private:
 	void CheckHitPlayerToEnemy(IEnemy* enemy); 
 	// プレイヤーと球オブジェクトの押し戻し判定
 	void CheckPushBack(ICollisionObject* object); 
-	// 判定時の効果音
-	void PlayerCollisionSound(IEnemy* enemy);
 
 public:
 	//デストラクタ

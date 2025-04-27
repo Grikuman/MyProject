@@ -9,17 +9,8 @@
 // 前方宣言
 class Mutant;;
 
-namespace NRLib
-{
-	class TPS_Camera;
-};
-
 class MutantRushing : public IEnemyState
 {
-public:
-	// 攻撃のバウンディングスフィアを取得する
-	DirectX::BoundingSphere GetAttackBoundingSphere() const;
-
 public:
 	// コンストラクタ
 	MutantRushing(Mutant* mutant);
@@ -34,11 +25,18 @@ public:
 	// 後処理する
 	void Finalize() override;
 
+
 private:
 	// 突進の処理
 	void Rushing();
 	// 歩き状態への移行処理
 	void TransitionToWalking();
+
+private:
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.15f;
+	// 歩きに移行する距離
+	const float WALKING_DISTANCE = 10.0f;
 
 private:
 	// ミュータント
