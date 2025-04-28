@@ -1,21 +1,12 @@
-//--------------------------------------------------------------------------------------
-// File: BossHPUI.h
-//
-// ゲージクラス
-//
-//-------------------------------------------------------------------------------------
+/*
+	ファイル名：BossHPUI.h
+	　　　概要：ボスの体力UIを管理するクラス
+*/
 
 #pragma once
-
 #include "StepTimer.h"
 #include "UserInterface.h"
 #include "Framework/DeviceResources.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
 #include <vector>
 #include "Keyboard.h"
 

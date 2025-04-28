@@ -34,6 +34,14 @@ private:
 	void TransitionToSlashing();
 
 private:
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.08f;
+	// 突進状態に移行する判定距離
+	const float RUSHING_DISTANCE = 10.0f;
+	// 斬りつけ状態に移行する判定距離
+	const float SLASHING_DISTANCE = 5.0f;
+
+private:
 	// ミュータント
 	Mutant* m_mutant;
 	// アニメーション

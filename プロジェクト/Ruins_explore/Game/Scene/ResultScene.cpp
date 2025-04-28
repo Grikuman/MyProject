@@ -4,14 +4,7 @@
 */
 #include "pch.h"
 #include "ResultScene.h"
-#include "Framework/DeviceResources.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include "Framework/Graphics.h"
 #include "Framework/InputDevice.h"
-
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -49,7 +42,6 @@ void ResultScene::Initialize()
 //---------------------------------------------------------
 void ResultScene::Update(float elapsedTime)
 {
-	UNREFERENCED_PARAMETER(elapsedTime);
 	// キーボードを取得する
 	auto kb = InputDevice::GetInstance()->GetKeyboardStateTracker();
 
@@ -58,6 +50,7 @@ void ResultScene::Update(float elapsedTime)
 	{
 		m_isChangeScene = true;
 	}
+
 	// UIを更新する
 	m_resultSceneUI->Update();
 }
@@ -92,10 +85,5 @@ IScene::SceneID ResultScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
-}
-
-void ResultScene::ChangeScene()
-{
-	m_isChangeScene = true;
 }
 

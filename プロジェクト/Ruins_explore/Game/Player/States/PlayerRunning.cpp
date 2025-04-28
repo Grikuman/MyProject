@@ -108,7 +108,7 @@ void PlayerRunning::Running()
     }
 
     // ˆÚ“®‘¬“x‚ð•â³
-    m_player->ApplyVelocity(0.07f);
+    m_player->ApplyVelocity(APPLY_VELOCITY);
     // ˆÚ“®‚³‚¹‚é
     m_player->SetPosition(m_player->GetPosition() + DirectX::SimpleMath::Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
 }

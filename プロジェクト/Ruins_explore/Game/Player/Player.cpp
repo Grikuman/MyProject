@@ -84,8 +84,8 @@ void Player::Update(float elapsedTime)
 	
 	// 速度を初期化する
 	m_velocity = Vector3::Zero;
-	// 重力加算
-	m_velocity.y -= GRAVITY * 0.5f;
+	// 重力を加算する
+	m_velocity.y -= GRAVITY;
 	// 無敵処理
 	Invincible();
 	// スタミナ回復処理
@@ -125,49 +125,18 @@ void Player::Finalize()
 	m_playerEffectManager->Finalize();
 }
 
-
-//---------------------------------------------------------
-// 更新する
-//---------------------------------------------------------
-DirectX::BoundingSphere Player::GetBoundingSphere()
-{
-	DirectX::SimpleMath::Vector3 center = m_position; // 当たり判定球の中心
-	float radius = 0.5f;         // サイズに応じて調整
-	return DirectX::BoundingSphere(center, radius);
-}
-
-//---------------------------------------------------------
-// バウンディングボックスを取得する
-//---------------------------------------------------------
-DirectX::BoundingBox Player::GetBoundingBox()
-{
-	// 当たり判定ボックスの中心を設定
-	DirectX::SimpleMath::Vector3 center = m_position;
-
-	// ボックスの大きさ（半径）を設定
-	DirectX::SimpleMath::Vector3 extents(1.0f, 1.0f, 1.0f); // サイズに応じて調整
-
-	return DirectX::BoundingBox(center, extents);
-}
-
 //---------------------------------------------------------
 // 攻撃しているか取得する
 //---------------------------------------------------------
 bool Player::IsAttack()
 {
+	// 攻撃中
 	if (m_currentState == m_playerAttackingNormal.get())
 	{
 		return true;
 	}
+	// 攻撃中ではない
 	return false;
-}
-
-//---------------------------------------------------------
-// ステートを変更する
-//---------------------------------------------------------
-void Player::ChangeState(IPlayerState* newState)
-{
-	m_currentState = newState;
 }
 
 //---------------------------------------------------------
@@ -175,16 +144,16 @@ void Player::ChangeState(IPlayerState* newState)
 //---------------------------------------------------------
 void Player::Invincible()
 {
-	// 無敵の場合は
+	// 無敵の場合
 	if (m_invincible)
 	{
 		// 無敵時間を減少させる
 		m_invincibleTime--;
-		// 無敵時間が終わると
+		// 無敵時間が終わった際に処理する
 		if (m_invincibleTime <= 0.f)
 		{
 			m_invincibleTime = MAX_INVINCIBLE; // リセット
-			m_invincible = false;     // 無敵解除
+			m_invincible = false;              // 無敵解除
 		}
 	}
 }

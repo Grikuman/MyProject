@@ -4,12 +4,10 @@
 */
 #include "pch.h"
 #include "Stage1.h"
-
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Data.h"
-#include "Framework/InputDevice.h"
 #include "Framework/Audio.h"
 
 //---------------------------------------------------------
@@ -69,7 +67,7 @@ void Stage1::Initialize()
 	// 当たり判定クラスにプレイヤーを設定する
 	Collision::GetInstance()->SetPlayer(m_player.get());
 	// BGMを再生する
-	Audio::GetInstance()->PlayBGM("BattleBGM_1", 0.07f);
+	Audio::GetInstance()->PlayBGM("BattleBGM_1", BGM_VOLUME);
 }
 
 //---------------------------------------------------------
@@ -111,7 +109,7 @@ void Stage1::Render()
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void Stage1::Finalize()
 {

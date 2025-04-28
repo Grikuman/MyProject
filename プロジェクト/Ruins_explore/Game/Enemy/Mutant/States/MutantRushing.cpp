@@ -79,13 +79,12 @@ void MutantRushing::Rushing()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
     // ミュータントの位置を取得する
-    Vector3 mutantPosition = m_mutant->GetPosition();
+    Vector3 mutantPos = m_mutant->GetPosition();
     // プレイヤーへの方向を計算する
-    Vector3 directionToPlayer = playerPosition - mutantPosition;
+    Vector3 directionToPlayer = playerPos - mutantPos;
     directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
-
     // ミュータントの回転をプレイヤーに向ける
     float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
     m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
@@ -94,7 +93,7 @@ void MutantRushing::Rushing()
     m_mutant->AddVelocity(directionToPlayer);
     m_mutant->ApplyVelocity(APPLY_VELOCITY);
     // 位置を設定する
-    m_mutant->SetPosition(mutantPosition + m_mutant->GetVelocity());
+    m_mutant->SetPosition(mutantPos + m_mutant->GetVelocity());
 }
 
 //---------------------------------------------------------

@@ -5,15 +5,8 @@
 
 #include "pch.h"
 #include "UserInterface.h"
-
 #include "Framework/BinaryFile.h"
 #include "Framework/DeviceResources.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
 #include <vector>
 
 using namespace DirectX;
@@ -70,7 +63,6 @@ void UserInterface::LoadTexture(const wchar_t* path)
 
 	m_textureWidth = desc.Width;
 	m_textureHeight = desc.Height;
-
 }
 
 //---------------------------------------------------------

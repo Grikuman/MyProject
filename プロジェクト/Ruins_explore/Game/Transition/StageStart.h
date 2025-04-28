@@ -34,7 +34,19 @@ private:
 
 private:
 	// 演出の時間
-	const float MAX_TIME = 360.0f;
+	const float MAX_TIME = 240.0f;
+	// アイコンの拡大速度
+	const float ICON_SCALE_UP_SPEED = 0.01f;
+	// アイコンの最大拡大率
+	const float ICON_MAX_SCALE = 1.0f;
+	// アイコンのアルファ値の増加値
+	const float ICON_ALPHA = 0.05f;
+	// アイコンの最大アルファ値
+	const float ICON_MAX_ALPHA = 1.0f;
+	// 黒のぼかしのアルファ値の増加値
+	const float BLACK_ALPHA = 0.05f;
+	// 黒のぼかしの最大アルファ値
+	const float BLACK_MAX_ALPHA = 0.5f;
 	// 黒のぼかしの位置
 	const DirectX::SimpleMath::Vector2 BLACK_POS = { 0.0f, 0.0f };
 	// アイコンの位置

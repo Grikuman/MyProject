@@ -3,13 +3,9 @@
 	　　　概要：クエスト選択シーンを管理するクラス
 */
 #include "pch.h"
-#include "QuestSelectScene.h"
 #include "Game/UI/QuestSelectUI.h"
-#include "Framework/DeviceResources.h"
-
-#include <cassert>
+#include "QuestSelectScene.h"
 #include "Framework/Graphics.h"
-#include "Framework/InputDevice.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -50,8 +46,6 @@ void QuestSelectScene::Initialize()
 //---------------------------------------------------------
 void QuestSelectScene::Update(float elapsedTime)
 {
-	UNREFERENCED_PARAMETER(elapsedTime);
-
 	// クエスト開始の演出
 	if (m_questSelectUI->GetQuestStart())
 	{
@@ -109,12 +103,4 @@ IScene::SceneID QuestSelectScene::GetNextSceneID() const
 	}
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
-}
-
-//---------------------------------------------------------
-// シーンを変更する
-//---------------------------------------------------------
-void QuestSelectScene::ChangeScene()
-{
-	m_isChangeScene = true;
 }

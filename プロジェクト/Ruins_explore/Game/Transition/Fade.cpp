@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "Fade.h"
-
 #include "Framework/BinaryFile.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
@@ -107,20 +106,23 @@ void Fade::CreateShader()
 
 	//	頂点シェーダ作成
 	if (FAILED(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_vertexShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreateVertexShader Failed.", NULL, MB_OK);
 		return;
 	}
 
 	//	ジオメトリシェーダ作成
 	if (FAILED(device->CreateGeometryShader(GSData.GetData(), GSData.GetSize(), NULL, m_geometryShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreateGeometryShader Failed.", NULL, MB_OK);
 		return;
 	}
 	//	ピクセルシェーダ作成
 	if (FAILED(device->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_pixelShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreatePixelShader Failed.", NULL, MB_OK);
 		return;
 	}

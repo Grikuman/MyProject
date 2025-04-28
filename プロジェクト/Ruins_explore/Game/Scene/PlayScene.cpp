@@ -6,11 +6,7 @@
 #include "PlayScene.h"
 #include "Framework/Data.h"
 #include "Framework/Graphics.h"
-#include "Libraries/Microsoft/ReadData.h"
-#include "Libraries/Microsoft/RenderTexture.h"
-
-#include "ScreenGrab.h"
-#include "wincodec.h"
+#include "Game/Factory/StageFactory.h"
 
 //---------------------------------------------------------
 // コンストラクタ

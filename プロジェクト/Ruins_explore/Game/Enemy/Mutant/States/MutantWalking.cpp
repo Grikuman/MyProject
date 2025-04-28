@@ -79,25 +79,22 @@ void MutantWalking::Walking()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
     // ミュータントの位置を取得する
-    Vector3 tunomaruPosition = m_mutant->GetPosition();
-    // プレイヤーとの距離を計算する
-    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+    Vector3 mutantPos = m_mutant->GetPosition();
 
     // プレイヤーへの方向を計算する
-    Vector3 directionToPlayer = playerPosition - tunomaruPosition;
+    Vector3 directionToPlayer = playerPos - mutantPos;
     directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
-
     // ミュータントの回転をプレイヤーに向ける
     float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
     m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
 
     // 速度を設定する
     m_mutant->AddVelocity(directionToPlayer);
-    m_mutant->ApplyVelocity(0.08f);
+    m_mutant->ApplyVelocity(APPLY_VELOCITY);
     // 位置を設定する
-    m_mutant->SetPosition(tunomaruPosition + m_mutant->GetVelocity());
+    m_mutant->SetPosition(mutantPos + m_mutant->GetVelocity());
 }
 
 //---------------------------------------------------------
@@ -115,7 +112,7 @@ void MutantWalking::TransitionToRushing()
     float distanceToPlayer = Vector3::Distance(mutantPos, playerPos);
 
     // 一定距離以上プレイヤーが離れた場合
-    if (distanceToPlayer >= 10)
+    if (distanceToPlayer >= RUSHING_DISTANCE)
     {
         // 突撃状態へ移行する
         m_mutant->ChangeState(m_mutant->GetMutantRushing());
@@ -137,7 +134,7 @@ void MutantWalking::TransitionToSlashing()
     float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
 
     // 一定距離以内にプレイヤーがいた場合
-    if (distanceToPlayer <= 5)
+    if (distanceToPlayer <= SLASHING_DISTANCE)
     {
         // 斬りつけ状態へ移行する
         m_mutant->ChangeState(m_mutant->GetMutantSlashing());

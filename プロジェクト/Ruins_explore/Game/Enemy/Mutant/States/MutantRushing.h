@@ -35,7 +35,7 @@ private:
 private:
 	// ‘¬“x‚Ì•â³
 	const float APPLY_VELOCITY = 0.15f;
-	// •à‚«‚ÉˆÚs‚·‚é‹——£
+	// •à‚«ó‘Ô‚ÉˆÚs‚·‚é”»’è‹——£
 	const float WALKING_DISTANCE = 10.0f;
 
 private:

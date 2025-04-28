@@ -51,10 +51,8 @@ private:
     Microsoft::WRL::ComPtr< ID3D11ShaderResourceView> m_staminaGray_Tex;
     // ステータスアイコン
     Microsoft::WRL::ComPtr < ID3D11ShaderResourceView> m_statusIcon_Tex;
-
     // スケール
     float m_scale;
-
     // 体力の位置
     DirectX::SimpleMath::Vector2 m_healthPosition[6];
     // スタミナの位置

@@ -18,7 +18,7 @@ public:
 
 public:
 	// シーンを変更する
-	void ChangeScene();
+	void ChangeScene() { m_isChangeScene = true; }
 
 public:
 	// コンストラクタ
@@ -33,10 +33,6 @@ public:
 	void Render() override;
 	// 終了処理
 	void Finalize() override;
-private:
-	// 画面の幅・高さ
-	const float width = 1280;
-	const float height = 720;
 
 private:
 	// シーンチェンジフラグ

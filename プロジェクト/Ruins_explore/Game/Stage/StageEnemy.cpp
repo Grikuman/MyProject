@@ -4,9 +4,9 @@
 */
 #include "pch.h"
 #include "StageEnemy.h"
+#include "Game/Factory/EnemyFactory.h"
 #include <fstream>
 #include <iostream>
-
 #include <nlohmann/json.hpp>
 
 //---------------------------------------------------------

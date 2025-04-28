@@ -7,7 +7,6 @@
 
 #include "pch.h"
 #include "Particle.h"
-
 #include "Framework/BinaryFile.h"
 #include "Framework/DeviceResources.h"
 #include <SimpleMath.h>
@@ -71,10 +70,8 @@ void tito::Particle::Create(DX::DeviceResources* pDR)
 {	
 	m_pDR = pDR;
 	ID3D11Device1* device = pDR->GetD3DDevice();
-
 	//	シェーダーの作成
 	CreateShader();
-
 	//	画像の読み込み（２枚ともデフォルトは読み込み失敗でnullptr)
 	LoadTexture(L"Resources/Textures/number_test.png");
 	LoadTexture(L"Resources/Textures/number.png");

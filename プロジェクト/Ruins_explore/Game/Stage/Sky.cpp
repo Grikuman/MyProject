@@ -8,9 +8,6 @@
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 
-using namespace DirectX;
-using namespace DirectX::SimpleMath;
-
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
@@ -35,12 +32,13 @@ Sky::~Sky()
 //---------------------------------------------------------
 void Sky::Initialize()
 {
+	// デバイスを取得する
 	auto device  = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
 
 	// 射影行列を作成する
-	m_projection = SimpleMath::Matrix::CreatePerspectiveFieldOfView
+	m_projection = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView
 	(
-		XMConvertToRadians(FIELD_OF_VIEW),
+		DirectX::XMConvertToRadians(FIELD_OF_VIEW),
 		SCREEN_WIDTH / SCREEN_HEIGHT,
 		NEAR_PLANE, FAR_PLANE
 	);
@@ -59,8 +57,7 @@ void Sky::Initialize()
 //---------------------------------------------------------
 void Sky::Update()
 {
-	// 回転させる
-	//m_rotateCnt += ROTATE_SPEED;
+	
 }
 
 //---------------------------------------------------------
@@ -68,9 +65,13 @@ void Sky::Update()
 //---------------------------------------------------------
 void Sky::Render()
 {
-	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
-	auto states  = Graphics::GetInstance()->GetCommonStates();
+	using namespace DirectX;
+	using namespace DirectX::SimpleMath;
 
+	// コンテキストを取得する
+	auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
+	// コモンステートを取得する
+	auto states  = Graphics::GetInstance()->GetCommonStates();
 	// ビュー行列を取得する
 	Matrix view = Graphics::GetInstance()->GetViewMatrix();
 
@@ -90,6 +91,7 @@ void Sky::Render()
 			}
 		}
 	);
+
 	// ワールド行列を更新する
 	Matrix world 
       = Matrix::CreateRotationX(XMConvertToRadians(ROTATE_X))

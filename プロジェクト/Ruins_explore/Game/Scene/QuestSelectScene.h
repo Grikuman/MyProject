@@ -6,6 +6,7 @@
 #include "Game/Interface/IScene.h"
 #include "Game/Transition/StageStart.h"
 
+// 前方宣言
 class QuestSelectUI;
 
 class QuestSelectScene final : public IScene
@@ -16,7 +17,7 @@ public:
 
 public:
 	// シーンを変更する
-	void ChangeScene();
+	void ChangeScene() { m_isChangeScene = true; }
 
 public:
 	// コンストラクタ

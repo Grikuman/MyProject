@@ -37,6 +37,8 @@ private:
 private:
 	// ゲームの制限時間
 	static const int MAX_GAMETIME = 60;
+	// BGMの音量
+	const float BGM_VOLUME = 0.07f;
 
 private:
 	// ステージの敵

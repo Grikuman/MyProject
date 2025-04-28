@@ -7,7 +7,6 @@
 //-------------------------------------------------------------------------------------
 
 #pragma once
-
 #include "StepTimer.h"
 #include "Framework/DeviceResources.h"
 #include <SimpleMath.h>

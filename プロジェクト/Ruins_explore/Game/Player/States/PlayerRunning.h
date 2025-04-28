@@ -38,6 +38,10 @@ private:
 	void Direction();
 
 private:
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.07f;
+
+private:
 	// プレイヤー
 	Player* m_player;
 	// アニメーション

@@ -69,7 +69,7 @@ public:
 	~UserInterface();
 	// テクスチャを読み込む
 	void LoadTexture(const wchar_t* path);
-
+	// 作成する
 	void Create(DX::DeviceResources* pDR
 		, const wchar_t* path
 		, DirectX::SimpleMath::Vector2 position

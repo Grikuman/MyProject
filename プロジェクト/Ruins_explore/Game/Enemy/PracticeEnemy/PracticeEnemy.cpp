@@ -1,6 +1,6 @@
 /*
     ファイル名：PracticeEnemy.cpp
-    　　　概要：つのまるの情報を管理するクラス
+    　　　概要：練習用の敵の情報を管理するクラス
 */
 #pragma once
 #include "pch.h"
@@ -87,6 +87,7 @@ void PracticeEnemy::Initialize(DirectX::SimpleMath::Vector3 position)
 //---------------------------------------------------------
 void PracticeEnemy::Update()
 {
+    // 攻撃判定をオフにする
     m_isHit = false; 
     // プレイヤーの視点を自身に向ける
     SetPlayerAngle();
@@ -105,7 +106,6 @@ void PracticeEnemy::Render()
     // コンテキスト・ステートを取得する
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext(); 
     auto states = Graphics::GetInstance()->GetCommonStates(); 
-
     // ビュー・プロジェクションを取得する
     DirectX::SimpleMath::Matrix view, proj;
     view = Graphics::GetInstance()->GetViewMatrix(); 
@@ -113,7 +113,7 @@ void PracticeEnemy::Render()
 
     Matrix worldMatrix = 
         // スケール行列を作成
-        Matrix::CreateScale(1.f) * 
+        Matrix::CreateScale(1.0f) * 
         // 180度回転させる(モデルの向き調整)
         Matrix::CreateRotationY(DirectX::XM_PI) *
         // 移動行列を作成
@@ -148,11 +148,10 @@ void PracticeEnemy::SetPlayerAngle()
 
     // プレイヤーと敵の方向ベクトルを計算
     DirectX::SimpleMath::Vector3 direction = playerPosition - enemyPosition;
-    direction.y = 0.0f;  // 高さ方向を無視してY軸回りの回転だけを考慮
-
+    // 高さ方向を無視してY軸回りの回転だけを考慮する
+    direction.y = 0.0f;
     // ベクトルの正規化
     direction.DirectX::SimpleMath::Vector3::Normalize();
-
     // プレイヤーが向くべき角度を計算
     float angle = atan2(direction.x, direction.z);  // X,Z平面での角度を計算
 
@@ -179,15 +178,5 @@ void PracticeEnemy::CheckHit()
             }
         }
     }
-}
-
-//---------------------------------------------------------
-// バウンディングスフィアを取得する
-//---------------------------------------------------------
-DirectX::BoundingSphere PracticeEnemy::GetBoundingSphere()
-{
-    DirectX::SimpleMath::Vector3 center = m_position; // 当たり判定球の中心
-    float radius = 1.0f;         // サイズに応じて調整
-    return DirectX::BoundingSphere(center, radius);
 }
 

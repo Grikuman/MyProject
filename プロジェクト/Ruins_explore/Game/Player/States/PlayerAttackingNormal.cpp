@@ -10,6 +10,14 @@
 #include "Framework/Resources.h"
 
 //---------------------------------------------------------
+// 攻撃範囲を取得する
+//---------------------------------------------------------
+DirectX::BoundingSphere PlayerAttackingNormal::GetAttackRange()
+{
+    return DirectX::BoundingSphere(m_player->GetPosition(), ATTACK_DISTANCE);
+}
+
+//---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
 PlayerAttackingNormal::PlayerAttackingNormal(Player* player)
@@ -77,15 +85,5 @@ void PlayerAttackingNormal::TransitionToIdling()
     {
         m_player->ChangeState(m_player->GetPlayerIdling());
     }
-}
-
-//---------------------------------------------------------
-// 攻撃範囲を取得する
-//---------------------------------------------------------
-DirectX::BoundingSphere PlayerAttackingNormal::GetAttackRange()
-{
-    DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
-    float radius = 3.f; // 範囲に応じて調整
-    return DirectX::BoundingSphere(center, radius);
 }
 

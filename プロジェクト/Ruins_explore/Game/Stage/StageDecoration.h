@@ -1,9 +1,11 @@
 /*
     ファイル名：StageDecoration.h
-    　　　概要：ステージのオブジェクトを管理するクラス
+    　　　概要：ステージの装飾オブジェクトを管理するクラス
 */
 #pragma once
 #include "Game/Stage/Sky.h"
+
+// 前方宣言
 class Player;
 
 class StageDecoration

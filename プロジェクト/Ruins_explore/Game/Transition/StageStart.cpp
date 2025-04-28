@@ -115,24 +115,24 @@ void StageStart::Time()
 void StageStart::TexturesAnimate()
 {
 	// 徐々にスケールを大きくする
-	m_scale += 0.01f;
-	if (m_scale >= 1.0f)
+	m_scale += ICON_SCALE_UP_SPEED;
+	if (m_scale >= ICON_MAX_SCALE)
 	{
-		m_scale = 1.0f;  // 最大サイズを設定
+		m_scale = ICON_MAX_SCALE;  // 最大サイズを設定
 
 	}
 	// 黒のぼかしの透明度を調整
-	m_blackAlpha += 0.05f;
-	if (m_blackAlpha >= 0.5f)
+	m_blackAlpha += BLACK_ALPHA;
+	if (m_blackAlpha >= BLACK_MAX_ALPHA)
 	{
-		m_blackAlpha = 0.5f;
+		m_blackAlpha = BLACK_MAX_ALPHA;
 	}
 
 	// アイコンの透明度を調整
-	m_IconAlpha += 0.05f;
-	if (m_IconAlpha >= 1.0f)
+	m_IconAlpha += ICON_ALPHA;
+	if (m_IconAlpha >= ICON_MAX_ALPHA)
 	{
-		m_IconAlpha = 1.0f;
+		m_IconAlpha = ICON_MAX_ALPHA;
 	}
 }
 
@@ -142,7 +142,7 @@ void StageStart::TexturesAnimate()
 void StageStart::ProcessOnce()
 {
 	// 一度だけ処理を通す
-	if (m_time == 1.0f)
+	if (m_time >= 1.0f)
 	{
 		Audio::GetInstance()->StopBGM();;
 		Audio::GetInstance()->PlaySE("QuestStartSE");

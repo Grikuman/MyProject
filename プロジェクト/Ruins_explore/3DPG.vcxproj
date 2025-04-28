@@ -235,7 +235,6 @@
     <ClInclude Include="Game\Transition\Fade.h" />
     <ClInclude Include="Game\Transition\StageEnd.h" />
     <ClInclude Include="Game\Transition\StageStart.h" />
-    <ClInclude Include="Game\UI\EnemyUI\EnemyHPUI.h" />
     <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h" />
     <ClInclude Include="Game\UI\EnemyUI\UserInterface.h" />
     <ClInclude Include="Game\UI\QuestSelectUI.h" />
@@ -299,7 +298,6 @@
     <ClCompile Include="Game\Transition\Fade.cpp" />
     <ClCompile Include="Game\Transition\StageEnd.cpp" />
     <ClCompile Include="Game\Transition\StageStart.cpp" />
-    <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp" />
     <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp" />
     <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp" />
     <ClCompile Include="Game\UI\QuestSelectUI.cpp" />

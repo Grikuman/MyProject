@@ -32,6 +32,10 @@ private:
 	void TransitionToIdling();
 
 private:
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.1f;
+
+private:
 	//プレイヤー
 	Player* m_player;
 	// アニメーション

@@ -120,24 +120,24 @@ void StageEnd::Time()
 void StageEnd::TexturesAnimate()
 {
 	// 徐々にスケールを大きくする
-	m_scale += 0.005f;
-	if (m_scale >= 1.0f)
+	m_scale += ICON_SCALE_UP_SPEED;
+	if (m_scale >= ICON_MAX_SCALE)
 	{
 		m_scale = 1.0f;  // 最大サイズを設定
 
 	}
 	// 黒のぼかしの透明度を調整
-	m_blackAlpha += 0.05f;
-	if (m_blackAlpha >= 0.5f)
+	m_blackAlpha += BLACK_ALPHA;
+	if (m_blackAlpha >= BLACK_MAX_ALPHA)
 	{
-		m_blackAlpha = 0.5f;
+		m_blackAlpha = BLACK_MAX_ALPHA;
 	}
 
 	// アイコンの透明度を調整
-	m_IconAlpha += 0.05f;
-	if (m_IconAlpha >= 1.0f)
+	m_IconAlpha += ICON_ALPHA;
+	if (m_IconAlpha >= ICON_MAX_ALPHA)
 	{
-		m_IconAlpha = 1.0f;
+		m_IconAlpha = ICON_MAX_ALPHA;
 	}
 }
 

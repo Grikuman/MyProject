@@ -1,6 +1,6 @@
 /*
     ファイル名：Mutant.cpp
-    　　　概要：トゲボスの情報を管理するクラス
+    　　　概要：ミュータントの情報を管理するクラス
 */
 #pragma once
 #include "pch.h"
@@ -8,7 +8,6 @@
 #include "Game/Player/Player.h"
 #include "Game/Camera/TPS_Camera.h"
 #include "Framework/DeviceResources.h"
-#include <cassert>
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
@@ -74,7 +73,7 @@ void Mutant::Update()
 {
     // ダメージ判定を無しにする
     m_isHit = false; 
-    // 速度をゼロにする
+    // 速度をリセットする
     m_velocity = DirectX::SimpleMath::Vector3::Zero;
 
     //生存しているか確認する
@@ -94,18 +93,6 @@ void Mutant::Update()
 //---------------------------------------------------------
 void Mutant::Render()
 {
-    using namespace DirectX::SimpleMath;
-
-    Matrix worldMatrix =
-        // スケール行列を作成
-        Matrix::CreateScale(1.0f) *
-        // 180度回転させる(モデルが逆を向いていたので)
-        //Matrix::CreateRotationY(DirectX::XM_PI) *
-        // 回転行列を作成
-        Matrix::CreateFromQuaternion(m_angle) *
-        // 移動行列を作成
-        Matrix::CreateTranslation(m_position);
-
     // 体力UIを描画する
     m_bossHPUI->Render();
     // 現在のステートを描画する
@@ -118,36 +105,6 @@ void Mutant::Render()
 void Mutant::Finalize()
 {
     
-}
-
-//---------------------------------------------------------
-// バウンディングスフィアを取得する
-//---------------------------------------------------------
-DirectX::BoundingSphere Mutant::GetBoundingSphere() const
-{
-    DirectX::SimpleMath::Vector3 center = m_position;
-    float radius = 2.f;
-    return DirectX::BoundingSphere(center, radius);
-}
-
-//---------------------------------------------------------
-// バウンディングボックスを取得する
-//---------------------------------------------------------
-DirectX::BoundingBox Mutant::GetBoundingBox() const
-{
-    // 当たり判定ボックスの中心を設定
-    DirectX::SimpleMath::Vector3 center = m_position;
-    // ボックスの大きさ（半径）を設定
-    DirectX::SimpleMath::Vector3 extents(1.0f, 1.0f, 1.0f); // サイズに応じて調整
-    return DirectX::BoundingBox(center, extents);
-}
-
-//---------------------------------------------------------
-// ダメージを与える
-//---------------------------------------------------------
-void Mutant::Damage(const float damage)
-{
-    m_hp -= damage;
 }
 
 //---------------------------------------------------------
@@ -173,11 +130,10 @@ void Mutant::SetPlayerAngle()
 
     // プレイヤーと敵の方向ベクトルを計算
     DirectX::SimpleMath::Vector3 direction = playerPosition - enemyPosition;
-    direction.y = 0.0f;  // 高さ方向を無視してY軸回りの回転だけを考慮
-
+    // 高さ方向を無視してY軸回りの回転だけを考慮する
+    direction.y = 0.0f;
     // ベクトルの正規化
     direction.DirectX::SimpleMath::Vector3::Normalize();
-
     // プレイヤーが向くべき角度を計算
     float angle = atan2(direction.x, direction.z);  // X,Z平面での角度を計算
 

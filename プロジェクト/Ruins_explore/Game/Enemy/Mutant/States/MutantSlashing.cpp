@@ -121,7 +121,7 @@ void MutantSlashing::Slashing()
 		mutantForward.z * toPlayer.z;
 
 	// ‘O•û–ñ60“xˆÈ“à
-	if (dot > 0.5f)
+	if (dot > ATTACK_DOT)
 	{
 		m_mutant->GetPlayer()->SetHP(m_mutant->GetPlayer()->GetHP() - 1);
 		m_mutant->GetPlayer()->SetInvincible(true);

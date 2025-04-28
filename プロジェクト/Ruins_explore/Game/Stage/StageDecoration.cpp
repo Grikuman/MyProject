@@ -1,6 +1,6 @@
 /*
     ファイル名：StageDecoration.cpp
-    　　　概要：ステージのオブジェクトを管理するクラス
+    　　　概要：ステージの装飾オブジェクトを管理するクラス
 */
 #include "pch.h"
 #include "StageDecoration.h"
@@ -59,6 +59,7 @@ void StageDecoration::Render()
 {
     using namespace DirectX;
     using namespace DirectX::SimpleMath;
+
     // コンテキストと共通ステートを取得
     auto context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();
     auto states = Graphics::GetInstance()->GetCommonStates();
@@ -90,7 +91,6 @@ void StageDecoration::Render()
 void StageDecoration::Finalize()
 {
     m_sky->Finalize();
-    // モデルリソースの解放処理
     m_models.clear();
 }
 

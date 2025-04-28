@@ -4,19 +4,13 @@
 */
 #include "pch.h"
 #include "SceneManager.h"
-//---------------------------
-#include "PlayScene.h"
 #include "TitleScene.h"
 #include "QuestSelectScene.h"
+#include "PlayScene.h"
 #include "ResultScene.h"
-//---------------------------
 #include "Game/Screen.h"
 #include"Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
-#include "Framework/InputDevice.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
-#include <iostream>
 
 
 //---------------------------------------------------------

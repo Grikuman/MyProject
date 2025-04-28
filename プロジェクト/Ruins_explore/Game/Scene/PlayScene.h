@@ -5,7 +5,6 @@
 #pragma once
 #include "Game/Interface/IScene.h"
 #include "Game/Interface/IStage.h"
-#include "Game/Factory/StageFactory.h"
 #include "Game/Transition/StageEnd.h"
 
 class PlayScene final : public IScene

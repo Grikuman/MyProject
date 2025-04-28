@@ -1,6 +1,6 @@
 /*
     ファイル名：PracticeEnemy.h
-    　　　概要：つのまるの情報を管理するクラス
+    　　　概要：練習用の敵の情報を管理するクラス
 */
 #pragma once
 
@@ -20,7 +20,7 @@ public:
     // 攻撃を受けているか取得する
     bool GetHit() const { return m_isHit; }
     // バウンディングスフィアを取得する
-    DirectX::BoundingSphere GetBoundingSphere();
+    DirectX::BoundingSphere GetBoundingSphere() { return DirectX::BoundingSphere(m_position, COLLISION_SPHERE_SIZE); }
 
 public:
     // コンストラクタ
@@ -41,6 +41,10 @@ private:
     void SetPlayerAngle();
     // 攻撃を受けているか判定
     void CheckHit();
+
+private:
+    // 当たり判定(球)のサイズ
+    const float COLLISION_SPHERE_SIZE = 1.0f;
 
 private:
     // プレイヤー

@@ -5,8 +5,6 @@
 #include "pch.h"
 #include "TitleScene.h"
 #include "Framework/DeviceResources.h"
-#include "Libraries/MyLib/MemoryLeakDetector.h"
-#include <cassert>
 #include "Framework/Graphics.h"
 #include "Framework/Audio.h"
 
@@ -39,7 +37,7 @@ void TitleScene::Initialize()
 	// 初期化する
 	m_titleSceneUI->Initialize();
 	// BGMを再生
-	Audio::GetInstance()->PlayBGM("TitleBGM",0.05f);
+	Audio::GetInstance()->PlayBGM("TitleBGM",BGM_VOLUME);
 }
 
 //---------------------------------------------------------
@@ -47,8 +45,6 @@ void TitleScene::Initialize()
 //---------------------------------------------------------
 void TitleScene::Update(float elapsedTime)
 {
-	UNREFERENCED_PARAMETER(elapsedTime);
-
 	// タイトルUI管理クラスを更新する
 	m_titleSceneUI->Update();
 }
@@ -82,12 +78,4 @@ IScene::SceneID TitleScene::GetNextSceneID() const
 
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
-}
-
-//---------------------------------------------------------
-// シーン遷移する
-//---------------------------------------------------------
-void TitleScene::ChangeScene()
-{
-	m_isChangeScene = true;
 }

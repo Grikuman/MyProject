@@ -81,7 +81,7 @@ void PlayerRolling::Rolling()
     // ˆÚ“®‘¬“x‚ðÝ’è‚·‚é
     m_player->SetVelocity(direction);
     // ˆÚ“®‘¬“x‚ð•â³‚·‚é
-    m_player->ApplyVelocity(0.1f);
+    m_player->ApplyVelocity(APPLY_VELOCITY);
     // ˆÚ“®‚·‚é
     m_player->SetPosition(m_player->GetPosition() + DirectX::SimpleMath::Vector3::Transform(m_player->GetVelocity(), m_player->GetAngle()));
 }

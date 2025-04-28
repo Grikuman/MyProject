@@ -37,7 +37,7 @@ public:
 	// 向きを設定する
 	void SetDirection(const DirectX::SimpleMath::Vector3 direction) { m_direction = direction; }
 	// ステートを変更する
-	void ChangeState(IPlayerState* newState);
+	void ChangeState(IPlayerState* newState) { m_currentState = newState; }
 
 public:
 	// 位置を取得する
@@ -61,9 +61,9 @@ public:
 	// 攻撃しているか取得する
 	bool IsAttack();
 	// バウンディングスフィアを取得する
-	DirectX::BoundingSphere GetBoundingSphere();
+	DirectX::BoundingSphere GetBoundingSphere() { return DirectX::BoundingSphere(m_position, COLLISION_SPHERE_SIZE); }
 	// バウンディングボックスを取得する
-	DirectX::BoundingBox GetBoundingBox();
+	DirectX::BoundingBox GetBoundingBox() { return DirectX::BoundingBox(m_position, COLLISION_BOX_SIZE); }
 
 public:
 	// プレイヤーの待機状態を取得する
@@ -108,6 +108,10 @@ private:
 	static const int MAX_STAMINA = 6;
 	// 無敵時間
 	const float MAX_INVINCIBLE = 120.0f;
+	// 当たり判定(球)のサイズ
+	const float COLLISION_SPHERE_SIZE = 0.5f;
+	// 当たり判定(箱)のサイズ
+	const DirectX::SimpleMath::Vector3 COLLISION_BOX_SIZE = { 1.0f,1.0f,1.0f };
 
 private:
 	// 現在のステート

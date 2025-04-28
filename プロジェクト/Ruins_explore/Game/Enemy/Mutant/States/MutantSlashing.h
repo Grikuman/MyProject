@@ -39,6 +39,8 @@ private:
 private:
 	// UŒ‚‚Ì“–‚½‚é‹——£
 	const float ATTACK_DISTANCE = 5.0f;
+	// UŒ‚‚Ì“–‚½‚é”»’è”ÍˆÍ
+	const float ATTACK_DOT = 0.5f;
 	// UŒ‚‚ª“–‚½‚Á‚½Û‚ÌƒJƒƒ‰U“®‚Ì‹­“x
 	const float CAMERA_INTENSITY = 0.2f;
 	// UŒ‚‚ª“–‚½‚Á‚½Û‚ÌƒJƒƒ‰U“®‚ÌŽžŠÔ

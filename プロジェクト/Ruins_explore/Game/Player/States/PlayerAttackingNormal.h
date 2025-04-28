@@ -34,6 +34,10 @@ private:
 	void TransitionToIdling();
 
 private:
+	// 攻撃の距離
+	const float ATTACK_DISTANCE = 3.0f;
+
+private:
 	//プレイヤー
 	Player* m_player;
 	// アニメーション

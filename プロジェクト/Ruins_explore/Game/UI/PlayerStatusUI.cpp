@@ -5,7 +5,6 @@
 #include "pch.h"
 #include "PlayerStatusUI.h"
 #include "Game/Player/Player.h"
-
 #include "Framework/DeviceResources.h"
 #include "PlayerUIManager.h"
 #include "Framework/Graphics.h"

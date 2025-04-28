@@ -10,16 +10,11 @@
 #include <wrl/client.h>
 #include "Game/UI/TitleSceneUI.h"
 
-namespace NRLib
-{
-	class FixedCamera;
-};
-
 class TitleScene final : public IScene
 {
 public:
 	// シーン遷移する
-	void ChangeScene();
+	void ChangeScene() { m_isChangeScene = true; };
 	// 次のシーンIDを取得する
 	SceneID GetNextSceneID() const;
 
@@ -36,6 +31,10 @@ public:
 	void Render() override;
 	// 終了処理
 	void Finalize() override;
+
+private:
+	// BGMの音量
+	const float BGM_VOLUME = 0.05f;
 
 private:
 	// シーンチェンジフラグ

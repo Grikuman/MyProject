@@ -4,6 +4,8 @@
 */
 #pragma once
 #include "Game/Interface/IEnemy.h"
+
+// ‘O•ûéŒ¾
 class Player;
 
 class StageCollision

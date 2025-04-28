@@ -7,7 +7,6 @@
 #include <vector>
 #include "Game/Player/Player.h"
 #include "Game/Interface/IEnemy.h"
-#include "Game/Factory/EnemyFactory.h"
 
 class StageEnemy
 {

@@ -222,9 +222,6 @@
     <ClInclude Include="Game\Camera\TPS_Camera.h">
       <Filter>Game\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\EnemyUI\EnemyHPUI.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Transition\Fade.h">
       <Filter>Game\Transition</Filter>
     </ClInclude>
@@ -403,9 +400,6 @@
     </ClCompile>
     <ClCompile Include="Game\Camera\TPS_Camera.cpp">
       <Filter>Game\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\EnemyUI\EnemyHPUI.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
     </ClCompile>
     <ClCompile Include="Game\Stage\StageDecoration.cpp">
       <Filter>Game\Stage</Filter>

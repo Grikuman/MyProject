@@ -1,28 +1,16 @@
-//--------------------------------------------------------------------------------------
-// File: BossHPUI.cpp
-//
-// ゲージ
-// 
-//-------------------------------------------------------------------------------------
+/*
+    ファイル名：BossHPUI.h
+    　　　概要：ボスの体力UIを管理するクラス
+*/
 
 #include "pch.h"
 #include "BossHPUI.h"
 #include "UserInterface.h"
-
 #include "Framework/BinaryFile.h"
 #include "Framework/DeviceResources.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
-#include <vector>
-
-#include <string>
 #include "Framework/Graphics.h"
-
-using namespace DirectX;
+#include <vector>
+#include <string>
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -63,8 +51,8 @@ void BossHPUI::Initialize(DX::DeviceResources* pDR,int width,int height)
     m_baseTexturePath = L"Resources/Textures/HP.jpg";
     // テクスチャ
     Add(L"Resources/Textures/HP_red.jpg"
-        , SimpleMath::Vector2(width / 2, 50)
-        , SimpleMath::Vector2(1.0f,1.0f)
+        , DirectX::SimpleMath::Vector2(width / 2, 50.0f)
+        , DirectX::SimpleMath::Vector2(1.0f,1.0f)
         , UserInterface::MIDDLE_CENTER);
     // スプライトバッチ
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
@@ -85,7 +73,6 @@ void BossHPUI::Update(float bossHP,float MAX_BossHP)
     ratio = m_currentHP / m_maxHP;
     // 比率を設定する
     m_BossHPUI->SetRenderRatio(ratio);
-
 }
 
 //---------------------------------------------------------
@@ -96,14 +83,10 @@ void BossHPUI::Render()
     // 各テクスチャを描画する
     m_base->Render();
     m_BossHPUI->Render();
-    //m_frame->Render();
-
     // スプライトバッチを開始
     m_spriteBatch->Begin();
-
     // ボス名
     m_spriteFont->DrawString(m_spriteBatch, L"BOSS", DirectX::SimpleMath::Vector2(610,2));
-   
     // ボスの体力割合を表示する
     m_spriteFont->DrawString(
         m_spriteBatch,
@@ -112,7 +95,6 @@ void BossHPUI::Render()
     );
     // スプライトバッチを終了
     m_spriteBatch->End();
-
 }
 
 //---------------------------------------------------------
