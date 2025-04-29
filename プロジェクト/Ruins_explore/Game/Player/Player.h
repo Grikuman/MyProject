@@ -85,7 +85,7 @@ public:
 	// ‰Šú‰»‚·‚é
 	void Initialize();
 	// XV‚·‚é
-	void Update(float elapsedTime);
+	void Update();
 	// •`‰æ‚·‚é
 	void Render();
 	// Œãˆ—‚·‚é

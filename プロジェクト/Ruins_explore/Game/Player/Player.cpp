@@ -78,7 +78,7 @@ void Player::Initialize()
 //---------------------------------------------------------
 // çXêVÇ∑ÇÈ
 //---------------------------------------------------------
-void Player::Update(float elapsedTime)
+void Player::Update()
 {	
 	using namespace DirectX::SimpleMath;
 	

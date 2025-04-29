@@ -9,7 +9,9 @@
 // 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<InputDevice> InputDevice::m_InputDevice = nullptr;
 
-//グラフィックスのインスタンスを取得
+//---------------------------------------------------------
+// グラフィックスのインスタンスを取得
+//---------------------------------------------------------
 InputDevice* const InputDevice::GetInstance()
 {
 	if (m_InputDevice == nullptr)
@@ -19,7 +21,9 @@ InputDevice* const InputDevice::GetInstance()
 	return m_InputDevice.get();
 }
 
+//---------------------------------------------------------
 // コンストラクタ
+//---------------------------------------------------------
 InputDevice::InputDevice()
 	:
 	m_keyboard{},             
@@ -48,7 +52,9 @@ void InputDevice::CreateDevice()
 	m_mouseButtonStateTracker = std::make_unique<DirectX::Mouse::ButtonStateTracker>();
 }
 
+//---------------------------------------------------------
 // 更新する
+//---------------------------------------------------------
 void InputDevice::Update()
 {
 	// キーボードを更新する
@@ -57,14 +63,18 @@ void InputDevice::Update()
 	UpdateMouseState();
 }
 
+//---------------------------------------------------------
 // キーボードを更新する
+//---------------------------------------------------------
 void InputDevice::UpdateKeyboardState()
 {
 	*m_keyboardState = m_keyboard->GetState();
 	m_keyboardStateTracker->Update(*m_keyboardState);
 }
 
+//---------------------------------------------------------
 // マウスを更新する
+//---------------------------------------------------------
 void InputDevice::UpdateMouseState()
 {
 	*m_mouseState = m_mouse->GetState();

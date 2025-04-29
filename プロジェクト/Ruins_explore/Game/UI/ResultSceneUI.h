@@ -42,7 +42,6 @@ private:
     ResultScene* m_resultScene;
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
-
     // 背景
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_backGround_Tex;
     // チュートリアルクエストのアイコン

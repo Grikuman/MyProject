@@ -2,7 +2,6 @@
 	ファイル名：RenderNumber.h
 	概要：桁数の多い数値をテクスチャ表示するためのクラス
 */
-
 #pragma once
 #include "Particle.h"
 
@@ -19,13 +18,13 @@ public:
 public:
 	// コンストラクタ・デストラクタ
 	RenderNumber();
+	// デストラクタ
 	~RenderNumber();
-
-	// 初期化処理
+	// 初期化する
 	void Initialize(DX::DeviceResources* pDR);
-	// 更新処理
+	// 更新する
 	void Update(float elapseTime);
-	// 描画処理
+	// 描画する
 	void Render();
 	// 終了処理
 	void Finalize();
@@ -35,31 +34,30 @@ public:
 	// 表示桁数を設定
 	void SetRenderColumn(int column);
 	// 描画方向を設定
-	void SetDirection(RenderDirection dir);
+	void SetDirection(RenderDirection dir) { m_direction = dir; }
 	// 位置を設定（座標指定）
-	void SetPosition(float x, float y);
+	void SetPosition(float x, float y) { SetPosition(DirectX::SimpleMath::Vector2(x, y)); }
 	void SetPosition(DirectX::SimpleMath::Vector2 pos);
 	// UV座標を設定
-	void SetPositionUV(float x, float y);
+	void SetPositionUV(float x, float y) { m_uvPos = DirectX::SimpleMath::Vector2(x, y); }
 	// サイズを設定（座標指定）
 	void SetSize(float x, float y);
 	void SetSize(DirectX::SimpleMath::Vector2 size);
 	// UVサイズを設定
-	void SetUVSize(float x, float y);
-	void SetUVSize(DirectX::SimpleMath::Vector2 size);
+	void SetUVSize(float x, float y) { SetUVSize(DirectX::SimpleMath::Vector2(x, y)); }
+	void SetUVSize(DirectX::SimpleMath::Vector2 size) { m_uvSize = size; }
 	// 数字の色を設定（メインカラー、アウトライン風カラー）
 	void SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB);
 	// 背景色を設定
 	void SetBackColor(DirectX::SimpleMath::Vector4 color);
 	// 桁数オーバー時の描画許可フラグを設定
-	void SetRenderOverColumn(bool flag);
+	void SetRenderOverColumn(bool flag) { m_isOverColumn = flag; }
 
 private:
 	// デバイスリソース管理用ポインタ
 	DX::DeviceResources* m_pDR;
-
 	// 数字オブジェクト（パーティクルシステムを利用）
-	tito::Particle* m_pNumberObject;
+	Particle* m_pNumberObject;
 	// 表示する数値
 	uint64_t m_renderValue;
 	// 前回の数値（アニメーション用）

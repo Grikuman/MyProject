@@ -140,7 +140,7 @@ void Fade::CreateShader()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void Fade::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
+void Fade::Render()
 {
 	// コンテキストを取得する
 	ID3D11DeviceContext1* context = Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext();

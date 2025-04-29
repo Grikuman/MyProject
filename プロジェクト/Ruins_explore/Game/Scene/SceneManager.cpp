@@ -66,13 +66,10 @@ void SceneManager::Update(float elapsedTime)
 //---------------------------------------------------------
 void SceneManager::Render()
 {
-	DirectX::SimpleMath::Matrix view = DirectX::SimpleMath::Matrix::Identity;
-	DirectX::SimpleMath::Matrix proj = DirectX::SimpleMath::Matrix::Identity;
-
 	// シーンを描画する
 	m_currentScene->Render();
 	// フェードを描画する
-	m_fade->Render(view, proj);
+	m_fade->Render();
 }
 
 //---------------------------------------------------------

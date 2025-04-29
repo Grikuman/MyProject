@@ -21,7 +21,7 @@ public:
 	void Update();
 	// •`‰æ‚·‚é
 	void Render();
-	// Œãˆ—‚·‚é
+	// I—¹ˆ—
 	void Finalize();
 private:
 	// Player

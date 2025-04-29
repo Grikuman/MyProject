@@ -56,9 +56,6 @@
     <Filter Include="Game\Effect">
       <UniqueIdentifier>{988c5e3a-520a-4def-9a9b-2efc8cfed130}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\UI\EnemyUI">
-      <UniqueIdentifier>{4f03f122-fbd9-4223-91e8-35569031bd4d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UI\PlayerUI">
       <UniqueIdentifier>{7247d7d1-241e-4c49-8f58-99596a4a0799}</UniqueIdentifier>
     </Filter>
@@ -237,12 +234,6 @@
     <ClInclude Include="Framework\Audio.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\UI\EnemyUI\UserInterface.h">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClInclude>
     <ClInclude Include="Game\UI\QuestSelectUI.h">
       <Filter>Game\UI</Filter>
     </ClInclude>
@@ -413,12 +404,6 @@
     <ClCompile Include="Framework\Audio.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp">
-      <Filter>Game\UI\EnemyUI</Filter>
-    </ClCompile>
     <ClCompile Include="Game\UI\QuestSelectUI.cpp">
       <Filter>Game\UI</Filter>
     </ClCompile>
@@ -504,9 +489,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\Shaders\UI.hlsli">
-      <Filter>Resources\Shaders</Filter>
-    </None>
     <None Include="Resources\Shaders\Particle.hlsli">
       <Filter>Resources\Shaders</Filter>
     </None>
@@ -524,15 +506,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\UIGS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\UIPS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\UIVS.hlsl">
-      <Filter>Resources\Shaders</Filter>
-    </FxCompile>
     <FxCompile Include="Resources\Shaders\ParticlePS.hlsl">
       <Filter>Resources\Shaders</Filter>
     </FxCompile>

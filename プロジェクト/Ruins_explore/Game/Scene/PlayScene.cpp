@@ -64,7 +64,6 @@ void PlayScene::Update(float elapsedTime)
 		// 現在のステージを更新する
 		m_currentStage->Update(elapsedTime);
 	}
-
 	// 次のシーンIDを取得する
 	GetNextSceneID();
 }
@@ -96,7 +95,6 @@ void PlayScene::StageInitialize()
 {
 	// 選択するステージ用の変数
 	StageID selectStage = StageID::TutorialStage;
-
 	// マップ選択で選ばれたステージを確認する
 	switch (Data::GetInstance()->GetMapSelectStage())
 	{
@@ -109,10 +107,8 @@ void PlayScene::StageInitialize()
 	default:
 		break;
 	}
-
 	// マップ選択で選ばれたステージを生成する
 	m_currentStage = StageFactory::CreateStage(selectStage);
-
 	// ステージを初期化する
 	m_currentStage->Initialize(); 
 }
@@ -127,7 +123,6 @@ IScene::SceneID PlayScene::GetNextSceneID() const
 	{
 		return IScene::SceneID::RESULT;
 	}
-
 	// シーン変更がない場合
 	return IScene::SceneID::NONE;
 }

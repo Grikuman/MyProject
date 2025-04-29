@@ -4,13 +4,13 @@
 */
 #include "pch.h"
 #include "TitleSceneUI.h"
+#include "Game/Scene/TitleScene.h"
 #include "Game/Player/Player.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
 #include "Framework/Audio.h"
-#include "Game/Scene/TitleScene.h"
 
 //---------------------------------------------------------
 // コンストラクタ

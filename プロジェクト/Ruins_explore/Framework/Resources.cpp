@@ -10,7 +10,9 @@
 // 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Resources> Resources::m_resources = nullptr;
 
-//リソースクラスのインスタンスを取得
+//---------------------------------------------------------
+// リソースクラスのインスタンスを取得
+//---------------------------------------------------------
 Resources* const Resources::GetInstance()
 {
 	if (m_resources == nullptr)
@@ -20,7 +22,9 @@ Resources* const Resources::GetInstance()
 	return m_resources.get();
 }
 
+//---------------------------------------------------------
 // コンストラクタ
+//---------------------------------------------------------
 Resources::Resources()
 	:
 	m_models{},
@@ -88,6 +92,7 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SelectArrow;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleBackGround;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SelectMenu;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ResultBackGround;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TutorialIcon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Stage1Icon;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> MissionCheckMark;     // ミッションのチェックマーク
@@ -97,6 +102,13 @@ void Resources::LoadResources()
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestPopup;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestBoard0;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> QuestBoard1;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StatusIcon;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> HealthRed;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> HealthGray;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StaminaYellow;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> StaminaGray;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TimeText;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Number;
 
 	// 文字の画像
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TitleText;            // タイトル
@@ -113,6 +125,7 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択矢印.png", nullptr, SelectArrow.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル背景.png", nullptr, TitleBackGround.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/選択メニュー.png", nullptr, SelectMenu.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/リザルト背景.png", nullptr, ResultBackGround.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/チュートリアルのアイコン.png", nullptr, TutorialIcon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステージ1のアイコン.png", nullptr, Stage1Icon.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ミッションのチェックマーク.png", nullptr, MissionCheckMark.GetAddressOf());
@@ -122,6 +135,13 @@ void Resources::LoadResources()
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエスト受注ポップアップ.png", nullptr, QuestPopup.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエストボード0.png", nullptr, QuestBoard0.GetAddressOf());
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/クエストボード1.png", nullptr, QuestBoard1.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/ステータスのアイコン.png", nullptr, StatusIcon.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/体力_赤色.png", nullptr, HealthRed.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/体力_灰色.png", nullptr, HealthGray.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/スタミナ_黄色.png", nullptr, StaminaYellow.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/スタミナ_灰色.png", nullptr, StaminaGray.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/Time_Text.png", nullptr, TimeText.GetAddressOf());
+	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/数字.png", nullptr, Number.GetAddressOf());
 
 	// 文字
 	DirectX::CreateWICTextureFromFile(device, context, L"Resources/Textures/タイトル文字.png", nullptr, TitleText.GetAddressOf());
@@ -138,6 +158,7 @@ void Resources::LoadResources()
 	m_textures.emplace(L"SelectArrow", SelectArrow);
 	m_textures.emplace(L"TitleBackGround", TitleBackGround);
 	m_textures.emplace(L"SelectMenu", SelectMenu);
+	m_textures.emplace(L"ResultBackGround", ResultBackGround);
 	m_textures.emplace(L"TutorialIcon", TutorialIcon);
 	m_textures.emplace(L"Stage1Icon", Stage1Icon);
 	m_textures.emplace(L"MissionCheckMark", MissionCheckMark);
@@ -147,6 +168,13 @@ void Resources::LoadResources()
 	m_textures.emplace(L"QuestPopup", QuestPopup);
 	m_textures.emplace(L"QuestBoard0", QuestBoard0);
 	m_textures.emplace(L"QuestBoard1", QuestBoard1);
+	m_textures.emplace(L"StatusIcon",StatusIcon);
+	m_textures.emplace(L"HealthRed",HealthRed );
+	m_textures.emplace(L"HealthGray",HealthGray);
+	m_textures.emplace(L"StaminaYellow",StaminaYellow);
+	m_textures.emplace(L"StaminaGray",StaminaGray);
+	m_textures.emplace(L"TimeText", TimeText);
+	m_textures.emplace(L"Number", Number);
 
 	// 文字
 	m_textures.emplace(L"TitleText", TitleText);
@@ -156,7 +184,9 @@ void Resources::LoadResources()
 	m_textures.emplace(L"TutorialGuideMissionText", TutorialGuideMission);
 }
 
+//---------------------------------------------------------
 // モデルを取得する
+//---------------------------------------------------------
 DirectX::Model* Resources::GetModel(const wchar_t* name)
 {
 	// モデルを検索する
@@ -165,7 +195,9 @@ DirectX::Model* Resources::GetModel(const wchar_t* name)
 	return it->second.get();
 }
 
+//---------------------------------------------------------
 // モデルをファイルから読み込む
+//---------------------------------------------------------
 std::unique_ptr<DirectX::Model> Resources::GetModelFromFile(const wchar_t* path)
 {
 	auto device = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
@@ -175,7 +207,9 @@ std::unique_ptr<DirectX::Model> Resources::GetModelFromFile(const wchar_t* path)
 	return DirectX::Model::CreateFromCMO(device, path, *fx);
 }
 
+//---------------------------------------------------------
 // モデルを取得する
+//---------------------------------------------------------
 DirectX::Model* Resources::GetModel(const std::string& name)
 {
 	if (name == "CollisionBlock")
@@ -197,7 +231,9 @@ DirectX::Model* Resources::GetModel(const std::string& name)
 	return 0;
 }
 
+//---------------------------------------------------------
 // テクスチャを取得する
+//---------------------------------------------------------
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTexture(const wchar_t* name)
 {
 	// モデルを検索する
@@ -206,7 +242,9 @@ Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTexture(const wch
 	return it->second;
 }
 
+//---------------------------------------------------------
 // テクスチャを読み込む
+//---------------------------------------------------------
 Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> Resources::GetTextureFromFile(const wchar_t* path)
 {
 	// デバイスとコンテキストを取得する

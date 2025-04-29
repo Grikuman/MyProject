@@ -3,17 +3,13 @@
     　　　概要：時間のUIを管理するクラス
 */
 #pragma once
-#include <memory>
-#include <SpriteBatch.h>
-#include <SpriteFont.h>
-#include <wrl/client.h>
 #include "RenderNumber.h"
 
 class TimeUI
 {
 public:
     // コンストラクタ
-    TimeUI(ID3D11Device* device, ID3D11DeviceContext* context);
+    TimeUI();
     // デストラクタ
     ~TimeUI();
     // 初期化する
@@ -26,11 +22,23 @@ public:
     void Finalize();
 
 private:
-    const float width = 1280;
-    const float height = 720;
+    // テキストの表示位置
+    const DirectX::SimpleMath::Vector2 TEXT_POS = { 880.0f,0.0f };
+    // UVサイズ
+    const DirectX::SimpleMath::Vector2 UV_SIZE = { 0.05f,0.125f };
+    // 数字の描画位置
+    const DirectX::SimpleMath::Vector2 RENDER_POS = { 950.0f,600.0f };
+    // 数字のメインカラー
+    const DirectX::SimpleMath::Vector4 MAIN_COLOR = { 1.0f,1.0f,1.0f,1.0f };
+    // 数字のアウトラインカラー
+    const DirectX::SimpleMath::Vector4 OUTLINE_COLOR = { 0.0f,0.0f,0.0f,0.0f };
+    // 背景色
+    const DirectX::SimpleMath::Vector4 BACK_COLOR = { 0.0f,0.0f,0.0f,0.0f };
+    // カウントの間隔(1カウントに必要なフレーム)
+    const float COUNT_INTERVAL = 60.0f;
 
 private:
-    // 時間
+    // 数値描画用クラス
     std::unique_ptr<RenderNumber> m_number;
     // 描画する数値
     uint64_t m_renderVal;

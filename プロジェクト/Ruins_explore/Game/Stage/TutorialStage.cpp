@@ -73,7 +73,7 @@ void TutorialStage::Initialize()
 				basicEffect->SetEmissiveColor(DirectX::Colors::White);
 			}
 		});
-	Audio::GetInstance()->PlayBGM("TutorialBGM", 0.05f);
+	Audio::GetInstance()->PlayBGM("TutorialBGM", BGM_VOLUME);
 }
 
 //---------------------------------------------------------
@@ -82,7 +82,7 @@ void TutorialStage::Initialize()
 void TutorialStage::Update(float elapsedTime)
 {
 	//プレイヤーを更新
-	m_player->Update(elapsedTime);
+	m_player->Update();
 	// チュートリアルガイドを更新する
 	m_tutorialGuideUI->Update();
 	// チュートリアル用の敵を更新する
@@ -147,20 +147,20 @@ void TutorialStage::Collision()
 	}
 
 	// X軸の範囲制限
-	if (playerPos.x < -20.0f) {
-		playerPos.x = -20.0f;
+	if (playerPos.x < -COLLISION_DISTANCE) {
+		playerPos.x = -COLLISION_DISTANCE;
 	}
-	else if (playerPos.x > 20.0f) {
-		playerPos.x = 20.0f;
+	else if (playerPos.x > COLLISION_DISTANCE) {
+		playerPos.x = COLLISION_DISTANCE;
 	}
 
 	// Z軸の範囲制限
-	if (playerPos.z < -20.0f) {
-		playerPos.z = -20.0f;
+	if (playerPos.z < -COLLISION_DISTANCE) {
+		playerPos.z = -COLLISION_DISTANCE;
 	}
-	else if (playerPos.z > 20.0f) 
+	else if (playerPos.z > COLLISION_DISTANCE)
 	{
-		playerPos.z = 20.0f;
+		playerPos.z = COLLISION_DISTANCE;
 	}
 	// 修正後の位置をプレイヤーに適用
 	m_player->SetPosition(playerPos);
@@ -194,7 +194,7 @@ void TutorialStage::Mission()
 	{
 		m_moveCnt++;
 	}
-	if (m_moveCnt >= 120)
+	if (m_moveCnt >= MISSION_MOVE_CNT)
 	{
 		// ミッション1をクリア
 		m_tutorialGuideUI->ClearMission(0);
@@ -208,7 +208,7 @@ void TutorialStage::Mission()
 	}
 
 	// ミッション3の判定-----------------------------------
-	if(m_practiceEnemy->GetHitCount() >= 200)
+	if(m_practiceEnemy->GetHitCount() >= MISSION_ATTACK_CNT)
 	{
 		// ミッション3をクリア
 		m_tutorialGuideUI->ClearMission(2);

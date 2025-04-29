@@ -44,15 +44,15 @@ void PlayerStatusUI::Initialize()
 {
     using namespace DirectX;
     using namespace DirectX::SimpleMath;
+
     // スプライトバッチを取得する
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
-
     // 画像を読み込む
-    m_statusIcon_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Status_icon.png");
-    m_hearthRed_Tex     = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Health_Red.png");
-    m_hearthGray_Tex    = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Health_Gray.png");
-    m_staminaYellow_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Stamina_Yellow.png");
-    m_staminaGray_Tex   = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/Stamina_Gray.png");
+    m_statusIcon_Tex    = Resources::GetInstance()->GetTexture(L"StatusIcon");
+    m_hearthRed_Tex     = Resources::GetInstance()->GetTexture(L"HealthRed");
+    m_hearthGray_Tex    = Resources::GetInstance()->GetTexture(L"HealthGray");
+    m_staminaYellow_Tex = Resources::GetInstance()->GetTexture(L"StaminaYellow");
+    m_staminaGray_Tex   = Resources::GetInstance()->GetTexture(L"StaminaGray");
 
     // 体力表示の位置を設定する
     for (int i = 0; i < m_player->GetMAXHP(); i++)
@@ -80,41 +80,36 @@ void PlayerStatusUI::Update()
 //---------------------------------------------------------
 void PlayerStatusUI::Render()
 {
-
     // 通常のスプライトバッチを開始
     m_spriteBatch->Begin();
-
     // ステータスアイコン
     m_spriteBatch->Draw(m_statusIcon_Tex.Get(), STATUS_ICON_POS);
-
     // 体力(灰色)
     for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
         m_spriteBatch->Draw(m_hearthGray_Tex.Get(), m_healthPosition[i]);
+    }
+    // 体力(赤色)
+    for (int i = 0; i < m_player->GetHP(); i++)
+    {
+        m_spriteBatch->Draw(m_hearthRed_Tex.Get(), m_healthPosition[i]);
     }
     // スタミナ(灰色)
     for (int i = 0; i < m_player->GetMAXSTAMINA(); i++)
     {
         m_spriteBatch->Draw(m_staminaGray_Tex.Get(), m_staminaPosition[i]);
     }
-
-    // 体力(赤色)
-    for (int i = 0; i < m_player->GetHP(); i++)
-    {
-        m_spriteBatch->Draw(m_hearthRed_Tex.Get(), m_healthPosition[i]);
-    }
     // スタミナ(黄色)
     for (int i = 0; i < m_player->GetStamina(); i++)
     {
         m_spriteBatch->Draw(m_staminaYellow_Tex.Get(), m_staminaPosition[i]);
     }
-
     // 通常のスプライトバッチを終了
     m_spriteBatch->End();
 }
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
 void PlayerStatusUI::Finalize()
 {

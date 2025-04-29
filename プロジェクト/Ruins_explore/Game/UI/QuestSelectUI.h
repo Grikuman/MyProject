@@ -32,11 +32,11 @@ private:
 
 private:
     // 選択メニューの位置
-    const DirectX::SimpleMath::Vector2 SELECTMENU_POS = DirectX::SimpleMath::Vector2(0, 0);
+    const DirectX::SimpleMath::Vector2 SELECTMENU_POS = { 0.0f, 0.0f };
     // チュートリアルのアイコンの位置
-    const DirectX::SimpleMath::Vector2 TUTORIALICON_POS = DirectX::SimpleMath::Vector2(100, 130);
+    const DirectX::SimpleMath::Vector2 TUTORIALICON_POS = { 100.0f, 130.0f };
     // ステージ1のアイコンの位置
-    const DirectX::SimpleMath::Vector2 STAGE1ICON_POS = DirectX::SimpleMath::Vector2(100, 190);
+    const DirectX::SimpleMath::Vector2 STAGE1ICON_POS = { 100.0f, 190.0f };
     // クエスト選択矢印の位置
     const DirectX::SimpleMath::Vector2 ARROW_POS[2] =
     {
@@ -61,17 +61,14 @@ private:
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_SelectMenu_Tex;
     // 選択矢印の画像
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_selectArrow_Tex;
-
     // チュートリアルのアイコン
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_tutorialIcon_Tex;
     // ステージ1のアイコン
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_stage1Icon_Tex;
-
     // クエスト受注ポップアップの画像
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_questPopup_Tex;
     // クエストボードの画像
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> m_questBoard_Tex[2];
-
     // ステージの選択フラグ
     int m_selectFlag;
     // クエスト選択矢印の位置
@@ -82,7 +79,6 @@ private:
     bool m_popupViewFlag;
     // ポップアップ内の選択フラグ
     bool m_popupFlag;
-
     // クエスト開始フラグ
     bool m_questStart;
 };

@@ -1,38 +1,29 @@
-//--------------------------------------------------------------------------------------
-//	File: Particle.h
-//
-//	パーティクルクラス
-//
-//-------------------------------------------------------------------------------------
+/*
+	 ファイル名：Particle.cpp
+	　　　概要：数値画像のパーティクルを管理するクラス
+*/
 
 #include "pch.h"
 #include "Particle.h"
 #include "Framework/BinaryFile.h"
 #include "Framework/DeviceResources.h"
-#include <SimpleMath.h>
-#include <Effects.h>
-#include <PrimitiveBatch.h>
-#include <VertexTypes.h>
-#include <WICTextureLoader.h>
-#include <CommonStates.h>
-#include <vector>
+#include "Framework/Resources.h"
+#include "Framework/Graphics.h"
 
-using namespace DirectX;
-
-///	<summary>
-///	インプットレイアウト
-///	</summary>
-const std::vector<D3D11_INPUT_ELEMENT_DESC> tito::Particle::INPUT_LAYOUT =
+//---------------------------------------------------------
+// インプットレイアウト
+//---------------------------------------------------------
+const std::vector<D3D11_INPUT_ELEMENT_DESC> Particle::INPUT_LAYOUT =
 {
 	{ "POSITION",	0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	{ "COLOR",	0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, sizeof(SimpleMath::Vector3), D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(SimpleMath::Vector3)+ sizeof(SimpleMath::Vector4), D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "COLOR",	0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, sizeof(DirectX::SimpleMath::Vector3), D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD",	0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(DirectX::SimpleMath::Vector3)+ sizeof(DirectX::SimpleMath::Vector4), D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-///	<summary>
-///	コンストラクタ
-///	</summary>
-tito::Particle::Particle()
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
+Particle::Particle()
 	:m_pDR(nullptr)
 	, m_time{}
 	, m_pos{0.0f, 0.0f}
@@ -43,51 +34,53 @@ tito::Particle::Particle()
 {
 }
 
-///	<summary>
-///	デストラクタ
-///	</summary>
-tito::Particle::~Particle()
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
+Particle::~Particle()
 {
 }
 
-///	<summary>
-///	テクスチャリソース読み込み関数
-///	</summary>
-///	<param name="path">相対パス(Resources/Textures/・・・.pngなど）</param>
-void tito::Particle::LoadTexture(const wchar_t* path)
+//---------------------------------------------------------
+///	テクスチャリソースを読み込む
+//---------------------------------------------------------
+void Particle::LoadTexture()
 {
+	// 数字画像を読み込む
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> texture;
-	DirectX::CreateWICTextureFromFile(m_pDR->GetD3DDevice(), path, nullptr, texture.ReleaseAndGetAddressOf());
-	
+	texture = Resources::GetInstance()->GetTexture(L"Number");
 	m_texture.push_back(texture);
 }
 
-///	<summary>
-///	生成関数
-///	</summary>
-///	<param name="pDR">ユーザーリソース等から持ってくる</param>
-void tito::Particle::Create(DX::DeviceResources* pDR)
+//---------------------------------------------------------
+// 作成する
+//---------------------------------------------------------
+void Particle::Create(DX::DeviceResources* pDR)
 {	
+	using namespace DirectX;
+
+	// デバイスリソースを取得する
 	m_pDR = pDR;
+	// デバイスを取得する
 	ID3D11Device1* device = pDR->GetD3DDevice();
 	//	シェーダーの作成
 	CreateShader();
 	//	画像の読み込み（２枚ともデフォルトは読み込み失敗でnullptr)
-	LoadTexture(L"Resources/Textures/number_test.png");
-	LoadTexture(L"Resources/Textures/number.png");
+	LoadTexture();
+	LoadTexture();
 
-	//	プリミティブバッチの作成
+	//	プリミティブバッチを作成する
 	m_batch = std::make_unique<PrimitiveBatch<VertexPositionColorTexture>>(pDR->GetD3DDeviceContext());
-
+	// コモンステートを作成する
 	m_states = std::make_unique<CommonStates>(device);
-
 }
 
-///	<summary>
-///	Shader作成部分だけ分離した関数
-///	</summary>
-void tito::Particle::CreateShader()
+//---------------------------------------------------------
+// シェーダーを作成する
+//---------------------------------------------------------
+void Particle::CreateShader()
 {
+	// デバイスを取得する
 	ID3D11Device1* device = m_pDR->GetD3DDevice();
 
 	//	コンパイルされたシェーダファイルを読み込み
@@ -103,20 +96,22 @@ void tito::Particle::CreateShader()
 
 	//	頂点シェーダ作成
 	if (FAILED(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_vertexShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreateVertexShader Failed.", NULL, MB_OK);
 		return;
 	}
-
 	//	ジオメトリシェーダ作成
 	if (FAILED(device->CreateGeometryShader(GSData.GetData(), GSData.GetSize(), NULL, m_geometryShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreateGeometryShader Failed.", NULL, MB_OK);
 		return;
 	}
 	//	ピクセルシェーダ作成
 	if (FAILED(device->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_pixelShader.ReleaseAndGetAddressOf())))
-	{//	エラー
+	{
+		//	エラー
 		MessageBox(0, L"CreatePixelShader Failed.", NULL, MB_OK);
 		return;
 	}
@@ -131,13 +126,14 @@ void tito::Particle::CreateShader()
 	device->CreateBuffer(&bd, nullptr, &m_CBuffer);
 }
 
-///	<summary>
-///	描画関数
-///	</summary>
-///	<param name="view">ビュー行列</param>
-///	<param name="proj">射影行列</param>
-void tito::Particle::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj)
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
+void Particle::Render()
 {
+	using namespace DirectX;
+
+	// コンテキストを取得する
 	ID3D11DeviceContext1* context = m_pDR->GetD3DDeviceContext();
 
 	//	頂点情報(板ポリゴンの４頂点の座標情報）
@@ -148,10 +144,6 @@ void tito::Particle::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMat
 	
 	DirectX::SimpleMath::Matrix worldMat = SimpleMath::Matrix::Identity;
 
-	//	画面の右下へ設置するには、どのように変更すると良い？
-	float width = 1280.0f;
-	float height = 720.0f;
-	float aspect = width / height;
 	worldMat *= DirectX::SimpleMath::Matrix::CreateScale(DirectX::SimpleMath::Vector3(m_size.x, m_size.y, 0.0f));
 
 	//	シェーダーに渡す追加のバッファを作成する。(ConstBuffer）
@@ -218,36 +210,42 @@ void tito::Particle::Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMat
 	context->PSSetShader(nullptr, nullptr, 0);
 
 }
-// 値を設定する関数（オーバーロード）
-void tito::Particle::SetValue(float val)
+
+//---------------------------------------------------------
+// 値を設定する関数
+//---------------------------------------------------------
+void Particle::SetValue(float val)
 {
 	m_time = val;
-
 	if (m_time < 0.0f)
 	{
 		m_time = 9.0f;
 	}
 }
-// 値を設定する関数（オーバーロード）
-void tito::Particle::SetValue(int val)
-{
-	SetValue((float)val);
-}
+
+//---------------------------------------------------------
 // 画面上の位置を設定
-void tito::Particle::SetScreenPosition(DirectX::SimpleMath::Vector2 pos)
+//---------------------------------------------------------
+void Particle::SetScreenPosition(DirectX::SimpleMath::Vector2 pos)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 
 	SetScreenUV(DirectX::SimpleMath::Vector2(pos.x / viewPort.Width, pos.y / viewPort.Height));
 }
+
+//---------------------------------------------------------
 // 画面上の位置を設定
-void tito::Particle::SetScreenUV(DirectX::SimpleMath::Vector2 pos)
+//---------------------------------------------------------
+void Particle::SetScreenUV(DirectX::SimpleMath::Vector2 pos)
 {
 	m_pos.x = pos.x;
 	m_pos.y = pos.y;
 }
-// サイズを設定（オーバーロード）
-void tito::Particle::SetSize(DirectX::SimpleMath::Vector2 size)
+
+//---------------------------------------------------------
+// サイズを設定する
+//---------------------------------------------------------
+void Particle::SetSize(DirectX::SimpleMath::Vector2 size)
 {
 	m_size = size;
 
@@ -260,20 +258,13 @@ void tito::Particle::SetSize(DirectX::SimpleMath::Vector2 size)
 		m_size.y = 1.0f;
 	}
 }
-// サイズを設定（オーバーロード）
-void tito::Particle::SetSize(float x, float y)
-{
-	SetSize(DirectX::SimpleMath::Vector2(x, y));
-}
-// 数字の色を設定
-void tito::Particle::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB)
+
+//---------------------------------------------------------
+// 数字の色を設定する
+//---------------------------------------------------------
+void Particle::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB)
 {
 	m_colorA = colorA;
 	m_colorB = colorB;
-}
-// 背景色を設定
-void tito::Particle::SetBackColor(DirectX::SimpleMath::Vector4 color)
-{
-	m_colorC = color;
 }
 

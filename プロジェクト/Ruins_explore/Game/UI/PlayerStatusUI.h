@@ -20,7 +20,7 @@ public:
     void Update();
     // 描画する
     void Render();
-    // 後処理する
+    // 終了処理
     void Finalize();
 
 private:
@@ -38,7 +38,6 @@ private:
 private:
     // プレイヤー
     Player* m_player;
-
     //スプライトバッチ
     DirectX::DX11::SpriteBatch* m_spriteBatch;
     // 体力(赤色)

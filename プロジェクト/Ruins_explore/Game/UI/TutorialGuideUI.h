@@ -30,7 +30,7 @@ public:
 
 private:
     // ガイドミッションの位置
-    const DirectX::SimpleMath::Vector2 GUIDEMISSION_POS = DirectX::SimpleMath::Vector2(10, 160);
+    const DirectX::SimpleMath::Vector2 GUIDEMISSION_POS = { 10.0f, 160.0f };
     // チェックマークの位置
     const DirectX::SimpleMath::Vector2 MISSIONCHECKMARK_POS[4] = 
     {

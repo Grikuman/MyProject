@@ -29,7 +29,7 @@ public:
 	// XV‚·‚é
 	void Update();
 	// •`‰æ‚·‚é
-	void Render(DirectX::SimpleMath::Matrix view, DirectX::SimpleMath::Matrix proj);
+	void Render();
 	// I—¹ˆ—
 	void Finalize();
 

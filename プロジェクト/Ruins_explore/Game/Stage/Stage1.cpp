@@ -31,11 +31,8 @@ Stage1::Stage1(std::string stageName)
 	m_stageCollision = std::make_unique<StageCollision>(m_player.get());
 	// ステージの装飾を作成する
 	m_stageDecoration = std::make_unique<StageDecoration>();
-	//時間UIを作成
-	m_timeUI = std::make_unique<TimeUI>(
-		Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice(),
-		Graphics::GetInstance()->GetDeviceResources()->GetD3DDeviceContext()
-	);
+	//時間UIを作成する
+	m_timeUI = std::make_unique<TimeUI>();
 }
 
 //---------------------------------------------------------
@@ -78,7 +75,7 @@ void Stage1::Update(float elapsedTime)
 	//ゲーム時間
 	m_gameTime -= elapsedTime;
 	//プレイヤーを更新
-	m_player->Update(elapsedTime);
+	m_player->Update();
 	// 敵を更新
 	m_stageEnemy->Update();
 	// ステージの衝突判定を行う

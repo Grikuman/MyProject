@@ -235,8 +235,6 @@
     <ClInclude Include="Game\Transition\Fade.h" />
     <ClInclude Include="Game\Transition\StageEnd.h" />
     <ClInclude Include="Game\Transition\StageStart.h" />
-    <ClInclude Include="Game\UI\EnemyUI\BossHPUI.h" />
-    <ClInclude Include="Game\UI\EnemyUI\UserInterface.h" />
     <ClInclude Include="Game\UI\QuestSelectUI.h" />
     <ClInclude Include="Game\UI\Particle.h" />
     <ClInclude Include="Game\UI\PlayerStatusUI.h" />
@@ -298,8 +296,6 @@
     <ClCompile Include="Game\Transition\Fade.cpp" />
     <ClCompile Include="Game\Transition\StageEnd.cpp" />
     <ClCompile Include="Game\Transition\StageStart.cpp" />
-    <ClCompile Include="Game\UI\EnemyUI\BossHPUI.cpp" />
-    <ClCompile Include="Game\UI\EnemyUI\UserInterface.cpp" />
     <ClCompile Include="Game\UI\QuestSelectUI.cpp" />
     <ClCompile Include="Game\UI\Particle.cpp" />
     <ClCompile Include="Game\UI\PlayerStatusUI.cpp" />
@@ -332,7 +328,6 @@
     <None Include="packages.config" />
     <None Include="Resources\Shaders\Fade.hlsli" />
     <None Include="Resources\Shaders\Particle.hlsli" />
-    <None Include="Resources\Shaders\UI.hlsli" />
     <None Include="Resources\StageCollisionData\StageCollisionData.json" />
     <None Include="Resources\StageDecorationData\StageDecorationData.json" />
     <None Include="Resources\StageEnemyData\EnemyData1.json" />
@@ -376,30 +371,6 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\UIGS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Geometry</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\UIPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\UIVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Resources\Shaders\%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

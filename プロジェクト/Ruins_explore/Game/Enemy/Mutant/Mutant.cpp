@@ -35,8 +35,6 @@ Mutant::Mutant(Player* player)
     m_mutantRushing = std::make_unique<MutantRushing>(this);
     // 斬りつけ状態を作成する
     m_mutantSlashing = std::make_unique<MutantSlashing>(this);
-    // 体力のUIを作成する
-    m_bossHPUI = std::make_unique<BossHPUI>();
 }
 
 //---------------------------------------------------------
@@ -62,8 +60,6 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
     m_mutantSlashing->Initialize(); 
     // 初期の状態を設定する
     m_currentState = m_mutantWalking.get();
-    // 体力のUIを初期化する
-    m_bossHPUI->Initialize(Graphics::GetInstance()->GetDeviceResources(), 1920, 720);
 }
 
 //---------------------------------------------------------
@@ -82,8 +78,6 @@ void Mutant::Update()
     m_currentState->Update();
     // プレイヤーの視点を自身に向ける
     SetPlayerAngle();
-    // 体力UIを更新する
-    m_bossHPUI->Update(m_hp, MAXHP);
     // プレイヤーとの当たり判定を行う
     Collision::GetInstance()->BossEnemy(this);
 }
@@ -93,8 +87,6 @@ void Mutant::Update()
 //---------------------------------------------------------
 void Mutant::Render()
 {
-    // 体力UIを描画する
-    m_bossHPUI->Render();
     // 現在のステートを描画する
     m_currentState->Render();
 }
@@ -127,7 +119,6 @@ void Mutant::SetPlayerAngle()
     // プレイヤーと敵の位置を取得
     DirectX::SimpleMath::Vector3 playerPosition = m_player->GetPosition();
     DirectX::SimpleMath::Vector3 enemyPosition = m_position;
-
     // プレイヤーと敵の方向ベクトルを計算
     DirectX::SimpleMath::Vector3 direction = playerPosition - enemyPosition;
     // 高さ方向を無視してY軸回りの回転だけを考慮する

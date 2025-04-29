@@ -4,6 +4,7 @@
 */
 #pragma once
 
+// ‘O•ûéŒ¾
 class TitleScene;
 
 class TitleSceneUI

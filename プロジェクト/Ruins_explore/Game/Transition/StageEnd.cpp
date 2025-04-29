@@ -124,7 +124,6 @@ void StageEnd::TexturesAnimate()
 	if (m_scale >= ICON_MAX_SCALE)
 	{
 		m_scale = 1.0f;  // 最大サイズを設定
-
 	}
 	// 黒のぼかしの透明度を調整
 	m_blackAlpha += BLACK_ALPHA;

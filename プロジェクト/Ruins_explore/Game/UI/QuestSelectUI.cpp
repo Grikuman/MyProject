@@ -72,7 +72,6 @@ void QuestSelectUI::Render()
 {
     // 通常のスプライトバッチを開始する
     m_spriteBatch->Begin();
-
     // 選択メニューを表示する
     m_spriteBatch->Draw(m_SelectMenu_Tex.Get(), SELECTMENU_POS);
     // クエスト選択矢印を表示する
@@ -83,10 +82,8 @@ void QuestSelectUI::Render()
     m_spriteBatch->Draw(m_stage1Icon_Tex.Get(), STAGE1ICON_POS);
     // クエストボードを表示する
     m_spriteBatch->Draw(m_questBoard_Tex[m_selectFlag].Get(), QUEST_BOARD_POS);
-
     // 通常のスプライトバッチを終了する
     m_spriteBatch->End();
-
     // ポップアップの描画をする
     PopupRender();
 }

@@ -9,8 +9,8 @@
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
-#include "Game/UI/EnemyUI/BossHPUI.h"
 
+// ‘O•ûéŒ¾
 class Player;
 
 class Mutant : public IEnemy
@@ -107,8 +107,6 @@ private:
     std::unique_ptr<MutantRushing> m_mutantRushing;
     // a‚è‚Â‚¯ó‘Ô
     std::unique_ptr<MutantSlashing> m_mutantSlashing;
-    // ‘Ì—Í‚ÌUI
-    std::unique_ptr<BossHPUI> m_bossHPUI;
     // ˆÊ’u
     DirectX::SimpleMath::Vector3 m_position;
     // ‘¬“x

@@ -148,23 +148,20 @@ void UserInterface::CreateShader()
 
 	//	頂点シェーダ作成
 	if (FAILED(device->CreateVertexShader(VSData.GetData(), VSData.GetSize(), NULL, m_vertexShader.ReleaseAndGetAddressOf())))
-	{
-		// エラー
+	{// エラー
 		MessageBox(0, L"CreateVertexShader Failed.", NULL, MB_OK);
 		return;
 	}
 
 	//	ジオメトリシェーダ作成
 	if (FAILED(device->CreateGeometryShader(GSData.GetData(), GSData.GetSize(), NULL, m_geometryShader.ReleaseAndGetAddressOf())))
-	{
-		// エラー
+	{// エラー
 		MessageBox(0, L"CreateGeometryShader Failed.", NULL, MB_OK);
 		return;
 	}
 	//	ピクセルシェーダ作成
 	if (FAILED(device->CreatePixelShader(PSData.GetData(), PSData.GetSize(), NULL, m_pixelShader.ReleaseAndGetAddressOf())))
-	{
-		// エラー
+	{// エラー
 		MessageBox(0, L"CreatePixelShader Failed.", NULL, MB_OK);
 		return;
 	}
@@ -239,6 +236,7 @@ void UserInterface::Render()
 
 	//	ピクセルシェーダにテクスチャを登録する。
 	context->PSSetShaderResources(0, 1, m_texture.GetAddressOf());
+
 
 	//	インプットレイアウトの登録
 	context->IASetInputLayout(m_inputLayout.Get());

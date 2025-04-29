@@ -90,9 +90,6 @@ void Game::Update(DX::StepTimer const& timer)
     // オーディオを更新する
     Audio::GetInstance()->Update();
 
-    // キーボードステートを取得する
-    auto keyboardState = InputDevice::GetInstance()->GetKeyboardState();
-
     // シーンを更新する
     m_sceneManager->Update(elapsedTime);
 

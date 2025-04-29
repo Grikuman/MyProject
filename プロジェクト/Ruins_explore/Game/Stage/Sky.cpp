@@ -32,9 +32,6 @@ Sky::~Sky()
 //---------------------------------------------------------
 void Sky::Initialize()
 {
-	// デバイスを取得する
-	auto device  = Graphics::GetInstance()->GetDeviceResources()->GetD3DDevice();
-
 	// 射影行列を作成する
 	m_projection = DirectX::SimpleMath::Matrix::CreatePerspectiveFieldOfView
 	(

@@ -4,7 +4,6 @@
 */
 #include "pch.h"
 #include "Framework/Collision.h"
-
 #include "Game/Player/Player.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
@@ -15,7 +14,9 @@
 // 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Collision> Collision::m_collision = nullptr;
 
+//---------------------------------------------------------
 // コリジョンクラスのインスタンスを取得
+//---------------------------------------------------------
 Collision* const Collision::GetInstance()
 {
 	if (m_collision == nullptr)
@@ -25,7 +26,9 @@ Collision* const Collision::GetInstance()
 	return m_collision.get();
 }
 
+//---------------------------------------------------------
 // コンストラクタ
+//---------------------------------------------------------
 Collision::Collision()
 	:
 	m_player{}
@@ -33,7 +36,9 @@ Collision::Collision()
 
 }
 
+//---------------------------------------------------------
 // プレイヤーと通常敵の当たり判定をまとめたもの
+//---------------------------------------------------------
 void Collision::NormalEnemy(IEnemy* enemy)
 {
 	// 攻撃判定
@@ -42,7 +47,9 @@ void Collision::NormalEnemy(IEnemy* enemy)
 	CheckPushBack(enemy);
 }
 
+//---------------------------------------------------------
 // プレイヤーとボスの当たり判定をまとめたもの
+//---------------------------------------------------------
 void Collision::BossEnemy(IEnemy* enemy)
 {
 	// 攻撃判定
@@ -51,7 +58,9 @@ void Collision::BossEnemy(IEnemy* enemy)
 	CheckPushBack(enemy);
 }
 
+//---------------------------------------------------------
 // プレイヤーから敵への攻撃判定
+//---------------------------------------------------------
 void Collision::CheckHitPlayerToEnemy(IEnemy* enemy)
 {
 	// プレイヤーが攻撃していない場合終了

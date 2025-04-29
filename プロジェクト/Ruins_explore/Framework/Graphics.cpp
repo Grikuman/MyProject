@@ -9,7 +9,9 @@
 // 初回の GetInstance() 呼び出し時にインスタンスを作成し、それ以降は同じインスタンスを返す
 std::unique_ptr<Graphics> Graphics::m_graphics = nullptr;
 
+//---------------------------------------------------------
 //グラフィックスのインスタンスを取得
+//---------------------------------------------------------
 Graphics* const Graphics::GetInstance()
 {
 	if (m_graphics == nullptr)
@@ -19,7 +21,9 @@ Graphics* const Graphics::GetInstance()
 	return m_graphics.get();
 }
 
+//---------------------------------------------------------
 // コンストラクタ
+//---------------------------------------------------------
 Graphics::Graphics()
 	:
 	m_deviceResources{},			     // デバイスリソース
@@ -41,7 +45,9 @@ Graphics::Graphics()
 	m_deviceResources = std::make_unique<DX::DeviceResources>();
 }
 
+//---------------------------------------------------------
 // 初期化する
+//---------------------------------------------------------
 void Graphics::Initialize()
 {
 	// デバイスを取得する
@@ -78,13 +84,17 @@ void Graphics::Initialize()
 	m_effectFactory = std::make_unique<DirectX::EffectFactory>(m_device);
 }
 
+//---------------------------------------------------------
 // 更新する
+//---------------------------------------------------------
 void Graphics::Update()
 {
 
 }
 
+//---------------------------------------------------------
 // 描画プリミティブを開始する
+//---------------------------------------------------------
 void Graphics::DrawPrimitiveBegin(const DirectX::SimpleMath::Matrix& view, const DirectX::SimpleMath::Matrix& projection)
 {
 	m_context->OMSetBlendState(m_commonStates->Opaque(), nullptr, 0xFFFFFFFF);
@@ -111,7 +121,9 @@ void Graphics::DrawPrimitiveBegin(const DirectX::SimpleMath::Matrix& view, const
 	m_primitiveBatch->Begin();
 }
 
+//---------------------------------------------------------
 // 描画プリミティブを終了する
+//---------------------------------------------------------
 void Graphics::DrawPrimitiveEnd()
 {
 	// プリミティブバッチを終了する

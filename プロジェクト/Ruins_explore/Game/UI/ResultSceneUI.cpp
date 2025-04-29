@@ -34,7 +34,7 @@ void ResultSceneUI::Initialize()
     // スプライトバッチを取得する
     m_spriteBatch     = Graphics::GetInstance()->GetSpriteBatch();
     // 画像を取得する
-    m_backGround_Tex = Resources::GetInstance()->GetTextureFromFile(L"Resources/Textures/リザルト背景.png");
+    m_backGround_Tex = Resources::GetInstance()->GetTexture(L"ResultBackGround");
     m_tutorialIcon_Tex = Resources::GetInstance()->GetTexture(L"TutorialIcon");
     m_stage1Icon_Tex = Resources::GetInstance()->GetTexture(L"Stage1Icon");
 }
@@ -59,7 +59,7 @@ void ResultSceneUI::Render()
 
     // 背景を表示する
     m_spriteBatch->Draw(m_backGround_Tex.Get(), BACKGROUND_POS);
-    
+
     // 通常のスプライトバッチを終了
     m_spriteBatch->End();
 

@@ -5,13 +5,19 @@
 #include "pch.h"
 #include "RenderNumber.h"
 
+// 数値の変動に対する更新速度を定義するテーブル (桁ごとに変動幅を設定する)
 const int RenderNumber::UPDATE_VALUE_LENGE[10] = 
 {
 	1, 1, 1, 12, 123, 1234, 12345, 123456, 1234321, 12345678
 };
+
+// 数字1桁あたりの標準描画サイズ
 const float RenderNumber::DEFAULT_RENDER_WIDTH = 1.0f;
 const float RenderNumber::DEFAULT_RENDER_HEIGHT = 1.0f;
 
+//---------------------------------------------------------
+// コンストラクタ
+//---------------------------------------------------------
 RenderNumber::RenderNumber()
 	: m_pDR{nullptr}
 	, m_pNumberObject{ nullptr }
@@ -29,19 +35,27 @@ RenderNumber::RenderNumber()
 
 }
 
+//---------------------------------------------------------
+// デストラクタ
+//---------------------------------------------------------
 RenderNumber::~RenderNumber()
 {
 	Finalize();
 }
-// 初期化処理
+
+//---------------------------------------------------------
+// 初期化する
+//---------------------------------------------------------
 void RenderNumber::Initialize(DX::DeviceResources* pDR)
 {
 	m_pDR = pDR;
-
-	m_pNumberObject = new tito::Particle();
+	m_pNumberObject = new Particle();
 	m_pNumberObject->Create(pDR);
 }
-// 更新処理
+
+//---------------------------------------------------------
+// 更新する
+//---------------------------------------------------------
 void RenderNumber::Update(float elapseTime)
 {
 	int64_t moveValue = m_renderValue - m_oldValue;
@@ -86,12 +100,13 @@ void RenderNumber::Update(float elapseTime)
 	}
 }
 
-// 描画処理
+//---------------------------------------------------------
+// 描画する
+//---------------------------------------------------------
 void RenderNumber::Render()
 {
 	//	値を表示するためにコピーを作成
 	uint64_t tmp = m_oldValue;
-
 	float posX = m_uvPos.x;
 	float posY = m_uvPos.y;
 
@@ -126,11 +141,9 @@ void RenderNumber::Render()
 		}
 		//	表示中の桁数を加算する
 		i++;
-
 		//	数値を確保
 		int getVal = tmp % 10;
 		tmp /= 10;
-
 		//	表示用に値を1つ減らす
 		getVal--;
 		if (getVal < 0)
@@ -144,23 +157,25 @@ void RenderNumber::Render()
 		m_pNumberObject->SetScreenUV(DirectX::SimpleMath::Vector2(posX + renderWidth * (i - 1), posY + renderHeight * (i - 1)));
 		//	描画サイズを設定する
 		m_pNumberObject->SetSize(m_uvSize);
-
 		//	描画する数値を決定する
 		m_pNumberObject->SetValue(getVal);
-
 		//	描画する
-		m_pNumberObject->Render(DirectX::SimpleMath::Matrix::Identity, DirectX::SimpleMath::Matrix::Identity);
+		m_pNumberObject->Render();
 	}
 }
 
+//---------------------------------------------------------
 // 終了処理
+//---------------------------------------------------------
 void RenderNumber::Finalize()
 {
 	delete m_pNumberObject;
 	m_pNumberObject = nullptr;
 }
 
+//---------------------------------------------------------
 // 表示する数値を設定
+//---------------------------------------------------------
 void RenderNumber::SetRenderValue(uint64_t val, bool notAnimation)
 {
 	if (val >= 0)
@@ -201,7 +216,9 @@ void RenderNumber::SetRenderValue(uint64_t val, bool notAnimation)
 	}
 }
 
+//---------------------------------------------------------
 // 表示桁数を設定
+//---------------------------------------------------------
 void RenderNumber::SetRenderColumn(int column)
 {
 	if(column > 0)
@@ -210,71 +227,48 @@ void RenderNumber::SetRenderColumn(int column)
 	}
 }
 
-// 描画方向を設定
-void RenderNumber::SetDirection(RenderNumber::RenderDirection dir)
-{
-	m_direction = dir;
-}
-
+//---------------------------------------------------------
 // 位置を設定（座標指定）
-void RenderNumber::SetPosition(float x, float y)
-{
-	SetPosition(DirectX::SimpleMath::Vector2(x, y));
-}
-// 位置を設定（座標指定）
+//---------------------------------------------------------
 void RenderNumber::SetPosition(DirectX::SimpleMath::Vector2 pos)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetPositionUV(pos.x / viewPort.Width, pos.y / viewPort.Height);
 }
 
-// UV座標を設定
-void RenderNumber::SetPositionUV(float x, float y)
-{
-	m_uvPos = DirectX::SimpleMath::Vector2(x, y);
-}
-
+//---------------------------------------------------------
 // サイズを設定（座標指定）
+//---------------------------------------------------------
 void RenderNumber::SetSize(float x, float y)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetUVSize(DirectX::SimpleMath::Vector2(x / viewPort.Width, y / viewPort.Height));
 }
+
+//---------------------------------------------------------
 // サイズを設定（座標指定）
+//---------------------------------------------------------
 void RenderNumber::SetSize(DirectX::SimpleMath::Vector2 size)
 {
 	D3D11_VIEWPORT viewPort = m_pDR->GetScreenViewport();
 	SetUVSize(DirectX::SimpleMath::Vector2(size.x / viewPort.Width, size.y / viewPort.Height));
 }
 
-// UVサイズを設定
-void RenderNumber::SetUVSize(float x, float y)
-{
-	SetUVSize(DirectX::SimpleMath::Vector2(x, y));
-}
-// UVサイズを設定
-void RenderNumber::SetUVSize(DirectX::SimpleMath::Vector2 size)
-{
-	m_uvSize = size;
-}
-
+//---------------------------------------------------------
 // 数字の色を設定（メインカラー、アウトライン風カラー）
+//---------------------------------------------------------
 void RenderNumber::SetNumberColor(DirectX::SimpleMath::Vector4 colorA, DirectX::SimpleMath::Vector4 colorB)
 {
 	m_colorA = colorA;
 	m_colorB = colorB;
-
 	m_pNumberObject->SetNumberColor(m_colorA, m_colorB);
 }
+
+//---------------------------------------------------------
 // 背景色を設定
+//---------------------------------------------------------
 void RenderNumber::SetBackColor(DirectX::SimpleMath::Vector4 color)
 {
 	m_colorC = color;
 	m_pNumberObject->SetBackColor(m_colorC);
-}
-
-// 桁数オーバー時の描画許可フラグを設定
-void RenderNumber::SetRenderOverColumn(bool flag)
-{
-	m_isOverColumn = flag;
 }

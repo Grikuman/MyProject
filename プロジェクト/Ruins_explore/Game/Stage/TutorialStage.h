@@ -41,6 +41,16 @@ private:
 	void Mission();
 
 private:
+	// BGMの音量
+	const float BGM_VOLUME = 0.05f;
+	// 移動の範囲制限
+	const float COLLISION_DISTANCE = 20.0f;
+	// ミッション1の必要移動量
+	const int MISSION_MOVE_CNT = 120;
+	// ミッション3の必要攻撃量
+	const float MISSION_ATTACK_CNT = 200;
+
+private:
 	// プレイヤー
 	std::unique_ptr<Player> m_player;
 	// チュートリアルガイドのUI
