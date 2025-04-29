@@ -142,7 +142,7 @@ void StageStart::TexturesAnimate()
 void StageStart::ProcessOnce()
 {
 	// ˆê“x‚¾‚¯ˆ—‚ð’Ê‚·
-	if (m_time >= 1.0f)
+	if (m_time == 1.0f)
 	{
 		Audio::GetInstance()->StopBGM();;
 		Audio::GetInstance()->PlaySE("QuestStartSE");

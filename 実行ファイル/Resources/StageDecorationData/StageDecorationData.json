@@ -1,5 +1,5 @@
 {
-  "Stage1_1": [
+  "TutorialStage": [
     {
       "name": "Stage1_1",
       "position": [ 0.0, 0.0, 0.0 ],
@@ -7,12 +7,12 @@
       "scale": [ 1.0, 1.0, 1.0 ]
     }
   ],
-    "Stage1_2": [
-      {
-        "name": "Stage1_1",
-        "position": [ 0.0, 0.0, 0.0 ],
-        "rotation": [ 0.0, 0.0, 0.0 ],
-        "scale": [ 1.0, 1.0, 1.0 ]
-      }
-    ] 
+  "Stage1": [
+    {
+      "name": "Stage1_1",
+      "position": [ 0.0, 0.0, 0.0 ],
+      "rotation": [ 0.0, 0.0, 0.0 ],
+      "scale": [ 1.0, 1.0, 1.0 ]
+    }
+  ]
 }
