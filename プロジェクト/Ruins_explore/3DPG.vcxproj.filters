@@ -306,6 +306,12 @@
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h">
       <Filter>Game\Enemy\Mutant\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\EventList.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\EventMessenger.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -472,6 +478,9 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.cpp">
       <Filter>Game\Enemy\Mutant\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\EventMessenger.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

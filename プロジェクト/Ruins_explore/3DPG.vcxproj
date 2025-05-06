@@ -188,6 +188,8 @@
     <ClInclude Include="Framework\Collision.h" />
     <ClInclude Include="Framework\Data.h" />
     <ClInclude Include="Framework\DeviceResources.h" />
+    <ClInclude Include="Framework\EventList.h" />
+    <ClInclude Include="Framework\EventMessenger.h" />
     <ClInclude Include="Framework\Graphics.h" />
     <ClInclude Include="Framework\InputDevice.h" />
     <ClInclude Include="Framework\Resources.h" />
@@ -258,6 +260,7 @@
     <ClCompile Include="Framework\Collision.cpp" />
     <ClCompile Include="Framework\Data.cpp" />
     <ClCompile Include="Framework\DeviceResources.cpp" />
+    <ClCompile Include="Framework\EventMessenger.cpp" />
     <ClCompile Include="Framework\Graphics.cpp" />
     <ClCompile Include="Framework\InputDevice.cpp" />
     <ClCompile Include="Framework\Resources.cpp" />
