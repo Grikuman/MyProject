@@ -24,7 +24,7 @@ void EventMessenger::Attach(const EventList event, std::function<void(void*)> fu
 
 // -------------------------------------------------
 /// <summary>
-/// ゲッターの一ベントを登録する
+/// ゲッターのイベントを登録する
 /// </summary>
 /// <param name="event">イベントの種類</param>
 /// <param name="function">登録する関数</param>

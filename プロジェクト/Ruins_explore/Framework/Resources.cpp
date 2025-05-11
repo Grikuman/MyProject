@@ -72,6 +72,10 @@ void Resources::LoadResources()
 	std::unique_ptr<DirectX::Model> Player = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Player_Run.sdkmesh", *fx,flags);
 	// ミュータント
 	std::unique_ptr<DirectX::Model> mutant = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Mutant_Walking.sdkmesh", *fx, flags);
+	// ウォーロック
+	std::unique_ptr<DirectX::Model> warrok = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Warrok_Walking.sdkmesh", *fx, flags);
+	// デーモン
+	std::unique_ptr<DirectX::Model> demon = DirectX::Model::CreateFromSDKMESH(device, L"Resources/SDKMesh/Demon_Walking.sdkmesh", *fx, flags);
 
 	// モデルを登録する
 	m_models.emplace(L"CollisionBlock", std::move(CollisionBlock));
@@ -83,6 +87,8 @@ void Resources::LoadResources()
 	m_models.emplace(L"Stage1_1", std::move(Stage1_1));
 	m_models.emplace(L"Player", std::move(Player));
 	m_models.emplace(L"Mutant", std::move(mutant));
+	m_models.emplace(L"Warrok", std::move(warrok));
+	m_models.emplace(L"Demon", std::move(demon));
 
 	//================
 	// * テクスチャ *

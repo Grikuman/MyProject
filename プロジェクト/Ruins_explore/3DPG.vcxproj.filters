@@ -104,6 +104,24 @@
     <Filter Include="Game\Enemy\Mutant\Animation">
       <UniqueIdentifier>{fb560809-8f9a-4f1c-af09-a07e1a1a3208}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Enemy\Warrok">
+      <UniqueIdentifier>{7fdcb961-2c82-46da-b82e-c865f8668e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Warrok\Animation">
+      <UniqueIdentifier>{bda264c1-13d8-4575-b3a8-39bf1c2c2e67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Warrok\States">
+      <UniqueIdentifier>{97bb486a-f0b7-4803-a18d-747ce92814e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Demon">
+      <UniqueIdentifier>{c0a7656a-37b9-4a4f-bf14-b3ac319d457f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Demon\States">
+      <UniqueIdentifier>{1d403c6d-7025-435c-bca1-4ef66c26f2a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy\Demon\Animation">
+      <UniqueIdentifier>{7836264e-0716-41b1-b587-93c43ee64322}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -312,6 +330,42 @@
     <ClInclude Include="Framework\EventMessenger.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\Warrok.h">
+      <Filter>Game\Enemy\Warrok</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\Animations\WarrokPunchingAnimation.h">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\Animations\WarrokWalkingAnimation.h">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\States\WarrokKicking.h">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\States\WarrokWalking.h">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\States\WarrokPunching.h">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Warrok\Animations\WarrokKickingAnimation.h">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Demon\States\DemonPunching.h">
+      <Filter>Game\Enemy\Demon\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Demon\States\DemonWalking.h">
+      <Filter>Game\Enemy\Demon\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Demon\Animations\DemonPunchingAnimation.h">
+      <Filter>Game\Enemy\Demon\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Demon\Animations\DemonWalkingAnimation.h">
+      <Filter>Game\Enemy\Demon\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy\Demon\Demon.h">
+      <Filter>Game\Enemy\Demon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -481,6 +535,42 @@
     </ClCompile>
     <ClCompile Include="Framework\EventMessenger.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\Warrok.cpp">
+      <Filter>Game\Enemy\Warrok</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\Animations\WarrokPunchingAnimation.cpp">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\Animations\WarrokWalkingAnimation.cpp">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\States\WarrokKicking.cpp">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\States\WarrokWalking.cpp">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\States\WarrokPunching.cpp">
+      <Filter>Game\Enemy\Warrok\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Warrok\Animations\WarrokKickingAnimation.cpp">
+      <Filter>Game\Enemy\Warrok\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Demon\States\DemonPunching.cpp">
+      <Filter>Game\Enemy\Demon\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Demon\States\DemonWalking.cpp">
+      <Filter>Game\Enemy\Demon\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Demon\Animations\DemonPunchingAnimation.cpp">
+      <Filter>Game\Enemy\Demon\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Demon\Animations\DemonWalkingAnimation.cpp">
+      <Filter>Game\Enemy\Demon\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Enemy\Demon\Demon.cpp">
+      <Filter>Game\Enemy\Demon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

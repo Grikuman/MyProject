@@ -6,8 +6,8 @@
 
 enum class EventList
 {
-	// ボスがプレイヤーに攻撃しているか
-	PlayerCanDamageBoss,
+	// カメラを揺らす
+	ShakeCamera,
 };
 
 //---------------------------------------------------------
@@ -17,12 +17,4 @@ enum class GetterList
 {
 	// プレイヤーのポインタを取得する
 	GetPlayer,
-	// ボスのポインタを取得する
-	GetBoss,
-	// 刀のポインタを取得する
-	GetSword,
-	// 金棒のポインタを取得する
-	GetCudgel,
-	// カメラのターゲットの座標を取得する
-	GetTargetPosition,
 };

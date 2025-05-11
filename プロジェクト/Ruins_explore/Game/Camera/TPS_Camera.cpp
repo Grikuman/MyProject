@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "TPS_Camera.h"
 #include "Game/Screen.h"
+#include "Framework/EventMessenger.h"
 
 //-------------------------------------------------------------------
 // コンストラクタ
@@ -24,6 +25,26 @@ NRLib::TPS_Camera::TPS_Camera(const DirectX::SimpleMath::Vector3& target)
 	CalculateEyePosition(DirectX::SimpleMath::Matrix::Identity);
 	CalculateViewMatrix();
 	CalculateProjectionMatrix();
+	// イベントを登録する
+	RegisterEvent();
+}
+
+//-------------------------------------------------------------------
+// イベントを登録する
+//-------------------------------------------------------------------
+void NRLib::TPS_Camera::RegisterEvent()
+{
+	// カメラ振動をイベント登録する
+	EventMessenger::Attach(
+		EventList::ShakeCamera, std::bind(&NRLib::TPS_Camera::ShakeCamera, this, std::placeholders::_1));
+}
+
+//-------------------------------------------------------------------
+// 初期化する
+//-------------------------------------------------------------------
+void NRLib::TPS_Camera::Initialize()
+{
+
 }
 
 //-------------------------------------------------------------------
@@ -103,12 +124,25 @@ void NRLib::TPS_Camera::CalculateEyePosition(const DirectX::SimpleMath::Matrix& 
 	m_eye.z = std::max(-30.0f, std::min(m_eye.z, 30.0f));
 }
 
+//-------------------------------------------------------------------
 // ダメージを受けたときのカメラ揺れ処理を開始
+//-------------------------------------------------------------------
 void NRLib::TPS_Camera::StartShake(float intensity, float duration)
 {
 	m_isShaking = true;
 	m_shakeIntensity = intensity;
 	m_shakeDuration = duration;
+}
+
+//-------------------------------------------------------------------
+// カメラを振動させる(イベント登録用)
+//-------------------------------------------------------------------
+void NRLib::TPS_Camera::ShakeCamera(void* args)
+{
+	// 引数をpairで分割できるようにする
+	auto pair = static_cast<std::pair<float, float>*>(args);
+	// カメラの振動処理
+	StartShake(pair->first, pair->second);
 }
 
 

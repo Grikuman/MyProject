@@ -25,10 +25,16 @@ namespace NRLib
 		TPS_Camera(const DirectX::SimpleMath::Vector3& target = DirectX::SimpleMath::Vector3::Zero);
 		// デストラクタ
 		~TPS_Camera() = default;
+		// イベントを登録する
+		void RegisterEvent();
+		// 初期化する
+		void Initialize();
 		// 更新処理
 		void Update(const DirectX::SimpleMath::Vector3& newTarget,const DirectX::SimpleMath::Matrix& rotate);
 		// ダメージを受けたときのカメラ揺れ処理を開始
 		void StartShake(float intensity, float duration);
+		// カメラを振動させる
+		void ShakeCamera(void* args);
 
 	private:
 		// ビュー行列を計算する
