@@ -39,7 +39,7 @@ MutantSlashing::~MutantSlashing()
 //---------------------------------------------------------
 void MutantSlashing::Initialize()
 {
-	// プレイヤーのポインタを取得する
+	// ミュータントのポインタを取得する
 	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
 	// プレイヤーのポインタを取得する
 	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));

@@ -21,7 +21,6 @@ public:
 	MutantSlashingAnimation();
 	// デストラクタ
 	~MutantSlashingAnimation();
-
 	// 初期化する
 	void Initialize();
 	// 更新する

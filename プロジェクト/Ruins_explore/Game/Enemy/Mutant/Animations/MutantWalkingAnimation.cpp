@@ -35,9 +35,9 @@ MutantWalkingAnimation::~MutantWalkingAnimation()
 //---------------------------------------------------------
 void MutantWalkingAnimation::Initialize()
 {
-	// プレイヤーのポインタを取得する
+	// ミュータントのポインタを取得する
 	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
-	// プレイヤーのモデルを取得する
+	// ミュータントのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Mutant");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();

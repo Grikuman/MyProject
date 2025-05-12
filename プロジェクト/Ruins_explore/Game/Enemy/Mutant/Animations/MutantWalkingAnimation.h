@@ -15,7 +15,6 @@ public:
 	MutantWalkingAnimation();
 	// デストラクタ
 	~MutantWalkingAnimation();
-
 	// 初期化する
 	void Initialize();
 	// 更新する

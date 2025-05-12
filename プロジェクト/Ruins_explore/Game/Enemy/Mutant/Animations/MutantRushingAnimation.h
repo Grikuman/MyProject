@@ -15,7 +15,6 @@ public:
 	MutantRushingAnimation();
 	// デストラクタ
 	~MutantRushingAnimation();
-
 	// 初期化する
 	void Initialize();
 	// 更新する
