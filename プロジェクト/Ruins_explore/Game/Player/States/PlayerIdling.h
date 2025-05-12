@@ -13,7 +13,7 @@ class PlayerIdling : public IPlayerState
 {
 public:
 	// コンストラクタ
-	PlayerIdling(Player* player);
+	PlayerIdling();
 	// デストラクタ
 	~PlayerIdling() override;
 	// 初期化する

@@ -12,7 +12,7 @@ class PlayerRunningAnimation
 {
 public:
 	// コンストラクタ
-	PlayerRunningAnimation(Player* player);
+	PlayerRunningAnimation();
 	// デストラクタ
 	~PlayerRunningAnimation();
 

@@ -13,7 +13,7 @@ class PlayerRunning : public IPlayerState
 {
 public:
 	// コンストラクタ
-	PlayerRunning(Player* player);
+	PlayerRunning();
 	// デストラクタ
 	~PlayerRunning() override;
 	// 初期化する

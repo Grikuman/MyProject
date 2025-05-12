@@ -6,14 +6,15 @@
 #include "MutantWalkingAnimation.h"
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Framework/Graphics.h"
-#include "Framework/Resources.h"
+#include "Framework/Resources.h"	
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantWalkingAnimation::MutantWalkingAnimation(Mutant* mutant)
+MutantWalkingAnimation::MutantWalkingAnimation()
 	:
-	m_mutant{mutant},
+	m_mutant{},
 	m_model{},
 	m_totalSecond{},
 	m_animTime{}
@@ -34,6 +35,8 @@ MutantWalkingAnimation::~MutantWalkingAnimation()
 //---------------------------------------------------------
 void MutantWalkingAnimation::Initialize()
 {
+	// プレイヤーのポインタを取得する
+	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
 	// プレイヤーのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Mutant");
 	// AnimationSDKMeshクラスを作成する

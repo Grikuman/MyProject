@@ -10,7 +10,7 @@ class PlayerEffectManager
 {
 public:
     // コンストラクタ
-    PlayerEffectManager(Player* player);
+    PlayerEffectManager();
     // デストラクタ
     ~PlayerEffectManager();
     // 初期化する

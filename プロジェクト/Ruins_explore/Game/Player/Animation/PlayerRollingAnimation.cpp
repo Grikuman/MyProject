@@ -5,10 +5,10 @@
 #include "pch.h"
 #include "PlayerRollingAnimation.h"
 #include "Game/Player/Player.h"
-
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Game/Camera/TPS_Camera.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
@@ -30,9 +30,9 @@ bool PlayerRollingAnimation::IsEndAnimation()
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerRollingAnimation::PlayerRollingAnimation(Player* player)
+PlayerRollingAnimation::PlayerRollingAnimation()
 	:
-	m_player{player},
+	m_player{},
 	m_model{},
 	m_time{},
 	m_animTime{}
@@ -53,6 +53,8 @@ PlayerRollingAnimation::~PlayerRollingAnimation()
 //---------------------------------------------------------
 void PlayerRollingAnimation::Initialize()
 {
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// プレイヤーのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Player");
 	// AnimationSDKMeshクラスを作成する

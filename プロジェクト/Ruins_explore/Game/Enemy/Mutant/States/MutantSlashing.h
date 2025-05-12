@@ -8,6 +8,7 @@
 
 // 前方宣言
 class Mutant;
+class Player;
 
 namespace NRLib
 {
@@ -18,7 +19,7 @@ class MutantSlashing : public IEnemyState
 {
 public:
 	// コンストラクタ
-	MutantSlashing(Mutant* mutant);
+	MutantSlashing();
 	// デストラクタ
 	~MutantSlashing() override;
 	// 初期化する
@@ -51,4 +52,6 @@ private:
 	Mutant* m_mutant;
 	// アニメーション
 	std::unique_ptr<MutantSlashingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

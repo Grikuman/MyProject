@@ -59,8 +59,8 @@ public:
     DirectX::BoundingBox GetBoundingBox() const override { return DirectX::BoundingBox(m_position, COLLISION_BOX_SIZE); }
 
 public:
-    // プレイヤーを取得する
-    Player* GetPlayer() { return m_player; }
+    // ミュータントのポインタを取得する
+    void* GetMutant() { return this; }
     // 歩き状態を取得する
     MutantWalking* GetMutantWalking() { return m_mutantWalking.get(); }
     // 突進状態を取得する
@@ -70,9 +70,11 @@ public:
     
 public:
     // コンストラクタ
-    Mutant(Player* player);
+    Mutant();
     // デストラクタ
     ~Mutant() override;
+    // イベントを登録する
+    void RegisterEvent();
     // 初期化する
     void Initialize(DirectX::SimpleMath::Vector3 position) override;
     // 更新する

@@ -9,13 +9,14 @@
 #include "PlayerUIManager.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerStatusUI::PlayerStatusUI(Player* player)
+PlayerStatusUI::PlayerStatusUI()
     :
-    m_player{player},
+    m_player{},
     m_spriteBatch{},
     m_healthPosition{},
     m_staminaPosition{},
@@ -42,9 +43,8 @@ PlayerStatusUI::~PlayerStatusUI()
 //---------------------------------------------------------
 void PlayerStatusUI::Initialize()
 {
-    using namespace DirectX;
-    using namespace DirectX::SimpleMath;
-
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // スプライトバッチを取得する
     m_spriteBatch = Graphics::GetInstance()->GetSpriteBatch();
     // 画像を読み込む
@@ -57,12 +57,15 @@ void PlayerStatusUI::Initialize()
     // 体力表示の位置を設定する
     for (int i = 0; i < m_player->GetMAXHP(); i++)
     {
-        m_healthPosition[i] = Vector2(HEALTH_SHIFT_LENGTH * i + HEALTH_POS_ORIGIN.x, HEALTH_POS_ORIGIN.y);
+        m_healthPosition[i] =
+            DirectX::SimpleMath::Vector2(
+                HEALTH_SHIFT_LENGTH * i + HEALTH_POS_ORIGIN.x, HEALTH_POS_ORIGIN.y);
     }
     // スタミナ表示の位置を設定する
     for (int i = 0; i < m_player->GetMAXSTAMINA(); i++)
     {
-        m_staminaPosition[i] = Vector2(STAMINA_SHIFT_LENGTH * i + STAMINA_POS_ORIGIN.x, STAMINA_POS_ORIGIN.y);
+        m_staminaPosition[i] = DirectX::SimpleMath::Vector2(
+                STAMINA_SHIFT_LENGTH * i + STAMINA_POS_ORIGIN.x, STAMINA_POS_ORIGIN.y);
     }
 }
 

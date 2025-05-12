@@ -11,7 +11,7 @@ class PlayerStatusUI
 {
 public:
     // コンストラクタ
-    PlayerStatusUI(Player* player);
+    PlayerStatusUI();
     // デストラクタ
     ~PlayerStatusUI();
     // 初期化する

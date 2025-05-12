@@ -13,7 +13,7 @@ class PlayerRolling : public IPlayerState
 {
 public:
 	// コンストラクタ
-	PlayerRolling(Player* player);
+	PlayerRolling();
 	// デストラクタ
 	~PlayerRolling() override;
 	// 初期化する

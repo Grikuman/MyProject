@@ -16,7 +16,7 @@ public:
 
 public:
 	// コンストラクタ
-	PlayerAttackingNormalAnimation(Player* player);
+	PlayerAttackingNormalAnimation();
 	// デストラクタ
 	~PlayerAttackingNormalAnimation();
 

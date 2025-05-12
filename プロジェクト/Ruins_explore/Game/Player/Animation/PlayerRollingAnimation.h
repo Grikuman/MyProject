@@ -16,7 +16,7 @@ public:
 
 public:
 	// コンストラクタ
-	PlayerRollingAnimation(Player* player);
+	PlayerRollingAnimation();
 	// デストラクタ
 	~PlayerRollingAnimation();
 

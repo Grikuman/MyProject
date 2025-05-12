@@ -10,6 +10,7 @@
 #include "Framework/Resources.h"
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -31,19 +32,19 @@ Player::Player()
 	m_direction{ DirectX::SimpleMath::Vector3::Forward }
 {
 	// 待機状態を作成する
-	m_playerIdling = std::make_unique<PlayerIdling>(this);
+	m_playerIdling = std::make_unique<PlayerIdling>();
 	// 走り状態を作成する
-	m_playerRunning = std::make_unique<PlayerRunning>(this); 
+	m_playerRunning = std::make_unique<PlayerRunning>();
 	// 回避状態を作成する
-	m_playerRolling = std::make_unique<PlayerRolling>(this); 
+	m_playerRolling = std::make_unique<PlayerRolling>();
 	// 通常攻撃を作成する
-	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>(this); 
+	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>();
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 	// プレイヤーのUI管理クラスを作成する
-	m_playerUIManager = std::make_unique<PlayerUIManager>(this);
+	m_playerUIManager = std::make_unique<PlayerUIManager>();
 	// プレイヤーのエフェクト管理クラスを作成する
-	m_playerEffectManager = std::make_unique<PlayerEffectManager>(this);
+	m_playerEffectManager = std::make_unique<PlayerEffectManager>();
 }
 
 //---------------------------------------------------------
@@ -55,10 +56,23 @@ Player::~Player()
 }
 
 //---------------------------------------------------------
+// イベントを登録する
+//---------------------------------------------------------
+void Player::RegisterEvent()
+{
+	// プレイヤーにダメージを与える
+	EventMessenger::Attach(EventList::DamageToPlayer, std::bind(&Player::Damage, this, std::placeholders::_1));
+	// プレイヤーのポインタを取得する
+	EventMessenger::AttachGetter(GetterList::GetPlayer, std::bind(&Player::GetPlayer, this));
+}
+
+//---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
 void Player::Initialize()
 {
+	// イベントを登録する
+	RegisterEvent();
 	// 待機状態を初期化する
 	m_playerIdling->Initialize();
 	// 待機状態を初期化する
@@ -123,6 +137,16 @@ void Player::Finalize()
 {
 	m_playerUIManager->Finalize();
 	m_playerEffectManager->Finalize();
+}
+
+//---------------------------------------------------------
+// プレイヤーにダメージを与える
+//---------------------------------------------------------
+void Player::Damage(void* damage)
+{
+	int Damage = *static_cast<int*>(damage);
+	// ダメージを与える
+	m_hp -= Damage;
 }
 
 //---------------------------------------------------------

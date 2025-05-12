@@ -8,6 +8,8 @@ enum class EventList
 {
 	// カメラを揺らす
 	ShakeCamera,
+	// プレイヤーにダメージを与える
+	DamageToPlayer,
 };
 
 //---------------------------------------------------------
@@ -17,4 +19,6 @@ enum class GetterList
 {
 	// プレイヤーのポインタを取得する
 	GetPlayer,
+	// ミュータントのポインタを取得する
+	GetMutant,
 };

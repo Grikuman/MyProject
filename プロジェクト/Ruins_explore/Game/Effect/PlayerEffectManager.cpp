@@ -6,13 +6,14 @@
 #include "pch.h"
 #include "Game/Effect/PlayerEffectManager.h"
 #include "Game/Player/Player.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerEffectManager::PlayerEffectManager(Player* player)
+PlayerEffectManager::PlayerEffectManager()
     :
-    m_player{player},
+    m_player{},
     m_invincibleEffect{}
 {
     
@@ -31,6 +32,8 @@ PlayerEffectManager::~PlayerEffectManager()
 //---------------------------------------------------------
 void PlayerEffectManager::Initialize()
 {
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // 無敵エフェクトを作成する
     m_invincibleEffect = std::make_unique<InvincibleEffect>(m_player);
     // 無敵エフェクトを初期化する

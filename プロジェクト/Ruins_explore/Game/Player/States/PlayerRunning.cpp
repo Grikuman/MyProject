@@ -11,16 +11,17 @@
 #include "Framework/InputDevice.h"
 #include "Framework/Audio.h"
 #include "Game/Camera/TPS_Camera.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerRunning::PlayerRunning(Player* player)
+PlayerRunning::PlayerRunning()
 	:
-    m_player{player}
+    m_player{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<PlayerRunningAnimation>(player);
+    m_animation = std::make_unique<PlayerRunningAnimation>();
 }
 
 //---------------------------------------------------------
@@ -36,6 +37,8 @@ PlayerRunning::~PlayerRunning()
 //---------------------------------------------------------
 void PlayerRunning::Initialize()
 {
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }

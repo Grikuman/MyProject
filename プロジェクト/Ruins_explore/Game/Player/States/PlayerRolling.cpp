@@ -5,20 +5,20 @@
 #include "pch.h"
 #include "PlayerRolling.h"
 #include "Game/Player/Player.h"
-
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerRolling::PlayerRolling(Player* player)
+PlayerRolling::PlayerRolling()
 	:
-    m_player{player}
+    m_player{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<PlayerRollingAnimation>(player);
+    m_animation = std::make_unique<PlayerRollingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -34,6 +34,8 @@ PlayerRolling::~PlayerRolling()
 //---------------------------------------------------------
 void PlayerRolling::Initialize()
 {
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }

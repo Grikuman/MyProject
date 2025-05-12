@@ -12,7 +12,7 @@ class PlayerIdlingAnimation
 {
 public:
 	// コンストラクタ
-	PlayerIdlingAnimation(Player* player);
+	PlayerIdlingAnimation();
 	// デストラクタ
 	~PlayerIdlingAnimation();
 

@@ -127,7 +127,6 @@ void WarrokPunching::Punching()
 		m_warrok->GetPlayer()->SetHP(m_warrok->GetPlayer()->GetHP() - 1);
 		m_warrok->GetPlayer()->SetInvincible(true);
 		Audio::GetInstance()->PlaySE("EnemyAttackSE");
-		//m_warrok->GetPlayer()->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
 		// ƒJƒƒ‰‚ğU“®‚³‚¹‚é
 		std::pair<float, float> shakeparams { CAMERA_INTENSITY, CAMERA_DURATION };
 		EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);

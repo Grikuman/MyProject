@@ -44,7 +44,8 @@ void NRLib::TPS_Camera::RegisterEvent()
 //-------------------------------------------------------------------
 void NRLib::TPS_Camera::Initialize()
 {
-
+	// ƒCƒxƒ“ƒg‚ð“o˜^‚·‚é
+	RegisterEvent();
 }
 
 //-------------------------------------------------------------------
@@ -144,6 +145,4 @@ void NRLib::TPS_Camera::ShakeCamera(void* args)
 	// ƒJƒƒ‰‚ÌU“®ˆ—
 	StartShake(pair->first, pair->second);
 }
-
-
 

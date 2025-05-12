@@ -10,16 +10,17 @@
 #include "Framework/Resources.h"
 #include "Framework/InputDevice.h"
 #include "Framework/Audio.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerIdling::PlayerIdling(Player* player)
+PlayerIdling::PlayerIdling()
 	:
-    m_player{player}
+    m_player{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<PlayerIdlingAnimation>(player);
+    m_animation = std::make_unique<PlayerIdlingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -35,6 +36,8 @@ PlayerIdling::~PlayerIdling()
 //---------------------------------------------------------
 void PlayerIdling::Initialize()
 {
+    // プレイヤーを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }

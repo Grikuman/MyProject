@@ -12,7 +12,7 @@ class MutantRushingAnimation
 {
 public:
 	// コンストラクタ
-	MutantRushingAnimation(Mutant* mutant);
+	MutantRushingAnimation();
 	// デストラクタ
 	~MutantRushingAnimation();
 
@@ -42,7 +42,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// ミュータントのポインタ
 	Mutant* m_mutant;
 	// モデル
 	DirectX::Model* m_model;

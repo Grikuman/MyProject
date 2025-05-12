@@ -12,7 +12,7 @@ class PlayerUIManager
 {
 public:
 	// コンストラクタ
-	PlayerUIManager(Player* player);
+	PlayerUIManager();
 	// デストラクタ
 	~PlayerUIManager();
 	// 初期化する

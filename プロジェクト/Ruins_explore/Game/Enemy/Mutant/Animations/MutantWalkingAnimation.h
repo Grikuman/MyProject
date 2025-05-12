@@ -12,7 +12,7 @@ class MutantWalkingAnimation
 {
 public:
 	// コンストラクタ
-	MutantWalkingAnimation(Mutant* mutant);
+	MutantWalkingAnimation();
 	// デストラクタ
 	~MutantWalkingAnimation();
 
@@ -42,7 +42,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// ミュータントのポインタ
 	Mutant* m_mutant;
 	// モデル
 	DirectX::Model* m_model;

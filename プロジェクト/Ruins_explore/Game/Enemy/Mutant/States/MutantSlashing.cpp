@@ -12,16 +12,18 @@
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantSlashing::MutantSlashing(Mutant* mutant)
+MutantSlashing::MutantSlashing()
 	:
-    m_mutant(mutant)
+    m_mutant{},
+	m_player{}
 {
 	// アニメーションを作成する
-	m_animation = std::make_unique<MutantSlashingAnimation>(mutant);
+	m_animation = std::make_unique<MutantSlashingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -37,6 +39,10 @@ MutantSlashing::~MutantSlashing()
 //---------------------------------------------------------
 void MutantSlashing::Initialize()
 {
+	// プレイヤーのポインタを取得する
+	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// アニメーションを初期化する
 	m_animation->Initialize();
 }
@@ -85,13 +91,13 @@ void MutantSlashing::Slashing()
 		return;
 	}
     // プレイヤーが無敵でなければ通過
-	if (m_mutant->GetPlayer()->GetInvincible())
+	if (m_player->GetInvincible())
 	{
 		return;
 	}
 
 	// プレイヤーの位置を取得する
-	Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
+	Vector3 playerPos = m_player->GetPosition();
 	// ミュータントの位置を取得する
 	Vector3 mutantPos = m_mutant->GetPosition();
 	// プレイヤーとミュータントの距離を計算する
@@ -111,7 +117,7 @@ void MutantSlashing::Slashing()
 	Vector3 mutantForward = -rotMatrix.Forward(); // Z-方向が「前」
 
 	// mutantからプレイヤーへのベクトル
-	Vector3 toPlayer = m_mutant->GetPlayer()->GetPosition() - m_mutant->GetPosition();
+	Vector3 toPlayer = m_player->GetPosition() - m_mutant->GetPosition();
 	toPlayer.Normalize();
 
 	// 正面方向とプレイヤーへのベクトルの内積
@@ -123,10 +129,14 @@ void MutantSlashing::Slashing()
 	// 前方約60度以内
 	if (dot > ATTACK_DOT)
 	{
-		m_mutant->GetPlayer()->SetHP(m_mutant->GetPlayer()->GetHP() - 1);
-		m_mutant->GetPlayer()->SetInvincible(true);
+		// ダメージを与える
+		m_player->SetHP(m_player->GetHP() - 1);
+		m_player->SetInvincible(true);
+		// 効果音
 		Audio::GetInstance()->PlaySE("EnemyAttackSE");
-		m_mutant->GetPlayer()->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
+		// カメラを振動させる
+		std::pair<float, float> shakeparams = { CAMERA_INTENSITY,CAMERA_DURATION };
+		EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);
 	}
 }
 

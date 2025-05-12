@@ -11,13 +11,14 @@
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Mutant::Mutant(Player* player)
+Mutant::Mutant()
     :
-    m_player{player},
+    m_player{},
     m_currentState{},
     m_mutantWalking{},
     m_mutantRushing{},
@@ -30,11 +31,11 @@ Mutant::Mutant(Player* player)
     m_isAlive(true)
 {
     // 歩き状態を作成する
-    m_mutantWalking = std::make_unique<MutantWalking>(this);
+    m_mutantWalking = std::make_unique<MutantWalking>();
     // 突進状態を作成する
-    m_mutantRushing = std::make_unique<MutantRushing>(this);
+    m_mutantRushing = std::make_unique<MutantRushing>();
     // 斬りつけ状態を作成する
-    m_mutantSlashing = std::make_unique<MutantSlashing>(this);
+    m_mutantSlashing = std::make_unique<MutantSlashing>();
 }
 
 //---------------------------------------------------------
@@ -46,10 +47,23 @@ Mutant::~Mutant()
 }
 
 //---------------------------------------------------------
+// イベントを登録する
+//---------------------------------------------------------
+void Mutant::RegisterEvent()
+{
+    // ミュータントのポインタを取得する
+    EventMessenger::AttachGetter(GetterList::GetMutant, std::bind(&Mutant::GetMutant, this));
+}
+
+//---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
 void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
 {
+    // イベントを登録する
+    RegisterEvent();
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // 位置を設定する
     m_position = position;
     // 歩き状態を初期化する

@@ -5,13 +5,14 @@
 #include "pch.h"
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Player/Player.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerUIManager::PlayerUIManager(Player* player)
+PlayerUIManager::PlayerUIManager()
 	:
-	m_player{player},
+	m_player{},
 	m_playerStatusUI{}
 {
 
@@ -30,8 +31,10 @@ PlayerUIManager::~PlayerUIManager()
 //---------------------------------------------------------
 void PlayerUIManager::Initialize()
 {
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// プレイヤーのHPUIを作成する
-	m_playerStatusUI = std::make_unique<PlayerStatusUI>(m_player);
+	m_playerStatusUI = std::make_unique<PlayerStatusUI>();
 	m_playerStatusUI->Initialize();
 }
 

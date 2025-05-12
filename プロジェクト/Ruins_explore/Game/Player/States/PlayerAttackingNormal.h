@@ -17,7 +17,7 @@ public:
 
 public:
 	// コンストラクタ
-	PlayerAttackingNormal(Player* player);
+	PlayerAttackingNormal();
 	// デストラクタ
 	~PlayerAttackingNormal() override;
 	// 初期化する

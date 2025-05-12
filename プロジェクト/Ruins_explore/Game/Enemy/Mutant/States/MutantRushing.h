@@ -7,13 +7,14 @@
 #include "Game/Enemy/Mutant/Animations/MutantRushingAnimation.h"
 
 // 前方宣言
-class Mutant;;
+class Mutant;
+class Player;
 
 class MutantRushing : public IEnemyState
 {
 public:
 	// コンストラクタ
-	MutantRushing(Mutant* mutant);
+	MutantRushing();
 	// デストラクタ
 	~MutantRushing() override;
 	// 初期化する
@@ -43,4 +44,6 @@ private:
 	Mutant* m_mutant;
 	// アニメーション
 	std::unique_ptr<MutantRushingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

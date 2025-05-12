@@ -11,16 +11,18 @@
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantRushing::MutantRushing(Mutant* mutant)
+MutantRushing::MutantRushing()
 	:
-    m_mutant(mutant)
+    m_mutant{},
+    m_player{}
 {
 	// アニメーションを作成する
-    m_animation = std::make_unique<MutantRushingAnimation>(mutant);
+    m_animation = std::make_unique<MutantRushingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -36,6 +38,10 @@ MutantRushing::~MutantRushing()
 //---------------------------------------------------------
 void MutantRushing::Initialize()
 {
+    // ミュータントのポインタを取得する
+    m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// アニメーションを初期化する
     m_animation->Initialize();
 }
@@ -79,7 +85,7 @@ void MutantRushing::Rushing()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_player->GetPosition();
     // ミュータントの位置を取得する
     Vector3 mutantPos = m_mutant->GetPosition();
     // プレイヤーへの方向を計算する
@@ -88,7 +94,6 @@ void MutantRushing::Rushing()
     // ミュータントの回転をプレイヤーに向ける
     float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
     m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
-
     // 速度を設定する
     m_mutant->AddVelocity(directionToPlayer);
     m_mutant->ApplyVelocity(APPLY_VELOCITY);
@@ -104,7 +109,7 @@ void MutantRushing::TransitionToWalking()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition(); 
+    Vector3 playerPos = m_player->GetPosition(); 
     // ミュータントの現在位置を取得する
     Vector3 mutantPos = m_mutant->GetPosition(); 
     // プレイヤーとミュータントの距離を計算する

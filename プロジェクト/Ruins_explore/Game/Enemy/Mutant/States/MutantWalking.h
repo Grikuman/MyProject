@@ -8,12 +8,13 @@
 
 // 前方宣言
 class Mutant;
+class Player;
 
 class MutantWalking : public IEnemyState
 {
 public:
 	// コンストラクタ
-	MutantWalking(Mutant* mutant);
+	MutantWalking();
 	// デストラクタ
 	~MutantWalking() override; 
 	// 初期化する
@@ -42,8 +43,10 @@ private:
 	const float SLASHING_DISTANCE = 5.0f;
 
 private:
-	// ミュータント
+	// ミュータントのポインタ
 	Mutant* m_mutant;
 	// アニメーション
 	std::unique_ptr<MutantWalkingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

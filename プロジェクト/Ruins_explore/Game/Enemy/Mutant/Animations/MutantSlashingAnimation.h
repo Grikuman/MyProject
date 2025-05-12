@@ -18,7 +18,7 @@ public:
 
 public:
 	// コンストラクタ
-	MutantSlashingAnimation(Mutant* mutant);
+	MutantSlashingAnimation();
 	// デストラクタ
 	~MutantSlashingAnimation();
 
@@ -52,7 +52,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// ミュータントのポインタ
 	Mutant* m_mutant;
 	// モデル
 	DirectX::Model* m_model;

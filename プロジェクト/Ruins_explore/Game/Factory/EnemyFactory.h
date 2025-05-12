@@ -17,7 +17,7 @@ public:
         // “Gƒ^ƒCƒv‚ð‚±‚±‚É’Ç‰Á
         if (type == "Mutant")
         {
-            return std::make_unique<Mutant>(player);
+            return std::make_unique<Mutant>();
         }
         else if (type == "Warrok")
         {

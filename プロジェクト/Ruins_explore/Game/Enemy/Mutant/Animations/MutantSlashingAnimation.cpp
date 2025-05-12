@@ -7,6 +7,7 @@
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
@@ -46,14 +47,14 @@ bool MutantSlashingAnimation::IsAbleToDealDamage()
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantSlashingAnimation::MutantSlashingAnimation(Mutant* mutant)
+MutantSlashingAnimation::MutantSlashingAnimation()
 	:
-	m_mutant{mutant},
+	m_mutant{},
 	m_model{},
 	m_time{},
 	m_animTime{}
 {
-	
+
 }
 
 //---------------------------------------------------------
@@ -69,7 +70,9 @@ MutantSlashingAnimation::~MutantSlashingAnimation()
 //---------------------------------------------------------
 void MutantSlashingAnimation::Initialize()
 {
-	// プレイヤーのモデルを取得する
+	// ミュータントのポインタを取得する
+	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
+	// ミュータントのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Mutant");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();

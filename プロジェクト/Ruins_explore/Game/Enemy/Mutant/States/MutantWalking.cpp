@@ -9,16 +9,18 @@
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantWalking::MutantWalking(Mutant* mutant)
+MutantWalking::MutantWalking()
 	:
-    m_mutant(mutant)
+    m_mutant{},
+    m_player{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<MutantWalkingAnimation>(mutant);
+    m_animation = std::make_unique<MutantWalkingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -34,6 +36,10 @@ MutantWalking::~MutantWalking()
 //---------------------------------------------------------
 void MutantWalking::Initialize()
 {
+    // プレイヤーのポインタを取得する
+    m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }
@@ -79,7 +85,7 @@ void MutantWalking::Walking()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_player->GetPosition();
     // ミュータントの位置を取得する
     Vector3 mutantPos = m_mutant->GetPosition();
 
@@ -105,7 +111,7 @@ void MutantWalking::TransitionToRushing()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_player->GetPosition();
     // ミュータントの現在位置を取得する
     Vector3 mutantPos = m_mutant->GetPosition();
     // プレイヤーとミュータントの距離を計算する
@@ -127,7 +133,7 @@ void MutantWalking::TransitionToSlashing()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPosition = m_mutant->GetPlayer()->GetPosition();
+    Vector3 playerPosition = m_player->GetPosition();
     // ミュータントの現在位置を取得する
     Vector3 tunomaruPosition = m_mutant->GetPosition();
     // プレイヤーとの距離を計算する

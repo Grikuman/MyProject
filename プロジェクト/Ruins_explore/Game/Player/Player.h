@@ -38,8 +38,12 @@ public:
 	void SetDirection(const DirectX::SimpleMath::Vector3 direction) { m_direction = direction; }
 	// ステートを変更する
 	void ChangeState(IPlayerState* newState) { m_currentState = newState; }
+	// プレイヤーにダメージを与える
+	void Damage(void* damage);
 
 public:
+	// プレイヤーのポインタを取得する
+	void* GetPlayer() { return this; }
 	// 位置を取得する
 	DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
 	// 速度を取得する
@@ -82,6 +86,8 @@ public:
 	Player();
 	// デストラクタ
 	~Player();
+	// イベントを登録する
+	void RegisterEvent();
 	// 初期化する
 	void Initialize();
 	// 更新する

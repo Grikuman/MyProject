@@ -7,13 +7,14 @@
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantRushingAnimation::MutantRushingAnimation(Mutant* mutant)
+MutantRushingAnimation::MutantRushingAnimation()
 	:
-	m_mutant{mutant},
+	m_mutant{},
 	m_model{},
 	m_time{},
 	m_animTime{}
@@ -34,6 +35,8 @@ MutantRushingAnimation::~MutantRushingAnimation()
 //---------------------------------------------------------
 void MutantRushingAnimation::Initialize()
 {
+	// ミュータントのポインタを取得する
+	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
 	// プレイヤーのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Mutant");
 	// AnimationSDKMeshクラスを作成する
