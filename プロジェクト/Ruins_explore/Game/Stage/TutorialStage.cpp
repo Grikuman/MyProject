@@ -28,7 +28,7 @@ TutorialStage::TutorialStage(std::string stageName)
 	// チュートリアルガイドを作成する
 	m_tutorialGuideUI = std::make_unique<TutorialGuideUI>();
 	// チュートリアル用の敵を作成する
-	m_practiceEnemy = std::make_unique<PracticeEnemy>(m_player.get());
+	m_practiceEnemy = std::make_unique<PracticeEnemy>();
 }
 
 //---------------------------------------------------------

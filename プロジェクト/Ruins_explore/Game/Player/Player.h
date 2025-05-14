@@ -42,8 +42,6 @@ public:
 	void Damage(void* damage);
 
 public:
-	// プレイヤーのポインタを取得する
-	void* GetPlayer() { return this; }
 	// 位置を取得する
 	DirectX::SimpleMath::Vector3 GetPosition() const { return m_position; }
 	// 速度を取得する
@@ -70,6 +68,8 @@ public:
 	DirectX::BoundingBox GetBoundingBox() { return DirectX::BoundingBox(m_position, COLLISION_BOX_SIZE); }
 
 public:
+	// プレイヤーのポインタを取得する
+	void* GetPlayer() { return this; }
 	// プレイヤーの待機状態を取得する
 	PlayerIdling* GetPlayerIdling() { return m_playerIdling.get(); }
 	// プレイヤーの走り状態を取得する

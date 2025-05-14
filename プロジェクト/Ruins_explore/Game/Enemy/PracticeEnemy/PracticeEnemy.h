@@ -4,6 +4,7 @@
 */
 #pragma once
 
+// 前方宣言
 class Player;
 
 class PracticeEnemy
@@ -24,7 +25,7 @@ public:
 
 public:
     // コンストラクタ
-    PracticeEnemy(Player* player);
+    PracticeEnemy();
     // デストラクタ
     ~PracticeEnemy();
     // 初期化する

@@ -8,13 +8,14 @@
 #include "Game/Player/Player.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PracticeEnemy::PracticeEnemy(Player* player)
+PracticeEnemy::PracticeEnemy()
     : 
-    m_player{player},
+    m_player{},
     m_model{},
     m_model_Hit{},
     m_position{},
@@ -37,6 +38,8 @@ PracticeEnemy::~PracticeEnemy()
 //---------------------------------------------------------
 void PracticeEnemy::Initialize(DirectX::SimpleMath::Vector3 position)
 {
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // 位置を設定する
     m_position = position;
     // 攻撃を受けた回数を初期化
