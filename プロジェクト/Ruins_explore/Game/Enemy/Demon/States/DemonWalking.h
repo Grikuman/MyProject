@@ -8,12 +8,13 @@
 
 // 前方宣言
 class Demon;
+class Player;
 
 class DemonWalking : public IEnemyState
 {
 public:
 	// コンストラクタ
-	DemonWalking(Demon* demon);
+	DemonWalking();
 	// デストラクタ
 	~DemonWalking() override; 
 	// 初期化する
@@ -38,8 +39,10 @@ private:
 	const float PUNCHING_DISTANCE = 5.0f;
 
 private:
-	// ウォーロック
+	// デーモンのポインタ
 	Demon* m_demon;
 	// アニメーション
 	std::unique_ptr<DemonWalkingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

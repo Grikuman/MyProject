@@ -8,12 +8,13 @@
 
 // 前方宣言
 class Warrok;
+class Player;
 
 class WarrokWalking : public IEnemyState
 {
 public:
 	// コンストラクタ
-	WarrokWalking(Warrok* warrok);
+	WarrokWalking();
 	// デストラクタ
 	~WarrokWalking() override; 
 	// 初期化する
@@ -38,8 +39,10 @@ private:
 	const float PUNCHING_DISTANCE = 5.0f;
 
 private:
-	// ウォーロック
+	// ウォーロックのポインタ
 	Warrok* m_warrok;
 	// アニメーション
 	std::unique_ptr<WarrokWalkingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

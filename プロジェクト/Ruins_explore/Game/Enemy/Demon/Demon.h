@@ -58,8 +58,8 @@ public:
     DirectX::BoundingBox GetBoundingBox() const override { return DirectX::BoundingBox(m_position, COLLISION_BOX_SIZE); }
 
 public:
-    // プレイヤーを取得する
-    Player* GetPlayer() { return m_player; }
+    // デーモンのポインタを取得する
+    void* GetDemon() { return this; }
     // 歩き状態を取得する
     DemonWalking* GetDemonWalking() { return m_DemonWalking.get(); }
     // 突進状態を取得する
@@ -67,9 +67,11 @@ public:
     
 public:
     // コンストラクタ
-    Demon(Player* player);
+    Demon();
     // デストラクタ
     ~Demon() override;
+    // イベントを登録する
+    void RegisterEvent();
     // 初期化する
     void Initialize(DirectX::SimpleMath::Vector3 position) override;
     // 更新する
@@ -94,7 +96,7 @@ private:
     const DirectX::SimpleMath::Vector3 COLLISION_BOX_SIZE = { 1.0f,1.0f,1.0f };
 
 private:
-    // プレイヤー
+    // プレイヤーのポインタ
     Player* m_player;
     // 現在の状態
     IEnemyState* m_currentState;

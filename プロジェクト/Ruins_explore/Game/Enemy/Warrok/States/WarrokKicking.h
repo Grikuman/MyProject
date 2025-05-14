@@ -1,13 +1,13 @@
 /*
 	ファイル名：WarrokKicking.h
-	　　　概要：ミュータントの斬りつけ状態を管理するクラス
+	　　　概要：ウォーロックのキック状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Enemy/Warrok/Animations/WarrokKickingAnimation.h"
-
 // 前方宣言
 class Warrok;
+class Player;
 
 namespace NRLib
 {
@@ -18,7 +18,7 @@ class WarrokKicking : public IEnemyState
 {
 public:
 	// コンストラクタ
-	WarrokKicking(Warrok* warrok);
+	WarrokKicking();
 	// デストラクタ
 	~WarrokKicking() override;
 	// 初期化する
@@ -47,8 +47,10 @@ private:
 	const float CAMERA_DURATION = 0.4f;
 
 private:
-	// ミュータント
+	// ウォーロックのポインタ
 	Warrok* m_warrok;
 	// アニメーション
 	std::unique_ptr<WarrokKickingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

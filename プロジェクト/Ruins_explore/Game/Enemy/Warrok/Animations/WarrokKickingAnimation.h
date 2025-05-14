@@ -18,7 +18,7 @@ public:
 
 public:
 	// コンストラクタ
-	WarrokKickingAnimation(Warrok* warrok);
+	WarrokKickingAnimation();
 	// デストラクタ
 	~WarrokKickingAnimation();
 
@@ -52,7 +52,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// ウォーロック
 	Warrok* m_warrok;
 	// モデル
 	DirectX::Model* m_model;

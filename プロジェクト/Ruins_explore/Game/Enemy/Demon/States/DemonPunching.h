@@ -1,6 +1,6 @@
 /*
 	ファイル名：DemonPunching.h
-	　　　概要：ウォーロックのパンチ状態を管理するクラス
+	　　　概要：デーモンのパンチ状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
@@ -8,6 +8,7 @@
 
 // 前方宣言
 class Demon;
+class Player;
 
 namespace NRLib
 {
@@ -18,7 +19,7 @@ class DemonPunching : public IEnemyState
 {
 public:
 	// コンストラクタ
-	DemonPunching(Demon* demon);
+	DemonPunching();
 	// デストラクタ
 	~DemonPunching() override;
 	// 初期化する
@@ -47,8 +48,10 @@ private:
 	const float CAMERA_DURATION = 0.4f;
 
 private:
-	// ミュータント
+	// デーモンのポインタ
 	Demon* m_demon;
 	// アニメーション
 	std::unique_ptr<DemonPunchingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

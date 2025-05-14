@@ -11,13 +11,14 @@
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Demon::Demon(Player* player)
+Demon::Demon()
     :
-    m_player{player},
+    m_player{},
     m_currentState{},
     m_DemonWalking{},
     m_DemonPunching{},
@@ -29,9 +30,9 @@ Demon::Demon(Player* player)
     m_isAlive(true)
 {
     // 歩き状態を作成する
-    m_DemonWalking = std::make_unique<DemonWalking>(this);
+    m_DemonWalking = std::make_unique<DemonWalking>();
     // 突進状態を作成する
-    m_DemonPunching = std::make_unique<DemonPunching>(this);
+    m_DemonPunching = std::make_unique<DemonPunching>();
 }
 
 //---------------------------------------------------------
@@ -43,10 +44,23 @@ Demon::~Demon()
 }
 
 //---------------------------------------------------------
+// イベントを登録する
+//---------------------------------------------------------
+void Demon::RegisterEvent()
+{
+    // デーモンのポインタを取得する
+    EventMessenger::AttachGetter(GetterList::GetDemon, std::bind(&Demon::GetDemon, this));
+}
+
+//---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
 void Demon::Initialize(DirectX::SimpleMath::Vector3 position)
 {
+    // イベントを登録する
+    RegisterEvent();
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // 位置を設定する
     m_position = position;
     // 歩き状態を初期化する

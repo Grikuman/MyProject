@@ -12,7 +12,7 @@ class DemonWalkingAnimation
 {
 public:
 	// コンストラクタ
-	DemonWalkingAnimation(Demon* demon);
+	DemonWalkingAnimation();
 	// デストラクタ
 	~DemonWalkingAnimation();
 
@@ -42,7 +42,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// デーモンのポインタ
 	Demon* m_demon;
 	// モデル
 	DirectX::Model* m_model;

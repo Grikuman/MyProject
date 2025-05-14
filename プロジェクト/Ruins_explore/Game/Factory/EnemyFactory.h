@@ -12,7 +12,7 @@ class EnemyFactory
 {
 public:
     // 敵を生成する
-    static std::unique_ptr<IEnemy> CreateEnemy(const std::string& type, Player* player) 
+    static std::unique_ptr<IEnemy> CreateEnemy(const std::string& type) 
     {
         // 敵タイプをここに追加
         if (type == "Mutant")
@@ -21,11 +21,11 @@ public:
         }
         else if (type == "Warrok")
         {
-            return std::make_unique<Warrok>(player);
+            return std::make_unique<Warrok>();
         }
         else if (type == "Demon")
         {
-            return std::make_unique<Demon>(player);
+            return std::make_unique<Demon>();
         }
         
         return nullptr;  // 敵タイプがいない場合

@@ -9,16 +9,17 @@
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-WarrokWalking::WarrokWalking(Warrok* warrok)
+WarrokWalking::WarrokWalking()
 	:
-    m_warrok(warrok)
+    m_warrok{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<WarrokWalkingAnimation>(warrok);
+    m_animation = std::make_unique<WarrokWalkingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -34,6 +35,10 @@ WarrokWalking::~WarrokWalking()
 //---------------------------------------------------------
 void WarrokWalking::Initialize()
 {
+    // ウォーロックのポインタを取得する
+    m_warrok = static_cast<Warrok*>(EventMessenger::ExecuteGetter(GetterList::GetWarrok));
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }
@@ -77,17 +82,16 @@ void WarrokWalking::Walking()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_warrok->GetPlayer()->GetPosition();
-    // ミュータントの位置を取得する
+    Vector3 playerPos = m_player->GetPosition();
+    // ウォーロックの位置を取得する
     Vector3 warrokPos = m_warrok->GetPosition();
 
     // プレイヤーへの方向を計算する
     Vector3 directionToPlayer = playerPos - warrokPos;
     directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
-    // ミュータントの回転をプレイヤーに向ける
+    // ウォーロックの回転をプレイヤーに向ける
     float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
     m_warrok->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
-
     // 速度を設定する
     m_warrok->AddVelocity(directionToPlayer);
     m_warrok->ApplyVelocity(APPLY_VELOCITY);
@@ -103,16 +107,16 @@ void WarrokWalking::TransitionToPunching()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPosition = m_warrok->GetPlayer()->GetPosition();
-    // ミュータントの現在位置を取得する
-    Vector3 tunomaruPosition = m_warrok->GetPosition();
+    Vector3 playerPosition = m_player->GetPosition();
+    // ウォーロックの現在位置を取得する
+    Vector3 warrokPosition = m_warrok->GetPosition();
     // プレイヤーとの距離を計算する
-    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+    float distanceToPlayer = Vector3::Distance(warrokPosition, playerPosition);
 
     // 一定距離以内にプレイヤーがいた場合
     if (distanceToPlayer <= PUNCHING_DISTANCE)
     {
-        // 斬りつけ状態へ移行する
+        // パンチ状態へ移行する
         m_warrok->ChangeState(m_warrok->GetWarrokPunching());
     }
 }

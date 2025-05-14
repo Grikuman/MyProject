@@ -5,7 +5,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Game/Player/Player.h"
 #include "Game/Interface/IEnemy.h"
 
 class StageEnemy
@@ -18,7 +17,7 @@ public:
 
 public:
     // コンストラクタ
-    StageEnemy(Player* player);
+    StageEnemy();
     // デストラクト
     ~StageEnemy();
     // 初期化処理
@@ -37,8 +36,6 @@ private:
 private:
     // 敵のリスト
     std::vector<std::unique_ptr<IEnemy>> m_enemies;
-    // プレイヤー
-    Player* m_player;
     // ステージ遷移フラグ
     bool m_isChangeStage;
 };

@@ -5,9 +5,9 @@
 #pragma once
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Enemy/Warrok/Animations/WarrokPunchingAnimation.h"
-
 // 前方宣言
 class Warrok;
+class Player;
 
 namespace NRLib
 {
@@ -18,7 +18,7 @@ class WarrokPunching : public IEnemyState
 {
 public:
 	// コンストラクタ
-	WarrokPunching(Warrok* warrok);
+	WarrokPunching();
 	// デストラクタ
 	~WarrokPunching() override;
 	// 初期化する
@@ -47,8 +47,10 @@ private:
 	const float CAMERA_DURATION = 0.4f;
 
 private:
-	// ミュータント
+	// ウォーロックのポインタ
 	Warrok* m_warrok;
 	// アニメーション
 	std::unique_ptr<WarrokPunchingAnimation> m_animation;
+	// プレイヤーのポインタ
+	Player* m_player;
 };

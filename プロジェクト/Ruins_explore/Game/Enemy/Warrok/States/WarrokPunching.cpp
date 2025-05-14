@@ -17,12 +17,12 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-WarrokPunching::WarrokPunching(Warrok* warrok)
+WarrokPunching::WarrokPunching()
 	:
-    m_warrok(warrok)
+    m_warrok{}
 {
 	// アニメーションを作成する
-	m_animation = std::make_unique<WarrokPunchingAnimation>(warrok);
+	m_animation = std::make_unique<WarrokPunchingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -38,6 +38,10 @@ WarrokPunching::~WarrokPunching()
 //---------------------------------------------------------
 void WarrokPunching::Initialize()
 {
+	// ウォーロックのポインタを取得する
+	m_warrok = static_cast<Warrok*>(EventMessenger::ExecuteGetter(GetterList::GetWarrok));
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// アニメーションを初期化する
 	m_animation->Initialize();
 }
@@ -86,13 +90,13 @@ void WarrokPunching::Punching()
 		return;
 	}
     // プレイヤーが無敵でなければ通過
-	if (m_warrok->GetPlayer()->GetInvincible())
+	if (m_player->GetInvincible())
 	{
 		return;
 	}
 
 	// プレイヤーの位置を取得する
-	Vector3 playerPos = m_warrok->GetPlayer()->GetPosition();
+	Vector3 playerPos = m_player->GetPosition();
 	// ミュータントの位置を取得する
 	Vector3 mutantPos = m_warrok->GetPosition();
 	// プレイヤーとミュータントの距離を計算する
@@ -112,7 +116,7 @@ void WarrokPunching::Punching()
 	Vector3 mutantForward = -rotMatrix.Forward(); // Z-方向が「前」
 
 	// mutantからプレイヤーへのベクトル
-	Vector3 toPlayer = m_warrok->GetPlayer()->GetPosition() - m_warrok->GetPosition();
+	Vector3 toPlayer = m_player->GetPosition() - m_warrok->GetPosition();
 	toPlayer.Normalize();
 
 	// 正面方向とプレイヤーへのベクトルの内積
@@ -124,8 +128,10 @@ void WarrokPunching::Punching()
 	// 前方約60度以内
 	if (dot > ATTACK_DOT)
 	{
-		m_warrok->GetPlayer()->SetHP(m_warrok->GetPlayer()->GetHP() - 1);
-		m_warrok->GetPlayer()->SetInvincible(true);
+		// ダメージを与える
+		m_player->SetHP(m_player->GetHP() - 1);
+		m_player->SetInvincible(true);
+		// 効果音
 		Audio::GetInstance()->PlaySE("EnemyAttackSE");
 		// カメラを振動させる
 		std::pair<float, float> shakeparams { CAMERA_INTENSITY, CAMERA_DURATION };

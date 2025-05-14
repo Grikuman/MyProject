@@ -59,8 +59,8 @@ public:
     DirectX::BoundingBox GetBoundingBox() const override { return DirectX::BoundingBox(m_position, COLLISION_BOX_SIZE); }
 
 public:
-    // プレイヤーを取得する
-    Player* GetPlayer() { return m_player; }
+    // ウォーロックのポインタを取得する
+    void* GetWarrok() { return this; }
     // 歩き状態を取得する
     WarrokWalking* GetWarrokWalking() { return m_WarrokWalking.get(); }
     // 突進状態を取得する
@@ -70,9 +70,11 @@ public:
     
 public:
     // コンストラクタ
-    Warrok(Player* player);
+    Warrok();
     // デストラクタ
     ~Warrok() override;
+    // イベントを登録する
+    void RegisterEvent();
     // 初期化する
     void Initialize(DirectX::SimpleMath::Vector3 position) override;
     // 更新する
@@ -97,7 +99,7 @@ private:
     const DirectX::SimpleMath::Vector3 COLLISION_BOX_SIZE = { 1.0f,1.0f,1.0f };
 
 private:
-    // プレイヤー
+    // プレイヤーのポインタ
     Player* m_player;
     // 現在の状態
     IEnemyState* m_currentState;

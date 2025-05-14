@@ -26,7 +26,7 @@ Stage1::Stage1(std::string stageName)
 	// プレイヤーを作成する
 	m_player = std::make_unique<Player>();
 	// 敵を作成する
-	m_stageEnemy = std::make_unique<StageEnemy>(m_player.get());
+	m_stageEnemy = std::make_unique<StageEnemy>();
 	// ステージの衝突判定を作成する
 	m_stageCollision = std::make_unique<StageCollision>(m_player.get());
 	// ステージの装飾を作成する

@@ -11,13 +11,14 @@
 #include "Framework/Graphics.h"
 #include "Framework/Collision.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-Warrok::Warrok(Player* player)
+Warrok::Warrok()
     :
-    m_player{player},
+    m_player{},
     m_currentState{},
     m_WarrokWalking{},
     m_WarrokPunching{},
@@ -30,11 +31,11 @@ Warrok::Warrok(Player* player)
     m_isAlive(true)
 {
     // 歩き状態を作成する
-    m_WarrokWalking = std::make_unique<WarrokWalking>(this);
+    m_WarrokWalking = std::make_unique<WarrokWalking>();
     // 突進状態を作成する
-    m_WarrokPunching = std::make_unique<WarrokPunching>(this);
+    m_WarrokPunching = std::make_unique<WarrokPunching>();
     // 斬りつけ状態を作成する
-    m_WarrokKicking = std::make_unique<WarrokKicking>(this);
+    m_WarrokKicking = std::make_unique<WarrokKicking>();
 }
 
 //---------------------------------------------------------
@@ -45,11 +46,21 @@ Warrok::~Warrok()
 
 }
 
+void Warrok::RegisterEvent()
+{
+    // ウォーロックのポインタを取得する
+    EventMessenger::AttachGetter(GetterList::GetWarrok, std::bind(&Warrok::GetWarrok, this));
+}
+
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
 void Warrok::Initialize(DirectX::SimpleMath::Vector3 position)
 {
+    // イベントを登録する
+    RegisterEvent();
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // 位置を設定する
     m_position = position;
     // 歩き状態を初期化する

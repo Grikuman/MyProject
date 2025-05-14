@@ -12,16 +12,17 @@
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-WarrokKicking::WarrokKicking(Warrok* warrok)
+WarrokKicking::WarrokKicking()
 	:
-    m_warrok(warrok)
+    m_warrok{}
 {
 	// アニメーションを作成する
-	m_animation = std::make_unique<WarrokKickingAnimation>(warrok);
+	m_animation = std::make_unique<WarrokKickingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -37,6 +38,10 @@ WarrokKicking::~WarrokKicking()
 //---------------------------------------------------------
 void WarrokKicking::Initialize()
 {
+	// ウォーロックのポインタを取得する
+	m_warrok = static_cast<Warrok*>(EventMessenger::ExecuteGetter(GetterList::GetWarrok));
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// アニメーションを初期化する
 	m_animation->Initialize();
 }

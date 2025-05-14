@@ -18,7 +18,7 @@ public:
 
 public:
 	// コンストラクタ
-	DemonPunchingAnimation(Demon* demon);
+	DemonPunchingAnimation();
 	// デストラクタ
 	~DemonPunchingAnimation();
 

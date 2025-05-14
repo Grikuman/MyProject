@@ -9,16 +9,17 @@
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-DemonWalking::DemonWalking(Demon* demon)
+DemonWalking::DemonWalking()
 	:
-    m_demon(demon)
+    m_demon{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<DemonWalkingAnimation>(demon);
+    m_animation = std::make_unique<DemonWalkingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -34,6 +35,10 @@ DemonWalking::~DemonWalking()
 //---------------------------------------------------------
 void DemonWalking::Initialize()
 {
+    // プレイヤーのポインタを取得する
+    m_demon = static_cast<Demon*>(EventMessenger::ExecuteGetter(GetterList::GetDemon));
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
     // アニメーションを初期化する
     m_animation->Initialize();
 }
@@ -77,7 +82,7 @@ void DemonWalking::Walking()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPos = m_demon->GetPlayer()->GetPosition();
+    Vector3 playerPos = m_player->GetPosition();
     // ミュータントの位置を取得する
     Vector3 DemonPos = m_demon->GetPosition();
 
@@ -103,11 +108,11 @@ void DemonWalking::TransitionToPunching()
     using namespace DirectX::SimpleMath;
 
     // プレイヤーの位置を取得する
-    Vector3 playerPosition = m_demon->GetPlayer()->GetPosition();
-    // ミュータントの現在位置を取得する
-    Vector3 tunomaruPosition = m_demon->GetPosition();
+    Vector3 playerPosition = m_player->GetPosition();
+    // デーモンの現在位置を取得する
+    Vector3 demonPosition = m_demon->GetPosition();
     // プレイヤーとの距離を計算する
-    float distanceToPlayer = Vector3::Distance(tunomaruPosition, playerPosition);
+    float distanceToPlayer = Vector3::Distance(demonPosition, playerPosition);
 
     // 一定距離以内にプレイヤーがいた場合
     if (distanceToPlayer <= PUNCHING_DISTANCE)

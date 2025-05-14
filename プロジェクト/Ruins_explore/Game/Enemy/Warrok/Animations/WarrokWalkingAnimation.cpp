@@ -7,13 +7,14 @@
 #include "Game/Enemy/Warrok/Warrok.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-WarrokWalkingAnimation::WarrokWalkingAnimation(Warrok* warrok)
+WarrokWalkingAnimation::WarrokWalkingAnimation()
 	:
-	m_warrok{warrok},
+	m_warrok{},
 	m_model{},
 	m_totalSecond{},
 	m_animTime{}
@@ -34,7 +35,9 @@ WarrokWalkingAnimation::~WarrokWalkingAnimation()
 //---------------------------------------------------------
 void WarrokWalkingAnimation::Initialize()
 {
-	// プレイヤーのモデルを取得する
+	// ウォーロックのポインタを取得する
+	m_warrok = static_cast<Warrok*>(EventMessenger::ExecuteGetter(GetterList::GetWarrok));
+	// ウォーロックのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Warrok");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();

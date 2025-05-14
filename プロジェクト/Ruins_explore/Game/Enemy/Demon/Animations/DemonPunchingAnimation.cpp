@@ -7,6 +7,7 @@
 #include "Game/Enemy/Demon/Demon.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
@@ -46,9 +47,9 @@ bool DemonPunchingAnimation::IsAbleToDealDamage()
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-DemonPunchingAnimation::DemonPunchingAnimation(Demon* demon)
+DemonPunchingAnimation::DemonPunchingAnimation()
 	:
-	m_demon{demon},
+	m_demon{},
 	m_model{},
 	m_time{},
 	m_animTime{}
@@ -69,7 +70,9 @@ DemonPunchingAnimation::~DemonPunchingAnimation()
 //---------------------------------------------------------
 void DemonPunchingAnimation::Initialize()
 {
-	// プレイヤーのモデルを取得する
+	// デーモンのポインタを取得する
+	m_demon = static_cast<Demon*>(EventMessenger::ExecuteGetter(GetterList::GetDemon));
+	// デーモンのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Demon");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();

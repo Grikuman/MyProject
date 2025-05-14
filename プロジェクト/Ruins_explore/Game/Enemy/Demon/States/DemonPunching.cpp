@@ -12,16 +12,17 @@
 #include "Framework/Resources.h"
 #include "Framework/Collision.h"
 #include "Framework/Audio.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-DemonPunching::DemonPunching(Demon* demon)
+DemonPunching::DemonPunching()
 	:
-    m_demon(demon)
+    m_demon{}
 {
 	// アニメーションを作成する
-	m_animation = std::make_unique<DemonPunchingAnimation>(demon);
+	m_animation = std::make_unique<DemonPunchingAnimation>();
 }
 
 //---------------------------------------------------------
@@ -37,6 +38,10 @@ DemonPunching::~DemonPunching()
 //---------------------------------------------------------
 void DemonPunching::Initialize()
 {
+	// デーモンのポインタを取得する
+	m_demon = static_cast<Demon*>(EventMessenger::ExecuteGetter(GetterList::GetDemon));
+	// プレイヤーのポインタを取得する
+	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
 	// アニメーションを初期化する
 	m_animation->Initialize();
 }
@@ -85,13 +90,13 @@ void DemonPunching::Punching()
 		return;
 	}
     // プレイヤーが無敵でなければ通過
-	if (m_demon->GetPlayer()->GetInvincible())
+	if (m_player->GetInvincible())
 	{
 		return;
 	}
 
 	// プレイヤーの位置を取得する
-	Vector3 playerPos = m_demon->GetPlayer()->GetPosition();
+	Vector3 playerPos = m_player->GetPosition();
 	// ミュータントの位置を取得する
 	Vector3 mutantPos = m_demon->GetPosition();
 	// プレイヤーとミュータントの距離を計算する
@@ -111,7 +116,7 @@ void DemonPunching::Punching()
 	Vector3 mutantForward = -rotMatrix.Forward(); // Z-方向が「前」
 
 	// mutantからプレイヤーへのベクトル
-	Vector3 toPlayer = m_demon->GetPlayer()->GetPosition() - m_demon->GetPosition();
+	Vector3 toPlayer = m_player->GetPosition() - m_demon->GetPosition();
 	toPlayer.Normalize();
 
 	// 正面方向とプレイヤーへのベクトルの内積
@@ -123,10 +128,13 @@ void DemonPunching::Punching()
 	// 前方約60度以内
 	if (dot > ATTACK_DOT)
 	{
-		m_demon->GetPlayer()->SetHP(m_demon->GetPlayer()->GetHP() - 1);
-		m_demon->GetPlayer()->SetInvincible(true);
+		// ダメージを与える
+		m_player->SetHP(m_player->GetHP() - 1);
+		m_player->SetInvincible(true);
+		// 効果音
 		Audio::GetInstance()->PlaySE("EnemyAttackSE");
-		m_demon->GetPlayer()->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
+		// カメラを振動させる
+		m_player->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
 	}
 }
 

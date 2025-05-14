@@ -12,10 +12,9 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-StageEnemy::StageEnemy(Player* player)
+StageEnemy::StageEnemy()
     :
     m_enemies{},
-    m_player{ player },
     m_isChangeStage{ false }
 {
 
@@ -122,7 +121,7 @@ void StageEnemy::LoadFile(const std::string& stageName)
                 enemyData["position"][2].get<float>()
             );
             // ファクトリーで敵を生成
-            auto enemy = EnemyFactory::CreateEnemy(type, m_player);
+            auto enemy = EnemyFactory::CreateEnemy(type);
             if (enemy)
             {
                 // 敵を初期化する

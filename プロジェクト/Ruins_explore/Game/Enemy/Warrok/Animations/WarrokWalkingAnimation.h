@@ -12,7 +12,7 @@ class WarrokWalkingAnimation
 {
 public:
 	// コンストラクタ
-	WarrokWalkingAnimation(Warrok* warrok);
+	WarrokWalkingAnimation();
 	// デストラクタ
 	~WarrokWalkingAnimation();
 
@@ -42,7 +42,7 @@ private:
 	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤー
+	// ウォーロックのポインタ
 	Warrok* m_warrok;
 	// モデル
 	DirectX::Model* m_model;

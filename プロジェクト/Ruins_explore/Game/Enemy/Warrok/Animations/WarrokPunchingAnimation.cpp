@@ -7,6 +7,7 @@
 #include "Game/Enemy/Warrok/Warrok.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
@@ -46,9 +47,9 @@ bool WarrokPunchingAnimation::IsAbleToDealDamage()
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-WarrokPunchingAnimation::WarrokPunchingAnimation(Warrok* warrok)
+WarrokPunchingAnimation::WarrokPunchingAnimation()
 	:
-	m_warrok{warrok},
+	m_warrok{},
 	m_model{},
 	m_time{},
 	m_animTime{}
@@ -69,7 +70,9 @@ WarrokPunchingAnimation::~WarrokPunchingAnimation()
 //---------------------------------------------------------
 void WarrokPunchingAnimation::Initialize()
 {
-	// プレイヤーのモデルを取得する
+	// ウォーロックのポインタを取得する
+	m_warrok = static_cast<Warrok*>(EventMessenger::ExecuteGetter(GetterList::GetWarrok));
+	// ウォーロックのモデルを取得する
 	m_model = Resources::GetInstance()->GetModel(L"Warrok");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();
