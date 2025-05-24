@@ -34,6 +34,8 @@ private:
 	void TransitionToRolling();
 	// 通常攻撃状態への移行処理
 	void TransitionToAttackingNormal();
+	// ガード状態への移行処理
+	void TransitionToGuarding();
 	// 向きの処理
 	void Direction();
 

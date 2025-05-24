@@ -1,21 +1,21 @@
 /*
-	ファイル名：PlayerGuarding.h
+	ファイル名：PlayerGuardImpact.h
 	　　　概要：プレイヤーのガード状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
-#include "Game/Player/Animation/PlayerGuardingAnimation.h"
+#include "Game/Player/Animation/PlayerGuardImpactAnimation.h"
 
 // 前方宣言
 class Player;
 
-class PlayerGuarding : public IPlayerState
+class PlayerGuardImpact : public IPlayerState
 {
 public:
 	// コンストラクタ
-	PlayerGuarding();
+	PlayerGuardImpact();
 	// デストラクタ
-	~PlayerGuarding() override;
+	~PlayerGuardImpact() override;
 	// 初期化する
 	void Initialize() override;
 	// 更新する
@@ -26,12 +26,8 @@ public:
 	void Finalize() override;
 
 private:
-	// 待機状態への移行処理
-	void TransitionToIdling();
-
-private:
 	//プレイヤーのポインタ
 	Player* m_player;
 	// アニメーション
-	std::unique_ptr<PlayerGuardingAnimation> m_animation;
+	std::unique_ptr<PlayerGuardImpactAnimation> m_animation;
 };

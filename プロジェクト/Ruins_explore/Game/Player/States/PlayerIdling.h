@@ -32,6 +32,8 @@ private:
 	void TransitionToRunning();
 	// 通常攻撃状態への移行処理
 	void TransitionToAttackingNormal();
+	// ガード状態への移行処理
+	void TransitionToGuarding();
 
 private:
 	//プレイヤー

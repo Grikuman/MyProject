@@ -39,6 +39,8 @@ Player::Player()
 	m_playerRolling = std::make_unique<PlayerRolling>();
 	// 通常攻撃を作成する
 	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>();
+	// ガード状態を作成する
+	m_playerGuarding = std::make_unique<PlayerGuarding>();
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 	// プレイヤーのUI管理クラスを作成する
@@ -75,12 +77,14 @@ void Player::Initialize()
 	RegisterEvent();
 	// 待機状態を初期化する
 	m_playerIdling->Initialize();
-	// 待機状態を初期化する
+	// 走り状態を初期化する
 	m_playerRunning->Initialize(); 
-	// 待機状態を初期化する
+	// 回避状態を初期化する
 	m_playerRolling->Initialize(); 
-	// 待機状態を初期化する
+	// 通常攻撃状態を初期化する
 	m_playerAttackingNormal->Initialize();
+	// ガード状態を初期化する
+	m_playerGuarding->Initialize();
 	// UIを管理するクラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクトを管理するクラスを初期化する

@@ -53,6 +53,8 @@ void PlayerIdling::Update()
     TransitionToRunning();
     // 通常攻撃状態への移行処理
     TransitionToAttackingNormal();
+    // ガード状態への移行処理
+    TransitionToGuarding();
 
     // アニメーションを更新する
     m_animation->Update();
@@ -112,5 +114,20 @@ void PlayerIdling::TransitionToAttackingNormal()
     if (kb->F)
     {
         m_player->ChangeState(m_player->GetPlayerAttackingNormal());
+    }
+}
+
+
+//---------------------------------------------------------
+// 通常攻撃状態への移行処理
+//---------------------------------------------------------
+void PlayerIdling::TransitionToGuarding()
+{
+    // キーボード入力を取得
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    if (kb->C)
+    {
+        m_player->ChangeState(m_player->GetPlayerGuarding());
     }
 }

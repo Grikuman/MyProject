@@ -56,6 +56,8 @@ void PlayerRunning::Update()
     TransitionToRolling();
     // 通常攻撃状態への移行処理
     TransitionToAttackingNormal();
+    // ガード状態への移行処理
+    TransitionToGuarding();
     // 向きの処理
     Direction();
 
@@ -166,6 +168,20 @@ void PlayerRunning::TransitionToAttackingNormal()
     if (kb->F)
     {
         m_player->ChangeState(m_player->GetPlayerAttackingNormal());
+    }
+}
+
+//---------------------------------------------------------
+// ガード状態への移行処理
+//---------------------------------------------------------
+void PlayerRunning::TransitionToGuarding()
+{
+    // キーボードを取得する
+    auto kb = InputDevice::GetInstance()->GetKeyboardState();
+
+    if (kb->C)
+    {
+        m_player->ChangeState(m_player->GetPlayerGuarding());
     }
 }
 

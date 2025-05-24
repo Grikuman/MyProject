@@ -13,6 +13,8 @@ enum class EventList
 	ShakeCamera,
 	// プレイヤーにダメージを与える
 	DamageToPlayer,
+	// プレイヤーのステートを変更する
+	ChangePlayerState,
 };
 
 //---------------------------------------------------------

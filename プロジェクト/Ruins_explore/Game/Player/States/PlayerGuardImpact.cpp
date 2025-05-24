@@ -1,28 +1,33 @@
 /*
-    ファイル名：PlayerAttackingSpecial.cpp
-    　　　概要：プレイヤーの攻撃状態を管理するクラス
+    ファイル名：PlayerGuarding.cpp
+    　　　概要：プレイヤーの歩行状態を管理するクラス
 */
 #include "pch.h"
+#include "PlayerGuarding.h"
 #include "Game/Player/Player.h"
-#include "PlayerAttackingSpecial.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
+#include "Framework/InputDevice.h"
+#include "Framework/Audio.h"
+#include "Game/Camera/TPS_Camera.h"
+#include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerAttackingSpecial::PlayerAttackingSpecial(Player* player)
+PlayerGuarding::PlayerGuarding()
 	:
-    m_player{player}
+    m_player{}
 {
-   
+    // アニメーションを作成する
+    m_animation = std::make_unique<PlayerGuardingAnimation>();
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerAttackingSpecial::~PlayerAttackingSpecial()
+PlayerGuarding::~PlayerGuarding()
 {
 
 }
@@ -30,43 +35,37 @@ PlayerAttackingSpecial::~PlayerAttackingSpecial()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerAttackingSpecial::Initialize()
+void PlayerGuarding::Initialize()
 {
-    
+    // プレイヤーのポインタを取得する
+    m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
+    // アニメーションを初期化する
+    m_animation->Initialize();
 }
 
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerAttackingSpecial::Update(const float& elapsedTime)
+void PlayerGuarding::Update()
 {
-
+    // アニメーションを更新する
+    m_animation->Update();
 }
 
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerAttackingSpecial::Render()
+void PlayerGuarding::Render()
 {
-    
+    // アニメーションを描画する
+    m_animation->Render();
 }
 
 
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void PlayerAttackingSpecial::Finalize()
+void PlayerGuarding::Finalize()
 {
-    
+    m_animation->Finalize();
 }
-
-//---------------------------------------------------------
-// 攻撃範囲を取得する
-//---------------------------------------------------------
-DirectX::BoundingSphere PlayerAttackingSpecial::GetAttackRange()
-{
-    DirectX::SimpleMath::Vector3 center = m_player->GetPosition(); // 当たり判定球の中心
-    float radius = 3.f; // 範囲に応じて調整
-    return DirectX::BoundingSphere(center, radius);
-}
-

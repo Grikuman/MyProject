@@ -366,6 +366,15 @@
     <ClInclude Include="Game\Enemy\Demon\Demon.h">
       <Filter>Game\Enemy\Demon</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerGuarding.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\Animation\PlayerGuardingAnimation.h">
+      <Filter>Game\Player\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player\States\PlayerGuardImpact.h">
+      <Filter>Game\Player\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -571,6 +580,15 @@
     </ClCompile>
     <ClCompile Include="Game\Enemy\Demon\Demon.cpp">
       <Filter>Game\Enemy\Demon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerGuarding.cpp">
+      <Filter>Game\Player\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\Animation\PlayerGuardingAnimation.cpp">
+      <Filter>Game\Player\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player\States\PlayerGuardImpact.cpp">
+      <Filter>Game\Player\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
