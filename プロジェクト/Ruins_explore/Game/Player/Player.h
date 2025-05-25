@@ -9,6 +9,7 @@
 #include "Game/Player/States/PlayerRolling.h"
 #include "Game/Player/States/PlayerAttackingNormal.h"
 #include "Game/Player/States/PlayerGuarding.h"
+#include "Game/Player/States/PlayerGuardImpact.h"
 #include "Game/UI/PlayerUIManager.h"
 #include "Game/Effect/PlayerEffectManager.h"
 
@@ -39,8 +40,8 @@ public:
 	void SetDirection(const DirectX::SimpleMath::Vector3 direction) { m_direction = direction; }
 	// ステートを変更する
 	void ChangeState(IPlayerState* newState) { m_currentState = newState; }
-	// プレイヤーにダメージを与える
-	void Damage(void* damage);
+	// ダメージ処理
+	void Damage(int damage);
 
 public:
 	// 位置を取得する
@@ -63,6 +64,8 @@ public:
 	DirectX::SimpleMath::Vector3 GetDirection() { return m_direction; }
 	// 攻撃しているか取得する
 	bool IsAttack();
+	// ガードしているか取得する
+	bool IsGuard();
 	// バウンディングスフィアを取得する
 	DirectX::BoundingSphere GetBoundingSphere() { return DirectX::BoundingSphere(m_position, COLLISION_SPHERE_SIZE); }
 	// バウンディングボックスを取得する
@@ -81,6 +84,8 @@ public:
 	PlayerAttackingNormal* GetPlayerAttackingNormal() { return m_playerAttackingNormal.get(); }
 	// プレイヤーのガード状態を取得する
 	PlayerGuarding* GetPlayerGuarding() { return m_playerGuarding.get(); }
+	// プレイヤーのガード衝撃状態を取得する
+	PlayerGuardImpact* GetPlayerGuardImpact() { return m_playerGuardImpact.get(); }
 	// カメラを取得する
 	NRLib::TPS_Camera* GetCamera() { return m_camera.get(); }
 
@@ -121,6 +126,10 @@ private:
 	const float COLLISION_SPHERE_SIZE = 0.5f;
 	// 当たり判定(箱)のサイズ
 	const DirectX::SimpleMath::Vector3 COLLISION_BOX_SIZE = { 1.0f,1.0f,1.0f };
+	// 攻撃が当たった際のカメラ振動の強度
+	const float CAMERA_INTENSITY = 0.2f;
+	// 攻撃が当たった際のカメラ振動の時間
+	const float CAMERA_DURATION = 0.4f;
 
 private:
 	// 現在のステート
@@ -135,6 +144,8 @@ private:
 	std::unique_ptr<PlayerAttackingNormal> m_playerAttackingNormal;
 	// ガード状態
 	std::unique_ptr<PlayerGuarding> m_playerGuarding;
+	// ガード衝撃状態
+	std::unique_ptr<PlayerGuardImpact> m_playerGuardImpact;
 	// カメラ
 	std::unique_ptr<NRLib::TPS_Camera> m_camera;
 	// UI

@@ -89,11 +89,6 @@ void DemonPunching::Punching()
 	{
 		return;
 	}
-    // プレイヤーが無敵でなければ通過
-	if (m_player->GetInvincible())
-	{
-		return;
-	}
 
 	// プレイヤーの位置を取得する
 	Vector3 playerPos = m_player->GetPosition();
@@ -128,13 +123,8 @@ void DemonPunching::Punching()
 	// 前方約60度以内
 	if (dot > ATTACK_DOT)
 	{
-		// ダメージを与える
-		m_player->SetHP(m_player->GetHP() - 1);
-		m_player->SetInvincible(true);
-		// 効果音
-		Audio::GetInstance()->PlaySE("EnemyAttackSE");
-		// カメラを振動させる
-		m_player->GetCamera()->StartShake(CAMERA_INTENSITY, CAMERA_DURATION);
+		// プレイヤーにダメージを与える
+		m_player->Damage(1);
 	}
 }
 

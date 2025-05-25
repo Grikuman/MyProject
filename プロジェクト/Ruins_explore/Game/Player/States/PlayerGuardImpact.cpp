@@ -1,9 +1,9 @@
 /*
-    ファイル名：PlayerGuarding.cpp
-    　　　概要：プレイヤーの歩行状態を管理するクラス
+    ファイル名：PlayerGuardImpact.cpp
+    　　　概要：プレイヤーのガード衝撃状態を管理するクラス
 */
 #include "pch.h"
-#include "PlayerGuarding.h"
+#include "PlayerGuardImpact.h"
 #include "Game/Player/Player.h"
 #include "Framework/DeviceResources.h"
 #include "Framework/Graphics.h"
@@ -16,18 +16,18 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerGuarding::PlayerGuarding()
+PlayerGuardImpact::PlayerGuardImpact()
 	:
     m_player{}
 {
     // アニメーションを作成する
-    m_animation = std::make_unique<PlayerGuardingAnimation>();
+    m_animation = std::make_unique<PlayerGuardImpactAnimation>();
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerGuarding::~PlayerGuarding()
+PlayerGuardImpact::~PlayerGuardImpact()
 {
 
 }
@@ -35,7 +35,7 @@ PlayerGuarding::~PlayerGuarding()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerGuarding::Initialize()
+void PlayerGuardImpact::Initialize()
 {
     // プレイヤーのポインタを取得する
     m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
@@ -46,16 +46,19 @@ void PlayerGuarding::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerGuarding::Update()
+void PlayerGuardImpact::Update()
 {
     // アニメーションを更新する
     m_animation->Update();
+
+    // 待機状態への移行処理
+    TransitionToIdling();
 }
 
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerGuarding::Render()
+void PlayerGuardImpact::Render()
 {
     // アニメーションを描画する
     m_animation->Render();
@@ -63,9 +66,20 @@ void PlayerGuarding::Render()
 
 
 //---------------------------------------------------------
-// 後始末する
+// 終了処理
 //---------------------------------------------------------
-void PlayerGuarding::Finalize()
+void PlayerGuardImpact::Finalize()
 {
     m_animation->Finalize();
+}
+
+//---------------------------------------------------------
+// 待機状態への移行処理
+//---------------------------------------------------------
+void PlayerGuardImpact::TransitionToIdling()
+{
+    if (m_animation->IsEndAnimation())
+    {
+        m_player->ChangeState(m_player->GetPlayerIdling());
+    }
 }

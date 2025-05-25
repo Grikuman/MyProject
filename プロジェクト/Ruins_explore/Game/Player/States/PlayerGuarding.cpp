@@ -1,6 +1,6 @@
 /*
     ファイル名：PlayerGuarding.cpp
-    　　　概要：プレイヤーの歩行状態を管理するクラス
+    　　　概要：プレイヤーのガード状態を管理するクラス
 */
 #include "pch.h"
 #include "PlayerGuarding.h"

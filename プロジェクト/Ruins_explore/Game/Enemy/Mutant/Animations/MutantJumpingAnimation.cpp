@@ -1,19 +1,18 @@
 /*
-	ファイル名：PlayerIdlingAnimation.h
+	ファイル名：MutantJumpingAnimation.h
 	　　　概要：プレイヤーのアニメーションを管理するクラス
 */
 #include "pch.h"
-#include "PlayerGuardImpactAnimation.h"
-#include "Game/Player/Player.h"
+#include "MutantJumpingAnimation.h"
+#include "Game/Enemy/Mutant/Mutant.h"
 #include "Framework/Graphics.h"
 #include "Framework/Resources.h"
-#include "Game/Camera/TPS_Camera.h"
 #include "Framework/EventMessenger.h"
 
 //---------------------------------------------------------
 // // アニメーションが終了しているかどうか取得する
 //---------------------------------------------------------
-bool PlayerGuardImpactAnimation::IsEndAnimation()
+bool MutantJumpingAnimation::IsEndAnimation()
 {
 	// アニメーションが終了した場合
 	if (m_time >= ANIMATION_TIME)
@@ -28,22 +27,40 @@ bool PlayerGuardImpactAnimation::IsEndAnimation()
 }
 
 //---------------------------------------------------------
+// ダメージを与えることができるか取得する
+//---------------------------------------------------------
+bool MutantJumpingAnimation::IsAbleToDealDamage()
+{
+	// アニメーションの時間が【1.4f～1.7】の場合
+	if (m_time > HIT_START_TIME && m_time < HIT_END_TIME)
+	{
+		// ダメージ処理は可能
+		return true;
+	}
+	else
+	{
+		// ダメージ処理は不可能
+		return false;
+	}
+}
+
+//---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-PlayerGuardImpactAnimation::PlayerGuardImpactAnimation()
+MutantJumpingAnimation::MutantJumpingAnimation()
 	:
-	m_player{},
+	m_mutant{},
 	m_model{},
 	m_time{},
 	m_animTime{}
 {
-	
+
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-PlayerGuardImpactAnimation::~PlayerGuardImpactAnimation()
+MutantJumpingAnimation::~MutantJumpingAnimation()
 {
 
 }
@@ -51,18 +68,18 @@ PlayerGuardImpactAnimation::~PlayerGuardImpactAnimation()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void PlayerGuardImpactAnimation::Initialize()
+void MutantJumpingAnimation::Initialize()
 {
-	// プレイヤーのポインタを取得する
-	m_player = static_cast<Player*>(EventMessenger::ExecuteGetter(GetterList::GetPlayer));
-	// プレイヤーのモデルを取得する
-	m_model = Resources::GetInstance()->GetModel(L"Player");
+	// ミュータントのポインタを取得する
+	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
+	// ミュータントのモデルを取得する
+	m_model = Resources::GetInstance()->GetModel(L"Mutant");
 	// AnimationSDKMeshクラスを作成する
 	m_animation = std::make_unique<DX::AnimationSDKMESH>();
 	// リソースディレクトリの設定
 	Graphics::GetInstance()->GetFX()->SetDirectory(L"Resources/SDKMesh");
 	// アニメーションをロードする
-	m_animation->Load(L"Resources/SDKMesh/Player_GuardImpact.sdkmesh_anim");
+	m_animation->Load(L"Resources/SDKMesh/Mutant_Slashing.sdkmesh_anim");
 	// アニメーションとモデルをバインドする
 	m_animation->Bind(*m_model);
 	// ボーン用のトランスフォーム配列を生成する
@@ -90,11 +107,11 @@ void PlayerGuardImpactAnimation::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void PlayerGuardImpactAnimation::Update()
+void MutantJumpingAnimation::Update()
 {
 	m_time += ANIMATION_SPEED;
 	// アニメーションが終了するまで更新
-	if (m_animation->GetAnimTime() < m_animation->GetEndTime())
+	if (m_animation->GetAnimTime() < m_animation->GetEndTime()) 
 	{
 		// アニメーションを更新する
 		m_animation->Update(ANIMATION_SPEED);
@@ -106,17 +123,19 @@ void PlayerGuardImpactAnimation::Update()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void PlayerGuardImpactAnimation::Render()
+void MutantJumpingAnimation::Render()
 {
 	using namespace DirectX::SimpleMath;
 
 	Matrix worldMatrix = 
 		// スケール行列を作成
-		Matrix::CreateScale(MODEL_SCALE) * 
+		Matrix::CreateScale(MODEL_SCALE) *
+		// 180度回転させる(モデルの向き調整)
+		Matrix::CreateRotationY(DirectX::XM_PI) *
 		// 回転行列を作成
-		Matrix::CreateFromQuaternion(m_player->GetAngle()) *
+		Matrix::CreateFromQuaternion(m_mutant->GetAngle()) *
 		// 移動行列を作成
-	    Matrix::CreateTranslation(m_player->GetPosition() + Vector3(0.0f,-1.0f,0.0f));
+	    Matrix::CreateTranslation(m_mutant->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
 
 	// アニメーションモデルの描画する
 	DrawAnimation(m_model, &m_animBone, worldMatrix);
@@ -125,7 +144,7 @@ void PlayerGuardImpactAnimation::Render()
 //---------------------------------------------------------
 // 終了処理
 //---------------------------------------------------------
-void PlayerGuardImpactAnimation::Finalize()
+void MutantJumpingAnimation::Finalize()
 {
 
 }
@@ -133,8 +152,8 @@ void PlayerGuardImpactAnimation::Finalize()
 //---------------------------------------------------------
 // アニメーションモデルを描画する
 //---------------------------------------------------------
-void PlayerGuardImpactAnimation::DrawAnimation(
-	const DirectX::Model* model,
+void MutantJumpingAnimation::DrawAnimation(
+	const DirectX::Model* model, 
 	const DirectX::ModelBone::TransformArray* transformArray, 
 	const DirectX::SimpleMath::Matrix& worldMatrix)
 {

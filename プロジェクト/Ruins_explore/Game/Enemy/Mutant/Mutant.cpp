@@ -36,6 +36,8 @@ Mutant::Mutant()
     m_mutantRushing = std::make_unique<MutantRushing>();
     // 斬りつけ状態を作成する
     m_mutantSlashing = std::make_unique<MutantSlashing>();
+    // ジャンプ状態を作成する
+    m_mutantJumping = std::make_unique<MutantJumping>();
 }
 
 //---------------------------------------------------------
@@ -72,6 +74,8 @@ void Mutant::Initialize(DirectX::SimpleMath::Vector3 position)
     m_mutantRushing->Initialize(); 
     // 斬りつけ状態を初期化する
     m_mutantSlashing->Initialize(); 
+    // ジャンプ状態を初期化する
+    m_mutantJumping->Initialize();
     // 初期の状態を設定する
     m_currentState = m_mutantWalking.get();
 }

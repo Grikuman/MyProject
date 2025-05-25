@@ -1,25 +1,26 @@
 /*
-	ファイル名：PlayerGuardImpactAnimation.h
-	　　　概要：プレイヤーのガードアニメーションを管理するクラス
+	ファイル名：MutantJumpingAnimation.h
+	　　　概要：プレイヤーのアニメーションを管理するクラス
 */
 #pragma once
 #include "Framework/Animation.h"
 
 // 前方宣言
-class Player;
+class Mutant;
 
-class PlayerGuardImpactAnimation
+class MutantJumpingAnimation
 {
 public:
 	// アニメーションが終了しているかどうか取得する
 	bool IsEndAnimation();
+	// ダメージを与えられるか取得する
+	bool IsAbleToDealDamage();
 
 public:
 	// コンストラクタ
-	PlayerGuardImpactAnimation();
+	MutantJumpingAnimation();
 	// デストラクタ
-	~PlayerGuardImpactAnimation();
-
+	~MutantJumpingAnimation();
 	// 初期化する
 	void Initialize();
 	// 更新する
@@ -39,15 +40,19 @@ private:
 
 private:
 	// アニメーションの再生時間
-	const float ANIMATION_TIME = 0.7f;
+	const float ANIMATION_TIME = 2.6f; // 【メモ】1.4f ～ 1.7f辺りが攻撃が当たる時間
+	// 攻撃が接触する時間
+	const float HIT_START_TIME = 1.4f;
+	// 攻撃の接触が終わる時間
+	const float HIT_END_TIME = 1.7f;
 	// アニメーションの再生速度
 	const float ANIMATION_SPEED = 0.016f;
 	// モデルの拡縮
-	const float MODEL_SCALE = 0.02f;
+	const float MODEL_SCALE = 0.035f;
 
 private:
-	// プレイヤーのポインタ
-	Player* m_player;
+	// ミュータントのポインタ
+	Mutant* m_mutant;
 	// モデル
 	DirectX::Model* m_model;
 	// アニメーションのボーン配列

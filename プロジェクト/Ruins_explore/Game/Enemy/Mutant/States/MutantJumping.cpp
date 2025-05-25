@@ -1,9 +1,9 @@
 /*
-	ファイル名：MutantSlashing.cpp
+	ファイル名：MutantJumping.cpp
 	　　　概要：ミュータントの突進状態を管理するクラス
 */
 #include "pch.h"
-#include "MutantSlashing.h"
+#include "MutantJumping.h"
 #include "Game/Enemy/Mutant/Mutant.h"
 #include "Game/Player/Player.h"
 #include "Game/Camera/TPS_Camera.h"
@@ -17,19 +17,19 @@
 //---------------------------------------------------------
 // コンストラクタ
 //---------------------------------------------------------
-MutantSlashing::MutantSlashing()
+MutantJumping::MutantJumping()
 	:
     m_mutant{},
 	m_player{}
 {
 	// アニメーションを作成する
-	m_animation = std::make_unique<MutantSlashingAnimation>();
+	m_animation = std::make_unique<MutantJumpingAnimation>();
 }
 
 //---------------------------------------------------------
 // デストラクタ
 //---------------------------------------------------------
-MutantSlashing::~MutantSlashing()
+MutantJumping::~MutantJumping()
 {
 
 }
@@ -37,7 +37,7 @@ MutantSlashing::~MutantSlashing()
 //---------------------------------------------------------
 // 初期化する
 //---------------------------------------------------------
-void MutantSlashing::Initialize()
+void MutantJumping::Initialize()
 {
 	// ミュータントのポインタを取得する
 	m_mutant = static_cast<Mutant*>(EventMessenger::ExecuteGetter(GetterList::GetMutant));
@@ -50,7 +50,7 @@ void MutantSlashing::Initialize()
 //---------------------------------------------------------
 // 更新する
 //---------------------------------------------------------
-void MutantSlashing::Update()
+void MutantJumping::Update()
 {
 	// 斬りつけの処理
 	Slashing();
@@ -64,7 +64,7 @@ void MutantSlashing::Update()
 //---------------------------------------------------------
 // 描画する
 //---------------------------------------------------------
-void MutantSlashing::Render()
+void MutantJumping::Render()
 {
 	// アニメーションを描画する
 	m_animation->Render();
@@ -73,7 +73,7 @@ void MutantSlashing::Render()
 //---------------------------------------------------------
 // 後始末する
 //---------------------------------------------------------
-void MutantSlashing::Finalize()
+void MutantJumping::Finalize()
 {
 	m_animation->Finalize();
 }
@@ -81,7 +81,7 @@ void MutantSlashing::Finalize()
 //---------------------------------------------------------
 // 斬りつけの処理
 //---------------------------------------------------------
-void MutantSlashing::Slashing()
+void MutantJumping::Slashing()
 {
 	using namespace DirectX::SimpleMath;
 
@@ -132,7 +132,7 @@ void MutantSlashing::Slashing()
 //---------------------------------------------------------
 // 歩き状態への移行処理
 //---------------------------------------------------------
-void MutantSlashing::TransitionToWalking()
+void MutantJumping::TransitionToWalking()
 {
 	// アニメーションが終了したら待機状態へ移行する
 	if (m_animation->IsEndAnimation())

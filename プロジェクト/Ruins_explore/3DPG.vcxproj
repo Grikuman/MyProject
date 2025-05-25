@@ -202,10 +202,12 @@
     <ClInclude Include="Game\Enemy\Demon\Demon.h" />
     <ClInclude Include="Game\Enemy\Demon\States\DemonPunching.h" />
     <ClInclude Include="Game\Enemy\Demon\States\DemonWalking.h" />
+    <ClInclude Include="Game\Enemy\Mutant\Animations\MutantJumpingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantRushingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantSlashingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.h" />
     <ClInclude Include="Game\Enemy\Mutant\Mutant.h" />
+    <ClInclude Include="Game\Enemy\Mutant\States\MutantJumping.h" />
     <ClInclude Include="Game\Enemy\Mutant\States\MutantRushing.h" />
     <ClInclude Include="Game\Enemy\Mutant\States\MutantSlashing.h" />
     <ClInclude Include="Game\Enemy\Mutant\States\MutantWalking.h" />
@@ -226,6 +228,7 @@
     <ClInclude Include="Game\Interface\IStage.h" />
     <ClInclude Include="Game\Interface\IPlayerState.h" />
     <ClInclude Include="Game\Player\Animation\PlayerAttackingNormalAnimation.h" />
+    <ClInclude Include="Game\Player\Animation\PlayerGuardImpactAnimation.h" />
     <ClInclude Include="Game\Player\Animation\PlayerGuardingAnimation.h" />
     <ClInclude Include="Game\Player\Animation\PlayerIdlingAnimation.h" />
     <ClInclude Include="Game\Player\Animation\PlayerRollingAnimation.h" />
@@ -288,10 +291,12 @@
     <ClCompile Include="Game\Enemy\Demon\Demon.cpp" />
     <ClCompile Include="Game\Enemy\Demon\States\DemonPunching.cpp" />
     <ClCompile Include="Game\Enemy\Demon\States\DemonWalking.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\Animations\MutantJumpingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantRushingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantSlashingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Animations\MutantWalkingAnimation.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\Mutant.cpp" />
+    <ClCompile Include="Game\Enemy\Mutant\States\MutantJumping.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\States\MutantRushing.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\States\MutantSlashing.cpp" />
     <ClCompile Include="Game\Enemy\Mutant\States\MutantWalking.cpp" />
@@ -304,6 +309,7 @@
     <ClCompile Include="Game\Enemy\Warrok\States\WarrokWalking.cpp" />
     <ClCompile Include="Game\Enemy\Warrok\Warrok.cpp" />
     <ClCompile Include="Game\Player\Animation\PlayerAttackingNormalAnimation.cpp" />
+    <ClCompile Include="Game\Player\Animation\PlayerGuardImpactAnimation.cpp" />
     <ClCompile Include="Game\Player\Animation\PlayerGuardingAnimation.cpp" />
     <ClCompile Include="Game\Player\Animation\PlayerIdlingAnimation.cpp" />
     <ClCompile Include="Game\Player\Animation\PlayerRollingAnimation.cpp" />

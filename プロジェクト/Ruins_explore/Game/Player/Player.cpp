@@ -11,6 +11,7 @@
 #include "Framework/Data.h"
 #include "Framework/InputDevice.h"
 #include "Framework/EventMessenger.h"
+#include "Framework/Audio.h"
 
 //---------------------------------------------------------
 // コンストラクタ
@@ -41,6 +42,8 @@ Player::Player()
 	m_playerAttackingNormal = std::make_unique<PlayerAttackingNormal>();
 	// ガード状態を作成する
 	m_playerGuarding = std::make_unique<PlayerGuarding>();
+	// ガード衝撃状態を作成する
+	m_playerGuardImpact = std::make_unique<PlayerGuardImpact>();
 	//カメラを作成する
 	m_camera = std::make_unique<NRLib::TPS_Camera>();
 	// プレイヤーのUI管理クラスを作成する
@@ -62,8 +65,6 @@ Player::~Player()
 //---------------------------------------------------------
 void Player::RegisterEvent()
 {
-	// プレイヤーにダメージを与える
-	EventMessenger::Attach(EventList::DamageToPlayer, std::bind(&Player::Damage, this, std::placeholders::_1));
 	// プレイヤーのポインタを取得する
 	EventMessenger::AttachGetter(GetterList::GetPlayer, std::bind(&Player::GetPlayer, this));
 }
@@ -85,6 +86,8 @@ void Player::Initialize()
 	m_playerAttackingNormal->Initialize();
 	// ガード状態を初期化する
 	m_playerGuarding->Initialize();
+	// ガード衝撃状態を初期化する
+	m_playerGuardImpact->Initialize();
 	// UIを管理するクラスを初期化する
 	m_playerUIManager->Initialize();
 	// エフェクトを管理するクラスを初期化する
@@ -144,13 +147,38 @@ void Player::Finalize()
 }
 
 //---------------------------------------------------------
-// プレイヤーにダメージを与える
+// ダメージ処理
 //---------------------------------------------------------
-void Player::Damage(void* damage)
+void Player::Damage(int damage)
 {
-	int Damage = *static_cast<int*>(damage);
+	// プレイヤーが無敵であればダメージ処理を行わない
+	if (m_invincible)
+	{
+		return;
+	}
+	// プレイヤーがガード中だった場合
+	if (m_currentState == m_playerGuarding.get())
+	{
+		// スタミナがあればガード成功にする(ダメージ処理を行わない)
+		if (m_stamina >= 1)
+		{
+			// スタミナを消費
+			m_stamina--;
+			// ガード衝撃状態へ移行する
+			m_currentState = m_playerGuardImpact.get();
+			return;
+		}
+	}
+
 	// ダメージを与える
-	m_hp -= Damage;
+	m_hp -= damage;
+	// 一時的に無敵にする
+	m_invincible = true;
+	// 効果音
+	Audio::GetInstance()->PlaySE("EnemyAttackSE");
+	// カメラを振動させる
+	std::pair<float, float> shakeparams = { CAMERA_INTENSITY,CAMERA_DURATION };
+	EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);
 }
 
 //---------------------------------------------------------
@@ -164,6 +192,20 @@ bool Player::IsAttack()
 		return true;
 	}
 	// 攻撃中ではない
+	return false;
+}
+
+//---------------------------------------------------------
+// ガードしているか取得する
+//---------------------------------------------------------
+bool Player::IsGuard()
+{
+	// ガード中
+	if (m_currentState == m_playerGuarding.get())
+	{
+		return true;
+	}
+	// ガード中ではない
 	return false;
 }
 
@@ -201,7 +243,7 @@ void Player::ChargeStamina()
 		m_chargeCnt = 0.f; // カウントリセット
 	}
 	// 3秒カウント
-	if (m_chargeCnt >= 180.f)
+	if (m_chargeCnt >= 300.f)
 	{
 		m_stamina++;       // スタミナを回復する
 		m_chargeCnt = 0.f; // カウントリセット

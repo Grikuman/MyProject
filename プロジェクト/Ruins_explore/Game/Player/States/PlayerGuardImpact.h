@@ -1,6 +1,6 @@
 /*
 	ファイル名：PlayerGuardImpact.h
-	　　　概要：プレイヤーのガード状態を管理するクラス
+	　　　概要：プレイヤーのガード衝撃状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IPlayerState.h"
@@ -22,8 +22,12 @@ public:
 	void Update() override;
 	// 描画する
 	void Render() override;
-	// 後処理する
+	// 終了処理
 	void Finalize() override;
+
+private:
+	// 待機状態への移行処理
+	void TransitionToIdling();
 
 private:
 	//プレイヤーのポインタ

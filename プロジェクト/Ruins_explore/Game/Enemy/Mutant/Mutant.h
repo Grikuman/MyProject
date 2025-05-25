@@ -6,6 +6,7 @@
 #include "Game/Enemy/Mutant/States/MutantWalking.h"
 #include "Game/Enemy/Mutant/States/MutantSlashing.h"
 #include "Game/Enemy/Mutant/States/MutantRushing.h"
+#include "Game/Enemy/Mutant/States/MutantJumping.h"
 #include "Game/Interface/IEnemyState.h"
 #include "Game/Interface/ICollisionObject.h"
 #include "Game/Interface/IEnemy.h"
@@ -67,6 +68,8 @@ public:
     MutantRushing* GetMutantRushing() { return m_mutantRushing.get(); }
     // 斬りつけ状態を取得する
     MutantSlashing* GetMutantSlashing() { return m_mutantSlashing.get(); }
+    // ジャンプ状態を取得する
+    MutantJumping* GetMutantJumping() { return m_mutantJumping.get(); }
     
 public:
     // コンストラクタ
@@ -109,6 +112,8 @@ private:
     std::unique_ptr<MutantRushing> m_mutantRushing;
     // 斬りつけ状態
     std::unique_ptr<MutantSlashing> m_mutantSlashing;
+    // ジャンプ状態
+    std::unique_ptr<MutantJumping> m_mutantJumping;
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
     // 速度
