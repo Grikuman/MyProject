@@ -54,8 +54,8 @@ void MutantSlashing::Update()
 {
 	// 斬りつけの処理
 	Slashing();
-	// 歩き状態への移行処理
-	TransitionToWalking();
+	// ジャンプ状態への移行処理
+	TransitionToJumping();
 	
 	// アニメーションを更新する
 	m_animation->Update();
@@ -130,13 +130,28 @@ void MutantSlashing::Slashing()
 }
 
 //---------------------------------------------------------
-// 歩き状態への移行処理
+// ジャンプ状態への移行処理
 //---------------------------------------------------------
-void MutantSlashing::TransitionToWalking()
+void MutantSlashing::TransitionToJumping()
 {
-	// アニメーションが終了したら待機状態へ移行する
+	using namespace DirectX::SimpleMath;
+
+	// アニメーションが終了したらジャンプ状態へ移行する
 	if (m_animation->IsEndAnimation())
 	{
-		m_mutant->ChangeState(m_mutant->GetMutantWalking());
+		// プレイヤーの位置を取得する
+		Vector3 playerPos = m_player->GetPosition();
+		// ミュータントの位置を取得する
+		Vector3 mutantPos = m_mutant->GetPosition();
+		// プレイヤーへの方向を計算する
+		Vector3 directionToPlayer = playerPos - mutantPos;
+		directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+		// ミュータントの回転をプレイヤーに向ける
+		float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+		m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+		// ジャンプをしたときのプレイヤーの位置を保存しておく
+		m_mutant->SetJumpPlayerPos(playerPos);
+		// ジャンプ状態へ移行する
+		m_mutant->ChangeState(m_mutant->GetMutantJumping());
 	}
 }

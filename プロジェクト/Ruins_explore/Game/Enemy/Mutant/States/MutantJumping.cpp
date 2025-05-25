@@ -52,8 +52,8 @@ void MutantJumping::Initialize()
 //---------------------------------------------------------
 void MutantJumping::Update()
 {
-	// 斬りつけの処理
-	Slashing();
+	// ジャンプの処理
+	Jumping();
 	// 歩き状態への移行処理
 	TransitionToWalking();
 	
@@ -79,54 +79,29 @@ void MutantJumping::Finalize()
 }
 
 //---------------------------------------------------------
-// 斬りつけの処理
+// ジャンプの処理
 //---------------------------------------------------------
-void MutantJumping::Slashing()
+void MutantJumping::Jumping()
 {
 	using namespace DirectX::SimpleMath;
 
-	// ミュータントがダメージを与えられる状態であれば通過
-	if (!m_animation->IsAbleToDealDamage())
-	{
-		return;
-	}
-
-	// プレイヤーの位置を取得する
-	Vector3 playerPos = m_player->GetPosition();
+	// ジャンプ前のプレイヤーの位置を取得する
+	Vector3 playerPos = m_mutant->GetJumpPlayerPos();
 	// ミュータントの位置を取得する
 	Vector3 mutantPos = m_mutant->GetPosition();
-	// プレイヤーとミュータントの距離を計算する
-	float distanceToPlayer = Vector3::Distance(mutantPos, playerPos);
-	// 一定距離以内にプレイヤーがいる場合通過
-	if (distanceToPlayer > ATTACK_DISTANCE)
-	{
-		return;
-	}
 
-	//=====================================================
-	// * ダメージ処理 *
-	//=====================================================
-	
-	// mutantの前方向ベクトルをQuaternionから求める
-	Matrix rotMatrix = Matrix::CreateFromQuaternion(m_mutant->GetAngle());
-	Vector3 mutantForward = -rotMatrix.Forward(); // Z-方向が「前」
+	// プレイヤーへの方向を計算する
+	Vector3 directionToPlayer = playerPos - mutantPos;
+	directionToPlayer.Normalize(); // 正規化して方向ベクトルにする
+	// ミュータントの回転をプレイヤーに向ける
+	float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
+	m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
 
-	// mutantからプレイヤーへのベクトル
-	Vector3 toPlayer = m_player->GetPosition() - m_mutant->GetPosition();
-	toPlayer.Normalize();
-
-	// 正面方向とプレイヤーへのベクトルの内積
-	float dot = 
-		mutantForward.x * toPlayer.x + 
-		mutantForward.y * toPlayer.y + 
-		mutantForward.z * toPlayer.z;
-
-	// 前方約60度以内
-	if (dot > ATTACK_DOT)
-	{
-		// プレイヤーにダメージを与える
-		m_player->Damage(1);
-	}
+	// 速度を設定する
+	m_mutant->AddVelocity(directionToPlayer);
+	m_mutant->ApplyVelocity(APPLY_VELOCITY);
+	// 位置を設定する
+	m_mutant->SetPosition(mutantPos + m_mutant->GetVelocity());
 }
 
 //---------------------------------------------------------
@@ -134,9 +109,10 @@ void MutantJumping::Slashing()
 //---------------------------------------------------------
 void MutantJumping::TransitionToWalking()
 {
-	// アニメーションが終了したら待機状態へ移行する
+	// アニメーションが終了したら歩き状態へ移行する
 	if (m_animation->IsEndAnimation())
 	{
+		// 歩き状態へ移行する
 		m_mutant->ChangeState(m_mutant->GetMutantWalking());
 	}
 }

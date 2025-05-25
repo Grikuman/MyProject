@@ -19,6 +19,8 @@ class Mutant : public IEnemy
 public:
     // 位置を設定する
     void SetPosition(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
+    // ジャンプした時のプレイヤーの位置を取得する
+    void SetJumpPlayerPos(const DirectX::SimpleMath::Vector3 position) { m_jumpPlayerPos = m_position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity) { m_velocity = velocity; }
     // 速度を加算する
@@ -42,6 +44,8 @@ public:
 public:
     // 位置を取得する
     DirectX::SimpleMath::Vector3 GetPosition() const override { return m_position; }
+    // ジャンプした時のプレイヤーの位置を取得する
+    DirectX::SimpleMath::Vector3 GetJumpPlayerPos() const { return m_jumpPlayerPos; }
     // 速度を取得する
     DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
     // 角度を取得する
@@ -116,6 +120,8 @@ private:
     std::unique_ptr<MutantJumping> m_mutantJumping;
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
+    // ジャンプした時のプレイヤーの位置
+    DirectX::SimpleMath::Vector3 m_jumpPlayerPos;
     // 速度
     DirectX::SimpleMath::Vector3 m_velocity;
     // 角度

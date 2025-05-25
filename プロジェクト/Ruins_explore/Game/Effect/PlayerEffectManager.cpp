@@ -55,7 +55,7 @@ void PlayerEffectManager::Update()
 void PlayerEffectManager::Render()
 {
     // –³“GƒGƒtƒFƒNƒg‚ğ•`‰æ‚·‚é
-    m_invincibleEffect->Render();
+    //m_invincibleEffect->Render();
 }
 
 //---------------------------------------------------------

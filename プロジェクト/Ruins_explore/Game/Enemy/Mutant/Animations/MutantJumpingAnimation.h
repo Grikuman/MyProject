@@ -40,7 +40,7 @@ private:
 
 private:
 	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ŽžŠÔ
-	const float ANIMATION_TIME = 2.6f; // yƒƒ‚z1.4f ` 1.7f•Ó‚è‚ªUŒ‚‚ª“–‚½‚éŽžŠÔ
+	const float ANIMATION_TIME = 2.9f; // yƒƒ‚z1.4f ` 1.7f•Ó‚è‚ªUŒ‚‚ª“–‚½‚éŽžŠÔ
 	// UŒ‚‚ªÚG‚·‚éŽžŠÔ
 	const float HIT_START_TIME = 1.4f;
 	// UŒ‚‚ÌÚG‚ªI‚í‚éŽžŠÔ

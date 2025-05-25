@@ -35,7 +35,7 @@ private:
 	// a‚è‚Â‚¯UŒ‚‚Ìˆ—
 	void Slashing();
 	// •à‚«ó‘Ô‚Ö‚ÌˆÚsˆ—
-	void TransitionToWalking();
+	void TransitionToJumping();
 
 private:
 	// UŒ‚‚Ì“–‚½‚é‹——£

@@ -79,7 +79,7 @@ void MutantJumpingAnimation::Initialize()
 	// リソースディレクトリの設定
 	Graphics::GetInstance()->GetFX()->SetDirectory(L"Resources/SDKMesh");
 	// アニメーションをロードする
-	m_animation->Load(L"Resources/SDKMesh/Mutant_Slashing.sdkmesh_anim");
+	m_animation->Load(L"Resources/SDKMesh/Mutant_Jumping.sdkmesh_anim");
 	// アニメーションとモデルをバインドする
 	m_animation->Bind(*m_model);
 	// ボーン用のトランスフォーム配列を生成する

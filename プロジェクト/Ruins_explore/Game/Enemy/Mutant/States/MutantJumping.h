@@ -1,6 +1,6 @@
 /*
 	ファイル名：MutantJumping.h
-	　　　概要：ミュータントの斬りつけ状態を管理するクラス
+	　　　概要：ミュータントのジャンプ状態を管理するクラス
 */
 #pragma once
 #include "Game/Interface/IEnemyState.h"
@@ -32,10 +32,12 @@ public:
 	void Finalize() override;
 
 private:
-	// 斬りつけ攻撃の処理
-	void Slashing();
+	// ジャンプの処理
+	void Jumping();
 	// 歩き状態への移行処理
 	void TransitionToWalking();
+	// アニメーション後の位置補正
+	void MoveCorrection();
 
 private:
 	// 攻撃の当たる距離
@@ -46,6 +48,8 @@ private:
 	const float CAMERA_INTENSITY = 0.2f;
 	// 攻撃が当たった際のカメラ振動の時間
 	const float CAMERA_DURATION = 0.4f;
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.08f;
 
 private:
 	// ミュータント
