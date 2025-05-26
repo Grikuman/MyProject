@@ -20,7 +20,7 @@ public:
     // 位置を設定する
     void SetPosition(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
     // ジャンプした時のプレイヤーの位置を取得する
-    void SetJumpPlayerPos(const DirectX::SimpleMath::Vector3 position) { m_jumpPlayerPos = m_position; }
+    void SetJumpPlayerPos(const DirectX::SimpleMath::Vector3 position) { m_jumpPlayerPos = position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity) { m_velocity = velocity; }
     // 速度を加算する

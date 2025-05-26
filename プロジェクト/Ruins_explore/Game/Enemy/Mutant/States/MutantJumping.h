@@ -48,8 +48,8 @@ private:
 	const float CAMERA_INTENSITY = 0.2f;
 	// 攻撃が当たった際のカメラ振動の時間
 	const float CAMERA_DURATION = 0.4f;
-	// 速度の補正
-	const float APPLY_VELOCITY = 0.08f;
+	// 移動量
+	const float MOVE_DISTANCE = 5.0f;
 
 private:
 	// ミュータント
