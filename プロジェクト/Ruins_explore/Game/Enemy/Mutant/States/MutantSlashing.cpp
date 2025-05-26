@@ -149,8 +149,12 @@ void MutantSlashing::TransitionToJumping()
 		// ミュータントの回転をプレイヤーに向ける
 		float angleToPlayer = atan2f(directionToPlayer.x, directionToPlayer.z);
 		m_mutant->SetAngle(Quaternion::CreateFromAxisAngle(Vector3::Up, angleToPlayer));
+		// ジャンプをしたときのミュータントの位置を保存しておく
+		m_mutant->SetJumpPosition(mutantPos);
 		// ジャンプをしたときのプレイヤーの位置を保存しておく
-		m_mutant->SetJumpPlayerPos(playerPos);
+		m_mutant->SetJumpPlayerPosition(playerPos);
+		// ジャンプをしたときの角度を保存しておく
+		m_mutant->SetJumpAngle(m_mutant->GetAngle());
 		// ジャンプ状態へ移行する
 		m_mutant->ChangeState(m_mutant->GetMutantJumping());
 	}

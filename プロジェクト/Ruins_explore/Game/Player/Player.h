@@ -127,9 +127,13 @@ private:
 	// 当たり判定(箱)のサイズ
 	const DirectX::SimpleMath::Vector3 COLLISION_BOX_SIZE = { 1.0f,1.0f,1.0f };
 	// 攻撃が当たった際のカメラ振動の強度
-	const float CAMERA_INTENSITY = 0.2f;
+	const float HIT_CAMERA_INTENSITY = 0.2f;
 	// 攻撃が当たった際のカメラ振動の時間
-	const float CAMERA_DURATION = 0.4f;
+	const float HIT_CAMERA_DURATION = 0.4f;
+	// ガード成功のカメラ振動の強度
+	const float GUARD_CAMERA_INTENSITY = 0.3f;
+	// ガード成功のカメラ振動の時間
+	const float GUARD_CAMERA_DURATION = 0.6f;
 
 private:
 	// 現在のステート

@@ -32,24 +32,24 @@ public:
 	void Finalize() override;
 
 private:
+	// ダメージ処理
+	void Damage();
 	// ジャンプの処理
 	void Jumping();
 	// 歩き状態への移行処理
 	void TransitionToWalking();
-	// アニメーション後の位置補正
-	void MoveCorrection();
 
 private:
 	// 攻撃の当たる距離
-	const float ATTACK_DISTANCE = 5.0f;
+	const float ATTACK_DISTANCE = 3.0f;
 	// 攻撃の当たる判定範囲
 	const float ATTACK_DOT = 0.5f;
 	// 攻撃が当たった際のカメラ振動の強度
 	const float CAMERA_INTENSITY = 0.2f;
 	// 攻撃が当たった際のカメラ振動の時間
 	const float CAMERA_DURATION = 0.4f;
-	// 移動量
-	const float MOVE_DISTANCE = 5.0f;
+	// 速度の補正
+	const float APPLY_VELOCITY = 0.08f;
 
 private:
 	// ミュータント

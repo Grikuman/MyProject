@@ -133,9 +133,9 @@ void MutantJumpingAnimation::Render()
 		// 180度回転させる(モデルの向き調整)
 		Matrix::CreateRotationY(DirectX::XM_PI) *
 		// 回転行列を作成
-		Matrix::CreateFromQuaternion(m_mutant->GetAngle()) *
+		Matrix::CreateFromQuaternion(m_mutant->GetJumpAngle()) *
 		// 移動行列を作成
-	    Matrix::CreateTranslation(m_mutant->GetPosition() + Vector3(0.0f,-1.0f,0.0f)); 
+	    Matrix::CreateTranslation(m_mutant->GetJumpPosition() + Vector3(0.0f,-1.0f,0.0f));
 
 	// アニメーションモデルの描画する
 	DrawAnimation(m_model, &m_animBone, worldMatrix);

@@ -164,21 +164,27 @@ void Player::Damage(int damage)
 		{
 			// スタミナを消費
 			m_stamina--;
+			// カメラを振動させる
+			std::pair<float, float> shakeparams = { GUARD_CAMERA_INTENSITY,GUARD_CAMERA_DURATION };
+			EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);
 			// ガード衝撃状態へ移行する
 			m_currentState = m_playerGuardImpact.get();
 			return;
 		}
+		// スタミナが無ければ
+		else
+		{
+			// ダメージを与える
+			m_hp -= damage;
+			// 一時的に無敵にする
+			m_invincible = true;
+			// 効果音
+			Audio::GetInstance()->PlaySE("EnemyAttackSE");
+			// カメラを振動させる
+			std::pair<float, float> shakeparams = { HIT_CAMERA_INTENSITY,HIT_CAMERA_DURATION };
+			EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);
+		}
 	}
-
-	// ダメージを与える
-	m_hp -= damage;
-	// 一時的に無敵にする
-	m_invincible = true;
-	// 効果音
-	Audio::GetInstance()->PlaySE("EnemyAttackSE");
-	// カメラを振動させる
-	std::pair<float, float> shakeparams = { CAMERA_INTENSITY,CAMERA_DURATION };
-	EventMessenger::Execute(EventList::ShakeCamera, &shakeparams);
 }
 
 //---------------------------------------------------------

@@ -52,6 +52,8 @@ void MutantJumping::Initialize()
 //---------------------------------------------------------
 void MutantJumping::Update()
 {
+	// ダメージ処理
+	Damage();
 	// ジャンプの処理
 	Jumping();
 	// 歩き状態への移行処理
@@ -79,37 +81,43 @@ void MutantJumping::Finalize()
 }
 
 //---------------------------------------------------------
+// ダメージ処理
+//---------------------------------------------------------
+void MutantJumping::Damage()
+{
+	using namespace DirectX::SimpleMath;
+
+	// ミュータントがダメージを与えられる状態であれば通過
+	if (!m_animation->IsAbleToDealDamage())
+	{
+		return;
+	}
+
+	// プレイヤーの位置を取得する
+	Vector3 playerPos = m_player->GetPosition();
+	// ミュータントの位置を取得する
+	Vector3 mutantPos = m_mutant->GetPosition();
+	// プレイヤーとミュータントの距離を計算する
+	float distanceToPlayer = Vector3::Distance(mutantPos, playerPos);
+	// 一定距離以内にプレイヤーがいる場合通過
+	if (distanceToPlayer > ATTACK_DISTANCE)
+	{
+		return;
+	}
+
+	// ダメージを与える
+	m_player->Damage(1);
+}
+
+//---------------------------------------------------------
 // ジャンプの処理
 //---------------------------------------------------------
 void MutantJumping::Jumping()
 {
-	
-}
-
-//---------------------------------------------------------
-// 歩き状態への移行処理
-//---------------------------------------------------------
-void MutantJumping::TransitionToWalking()
-{
-	// アニメーションが終了したら歩き状態へ移行する
-	if (m_animation->IsEndAnimation())
-	{
-		// アニメーション後の位置補正
-		MoveCorrection();
-		// 歩き状態へ移行する
-		m_mutant->ChangeState(m_mutant->GetMutantRushing());
-	}
-}
-
-//---------------------------------------------------------
-// アニメーション後の位置補正
-//---------------------------------------------------------
-void MutantJumping::MoveCorrection()
-{
 	using namespace DirectX::SimpleMath;
 
 	// プレイヤーの位置を取得する
-	Vector3 playerPos = m_mutant->GetJumpPlayerPos();
+	Vector3 playerPos = m_mutant->GetJumpPlayerPosition();
 	// ミュータントの位置を取得する
 	Vector3 mutantPos = m_mutant->GetPosition();
 
@@ -122,7 +130,20 @@ void MutantJumping::MoveCorrection()
 
 	// 速度を設定する
 	m_mutant->AddVelocity(directionToPlayer);
-	m_mutant->ApplyVelocity(MOVE_DISTANCE);
+	m_mutant->ApplyVelocity(APPLY_VELOCITY);
 	// 位置を設定する
 	m_mutant->SetPosition(mutantPos + m_mutant->GetVelocity());
+}
+
+//---------------------------------------------------------
+// 歩き状態への移行処理
+//---------------------------------------------------------
+void MutantJumping::TransitionToWalking()
+{
+	// アニメーションが終了したら歩き状態へ移行する
+	if (m_animation->IsEndAnimation())
+	{
+		// 歩き状態へ移行する
+		m_mutant->ChangeState(m_mutant->GetMutantRushing());
+	}
 }

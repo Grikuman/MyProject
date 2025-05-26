@@ -19,8 +19,10 @@ class Mutant : public IEnemy
 public:
     // 位置を設定する
     void SetPosition(const DirectX::SimpleMath::Vector3 position) { m_position = position; }
-    // ジャンプした時のプレイヤーの位置を取得する
-    void SetJumpPlayerPos(const DirectX::SimpleMath::Vector3 position) { m_jumpPlayerPos = position; }
+    // ジャンプした時の位置を設定する
+    void SetJumpPosition(const DirectX::SimpleMath::Vector3 position) { m_jumpPos = position; }
+    // ジャンプした時のプレイヤーの位置を設定する
+    void SetJumpPlayerPosition(const DirectX::SimpleMath::Vector3 position) { m_jumpPlayerPos = position; }
     // 速度を設定する
     void SetVelocity(const DirectX::SimpleMath::Vector3 velocity) { m_velocity = velocity; }
     // 速度を加算する
@@ -31,6 +33,8 @@ public:
     void AddAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle *= angle; }
     // 角度を設定する
     void SetAngle(const DirectX::SimpleMath::Quaternion angle) { m_angle = angle; }
+    // ジャンプした時の角度
+    void SetJumpAngle(const DirectX::SimpleMath::Quaternion angle) { m_jumpAngle = angle; };
     // 体力を設定する
     void SetHP(const float hp) { m_hp = hp; }
     // ダメージを受けているか設定する
@@ -41,15 +45,20 @@ public:
     void Damage(const float damage) override { m_hp -= damage; }
     // ステートを変更する
     void ChangeState(IEnemyState* newState) { m_currentState = newState; }
+
 public:
     // 位置を取得する
     DirectX::SimpleMath::Vector3 GetPosition() const override { return m_position; }
+    // ジャンプした時の位置を取得する
+    DirectX::SimpleMath::Vector3 GetJumpPosition() const { return m_jumpPos; }
     // ジャンプした時のプレイヤーの位置を取得する
-    DirectX::SimpleMath::Vector3 GetJumpPlayerPos() const { return m_jumpPlayerPos; }
+    DirectX::SimpleMath::Vector3 GetJumpPlayerPosition() const { return m_jumpPlayerPos; }
     // 速度を取得する
     DirectX::SimpleMath::Vector3 GetVelocity() const { return m_velocity; }
     // 角度を取得する
     DirectX::SimpleMath::Quaternion GetAngle() const { return m_angle; }
+    // ジャンプした時の角度を取得する
+    DirectX::SimpleMath::Quaternion GetJumpAngle() const { return m_jumpAngle; }
     // 体力を取得する
     float GetHP() const { return m_hp; }
     // 最大体力を取得する
@@ -120,12 +129,16 @@ private:
     std::unique_ptr<MutantJumping> m_mutantJumping;
     // 位置
     DirectX::SimpleMath::Vector3 m_position;
+    // ジャンプした時の位置
+    DirectX::SimpleMath::Vector3 m_jumpPos;
     // ジャンプした時のプレイヤーの位置
     DirectX::SimpleMath::Vector3 m_jumpPlayerPos;
     // 速度
     DirectX::SimpleMath::Vector3 m_velocity;
     // 角度
     DirectX::SimpleMath::Quaternion m_angle;
+    // ジャンプした時の角度
+    DirectX::SimpleMath::Quaternion m_jumpAngle;
     // 体力
     float m_hp;
     // ダメージを受けているか

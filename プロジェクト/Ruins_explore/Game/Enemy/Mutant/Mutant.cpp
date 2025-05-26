@@ -24,9 +24,11 @@ Mutant::Mutant()
     m_mutantRushing{},
     m_mutantSlashing{},
     m_position{},
+    m_jumpPos{},
     m_jumpPlayerPos{},
     m_velocity{},
     m_angle{},
+    m_jumpAngle{},
     m_hp{MAXHP},
     m_isHit(false),
     m_isAlive(true)
